@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xcolor}
+ \usepackage{tikz}
+% --- Tipografía sans-serif ---
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+ 
+% Gráficos 2D y 3D
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18, colormap/viridis}
+ 
+% Cuadros personalizados, sombras y entornos numerados
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+
+\usetikzlibrary{babel}
+\usepackage{etoc} 
+
+\newcommand{\portadaseccion}[1]{
+    \clearpage
+    \thispagestyle{empty}
+    \vspace*{2cm}
+    \section{#1} 
+    \vspace{1.5cm} 
+    \etocsettocstyle{\Large\bfseries Contenido del tema\par\vspace{0.5cm}}{}
+    \localtableofcontents
+    \clearpage 
+}
+ 
+% --- REFERENCIAS Y CITAS ENLAZADAS ---
+\usepackage{hyperref}
+\usepackage[capitalise, spanish]{cleveref}
+\hypersetup{
+    colorlinks   = true,
+    linkcolor    = blue!75!black,
+    citecolor    = violet!60!black,
+    urlcolor     = cyan!70!black,
+    pdftitle     = {Apuntes de Topología Algebraica},
+    pdfborder    = {0 0 0},
+    bookmarksnumbered = true,
+}
+ 
+% Nombres para que \cref reconozca las cajas personalizadas
+\crefname{tcb@cnt@definicion}{definición}{definiciones}
+\crefname{tcb@cnt@observacion}{observación}{observaciones}
+\crefname{tcb@cnt@nota}{nota}{notas}
+\crefname{tcb@cnt@teorema}{teorema}{teoremas}
+\crefname{tcb@cnt@proposicion}{proposición}{proposiciones}
+\Crefname{tcb@cnt@definicion}{Definición}{Definiciones}
+\Crefname{tcb@cnt@observacion}{Observación}{Observaciones}
+\Crefname{tcb@cnt@nota}{Nota}{Notas}
+\Crefname{tcb@cnt@teorema}{Teorema}{Teoremas}
+\Crefname{tcb@cnt@proposicion}{Proposición}{Proposiciones}
+ 
+% --- Fondo y texto ---
+\pagecolor{gray!5}
+\color{black}
+ 
+% --- Línea de degradado ("scan line") bajo cada \section (CORREGIDA) ---
+\usepackage{titlesec}
+\newcommand{\neonrule}[1]{%
+    \par\noindent % Fuerza el origen al margen izquierdo
+    \begin{tikzpicture}[remember picture, overlay]
+    % 3 Bloques izquierdos
+    \fill[#1] (0,0.3) rectangle (0.2,0.45);
+    \fill[#1] (0.25,0.3) rectangle (0.45,0.45);
+    \fill[#1] (0.5,0.3) rectangle (0.7,0.45);
+    
+    % Línea central 
+    \draw[#1, line width=1pt] (1.2,0.375) -- (\dimexpr\linewidth-0.4cm\relax,0.375);
+    
+    % Bloque derecho
+    \fill[#1] (\dimexpr\linewidth-0.5cm\relax, 0.3) rectangle (\linewidth,0.45);
+\end{tikzpicture}%
+}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+  [\neonrule{violet}] % Color lila para la línea de la sección
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+ 
+% --- Sombra con brillo de color + título en degradado ---
+\tcbset{
+    futuristicbase/.style={
+        enhanced, breakable,
+        boxrule=0.5pt,
+        arc=2pt,
+        fonttitle=\bfseries
+    }
+}
+ 
+% --- Cuadros personalizados numerados por sección (Paleta Azul y Lila) ---
+ 
+\newtcbtheorem[number within=section]{teorema}{Teorema}{
+    futuristicbase,
+    colback=blue!3!white,
+    colframe=blue!80!black,
+    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{blue!50!black,opacity=0.5},
+    title style={left color=blue!90!black, right color=blue!60!black}
+}{thm}
+
+\newtcbtheorem[number within=section]{definicion}{Definición}{
+    futuristicbase,
+    colback=violet!4!white,
+    colframe=violet!80!black,
+    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{violet!50!black,opacity=0.5},
+    title style={left color=violet!80!black, right color=violet!50!black}
+}{def}
+
+\newtcbtheorem[number within=section]{proposicion}{Proposición}{
+    futuristicbase,
+    colback=blue!2!violet!3!white,
+    colframe=blue!50!violet!50!black,
+    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{blue!40!violet!40!black,opacity=0.5},
+    title style={left color=blue!60!violet!60!black, right color=blue!40!violet!40!black}
+}{prop}
+
+\newtcbtheorem[number within=section]{observacion}{Observación}{
+    futuristicbase,
+    colback=purple!5!white,
+    colframe=purple!50!black,
+    boxrule=0.4pt,
+    coltitle=black,
+    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{purple!30!black,opacity=0.5},
+    title style={left color=purple!20!white, right color=purple!5!white}
+}{obs}
+
+\newtcbtheorem[number within=section]{nota}{Nota}{
+    futuristicbase,
+    colback=magenta!5!blue!5!white,
+    colframe=magenta!60!blue!60!black,
+    boxrule=0.4pt,
+    coltitle=white,
+    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{magenta!40!blue!40!black,opacity=0.5},
+    title style={left color=magenta!80!blue!80!black, right color=magenta!60!blue!60!black}
+}{not}
+ 
+% --- Cabecera/pie de página ---
+\usepackage{fancyhdr}
+\setlength{\headheight}{12.5pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\small\textcolor{gray}{\leftmark}}
+\fancyhead[R]{\small\textcolor{gray}{Apuntes}}
+\fancyfoot[C]{\small\textcolor{gray}{\thepage}}
+ 
