@@ -1,0 +1,36 @@
+name: Compilar y Publicar LaTeX
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Compilar LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+
+      - name: Generar fecha y renombrar PDF
+        run: |
+          FECHA=$(date +'%Y-%m-%d')
+          NUEVO_NOMBRE="documento_${FECHA}.pdf"
+          mv main.pdf $NUEVO_NOMBRE
+          echo "PDF_NAME=$NUEVO_NOMBRE" >> $GITHUB_ENV
+          echo "FECHA=$FECHA" >> $GITHUB_ENV
+
+      - name: Crear Release y subir PDF
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.FECHA }} 
+          name: "Actualización ${{ env.FECHA }}"
+          files: ${{ env.PDF_NAME }}
