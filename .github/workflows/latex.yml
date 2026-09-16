@@ -20,17 +20,17 @@ jobs:
         with:
           root_file: main.tex
 
-      - name: Generar fecha y renombrar PDF
+      - name: Generar fecha/hora y renombrar PDF
         run: |
-          FECHA=$(date +'%Y-%m-%d')
-          NUEVO_NOMBRE="documento_${FECHA}.pdf"
+          MARCA_TIEMPO=$(date +'%Y-%m-%d_%H-%M')
+          NUEVO_NOMBRE="TOPOAL_${MARCA_TIEMPO}.pdf"
           mv main.pdf $NUEVO_NOMBRE
           echo "PDF_NAME=$NUEVO_NOMBRE" >> $GITHUB_ENV
-          echo "FECHA=$FECHA" >> $GITHUB_ENV
+          echo "MARCA_TIEMPO=$MARCA_TIEMPO" >> $GITHUB_ENV
 
       - name: Crear Release y subir PDF
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.FECHA }} 
-          name: "Actualización ${{ env.FECHA }}"
+          tag_name: ${{ env.MARCA_TIEMPO }} 
+          name: "Actualización ${{ env.MARCA_TIEMPO }}"
           files: ${{ env.PDF_NAME }}
