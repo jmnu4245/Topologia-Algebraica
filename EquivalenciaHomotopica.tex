@@ -88,7 +88,7 @@ Recordemos que $S^n = \{x \in \mathbb{R}^{n+1} \mid |x| = 1\}$.
 
 \subsubsection{Estructura en $C(X,Y)$}
 
-Llamamos $C(X,Y) = \{f \colon X \to Y \mid f \text{ continua}\}$.
+Llamamos $C(X,Y) = \{f \colon X \to Y \mid f \text{ continua}\}$. Vimos que $\simeq$ es R.B.E en $C(X,Y)$. Luego podemos hablar del conjunto cociente $C(X,Y)/\simeq$, que se suele denotar por $[X,Y]$.
 
 \begin{teorema}{Relación de equivalencia en $C(X,Y)$}{teo_rel_eq}
 La homotopía $\simeq$ es una Relación de Equivalencia (R.B.E.) en $C(X,Y)$.
@@ -131,13 +131,22 @@ Como $H$ es continua, queda probado que $g_1 \circ f_1 \simeq g_2 \circ f_2$.
 \subsection{Equivalencia homotópica entre espacios}
 
 \begin{definicion}{Equivalencia homotópica}{def_eq_homotopica}
-Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son del mismo tipo de homotopía cuando $\exists f \colon X \to Y$ continua y $\exists g \colon Y \to X$ continua tales que $f \circ g \simeq 1_Y$ y $g \circ f \simeq 1_X$. Se denota $X \simeq Y$.
+Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son del mismo tipo de homotopía ($X \simeq Y$) cuando $\exists f \colon X \to Y$ continua y $\exists g \colon Y \to X$ continua tales que $f \circ g \simeq 1_Y$ y $g \circ f \simeq 1_X$. 
+
+En este caso también diremos que $f$ es una \textbf{equivalencia homotópica} y $g$ la \textbf{inversa homotópica} de $f$ (no necesariamente $f$ biyectiva).
 \end{definicion}
 
 \begin{observacion}{Relación con el homeomorfismo}{obs_iso}
-$X \cong Y \implies X \simeq Y$.
+$X \cong Y \implies X \simeq Y$ (y $g$ es inversa de $f$).
 Tomando $f \colon X \to Y, g \colon Y \to X$ biyecciones donde $g \circ f = 1_X$ y $f \circ g = 1_Y$, se sigue que son trivialmente homotópicas a las identidades ($g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$).
+
+Sin embargo, $f \colon X \to Y$ continua y biyectiva $\not\implies f^{-1}$ continua (y no necesariamente $f$ es equivalencia homotópica si falla el homeomorfismo). Como contraejemplo:
+$f \colon [0, 1) \to S^1, \quad t \mapsto (\cos(2\pi t), \sin(2\pi t))$.
 \end{observacion}
+
+\begin{nota}{Invarianza por eliminación de puntos}{nota_agujeros}
+Como consecuencia de las propiedades topológicas: si $X \cong Y$, dado $P \in X$, entonces $X \setminus \{P\} \cong Y \setminus \{f(P)\}$. Para el caso homotópico, la pregunta análoga es si $\forall P \in X, \exists Q \in Y$ tal que $X \setminus \{P\} \simeq Y \setminus \{Q\}$.
+\end{nota}
 
 \textbf{Ejemplos:}
 \begin{enumerate}
@@ -146,56 +155,137 @@ Tomando $f \colon X \to Y, g \colon Y \to X$ biyecciones donde $g \circ f = 1_X$
     Definimos $g \colon Y \to X$, $g(0,0) = (0,0)$.
     
     Tenemos que $f \circ g(0,0) = (0,0) \implies f \circ g = 1_Y \implies f \circ g \simeq 1_Y$.
-    
     Y también $g \circ f(x,y) = g(0,0) = (0,0), \forall (x,y) \in X \implies g \circ f = c_{(0,0)}$.
-    ¿Es $g \circ f = c_{(0,0)} \simeq 1_X$?
-    Sea $F \colon X \times I \to X$ continua tal que $F_0 = c_{(0,0)}$ y $F_1 = 1_X$. Podemos definirla como $F((x,y), t) = t \cdot (x,y)$.
-    Por tanto, $g \circ f$ es homotópica a la identidad $1_X$, y concluimos que $X \simeq Y$.
     
-    \item Sean $X = [-1,1]$ y $Y = \{0\}$.
-    Se cumple que $X \not\cong Y$ pero $X \simeq Y$.
-    Tomamos $f \colon X \to Y, f = c_0$ y $g \colon Y \to X, g(0) = 0$.
-    Claramente $f \circ g = 1_Y$ y $g \circ f = c_0 \simeq 1_X$.
+    Sea $F \colon X \times I \to X$ continua dada por $F((x,y), t) = t \cdot (x,y)$. Se tiene $F_0 = c_{(0,0)}$ y $F_1 = 1_X$. Por tanto, $g \circ f \simeq 1_X$, y concluimos que $X \simeq Y$.
+    
+    \item Sean $X = [-1,1]$ y $Y = [-1,1] \times \{0\} \cup \{0\} \times [-1,1]$. 
+    Evaluando el número de componentes conexas al quitar un punto: $\mathcal{O}(X) = \{1, 2\}$ y $\mathcal{O}(Y) = \{1, 2, 4\}$. Como $\mathcal{O}(X) \neq \mathcal{O}(Y) \implies X \not\cong Y$. Sin embargo, se puede demostrar que $X \simeq Y$.
     
     \item Sean $X = S^1 \times [-1,1]$ (cilindro) y $Y = S^1$.
     $f \colon X \to Y, (x,y,z) \mapsto (x,y)$.
     $g \colon Y \to X, (x,y) \mapsto (x,y,0)$.
     
     $f \circ g(x,y) = f(x,y,0) = (x,y) = id_Y, \forall (x,y) \in Y$.
-    
-    $g \circ f(x,y,z) = g(x,y) = (x,y,0)$. ¿Es homotópica a $1_X, \forall (x,y,z) \in X$?
-    Construimos $F \colon X \times I \to X$ (continua por ser polinómica), dada por $F((x,y,z), t) = (x,y, t \cdot z)$. Se verifica que $F_0 = g \circ f$ y $F_1 = 1_X$.
+    $g \circ f(x,y,z) = g(x,y) = (x,y,0)$. 
+    Construimos $F \colon X \times I \to X$ dada por $F((x,y,z), t) = (x,y, t \cdot z)$. Se verifica que $F_0 = g \circ f$ y $F_1 = 1_X \implies X \simeq Y$.
 \end{enumerate}
-\begin{nota}{Espacios perforados}{nota_agujeros}
-$S^2 \setminus \{k \text{ puntos}\} \simeq \bigvee_{j=1}^{k-1} S^1$.
-\end{nota}
 
-\subsection{Espacios Contractiles}
+
+\subsection{Espacios Contractiles, Convexos y Estrellados}
 
 \begin{definicion}{Espacio topológico contractil}{def_contractil}
 Un espacio topológico $X \neq \emptyset$ es contractil si $\exists x_0 \in X \mid 1_X \simeq c_{x_0}$ (donde $c_{x_0}$ es la aplicación constante $x \mapsto x_0$).
 \end{definicion}
 
 \begin{teorema}{Caracterización de espacios contractiles}{teo_contractil}
-Son equivalentes las siguientes afirmaciones para un espacio topológico $X \neq \emptyset$:
+Son equivalentes las siguientes afirmaciones para un e.t. $X \neq \emptyset$:
 \begin{enumerate}
     \item[a)] $X$ es contractil.
     \item[b)] $id_X \simeq c_x, \forall x \in X$.
-    \item[c)] $\forall f,g \colon T \to X$ continuas $\implies f \simeq g$ (para cualquier espacio topológico $T$).
+    \item[c)] $\forall f,g \colon T \to X$ continuas $\implies f \simeq g$ (para cualquier e.t. $T$).
     \item[d)] $X$ es del mismo tipo de homotopía que un punto.
 \end{enumerate}
 \end{teorema}
 
+\begin{definicion}{Conjunto convexo}{def_convexo}
+Sea $X \subseteq \mathbb{R}^n$. Diremos que $X$ es convexo cuando todo segmento que une dos puntos cualesquiera de $X$ está contenido en $X$. Equivalentemente:
+\[ \exists x_0 \in X \mid \forall x \in X, \forall t \in [0,1]: \quad tx + (1-t)y \in X \]
+\end{definicion}
+
+\begin{teorema}{Contracción de conjuntos convexos}{teo_convexo_contractil}
+Todo subconjunto convexo de $\mathbb{R}^n$ es contractil (del mismo tipo de homotopía que un punto).
+\end{teorema}
+
 \begin{proof}
-$a) \implies b)$: Por hipótesis $\exists x_0 \in X \mid 1_X \simeq c_{x_0}$. Sea $x$ cualquier otro punto de $X$. Sea $c_x$ la aplicación $X \to X, p \mapsto x$.
-\[ 1_X \circ c_x \simeq c_{x_0} \circ c_x \implies c_x \simeq c_{x_0} \implies c_x \simeq c_{x_0} \simeq 1_X \]
+Sea $x_0 \in X$. Tomamos un punto cualquiera de $X$ y definimos:
+\[ f \colon X \to \{x_0\} \hookrightarrow X, \quad x \mapsto x_0 \]
+\[ g \colon \{x_0\} \to X, \quad x_0 \mapsto x_0 \]
+Claramente $f \circ g = 1_{\{x_0\}}$. Veamos que $g \circ f = c_{x_0} \simeq 1_X$. Definimos la homotopía $F \colon X \times I \to X$ como:
+\[ F(x,t) = tx + (1-t)x_0 \]
+Evaluando en los extremos, $F_0(x) = x_0 = c_{x_0}$ y $F_1(x) = x = 1_X$. Luego $g \circ f \simeq 1_X$.
+\end{proof}
 
-$b) \implies c)$: Supongamos que $\forall x \in X \colon 1_X \simeq c_x$. Sea $x_0$ cualquier punto de $X \implies 1_X \simeq c_{x_0} \implies 1_X \circ f \simeq c_{x_0} \circ f$.
-Para cualesquiera $T \xrightarrow{f,g} X$, se tiene que $f \simeq c_{x_0}$.
-Por tanto, $1_X \circ g \simeq c_{x_0} \circ g \implies g \simeq c_{x_0}$ (la composición a una constante envía cualquier $p \mapsto x_0(f(p))=x_0$).
-Dado que $f \simeq c_{x_0} \simeq g \implies f \simeq g$.
+\begin{definicion}{Conjunto estrellado}{def_estrellado}
+Sea $X \subseteq \mathbb{R}^n$. Diremos $X$ estrellado cuando $\exists x_0 \in X$ tal que todo segmento que une $x_0$ con algún punto de $X$, esté contenido en $X$. Equivalentemente:
+\[ X \text{ estrellado} \iff \exists x_0 \in X \mid \forall x \in X, \forall t \in [0,1]: \quad tx + (1-t)x_0 \in X \]
+\end{definicion}
 
-$c) \implies a)$: Obvio (En particular tomando $T=X$ vemos que $\forall x \in X, 1_X \simeq c_x$).
+\begin{observacion}{}{obs_convexo_estrellado}
+Todo conjunto convexo es estrellado (Convexo $\implies$ estrellado).
+\end{observacion}
 
-Las implicaciones $a) \implies d)$ y $d) \implies a)$ quedan como ejercicio directo.
+\begin{teorema}{Contracción de conjuntos estrellados}{teo_estrellado_contractil}
+Sea $X \subseteq \mathbb{R}^n$. Si $X$ es estrellado $\implies X$ es contractil.
+\end{teorema}
+\begin{proof}
+Análogo a la demostración del teorema de espacios convexos, utilizando el punto central $x_0$ que define el conjunto estrellado para construir la homotopía de contracción.
+\end{proof}
+
+
+\subsection{Homotopía relativa y Grupo Fundamental}
+
+Sea $X$ e.t., $x_0, x_1 \in X$. Al conjunto $C_{x_0, x_1}(X) = \{ \alpha \colon [0,1] \to X \text{ cont } \mid \alpha(0) = x_0, \alpha(1) = x_1 \}$ se le denomina conjunto de arcos o caminos. 
+
+Saber que dos arcos cualesquiera son homotópicos no es suficiente para "cazar" agujeros topológicos. Por ello, requerimos fijar subconjuntos durante la deformación.
+
+\begin{definicion}{Homotopía relativa}{def_homotopia_relativa}
+Sea $A \subseteq X$. Sean $f, g \colon X \to Y$ continuas. Diremos que $f, g$ son homotópicas respecto a $A$ (denotado $f \simeq_A g$) cuando $\exists F \colon X \times I \to Y$ continua tal que:
+\begin{enumerate}
+    \item $F_0 = f$
+    \item $F_1 = g$
+    \item $\forall a \in A, \forall t \in I \colon F(a,t)$ es constante (no depende de $t$). En particular, $F(a,t) = f(a) = g(a) \ \forall t \in I$.
+\end{enumerate}
+\end{definicion}
+
+Para caminos con extremos fijos, $\alpha \simeq_{\{0,1\}} \beta \iff \exists F \colon I \times I \to X$ continua tal que:
+1. $F_0 = \alpha$ \\
+2. $F_1 = \beta$ \\
+3. $F(0,t) = \alpha(0) = \beta(0)$, y $F(1,t) = \alpha(1) = \beta(1) \quad \forall t \in I$.
+
+Si $x_0 = x_1$, notaremos $C_{x_0}(X)$ al conjunto de \textbf{lazos} con base en $x_0$.
+
+\begin{teorema}{Relación de equivalencia relativa}{teo_rbe_relativa}
+La relación $\simeq_A$ es una R.B.E. en $C(X,Y)$. 
+\end{teorema}
+
+\begin{definicion}{Grupo fundamental}{def_grupo_fundamental}
+Sea $X$ e.t., sea $x_0 \in X$. Definimos el grupo fundamental de $X$ en $x_0$, denotado como $\pi_1(X, x_0)$, al conjunto cociente de lazos bajo homotopía relativa a los extremos:
+\[ \pi_1(X, x_0) \equiv C_{x_0}(X) / \simeq_{\{0,1\}} \]
+A la clase de equivalencia de un lazo $\alpha$ la denotamos como $[\alpha]$.
+\end{definicion}
+
+Para dotar a $\pi_1(X, x_0)$ de estructura de grupo, introducimos operaciones en caminos:
+Sean $x_0, x_1, x_2 \in X$ y caminos $\alpha \colon I \to X$ (de $x_0$ a $x_1$) y $\beta \colon I \to X$ (de $x_1$ a $x_2$).
+Definimos la \textbf{concatenación} $\gamma = \alpha * \beta \colon I \to X$ dada por:
+\[ \gamma(t) = \begin{cases} \alpha(2t), & \forall t \in [0, 1/2] \\ \beta(2t-1), & \forall t \in [1/2, 1] \end{cases} \]
+Definimos el \textbf{camino inverso} $\alpha^{-1} \colon I \to X$ como $\alpha^{-1}(t) = \alpha(1-t)$, el cual va de $x_1$ a $x_0$.
+
+\begin{teorema}{Conexión por caminos}{teo_contractil_arcoconexo}
+Sea $X$ contractil. Entonces $X$ es arco-conexo.
+\end{teorema}
+\begin{proof}
+Sean $x, y \in X$. Por ser contractil, $\exists x_0 \in X \mid 1_X \simeq c_{x_0}$. Es decir, $\exists F \colon X \times I \to X$ continua con $F_0 = 1_X, F_1 = c_{x_0}$.
+Definimos el camino $\alpha \colon I \to X$ dado por $t \mapsto F(x,t)$, que une $\alpha(0)=x$ con $\alpha(1)=x_0$.
+Definimos el camino $\beta \colon I \to X$ dado por $t \mapsto F(y,t)$, que une $\beta(0)=y$ con $\beta(1)=x_0$.
+El camino concatenado $\delta = \alpha * \beta^{-1}$ une los puntos $x$ e $y$ de forma continua.
+\end{proof}
+
+\begin{nota}{Asociatividad de caminos}{nota_asociatividad}
+Es importante notar que $\alpha * (\beta * \gamma) \neq (\alpha * \beta) * \gamma$ a nivel de aplicaciones, ya que las parametrizaciones difieren en los intervalos temporales. Sin embargo, sí son equivalentes bajo homotopía relativa a los extremos. 
+Definimos entonces el producto de clases como:
+\[ [\alpha] \cdot [\beta] = [\alpha * \beta] \]
+\end{nota}
+
+\begin{teorema}{Teorema de Poincaré}{teo_poincare}
+Sea $X$ e.t. y $x_0 \in X$, entonces $(\pi_1(X, x_0), \cdot)$ es un grupo.
+\end{teorema}
+\begin{proof}
+1. El producto "$\cdot$" está bien definido: Si $[\alpha] = [\alpha']$ y $[\beta] = [\beta'] \implies [\alpha * \beta] = [\alpha' * \beta']$.
+Sabiendo que $[\alpha] = [\alpha'] \implies \exists H^{(1)} \colon I \times I \to X$ continua tal que: \\
+$H^{(1)}_0 = \alpha, \quad H^{(1)}_1 = \alpha'$ \\
+$H^{(1)}(0,t) = \alpha(0) = \alpha'(0) = x_0 \quad \forall t \in [0,1]$ \\
+$H^{(1)}(1,t) = \alpha(1) = \alpha'(1) = x_0 \quad \forall t \in [0,1]$.
+
+(El resto de la prueba sigue verificando la existencia de elemento neutro $[c_{x_0}]$, elemento inverso $[\alpha^{-1}]$ y la asociatividad módulo homotopía).
 \end{proof}
