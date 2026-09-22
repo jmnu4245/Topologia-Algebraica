@@ -277,15 +277,214 @@ Definimos entonces el producto de clases como:
 \[ [\alpha] \cdot [\beta] = [\alpha * \beta] \]
 \end{nota}
 
-\begin{teorema}{Teorema de Poincaré}{teo_poincare}
-Sea $X$ e.t. y $x_0 \in X$, entonces $(\pi_1(X, x_0), \cdot)$ es un grupo.
+\begin{teorema}{de Poincaré}{poincare}
+Sea $X$ un espacio topológico y sea $x_0 \in X$. Entonces 
+\[
+(\pi_1(X, x_0), \cdot)
+\]
+es un grupo.
 \end{teorema}
-\begin{proof}
-1. El producto "$\cdot$" está bien definido: Si $[\alpha] = [\alpha']$ y $[\beta] = [\beta'] \implies [\alpha * \beta] = [\alpha' * \beta']$.
-Sabiendo que $[\alpha] = [\alpha'] \implies \exists H^{(1)} \colon I \times I \to X$ continua tal que: \\
-$H^{(1)}_0 = \alpha, \quad H^{(1)}_1 = \alpha'$ \\
-$H^{(1)}(0,t) = \alpha(0) = \alpha'(0) = x_0 \quad \forall t \in [0,1]$ \\
-$H^{(1)}(1,t) = \alpha(1) = \alpha'(1) = x_0 \quad \forall t \in [0,1]$.
 
-(El resto de la prueba sigue verificando la existencia de elemento neutro $[c_{x_0}]$, elemento inverso $[\alpha^{-1}]$ y la asociatividad módulo homotopía).
+\begin{proof}
+Dividimos la demostración en la comprobación de la buena definición de la operación y el cumplimiento de los axiomas de grupo:
+
+\begin{enumerate}
+    \item \textbf{La operación está bien definida.}
+    
+    Sean $\alpha, \alpha', \beta, \beta' \in \mathcal{C}_{x_0}(X)$. Se debe probar que:
+    \[
+    \left.
+    \begin{aligned}
+    \alpha &\simeq_{\{0,1\}} \alpha' \\
+    \beta &\simeq_{\{0,1\}} \beta'
+    \end{aligned}
+    \right\} \implies \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'
+    \]
+    Por hipótesis, existen homotopías relativas:
+    \begin{itemize}
+        \item $H^{(1)} : I \times I \to X$ continua con:
+        \[
+        H_0^{(1)} = \alpha, \quad H_1^{(1)} = \alpha', \quad H^{(1)}(0, t) = \alpha(0) = \alpha'(0) = x_0, \quad H^{(1)}(1, t) = \alpha(1) = \alpha'(1) = x_0 \quad (\forall t \in I)
+        \]
+        \item $H^{(2)} : I \times I \to X$ continua con:
+        \[
+        H_0^{(2)} = \beta, \quad H_1^{(2)} = \beta', \quad H^{(2)}(0, t) = x_0, \quad H^{(2)}(1, t) = x_0 \quad (\forall t \in I)
+        \]
+    \end{itemize}
+
+    Se define la aplicación $H : I \times I \to X$ dada a trozos por:
+    \[
+    H(s, t) = 
+    \begin{cases}
+    H^{(1)}(2s, t) & \text{si } s \in [0, 1/2], \\
+    H^{(2)}(2s - 1, t) & \text{si } s \in [1/2, 1].
+    \end{cases}
+    \]
+
+    \begin{itemize}
+        \item \emph{Coincidencia en la frontera común ($s = 1/2$):}
+        \[
+        H(1/2, t) = 
+        \begin{cases}
+        H^{(1)}\left(2 \cdot \frac{1}{2}, t\right) = H^{(1)}(1, t) = x_0, \\
+        H^{(2)}\left(2 \cdot \frac{1}{2} - 1, t\right) = H^{(2)}(0, t) = x_0.
+        \end{cases}
+        \]
+        Por tanto, $H$ está bien definida.
+
+        \item \emph{Continuidad de $H$:}
+        Escribimos $I \times I = B_1 \cup B_2$, donde:
+        \[
+        B_1 = [0, 1/2] \times I, \qquad B_2 = [1/2, 1] \times I
+        \]
+        Ambos subconjuntos son cerrados en $I \times I$. Como $H|_{B_1}$ y $H|_{B_2}$ son continuas y coinciden en $B_1 \cap B_2$, por el lema de pegamiento (continuidad a trozos), $H$ es continua.
+
+        \item \emph{Instantes $t = 0$ y $t = 1$:}
+        \[
+        H_0(s) = H(s, 0) = 
+        \begin{cases}
+        H^{(1)}(2s, 0) = \alpha(2s) & \text{si } s \in [0, 1/2], \\
+        H^{(2)}(2s - 1, 0) = \beta(2s - 1) & \text{si } s \in [1/2, 1],
+        \end{cases}
+        \implies H_0 = \alpha * \beta
+        \]
+        \[
+        H_1(s) = H(s, 1) = 
+        \begin{cases}
+        H^{(1)}(2s, 1) = \alpha'(2s) & \text{si } s \in [0, 1/2], \\
+        H^{(2)}(2s - 1, 1) = \beta'(2s - 1) & \text{si } s \in [1/2, 1],
+        \end{cases}
+        \implies H_1 = \alpha' * \beta'
+        \]
+
+        \item \emph{Fijación de los extremos ($s = 0$ y $s = 1$):}
+        \[
+        \begin{aligned}
+        H(0, t) &= H^{(1)}(0, t) = x_0, \\
+        H(1, t) &= H^{(2)}(1, t) = x_0.
+        \end{aligned}
+        \]
+        No dependen de $t$. En consecuencia, $H : \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
+    \end{itemize}
+
+    \item \textbf{Propiedad asociativa.}
+    
+    Se debe probar que:
+    \[
+    [\alpha] \cdot ([\beta] \cdot [\gamma]) = ([\alpha] \cdot [\beta]) \cdot [\gamma], \quad \forall \alpha, \beta, \gamma \in \mathcal{C}_{x_0}(X)
+    \]
+    lo cual equivale a demostrar que $(\alpha * \beta) * \gamma \simeq_{\{0,1\}} \alpha * (\beta * \gamma)$.
+    
+    Explícitamente, las parametrizaciones son:
+    \[
+    ((\alpha * \beta) * \gamma)(s) = 
+    \begin{cases}
+    \alpha(4s) & \text{si } s \in [0, 1/4], \\
+    \beta(4s - 1) & \text{si } s \in [1/4, 1/2], \\
+    \gamma(2s - 1) & \text{si } s \in [1/2, 1];
+    \end{cases}
+    \]
+    \[
+    (\alpha * (\beta * \gamma))(s) = 
+    \begin{cases}
+    \alpha(2s) & \text{si } s \in [0, 1/2], \\
+    \beta(4s - 2) & \text{si } s \in [1/2, 3/4], \\
+    \gamma(4s - 3) & \text{si } s \in [3/4, 1].
+    \end{cases}
+    \]
+    
+    Se define la homotopía $H : I \times I \to X$ mediante reparametrizaciones afines a trozos sobre los intervalos que varían linealmente con $t$:
+    \[
+    H(s, t) = 
+    \begin{cases}
+    \alpha\left( \dfrac{4}{t + 1} s \right) & \text{si } s \in \left[ 0, \dfrac{t+1}{4} \right], \\[2ex]
+    \beta(4s - t - 1) & \text{si } s \in \left[ \dfrac{t+1}{4}, \dfrac{t+2}{4} \right], \\[2ex]
+    \gamma\left( \dfrac{4s - 2 - t}{2 - t} \right) & \text{si } s \in \left[ \dfrac{t+2}{4}, 1 \right].
+    \end{cases}
+    \]
+    
+    \begin{itemize}
+        \item \emph{Buena definición en las fronteras:}
+        \begin{itemize}
+            \item En $s = \frac{t+1}{4}$:
+            \[
+            \alpha\left( \frac{4}{t+1} \cdot \frac{t+1}{4} \right) = \alpha(1) = x_0, \qquad \beta\left( 4 \cdot \frac{t+1}{4} - t - 1 \right) = \beta(0) = x_0.
+            \]
+            \item En $s = \frac{t+2}{4}$:
+            \[
+            \beta\left( 4 \cdot \frac{t+2}{4} - t - 1 \right) = \beta(1) = x_0, \qquad \gamma\left( \frac{4\frac{t+2}{4} - 2 - t}{2 - t} \right) = \gamma(0) = x_0.
+            \]
+        \end{itemize}
+        \item \emph{Continuidad:} Por el lema de pegamiento en los subconjuntos cerrados determinados por las rectas $s = \frac{t+1}{4}$ y $s = \frac{t+2}{4}$, $H$ es continua.
+        \item \emph{Evaluación en los extremos temporales:}
+        \[
+        H(s, 0) = ((\alpha * \beta) * \gamma)(s), \qquad H(s, 1) = (\alpha * (\beta * \gamma))(s).
+        \]
+        \item \emph{Extremos espaciales:}
+        \[
+        H(0, t) = \alpha(0) = x_0, \qquad H(1, t) = \gamma(1) = x_0 \quad (\forall t \in I).
+        \]
+    \end{itemize}
+    Por tanto, $H$ es una homotopía relativa y la operación es asociativa.
+
+    \item \textbf{Existencia de elemento neutro.}
+    
+    Sea $c_{x_0} : I \to X$ el lazo constante $c_{x_0}(s) = x_0$ para todo $s \in I$. Se debe probar que:
+    \[
+    [c_{x_0}] \cdot [\alpha] = [\alpha] \iff c_{x_0} * \alpha \simeq_{\{0,1\}} \alpha.
+    \]
+    El producto con el neutro es:
+    \[
+    (c_{x_0} * \alpha)(s) = 
+    \begin{cases}
+    c_{x_0}(2s) = x_0 & \text{si } s \in [0, 1/2], \\
+    \alpha(2s - 1) & \text{si } s \in [1/2, 1].
+    \end{cases}
+    \]
+    Se construye la homotopía $F : I \times I \to X$:
+    \[
+    F(s, t) = 
+    \begin{cases}
+    x_0 & \text{si } s \in \left[0, \dfrac{1-t}{2}\right], \\[2ex]
+    \alpha\left( \dfrac{2s + t - 1}{t + 1} \right) & \text{si } s \in \left[\dfrac{1-t}{2}, 1\right].
+    \end{cases}
+    \]
+    \begin{itemize}
+        \item En $s = \frac{1-t}{2}$, $\alpha\left( \frac{2\frac{1-t}{2} + t - 1}{t+1} \right) = \alpha(0) = x_0$, coincidiendo con el valor constante.
+        \item $F(s, 0) = (c_{x_0} * \alpha)(s)$ y $F(s, 1) = \alpha(s)$.
+        \item $F(0, t) = x_0$ y $F(1, t) = \alpha(1) = x_0$ para todo $t \in I$.
+    \end{itemize}
+    Análogamente se comprueba para $[\alpha] \cdot [c_{x_0}] = [\alpha]$.
+
+    \item \textbf{Existencia de elemento simétrico (inverso).}
+    
+    Para cada lazo $\alpha \in \mathcal{C}_{x_0}(X)$, se define el lazo inverso $\alpha^{-1} : I \to X$ como:
+    \[
+    \alpha^{-1}(s) = \alpha(1 - s).
+    \]
+    
+    \begin{itemize}
+        \item \emph{Buena definición de la clase inversa:} Si $\alpha \simeq_{\{0,1\}} \gamma$ mediante una homotopía $F(s, t)$, entonces $G(s, t) = F(1 - s, t)$ proporciona una homotopía relativa entre $\alpha^{-1}$ y $\gamma^{-1}$, por lo que $[\alpha]^{-1} = [\alpha^{-1}]$ está bien definido.
+        \item \emph{Simétrico respecto al producto:} Falta probar que $[\alpha^{-1}] \cdot [\alpha] = [c_{x_0}]$, es decir, $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_0}$.
+    \end{itemize}
+    La homotopía explícita $F : I \times I \to X$ viene dada por:
+    \[
+    F(s, t) = 
+    \begin{cases}
+    \alpha^{-1}(2s(1 - t)) = \alpha(1 - 2s(1 - t)) & \text{si } s \in [0, 1/2], \\[1ex]
+    \alpha(2s(1 - t) + 2t - 1) & \text{si } s \in [1/2, 1].
+    \end{cases}
+    \]
+    \begin{itemize}
+        \item En $s = 1/2$:
+        \[
+        \alpha(1 - 2(1/2)(1 - t)) = \alpha(t), \qquad \alpha(2(1/2)(1 - t) + 2t - 1) = \alpha(t).
+        \]
+        \item Para $t = 0$: $F(s, 0) = (\alpha^{-1} * \alpha)(s)$.
+        \item Para $t = 1$: $F(s, 1) = \alpha(1) = x_0 = c_{x_0}(s)$.
+        \item En los extremos: $F(0, t) = \alpha(1) = x_0$ y $F(1, t) = \alpha(1) = x_0$ para todo $t \in I$.
+    \end{itemize}
+    El mismo procedimiento demuestra que $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$.
+\end{enumerate}
+Por tanto, $(\pi_1(X, x_0), \cdot)$ es un grupo.
 \end{proof}
