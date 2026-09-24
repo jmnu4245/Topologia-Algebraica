@@ -486,5 +486,189 @@ Dividimos la demostración en la comprobación de la buena definición de la ope
     \end{itemize}
     El mismo procedimiento demuestra que $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$.
 \end{enumerate}
-Por tanto, $(\pi_1(X, x_0), \cdot)$ es un grupo.
+
 \end{proof}
+
+Si $X$ espacio topológico, $x_0 \in X$, consideremos la familia $\{\pi_1(X, x) : x \in X\}$. ¿Qué propiedades tienen y qué relación hay entre ellos?
+
+\textbf{Ejercicio:} Reproduce las pruebas del teorema de Poincaré para arcos cualquiera.
+
+Recordamos que vimos:
+\begin{align*}
+    [\alpha]([\beta][\gamma]) &= ([\alpha][\beta])[\gamma] \quad \forall \alpha, \beta, \gamma \in C_{x_0}(X) \\
+    [c_{x_0}][\alpha] &= [\alpha] \quad \forall \alpha \in C_{x_0}(X) \\
+    [\alpha^{-1}][\alpha] &= [c_{x_0}] \quad \forall \alpha \in C_{x_0}(X)
+\end{align*}
+Además, si $[\alpha] = [\alpha']$ y $[\beta] = [\beta'] \implies [\alpha * \beta] = [\alpha' * \beta']$ para todo $\alpha, \beta \in C_{x_0}(X)$.
+
+Probar que esta propiedad se cumple de igual manera para arcos, además que para el elemento neutro:
+\begin{enumerate}
+    \item[a)] Si $\alpha \simeq_{\{0,1\}} \alpha'$ y $\beta \simeq_{\{0,1\}} \beta' \implies \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
+    \item[b)] $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
+    \item[c)] $c_{x_0} * \alpha \simeq_{\{0,1\}} \alpha$ y $\alpha * c_{x_1} \simeq_{\{0,1\}} \alpha$.
+    \item[d)] $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_0}$ y $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_1}$.
+\end{enumerate}
+puto 
+\begin{proposicion}{Inverso homotópico de caminos}{inverso_homotopico}
+Sea $X$ espacio topológico, $x_0, x_1 \in X$. Sean $\alpha, \beta \in C_{x_0, x_1}(X)$ que verifican que $\alpha \simeq_{\{0,1\}} \beta$, entonces $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$. (Ejercicio para casa).
+\end{proposicion}
+
+ david
+\textbf{Ejercicio:} Sean $\alpha, \beta \in C_{x_0, x_1}(X)$, prueba que $(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$.
+\begin{proof}
+Por definición de camino inverso y producto:
+\[
+(\alpha * \beta)^{-1}(s) = (\alpha * \beta)(1-s) = 
+\begin{cases} 
+\alpha(2(1-s)), & \text{si } 1-s \in [0, 1/2] \\ 
+\beta(2(1-s)-1), & \text{si } 1-s \in [1/2, 1] 
+\end{cases}
+\]
+Equivalentemente:
+\[
+(\alpha * \beta)^{-1}(s) =
+\begin{cases} 
+\beta(1-2s), & \text{si } s \in [0, 1/2] \\ 
+\alpha(2-2s), & \text{si } s \in [1/2, 1] 
+\end{cases}
+\]
+
+Por otro lado:
+\[
+(\beta^{-1} * \alpha^{-1})(s) = 
+\begin{cases} 
+\beta^{-1}(2s), & \text{si } s \in [0, 1/2] \\ 
+\alpha^{-1}(2s-1), & \text{si } s \in [1/2, 1] 
+\end{cases}
+= 
+\begin{cases} 
+\beta(1-2s), & \text{si } s \in [0, 1/2] \\ 
+\alpha(1-(2s-1)), & \text{si } s \in [1/2, 1] 
+\end{cases}
+\]
+Como $\alpha(1-(2s-1)) = \alpha(2-2s)$, ambas expresiones coinciden para todo $s \in I$. Luego $(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$.
+\end{proof}
+
+\begin{observacion}{}{obs_inversos}
+\begin{enumerate}
+    \item Volviendo a $\pi_1(X, x_0)$, vimos que el inverso de un elemento $[\alpha] \in \pi_1(X, x_0)$ es $[\alpha^{-1}]$. Luego $[\alpha]^{-1} = [\alpha^{-1}]$.
+    \item Si $\alpha \in C_{x_0}(X)$, entonces $[\alpha^{-1}][\alpha] = [\alpha][\alpha^{-1}] = [c_{x_0}]$, y $[c_{x_0}][\alpha] = [\alpha][c_{x_0}] = [\alpha]$. Además, $([\alpha]^{-1})^{-1} = [\alpha]$.
+    \item $\alpha * (\beta * \gamma) \ne (\alpha * \beta) * \gamma$ pero $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$. Por tanto, $[\alpha * \beta * \gamma] := [\alpha * (\beta * \gamma)] = [(\alpha * \beta) * \gamma]$ para todo $\alpha,\beta,\gamma \in C_{x_0}(X)$. En cambio, la expresión $\alpha * \beta * \gamma$ no está definida por sí sola como producto binario.
+\end{enumerate}
+\end{observacion}
+
+\begin{definicion}{Concatenación conjunta}{concat_conjunta}
+Así definimos la concatenación conjunta de tres caminos $\alpha * \beta * \gamma$:
+\[
+(\alpha * \beta * \gamma)(s) = 
+\begin{cases} 
+\alpha(3s), & s \in [0, 1/3] \to [0,1] \\ 
+\beta(3s-1), & s \in [1/3, 2/3] \to [0,1] \\ 
+\gamma(3s-2), & s \in [2/3, 1] \to [0,1] 
+\end{cases}
+\]
+También se puede definir para el caso $n$-ésimo. Sean $\alpha_1, \dots, \alpha_n$ tales que $\alpha_1(1) = \alpha_2(0), \alpha_2(1) = \alpha_3(0), \dots, \alpha_{n-1}(1) = \alpha_n(0)$:
+\[
+(\alpha_1 * \alpha_2 * \dots * \alpha_n)(s) = 
+\begin{cases} 
+\alpha_1(ns), & s \in [0, \frac{1}{n}] \to [0,1] \\ 
+\alpha_2(ns-1), & s \in [\frac{1}{n}, \frac{2}{n}] \to [0,1] \\ 
+\vdots & \vdots \\ 
+\alpha_n(ns-(n-1)), & s \in [\frac{n-1}{n}, 1] \to [0,1] 
+\end{cases}
+\]
+Esta aplicación es continua. Como ejercicio, probar que $[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma] = [\alpha * (\beta * \gamma)]$.
+\end{definicion}
+
+Sea $X$ un espacio topológico y $x_0 \in X$. Denotamos por $\pi_1(X, x_0)$ al grupo fundamental de $X$ en $x_0$.
+
+Sean $x_0, x_1 \in X$, y supongamos que $x_0$ y $x_1$ están unidos por un arco. Es decir, existe $\omega : I \to X$ continua con $\omega(0) = x_0$ y $\omega(1) = x_1$.
+
+\begin{definicion}{Isomorfismo de cambio de base}{def_cambio_base}
+Definimos la aplicación $P_\omega : \pi_1(X, x_0) \to \pi_1(X, x_1)$ dada por:
+\[
+[\alpha] \mapsto [\omega^{-1} * \alpha * \omega]
+\]
+\end{definicion}
+
+\begin{teorema}{Isomorfismo de cambio de base}{teo_cambio_base}
+$P_\omega$ es un isomorfismo de grupos.
+\end{teorema}
+
+\begin{proof}
+1) $P_\omega$ está bien definido. Necesitamos probar que si $[\alpha]=[\alpha']$, entonces $[\omega^{-1} * \alpha * \omega] = [\omega^{-1} * \alpha' * \omega]$.
+Si $\alpha \simeq_{\{0,1\}} \alpha'$, entonces $\alpha * \omega \simeq_{\{0,1\}} \alpha' * \omega$. Aplicando lo anterior se tiene:
+\[
+\omega^{-1} * (\alpha * \omega) \simeq_{\{0,1\}} \omega^{-1} * (\alpha' * \omega) \implies \omega^{-1} * \alpha * \omega \simeq_{\{0,1\}} \omega^{-1} * \alpha' * \omega
+\]
+Por tanto, $[\omega^{-1} * \alpha * \omega] = [\omega^{-1} * \alpha' * \omega]$.
+
+2) $P_\omega$ es homomorfismo de grupos. Para cualesquiera $[\alpha], [\beta] \in \pi_1(X, x_0)$:
+\begin{align*}
+P_\omega([\alpha] \cdot [\beta]) &= P_\omega([\alpha * \beta]) = [\omega^{-1} * (\alpha * \beta) * \omega] \\
+&= [(\omega^{-1} * \alpha) * (\beta * \omega)] \\
+&= [(\omega^{-1} * \alpha) * (\omega * \omega^{-1}) * (\beta * \omega)] \quad (\text{pues } \omega * \omega^{-1} \simeq_{\{0,1\}} c_{x_0}) \\
+&= [(\omega^{-1} * \alpha * \omega) * (\omega^{-1} * \beta * \omega)] \\
+&= [\omega^{-1} * \alpha * \omega] \cdot [\omega^{-1} * \beta * \omega] = P_\omega([\alpha]) \cdot P_\omega([\beta])
+\end{align*}
+
+3) $P_\omega$ es biyectiva. Comprobaremos que $P_\omega^{-1} = P_{\omega^{-1}}$.
+Para todo $[\gamma] \in C_{x_1}(X)$:
+\[
+P_\omega(P_{\omega^{-1}}([\gamma])) = P_\omega([(\omega^{-1})^{-1} * \gamma * \omega^{-1}]) = [\omega^{-1} * (\omega * \gamma * \omega^{-1}) * \omega] = [c_{x_1} * \gamma * c_{x_1}] = [\gamma]
+\]
+Análogamente, para todo $[\alpha] \in C_{x_0}(X)$:
+\[
+P_{\omega^{-1}}(P_\omega([\alpha])) = P_{\omega^{-1}}([\omega^{-1} * \alpha * \omega]) = [\omega * (\omega^{-1} * \alpha * \omega) * \omega^{-1}] = [c_{x_0} * \alpha * c_{x_0}] = [\alpha]
+\]
+\end{proof}
+
+\begin{proposicion}{}{cor_arco}
+Si $X$ es arcoconexo y $x_0, x_1 \in X$, entonces $\pi_1(X, x_0) \cong \pi_1(X, x_1)$.
+\end{proposicion}
+
+\begin{nota}{Grupo fundamental}{nota_grupo_fund}
+Este grupo se denota a partir de ahora $\pi_1(X) = \pi_1(X, x_0)$, siendo $x_0$ cualquier punto de $X$, y se denomina \textbf{grupo fundamental} de $X$.
+\end{nota}
+
+Consideremos ahora una aplicación continua. Ejercicio: Sea $X$ e.t., $x_0, x_1 \in X$ y sean $\omega_0, \omega_1 \in C_{x_0, x_1}(X)$. Prueba que si $\omega_0 \simeq_{\{0,1\}} \omega_1$ entonces $P_{\omega_0} = P_{\omega_1}$.
+
+\begin{definicion}{Homomorfismo inducido}{def_hom_ind}
+Sea $f: X \to Y$ continua, sea $x_0 \in X$ y sea $y_0 = f(x_0)$. Definimos:
+\begin{align*}
+f_* : \pi_1(X, x_0) &\to \pi_1(Y, f(x_0)) \\
+[\alpha] &\mapsto [f \circ \alpha]
+\end{align*}
+También se puede denotar como $\pi_1(f)$ o $\pi_{1,x_0}(f)$.
+\end{definicion}
+
+\begin{teorema}{Propiedades del homomorfismo inducido}{teo_hom_ind}
+$f_*$ es un homomorfismo de grupos.
+\end{teorema}
+
+\begin{proof}
+1) Bien definido. ¿$f \circ \alpha$ es un lazo?
+Si $[\alpha] = [\alpha'] \implies \alpha \simeq_{\{0,1\}} \alpha' \implies f \circ \alpha \simeq_{\{0,1\}} f \circ \alpha'$, lo que significa que $[f \circ \alpha] = [f \circ \alpha']$.
+(Si existe una homotopía $F: I \times I \to X$, entonces $f \circ F : I \times I \to Y$ es la homotopía en $Y$).
+
+2) $f_*$ es homomorfismo de grupos. Debemos probar que $f_*([\alpha][\beta]) = f_*([\alpha]) f_*([\beta])$ para todo $\alpha, \beta \in C_{x_0}(X)$.
+Tenemos que $f_*([\alpha * \beta]) = [f \circ (\alpha * \beta)]$ y que $f_*([\alpha])f_*([\beta]) = [(f \circ \alpha) * (f \circ \beta)]$. Evaluando el camino:
+\[
+(f \circ (\alpha * \beta))(s) = 
+\begin{cases} 
+f(\alpha(2s)), & \text{si } s \in [0, 1/2] \\ 
+f(\beta(2s-1)), & \text{si } s \in [1/2, 1] 
+\end{cases}
+\]
+Por otra parte:
+\[
+((f \circ \alpha) * (f \circ \beta))(s) = 
+\begin{cases} 
+f(\alpha(2s)), & \text{si } s \in [0, 1/2] \\ 
+f(\beta(2s-1)), & \text{si } s \in [1/2, 1] 
+\end{cases}
+\]
+Como coinciden para todo $s \in I$, se verifica la igualdad de las clases.
+\end{proof}
+
+\textbf{Ejercicio:} Sea $x_0 \in X$, probar que $(g \circ f)_* = g_* \circ f_*$.
