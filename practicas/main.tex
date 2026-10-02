@@ -1,0 +1,161 @@
+\documentclass[11pt,a4paper]{article}
+% !TEX root = main.tex
+\input{preambulo.tex}
+
+\title{\Huge \textbf{Apuntes teoría de prácticas de Topología Algebraica}}
+\author{\Large Juan Manuel Flores de la Cruz}
+\date{Curso 2026/27}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+\newpage
+
+\section{Práctica 1: Introducción a la geometría analítica compleja y al álgebra conmutativa}
+
+El \textbf{estudio de subconjuntos analíticos de $\mathbb{C}^n$} significa estudiar el conjunto de ceros de una función holomorfa (en varias variables complejas).
+
+\begin{itemize}
+    \item Sea $U$ un abierto de $\mathbb{C}^n$.
+    \item Sea $f: U \to \mathbb{C}$ función holomorfa $\implies \frac{\partial f}{\partial z_1}, \frac{\partial f}{\partial z_2}, \dots, \frac{\partial f}{\partial z_n}$.
+    \item Diremos que $f$ tiene una \textbf{singularidad aislada en el origen} cuando $0$ es un punto aislado de:
+    $$ \left\{ z \in U \;\middle|\; \frac{\partial f}{\partial z_1}(z) = \dots = \frac{\partial f}{\partial z_n}(z) = 0 \right\} $$
+\end{itemize}
+
+\begin{observacion}{Cálculo de jets}{ej_jets}
+Sea $f: \mathbb{C}^2 \to \mathbb{C}$ dada por $f(x,y) = x^2y - x^3 + y^4 + x^3y^3 + y^2$.
+Dado $r \in \mathbb{Z}_{\ge 1}$, calculamos los \textbf{$r$-jets de $f$} ($j^r f$):
+\begin{itemize}
+    \item $j^3 f = x^2y - x^3$
+    \item $j^4 f = x^2y - x^3 + y^4$
+    \item $j^2 f = y^2$
+\end{itemize}
+\end{observacion}
+
+\subsection*{Conceptos preliminares}
+
+\begin{definicion}{Anillo}{anillo}
+Sea $A$ un conjunto. Diremos que $(A, +, \cdot)$ es un anillo cuando:
+\begin{itemize}
+    \item Es grupo abeliano con la suma.
+    \item Cumple la propiedad asociativa: $a \cdot (b \cdot c) = (a \cdot b) \cdot c, \forall a,b,c \in A$.
+    \item Cumple la propiedad distributiva: $a(b+c) = ab+ac$.
+    \item \textbf{Anillo conmutativo:} $ab=ba, \forall a,b \in A$.
+    \item \textbf{Anillo unitario:} cuando $\exists 1_A$ tal que $1_A \cdot a = a \cdot 1_A, \forall a \in A$.
+\end{itemize}
+\textit{Ejemplo:} $\mathbb{C}[x_1, \dots, x_n]$ (No tiene dimensión finita).
+\end{definicion}
+
+\begin{definicion}{Subanillo y Cuerpo}{sub_cuerpo}
+\textbf{Subanillo:} $B$ es subanillo de $A$ cuando hereda la estructura de anillo de manera análoga.\\
+\textbf{Cuerpo:} Sea $A$ un anillo. Decimos que $A$ es cuerpo cuando $A \setminus \{0\}$ es un grupo abeliano. \textit{Ejemplo:} $\mathbb{C}, \mathbb{Z}_p = \mathbb{Z}/p\mathbb{Z}$ (con $p$ primo).
+\end{definicion}
+
+\begin{definicion}{Característica}{caracteristica}
+Sea $k$ cuerpo. La característica de $k$ es $char(k) = \min \{n \in \mathbb{Z}_{\ge 1} \mid n \cdot 1_k = 0_k\}$. Si no existe tal $n$, entonces $char(k)=0$.
+\textit{Ejemplos:} $char(\mathbb{C})=char(\mathbb{R})=0$, $char(\mathbb{Z}_p) = p$ (con $p$ primo).
+\end{definicion}
+
+\subsection*{Ideales}
+Sean $I, J$ ideales de un anillo $A$.
+
+\begin{itemize}
+    \item \textbf{Suma de ideales:}
+    $$ I+J = \{a+b \mid a \in I, b \in J\} $$
+    Si $I = \langle g_1, \dots, g_r \rangle$ y $J = \langle h_1, \dots, h_s \rangle \implies I+J = \langle g_1, \dots, g_r, h_1, \dots, h_s \rangle$.
+    \item \textbf{Producto de ideales:}
+    $$ I \cdot J = \left\{ \sum_{j=1}^l \alpha_j \beta_j \;\middle|\; \alpha_j \in I, \beta_j \in J, \forall j \right\} = \langle g_i h_j \mid i=1,\dots,r; j=1,\dots,s \rangle $$
+    \item \textbf{Intersección de ideales:}
+    $$ I \cap J = \{a \mid a \in I, a \in J\} $$
+\end{itemize}
+Se cumple la relación de inclusión: $I \cdot J \subseteq I \cap J \subseteq I+J$.
+
+\subsection*{Homomorfismo de anillos}
+Sea $f: R \to S$ aplicación entre anillos. Diremos que $f$ es un homomorfismo de anillos cuando:
+\begin{itemize}
+    \item a) $f(1_R) = 1_S$
+    \item b) $f(a+_R b) = f(a) +_S f(b) \quad \forall a,b \in R$
+    \item c) $f(a \cdot_R b) = f(a) \cdot_S f(b) \quad \forall a,b \in R$
+\end{itemize}
+
+\begin{observacion}{Ejemplo de Homomorfismo}{ej_homo}
+Sea la aplicación $F: \mathbb{C}[a,b,c] \to \mathbb{C}[x,y,z]$ (donde el primer anillo, $S$, es $\mathbb{C}[a,b,c]$ y el segundo, $R$, es $\mathbb{C}[x,y,z]$).
+Se define sobre los generadores:
+$$F(a) = x^2, \quad F(b) = y^3, \quad F(c) = x^4 - 2y^5$$
+Y $F$ se extiende de manera lineal. Por ejemplo, si tenemos el polinomio $p(a,b,c) = a^3 - b^2c$, su imagen será:
+$$ F(p(a,b,c)) = F(a)^3 - F(b)^2 F(c) $$
+\end{observacion}
+
+\section{Práctica TOPAL 2: Gérmenes y Singularidades Aisladas}
+
+\begin{definicion}{Gérmenes de Funciones Holomorfas}{germen}
+Sea $R = \mathbb{C}[x_1, \dots, x_n]$ y consideremos el anillo $\mathcal{O}_n = \mathcal{H}/\sim$. Sea $\mathcal{H}$ el conjunto de funciones holomorfas definidas en un entorno del origen:
+$$ \mathcal{H} = \{ f: U \to \mathbb{C} \mid U \text{ es entorno abierto de } 0 \in \mathbb{C}^n, f \text{ holomorfa} \} $$
+Definimos una relación de equivalencia $f \sim g$ si existe $W \subseteq U \cap V$, un entorno abierto de $0$, tal que $f|_W = g|_W$.
+\end{definicion}
+
+\begin{teorema}{Isomorfismo de Anillos}{isomorfismo_anillos}
+Si $n \ge 1$, entonces existe un isomorfismo de anillos:
+$$ \mathcal{O}_n \cong \mathbb{C}\{x_1, \dots, x_n\} $$
+donde $\mathbb{C}\{x_1, \dots, x_n\}$ denota el anillo de series de potencias en $x_1, \dots, x_n$ convergente en algún disco abierto alrededor de $0 \in \mathbb{C}^n$.
+\end{teorema}
+
+\begin{definicion}{Singularidad Aislada}{sing_aislada}
+Sea $f \in \mathcal{O}_n$. Diremos que $f$ tiene una singularidad aislada en el origen cuando $0$ es un punto aislado del sistema de ecuaciones holomorfas:
+$$ \left\{ z \in U \mid \frac{\partial f}{\partial z_1}(z) = \frac{\partial f}{\partial z_2}(z) = \dots = \frac{\partial f}{\partial z_n}(z) = 0 \right\} $$
+\end{definicion}
+
+\begin{definicion}{Jet de orden $r$}{jet}
+Dada una función $f = \sum_{k \in \mathbb{Z}_{\ge 0}^n} a_k x^k$ y sea $r \in \mathbb{Z}_{\ge 0}$. Se define el $r$-jet de $f$, denotado como $j^r f$, como el polinomio:
+$$ j^r f = \sum_{|k| \le r} a_k x^k $$
+\end{definicion}
+
+\begin{observacion}{Cálculo de jets}{obs_jet}
+Para $f = x_1^5 x_2 x_3 + x_3^2 + x_1^2 x_3^2$, evaluamos sus primeros jets:
+$$ j^2 f = x_3^2, \quad j^4 f = x_3^2 + x_1^2 x_3^2 $$
+Supongamos que $f(0)=0$, lo que implica que $j^0 f = 0$.
+\end{observacion}
+
+\begin{definicion}{Ideal y Variedad}{ideal_var}
+Para un ideal de $\mathcal{O}_n$, $I = \langle g_1, \dots, g_r \rangle$, definimos su variedad como:
+$$ V(I) = \{ z \in \mathbb{C}^n \mid g_1(z) = \dots = g_r(z) = 0 \} $$
+\end{definicion}
+
+\begin{definicion}{Equivalencia de gérmenes de conjuntos}{germ_conj}
+Sean $X, Y \subset \mathbb{C}^n$. Diremos que $X$ e $Y$ definen el mismo germen en el origen cuando existe un entorno abierto $U$ de $0$ tal que $X \cap U = Y \cap U$.
+\end{definicion}
+
+\begin{nota}{El ideal maximal $\mathfrak{m}_n$}{ideal_maximal}
+En $\mathcal{O}_n$ definimos el conjunto $\mathfrak{m}_n = \{ f \in \mathcal{O}_n \mid f(0) = 0 \}$.
+\end{nota}
+
+\begin{teorema}{Ideal Maximal de $\mathcal{O}_n$}{thm_ideal_max}
+$\mathfrak{m}_n$ es un ideal maximal de $\mathcal{O}_n$ y además cumple que $\mathfrak{m}_n \subseteq I \subsetneq \mathcal{O}_n$. Está generado por las coordenadas, $\mathfrak{m}_n = \langle x_1, x_2, \dots, x_n \rangle$, y no hay ningún otro ideal maximal en $\mathcal{O}_n$. Por lo tanto, nos referimos a $\mathfrak{m}_n$ unívocamente como el ideal maximal de $\mathcal{O}_n$.
+\end{teorema}
+
+\begin{teorema}{Teorema de los ceros de Hilbert (Nullstellensatz)}{nullstellensatz}
+Sea $I$ un ideal de $\mathcal{O}_n$.
+$$ \dim(I) = 0 \iff \exists r \ge 1 \mid \mathfrak{m}_n^r \subseteq I $$
+\end{teorema}
+
+\begin{definicion}{Anillo cociente y codimensión finita}{codim_finita}
+Diremos que dos funciones coinciden $g \sim h \pmod I$ cuando $g-h \in I$. El anillo cociente $\mathcal{O}_n/I$ tiene estructura de $\mathbb{C}$-espacio vectorial. Diremos que un ideal $I$ tiene codimensión finita cuando cumple:
+$$ \dim(I) = 0 \iff \dim_{\mathbb{C}}(\mathcal{O}_n/I) < \infty $$
+\end{definicion}
+
+\begin{teorema}{Número de Milnor}{milnor}
+La función $f$ tiene una singularidad aislada en el origen si y solo si el ideal jacobiano $J(f) = \langle \frac{\partial f}{\partial z_1}, \dots, \frac{\partial f}{\partial z_n} \rangle$ tiene codimensión finita. En tal caso, el Número de Milnor $\mu$ se calcula como:
+$$ \mu = \dim_{\mathbb{C}} \frac{\mathcal{O}_n}{J(f)} $$
+\end{teorema}
+
+\begin{definicion}{Exponente de Noether}{noether}
+Sea $I$ un ideal de $\mathcal{O}_n$ con $\dim(I) = 0$ (lo que es equivalente a $\dim_{\mathbb{C}}(\mathcal{O}_n/I) < \infty$). Definimos el exponente de Noether de $I$, denotado por $e(I)$, como el mínimo entero $r \ge 1$ tal que $\mathfrak{m}_n^r \subseteq I$.
+\end{definicion}
+
+\begin{observacion}{Ejemplo de exponente de Noether}{obs_singular}
+Calculando computacionalmente para el ideal $I = \langle xyz, x^3 y^6, z^6 \rangle$, el exponente de Noether resulta ser $e(I) = 11$.
+\end{observacion}
+
+\end{document}

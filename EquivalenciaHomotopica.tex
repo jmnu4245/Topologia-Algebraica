@@ -672,3 +672,155 @@ Como coinciden para todo $s \in I$, se verifica la igualdad de las clases.
 \end{proof}
 
 \textbf{Ejercicio:} Sea $x_0 \in X$, probar que $(g \circ f)_* = g_* \circ f_*$.
+
+\begin{nota}{Resumen}{}
+
+
+$$\pi_1(X, x_0) = C(X, x_0) / \simeq_{\{0,1\}}$$
+
+Dadas $\alpha \in C_{x_0, x_1}(X)$ y $\beta \in C_{x_1, x_2}(X)$, se tiene la concatenación $\alpha * \beta \in C_{x_0, x_2}(X)$.
+Si $\alpha \simeq_{\{0,1\}} \alpha'$ con $\alpha, \alpha' \in C_{x_0, x_1}(X)$ y $\beta \simeq_{\{0,1\}} \beta'$ con $\beta, \beta' \in C_{x_1, x_2}(X)$, entonces se cumple que $\alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
+
+Esto nos permite definir la aplicación:
+
+
+$$C_{x_0, x_1}(X) / \simeq_{\{0,1\}} \times C_{x_1, x_2}(X) / \simeq_{\{0,1\}} \longrightarrow C_{x_0, x_2}(X) / \simeq_{\{0,1\}}$$
+
+$$([\alpha], [\beta]) \longmapsto [\alpha] \cdot [\beta] = [\alpha * \beta]$$
+
+
+Donde $[\alpha]$ es la clase de equivalencia de $\alpha$ respecto de $\simeq_{\{0,1\}}$.
+
+Se cumplen las siguientes propiedades algebraicas de grupo:
+\begin{itemize}
+\item Asociatividad: $[\alpha] \cdot ([\beta] \cdot [\gamma]) = ([\alpha] \cdot [\beta]) \cdot [\gamma]$, es decir, $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
+\item Elemento neutro: $[C_{x_0}] \cdot [\alpha] = [\alpha] \cdot [C_{x_1}] = [\alpha]$.
+\item Elemento inverso: $[\alpha] \cdot [\alpha^{-1}] = [\alpha * \alpha^{-1}] = [C_{x_0}]$ y $[\alpha^{-1}] \cdot [\alpha] = [C_{x_1}]$.
+\end{itemize}
+
+Si $X$ es arcoconexo, dados dos puntos $x_0, x_1 \in X$ unidos por un camino $\omega$, se define $P_\omega \colon \pi_1(X, x_0) \longrightarrow \pi_1(X, x_1)$ dado por $[\alpha] \longmapsto [\omega^{-1} * \alpha * \omega]$, el cual es un isomorfismo de grupos (con $P_\omega^{-1} = P_{\omega^{-1}}$). Por tanto, escribiremos $\pi_1(X) = \pi_1(X, x_0)$ independientemente del punto base elegido.
+\end{nota}
+
+\begin{observacion}{Homomorfismo Inducido}{}
+Dada $f \colon X \longrightarrow Y$ continua, y tomando $x_0 \in X$ con $f(x_0) = y_0$, tenemos $f \colon (X, x_0) \longrightarrow (Y, y_0)$. Se define el homomorfismo inducido:
+
+
+$$ f_* (= f_{\#, x_0}) \colon \pi_1(X, x_0) \longrightarrow \pi_1(Y, y_0) $$
+
+$$[\alpha] \longmapsto [f \circ \alpha]$$
+
+
+Para comprobar que $f_*$ está bien definido, tomemos dos elementos $\alpha \simeq_{\{0,1\}} \alpha'$. Existe una homotopía $F \colon I \times I \longrightarrow X$ tal que $F_0 = \alpha$, $F_1 = \alpha'$ y los extremos $F(0, t) = x_0$, $F(1, t) = x_0$ no dependen de $t$.
+Dado que $f(\alpha(0)) = f(x_0) = y_0$ y $f(\alpha(1)) = f(x_0) = y_0$, se tiene $f \circ \alpha \in C_{y_0}(Y)$. Definimos $G \colon I \times I \longrightarrow Y$ como $G(s,t) = f(F(s,t))$. Entonces $G_0(s) = (f \circ \alpha)(s)$, $G_1(s) = (f \circ \alpha')(s)$, $G(0,t) = y_0$ y $G(1,t) = y_0$. Por tanto, $f \circ \alpha \simeq_{\{0,1\}} f \circ \alpha'$ y $f_*$ es un homomorfismo de grupos.
+\end{observacion}
+
+\begin{teorema}{Funtorialidad de $\pi_1$}{funtorialidad_pi1}
+Sea $X$ un espacio topológico y $x_0 \in X$.
+\begin{enumerate}
+\item $(1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$
+\item Dadas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow Z$ continuas, se cumple que $(g \circ f)_* = g_* \circ f_*$.
+\end{enumerate}
+\textbf{Demostración:}
+a) Directamente, $(1_X)_{*, x_0}([\alpha]) = [1_X \circ \alpha] = [\alpha]$.
+
+b) Tenemos que probar que $(g \circ f)_{*, x_0} = g_{*, f(x_0)} \circ f_{*, x_0}$. Evaluando en una clase $[\alpha]$:
+
+
+$$(g \circ f)_{*, x_0}([\alpha]) = [g \circ f \circ \alpha]$$
+
+$$(g_{*, f(x_0)} \circ f_{*, x_0})([\alpha]) = g_{*, f(x_0)}([f \circ \alpha]) = [g \circ f \circ \alpha] \qed$$
+
+
+\end{teorema}
+
+\begin{proposicion}{Homeomorfismo induce isomorfismo de grupos fundamentales}{homeomorfismo_pi1}
+Sean $X$ e $Y$ espacios topológicos arco-conexos. Si $X \cong Y$, entonces $\pi_1(X) \cong \pi_1(Y)$.
+
+\textbf{Demostración:}
+Dado que $X$ e $Y$ son homeomorfos, existen funciones continuas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ que son biyectivas y una inversa de la otra ($f \circ g = 1_Y$, $g \circ f = 1_X$). Sea $x_0 \in X$ y $y_0 = f(x_0)$.
+Por la funtorialidad, de $f \circ g = 1_Y$ obtenemos $(f \circ g)_{*, y_0} = (1_Y)_{*, y_0} = 1_{\pi_1(Y, y_0)}$, lo cual implica $f_{*, g(y_0)} \circ g_{*, y_0} = 1_{\pi_1(Y, y_0)}$.
+De $g \circ f = 1_X$ obtenemos $(g \circ f)_{*, x_0} = (1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$, implicando $g_{*, f(x_0)} \circ f_{*, x_0} = 1_{\pi_1(X, x_0)}$.
+Por consiguiente, $f_*$ y $g_*$ son isomorfismos. \qed
+\end{proposicion}
+
+\begin{proposicion}{Grupo fundamental de un espacio estrellado}{estrellado}
+Sea $X \subseteq \mathbb{R}^n$, con $X$ estrellado. Entonces $\pi_1(X) = 1$.
+
+\textbf{Demostración:}
+Al ser estrellado, $X$ es arcoconexo, así que $\pi_1(X) = \pi_1(X, x_0) = C_{x_0}(X) / \simeq_{\{0,1\}}$. Además, existe un punto base $x_0 \in X$ tal que para todo $x \in X$ y todo $t \in [0,1]$, el segmento $t \cdot x + (1-t) \cdot x_0 \in X$.
+Necesitamos probar que $[\alpha] = [C_{x_0}]$ para cualquier $\alpha \in C_{x_0}(X)$ (es decir, $\alpha \simeq_{\{0,1\}} C_{x_0}$).
+Buscamos una homotopía $F \colon I \times I \longrightarrow X$ definida por:
+
+
+$$F(s,t) = t \cdot \alpha(s) + (1-t) \cdot x_0$$
+
+
+Comprobamos los extremos espaciales para asegurar que preserva el punto base:
+
+
+$$F(0, t) = t \cdot \alpha(0) + (1-t) \cdot x_0 = t \cdot x_0 + (1-t) \cdot x_0 = x_0$$
+
+$$F(1, t) = t \cdot \alpha(1) + (1-t) \cdot x_0 = t \cdot x_0 + (1-t) \cdot x_0 = x_0$$
+
+
+Por tanto, $F$ es una homotopía de lazos que conecta el lazo constante $C_{x_0}$ (en $t=0$) con el lazo $\alpha$ (en $t=1$). \qed
+\end{proposicion}
+
+\begin{definicion}{Espacio simplemente conexo}{simp_conexo}
+Diremos que $X$ es simplemente conexo si:
+\begin{enumerate}
+\item $X$ es arco-conexo.
+\item $\pi_1(X) = 1$.
+\end{enumerate}
+\end{definicion}
+
+Ejemplos básicos de espacios simplemente conexos son $\pi_1(I \times I) = 1$ y $\pi_1(\triangle) = 1$.
+
+\begin{teorema}{Homomorfismos inducidos por aplicaciones homotópicas}{aplicaciones_homotopicas}
+Sean $f, g \colon X \longrightarrow Y$ aplicaciones continuas y homotópicas ($f \simeq g$). Existe $F \colon X \times I \longrightarrow Y$ continua tal que $F_0 = f, F_1 = g$.
+Fijando $x_0 \in X$, definimos el camino $\sigma \colon I \longrightarrow Y$ dado por $t \longmapsto F(x_0, t)$, donde $\sigma(0) = f(x_0)$ y $\sigma(1) = g(x_0)$.
+Entonces el siguiente diagrama conmuta, cumpliéndose que $g_* = P_\sigma \circ f_*$:
+\begin{center}
+\begin{tikzpicture}
+\node (A) at (0,2) {$\pi_1(X, x_0)$};
+\node (B) at (4,2) {$\pi_1(Y, f(x_0))$};
+\node (C) at (4,0) {$\pi_1(Y, g(x_0))$};
+\draw[->] (A) -- (B) node[midway, above] {$f_*$};
+\draw[->] (B) -- (C) node[midway, right] {$P_\sigma$};
+\draw[->] (A) -- (C) node[midway, below left] {$g_*$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Demostración:}
+Para todo $[\alpha] \in \pi_1(X, x_0)$, necesitamos probar que $[g \circ \alpha] = [\sigma^{-1} * (f \circ \alpha) * \sigma]$.
+Definimos una homotopía no relativa a los extremos $G \colon I \times I \longrightarrow Y$ mediante $(s,t) \longmapsto F(\alpha(s), t)$.
+Notemos que $G_0(s) = (f \circ \alpha)(s)$ y $G_1(s) = (g \circ \alpha)(s)$.
+Consideremos en el dominio $I \times I$ el lazo constante $\gamma = \lambda_1 * \lambda_2 * \lambda_3 * \lambda_4$ que recorre los bordes del cuadrado unitario, donde $[\gamma] = 1$. Entonces $G_*([\gamma]) = [C_{f(x_0)}]$.
+Sustituyendo los caminos por sus imágenes bajo $G$, la concatenación forma el lazo cerrado en $Y$:
+
+
+$$[\sigma * (g \circ \alpha) * \sigma^{-1} * (f \circ \alpha)^{-1}] = [C_{f(x_0)}]$$
+
+
+Despejando:
+
+
+$$[\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] \cdot [f \circ \alpha]^{-1} = [C_{f(x_0)}]$$
+
+
+Multiplicando por $[\sigma^{-1}]$ por la izquierda y $[f \circ \alpha]$ por la derecha obtenemos la relación buscada:
+
+
+$$[g \circ \alpha] = [\sigma^{-1}] \cdot [f \circ \alpha] \cdot [\sigma] = [\sigma^{-1} * (f \circ \alpha) * \sigma] \qed$$
+
+
+\end{teorema}
+
+\begin{proposicion}{Equivalencia Homotópica}{equiv_homotopica}
+Sean $X, Y$ espacios arco-conexos. Si $X$ e $Y$ tienen el mismo tipo de homotopía ($X \simeq Y$), entonces $\pi_1(X) \cong \pi_1(Y)$.
+
+\textbf{Demostración:}
+Existen $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ continuas tales que $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$.
+Por el teorema anterior, la homotopía $g \circ f \simeq 1_X$ implica que $(g \circ f)_{*, x_0} = P_\sigma \circ (1_X)_{*, x_0} = P_\sigma$. Como $(g \circ f)_{*, x_0} = g_{*, f(x_0)} \circ f_{*, x_0}$ y $P_\sigma$ es un isomorfismo (biyectiva), deducimos que $f_{*, x_0}$ es inyectiva y $g_{*, f(x_0)}$ es sobreyectiva.
+Repitiendo simétricamente el razonamiento con la homotopía $f \circ g \simeq 1_Y$, concluimos que $g_*$ es inyectiva y $f_*$ es sobreyectiva. Ambos homomorfismos resultan biyectivos, por lo que $f_*$ y $g_*$ son isomorfismos de grupos. \qed
+\end{proposicion}
