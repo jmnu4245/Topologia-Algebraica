@@ -1,3 +1,4 @@
+\textbf{11/09/2026}
 \section{Tema 2. Equivalencia homotópica}
 
 \subsection{Motivación: Homeomorfismo vs. Homotopía}
@@ -144,6 +145,11 @@ Sin embargo, $f \colon X \to Y$ continua y biyectiva $\not\implies f^{-1}$ conti
 $f \colon [0, 1) \to S^1, \quad t \mapsto (\cos(2\pi t), \sin(2\pi t))$.
 \end{observacion}
 
+\textbf{Ejemplo ($[0,1] \simeq \{0\}$ pero $[0,1] \not\cong \{0\}$).}
+Sean $X = [0,1]$ e $Y = \{0\}$. Definimos $f \colon X \to Y$, $f(x) = 0$, y $g \colon Y \to X$, $g(0) = 0$. Entonces $f \circ g = 1_Y$, y $g \circ f = c_0$ es homotópica a $1_X$ mediante $F \colon X \times I \to X$, $F(x,t) = tx$ (continua, con $F_0 = c_0$ y $F_1 = 1_X$). Por tanto $[0,1] \simeq \{0\}$.
+
+Sin embargo $[0,1] \not\cong \{0\}$, pues no existe ninguna biyección entre un conjunto con un único elemento e $[0,1]$. Así, ``tener el mismo tipo de homotopía'' es estrictamente más débil que ``ser homeomorfos''.
+
 \begin{nota}{Invarianza por eliminación de puntos}{nota_agujeros}
 Como consecuencia de las propiedades topológicas: si $X \cong Y$, dado $P \in X$, entonces $X \setminus \{P\} \cong Y \setminus \{f(P)\}$. Para el caso homotópico, la pregunta análoga es si $\forall P \in X, \exists Q \in Y$ tal que $X \setminus \{P\} \simeq Y \setminus \{Q\}$.
 \end{nota}
@@ -171,6 +177,38 @@ Como consecuencia de las propiedades topológicas: si $X \cong Y$, dado $P \in X
     Construimos $F \colon X \times I \to X$ dada por $F((x,y,z), t) = (x,y, t \cdot z)$. Se verifica que $F_0 = g \circ f$ y $F_1 = 1_X \implies X \simeq Y$.
 \end{enumerate}
 
+\begin{definicion}{Unión por un punto y ramo de circunferencias}{def_wedge}
+Sean $(X,x_0)$ e $(Y,y_0)$ espacios con un punto base. Su \textbf{unión por un punto} es
+\[ X \vee Y = (X \sqcup Y)/(x_0 \sim y_0), \]
+es decir, se pegan $X$ e $Y$ identificando $x_0$ con $y_0$. Escribimos $\bigvee_k S^1 = S^1 \vee \dots \vee S^1$ ($k$ veces) y lo llamamos \textbf{ramo de $k$ circunferencias}: $k$ circunferencias que comparten un único punto. Para $k=2$ es la ``figura ocho'' $S^1 \vee S^1$; por convenio $\bigvee_0 S^1$ es un punto.
+\end{definicion}
+
+Más ejemplos de espacios del mismo tipo de homotopía:
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item $S^2 \setminus \{N\} \simeq \{\text{punto}\}$, con $N = (0,0,1)$.
+
+    La proyección estereográfica es un homeomorfismo $S^2 \setminus \{N\} \cong \mathbb{R}^2$ (ver la proposición de la proyección estereográfica en el Tema 3, que lo prueba para $S^n$). Como $\mathbb{R}^2$ es convexo, es contráctil; y como homeomorfo implica mismo tipo de homotopía y $\simeq$ es transitiva, $S^2 \setminus \{N\} \simeq \mathbb{R}^2 \simeq \{\text{punto}\}$.
+
+    \item $\mathbb{R}^2 \setminus \{(0,0)\} \simeq S^1$.
+
+    Sean $i \colon S^1 \hookrightarrow \mathbb{R}^2 \setminus \{0\}$ la inclusión y $r \colon \mathbb{R}^2 \setminus \{0\} \to S^1$, $r(x) = x/|x|$. Ambas son continuas y $r \circ i = 1_{S^1}$. Definimos
+    \[ F \colon (\mathbb{R}^2 \setminus \{0\}) \times I \to \mathbb{R}^2 \setminus \{0\}, \qquad F(x,t) = (1-t)\,x + t\,\frac{x}{|x|} = \left( (1-t) + \frac{t}{|x|} \right) x. \]
+    El coeficiente de $x$ es positivo, luego $F(x,t) \neq 0$ y $F$ está bien definida y es continua. Además $F_0 = 1_{\mathbb{R}^2 \setminus \{0\}}$ y $F_1 = i \circ r$. Por tanto $i \circ r \simeq 1$ y $\mathbb{R}^2 \setminus \{0\} \simeq S^1$.
+
+    \item $\mathbb{R}^2 \setminus \{p_1, \dots, p_k\} \simeq \bigvee_k S^1$ (con $p_1, \dots, p_k$ distintos).
+
+    \emph{Idea} (no se hace una demostración formal): se generaliza el ejemplo anterior. Alrededor de cada $p_i$ se contrae radialmente hasta una circunferencia, y el resto del plano se deforma sobre la unión de estas circunferencias, que quedan unidas en un único punto.
+
+    \item $S^2 \setminus \{p_1, \dots, p_k\} \simeq \bigvee_{k-1} S^1$ (con $p_1, \dots, p_k$ distintos, $k \ge 1$).
+
+    La proyección estereográfica desde $p_k$ da un homeomorfismo $S^2 \setminus \{p_k\} \cong \mathbb{R}^2$, que lleva $p_1, \dots, p_{k-1}$ a $k-1$ puntos distintos de $\mathbb{R}^2$. Por tanto $S^2 \setminus \{p_1, \dots, p_k\} \cong \mathbb{R}^2 \setminus \{q_1, \dots, q_{k-1}\} \simeq \bigvee_{k-1} S^1$ por el ejemplo anterior (para $k=1$ se recupera el ejemplo 4).
+
+    \item $T^2 \setminus \{p\} \simeq S^1 \vee S^1$, siendo $T^2 = S^1 \times S^1$ el toro.
+
+    \emph{Idea} (no se hace una demostración formal): se representa $T^2 = [0,1]^2/\!\sim$ identificando lados opuestos, con $p$ el centro del cuadrado. La proyección radial desde $p$ hacia el borde del cuadrado es compatible con las identificaciones y deforma $T^2 \setminus \{p\}$ sobre la imagen del borde, que son dos circunferencias (los lados identificados) con un único vértice común, es decir $S^1 \vee S^1$.
+\end{enumerate}
+
 
 \subsection{Espacios Contractiles, Convexos y Estrellados}
 
@@ -187,6 +225,22 @@ Son equivalentes las siguientes afirmaciones para un e.t. $X \neq \emptyset$:
     \item[d)] $X$ es del mismo tipo de homotopía que un punto.
 \end{enumerate}
 \end{teorema}
+
+\begin{proof}
+Probamos (a)$\Rightarrow$(b)$\Rightarrow$(c)$\Rightarrow$(a) y (a)$\Leftrightarrow$(d).
+
+(a)$\Rightarrow$(b): Sea $x_0 \in X$ con $1_X \simeq c_{x_0}$. Dado $x \in X$, como $X$ es arco-conexo (por ser contráctil, ver el teorema de más abajo, cuya prueba no usa este resultado) existe un arco $\omega \colon I \to X$ con $\omega(0) = x_0$ y $\omega(1) = x$. La aplicación $H \colon X \times I \to X$, $H(y,t) = \omega(t)$, es continua con $H_0 = c_{x_0}$ y $H_1 = c_x$, luego $c_{x_0} \simeq c_x$. Por transitividad, $1_X \simeq c_{x_0} \simeq c_x$.
+
+(b)$\Rightarrow$(c): Sean $f, g \colon T \to X$ continuas y fijemos $x \in X$. Como $1_X \simeq c_x$ y $f \simeq f$, el teorema de composición de homotopías da $1_X \circ f \simeq c_x \circ f$, es decir, $f \simeq c_x$ (donde ahora $c_x \colon T \to X$). Igualmente $g \simeq c_x$. Por simetría y transitividad, $f \simeq g$.
+
+(c)$\Rightarrow$(a): Tomando $T = X$, $f = 1_X$ y $g = c_{x_0}$ (con $x_0 \in X$ cualquiera, pues $X \neq \emptyset$) obtenemos $1_X \simeq c_{x_0}$.
+
+(a)$\Rightarrow$(d): Sea $x_0 \in X$ con $1_X \simeq c_{x_0}$. Definimos $f \colon X \to \{x_0\}$ constante y $g \colon \{x_0\} \to X$ la inclusión. Entonces $f \circ g = 1_{\{x_0\}}$ y $g \circ f = c_{x_0} \simeq 1_X$.
+
+(d)$\Rightarrow$(a): Sean $f \colon X \to \{p\}$ y $g \colon \{p\} \to X$ con $g \circ f \simeq 1_X$. Pero $g \circ f = c_{g(p)}$, luego $1_X \simeq c_{x_0}$ con $x_0 = g(p)$.
+\end{proof}
+
+\textbf{15/09/2026}
 
 \begin{definicion}{Conjunto convexo}{def_convexo}
 Sea $X \subseteq \mathbb{R}^n$. Diremos que $X$ es convexo cuando todo segmento que une dos puntos cualesquiera de $X$ está contenido en $X$. Equivalentemente:
@@ -215,11 +269,19 @@ Sea $X \subseteq \mathbb{R}^n$. Diremos $X$ estrellado cuando $\exists x_0 \in X
 Todo conjunto convexo es estrellado (Convexo $\implies$ estrellado).
 \end{observacion}
 
+\begin{observacion}{Los recíprocos no se cumplen}{obs_reciprocos}
+Para subconjuntos de $\mathbb{R}^n$ tenemos convexo $\implies$ estrellado $\implies$ contráctil, pero ninguna de las dos implicaciones puede invertirse:
+\begin{itemize}
+    \item \textbf{Estrellado $\not\implies$ convexo.} La cruz $C = [-1,1] \times \{0\} \cup \{0\} \times [-1,1]$ es estrellada respecto del origen (el segmento que une $(0,0)$ con cualquier punto de $C$ está en $C$), pero no es convexa: $(1,0), (0,1) \in C$ y su punto medio $(\tfrac12, \tfrac12) \notin C$.
+    \item \textbf{Contráctil $\not\implies$ estrellado.} Sea la ``U'' $U = \{0\} \times [0,1] \cup [0,1] \times \{0\} \cup \{1\} \times [0,1]$. Es homeomorfa a un intervalo, luego contráctil. Pero no es estrellada: dado $x_0 \in U$, si $x_0$ está en la base o en el lado izquierdo y $x_0 \neq (1,0)$ tomamos $y = (1,1)$; en otro caso tomamos $y = (0,1)$. En ambos casos los puntos interiores del segmento $[x_0, y]$ tienen abscisa en $]0,1[$ y ordenada $> 0$, y los únicos puntos de $U$ con ordenada $> 0$ tienen abscisa $0$ o $1$; luego $[x_0,y] \not\subseteq U$.
+\end{itemize}
+\end{observacion}
+
 \begin{teorema}{Contracción de conjuntos estrellados}{teo_estrellado_contractil}
 Sea $X \subseteq \mathbb{R}^n$. Si $X$ es estrellado $\implies X$ es contractil.
 \end{teorema}
 \begin{proof}
-Análogo a la demostración del teorema de espacios convexos, utilizando el punto central $x_0$ que define el conjunto estrellado para construir la homotopía de contracción.
+Análogo a la demostración del teorema de espacios convexos, utilizando el punto central $x_0$ que define el conjunto estrellado para construir la homotopía de contracción. Explícitamente: por ser $X$ estrellado, $F \colon X \times I \to X$, $F(x,t) = tx + (1-t)x_0$ está bien definida (el segmento que une $x_0$ con $x$ está en $X$) y es continua; además $F_0 = c_{x_0}$ y $F_1 = 1_X$. Luego $1_X \simeq c_{x_0}$ y $X$ es contráctil.
 \end{proof}
 
 
@@ -245,9 +307,26 @@ Para caminos con extremos fijos, $\alpha \simeq_{\{0,1\}} \beta \iff \exists F \
 
 Si $x_0 = x_1$, notaremos $C_{x_0}(X)$ al conjunto de \textbf{lazos} con base en $x_0$.
 
+\begin{observacion}{Propiedades de la homotopía relativa}{obs_relativa}
+\begin{enumerate}
+    \item Si $f \simeq_A g$ mediante $F$, entonces para cada $a \in A$ se tiene $F_t(a) = F(a,t) = f(a)$ para todo $t \in I$. En particular $F_t(A) = f(A)$ no depende de $t$: $A$ permanece invariante (de hecho, punto a punto) durante la deformación.
+    \item En consecuencia, $f \simeq_A g \implies f|_A = g|_A$. Solo pueden ser homotópicas relativas a $A$ aplicaciones que coinciden sobre $A$.
+    \item Si $f \simeq_A g$ entonces $f \simeq g$, pero el recíproco es falso: $\simeq_{\{0,1\}}$ es mucho más restrictiva que $\simeq$. Por ejemplo, si $X$ es arco-conexo, \emph{cualesquiera} dos aplicaciones $\alpha, \beta \colon I \to X$ son homotópicas: $F(s,t) = \alpha((1-t)s)$ da $\alpha \simeq c_{\alpha(0)}$, y si $\gamma$ es un arco de $\alpha(0)$ a $\beta(0)$, $H(s,t) = \gamma(t)$ da $c_{\alpha(0)} \simeq c_{\beta(0)} \simeq \beta$. En cambio, en $S^1$ el lazo constante $c_1$ y el lazo $s \mapsto e^{2\pi i s}$ \emph{no} son homotópicos relativos a $\{0,1\}$ (veremos que $\pi_1(S^1) \cong \mathbb{Z}$). Es esta rigidez la que permite ``cazar agujeros''.
+\end{enumerate}
+\end{observacion}
+
 \begin{teorema}{Relación de equivalencia relativa}{teo_rbe_relativa}
 La relación $\simeq_A$ es una R.B.E. en $C(X,Y)$. 
 \end{teorema}
+
+\begin{proof}
+Es la misma prueba que para $\simeq$, comprobando además que $A$ queda fijo.
+\begin{enumerate}
+    \item \textbf{Reflexiva:} $F(x,t) = f(x)$ cumple $F_0 = F_1 = f$ y $F(a,t) = f(a)$ para todo $a \in A$.
+    \item \textbf{Simétrica:} si $F \colon f \simeq_A g$, definimos $G(x,t) = F(x,1-t)$. Entonces $G_0 = g$, $G_1 = f$ y $G(a,t) = F(a,1-t) = f(a) = g(a)$ no depende de $t$.
+    \item \textbf{Transitiva:} sean $F^{(1)} \colon f \simeq_A g$ y $F^{(2)} \colon g \simeq_A h$. Definimos $F(x,t) = F^{(1)}(x,2t)$ si $t \in [0,\frac12]$ y $F(x,t) = F^{(2)}(x,2t-1)$ si $t \in [\frac12,1]$, que es continua como en el Teorema 2.1. Para $a \in A$: si $t \le \frac12$, $F(a,t) = f(a)$; si $t \ge \frac12$, $F(a,t) = g(a) = f(a)$ (porque $f|_A = g|_A$ por la observación anterior). Luego $F(a,t)$ es constante en $t$ y $f \simeq_A h$.
+\end{enumerate}
+\end{proof}
 
 \begin{definicion}{Grupo fundamental}{def_grupo_fundamental}
 Sea $X$ e.t., sea $x_0 \in X$. Definimos el grupo fundamental de $X$ en $x_0$, denotado como $\pi_1(X, x_0)$, al conjunto cociente de lazos bajo homotopía relativa a los extremos:
@@ -271,6 +350,10 @@ Definimos el camino $\beta \colon I \to X$ dado por $t \mapsto F(y,t)$, que une 
 El camino concatenado $\delta = \alpha * \beta^{-1}$ une los puntos $x$ e $y$ de forma continua.
 \end{proof}
 
+\begin{observacion}{El recíproco es falso}{obs_recip_contractil}
+Arco-conexo $\not\implies$ contráctil. El ejemplo es $S^1$: es arco-conexo, pero no es contráctil, pues veremos que $\pi_1(S^1) \cong \mathbb{Z} \neq 1$, mientras que todo espacio contráctil tiene grupo fundamental trivial.
+\end{observacion}
+
 \begin{nota}{Asociatividad de caminos}{nota_asociatividad}
 Es importante notar que $\alpha * (\beta * \gamma) \neq (\alpha * \beta) * \gamma$ a nivel de aplicaciones, ya que las parametrizaciones difieren en los intervalos temporales. Sin embargo, sí son equivalentes bajo homotopía relativa a los extremos. 
 Definimos entonces el producto de clases como:
@@ -284,6 +367,8 @@ Sea $X$ un espacio topológico y sea $x_0 \in X$. Entonces
 \]
 es un grupo.
 \end{teorema}
+
+\textbf{18/09/2026}
 
 \begin{proof}
 Dividimos la demostración en la comprobación de la buena definición de la operación y el cumplimiento de los axiomas de grupo:
@@ -456,7 +541,7 @@ Dividimos la demostración en la comprobación de la buena definición de la ope
     \end{itemize}
     Análogamente se comprueba para $[\alpha] \cdot [c_{x_0}] = [\alpha]$.
 
-    \item \textbf{Existencia de elemento simétrico (inverso).}
+    \item \textbf{Existencia de elemento simétrico (inverso).} \hfill \textbf{23/09/2026}
     
     Para cada lazo $\alpha \in \mathcal{C}_{x_0}(X)$, se define el lazo inverso $\alpha^{-1} : I \to X$ como:
     \[
@@ -506,14 +591,35 @@ Probar que esta propiedad se cumple de igual manera para arcos, además que para
     \item[a)] Si $\alpha \simeq_{\{0,1\}} \alpha'$ y $\beta \simeq_{\{0,1\}} \beta' \implies \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
     \item[b)] $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
     \item[c)] $c_{x_0} * \alpha \simeq_{\{0,1\}} \alpha$ y $\alpha * c_{x_1} \simeq_{\{0,1\}} \alpha$.
-    \item[d)] $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_0}$ y $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_1}$.
+    \item[d)] $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$ y $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_1}$.
 \end{enumerate}
-puto 
+
+\begin{proof}[Solución]
+Sean $\alpha, \alpha' \in C_{x_0,x_1}(X)$, $\beta, \beta' \in C_{x_1,x_2}(X)$ y $\gamma \in C_{x_2,x_3}(X)$.
+
+\textbf{a)} Sean $H^{(1)} \colon \alpha \simeq_{\{0,1\}} \alpha'$ y $H^{(2)} \colon \beta \simeq_{\{0,1\}} \beta'$. Definimos $H(s,t) = H^{(1)}(2s,t)$ si $s \in [0,\frac12]$ y $H(s,t) = H^{(2)}(2s-1,t)$ si $s \in [\frac12,1]$. En $s = \frac12$ ambas expresiones valen $H^{(1)}(1,t) = x_1 = H^{(2)}(0,t)$, así que $H$ está bien definida, y es continua por el lema de pegamiento. Además $H_0 = \alpha * \beta$, $H_1 = \alpha' * \beta'$, $H(0,t) = x_0$ y $H(1,t) = x_2$ para todo $t$.
+
+\textbf{b)} Sirve la misma $H$ que en la prueba del teorema de Poincaré. Está bien definida porque $\alpha(1) = x_1 = \beta(0)$ y $\beta(1) = x_2 = \gamma(0)$, y cumple $H(0,t) = \alpha(0) = x_0$ y $H(1,t) = \gamma(1) = x_3$ para todo $t$.
+
+\textbf{c)} Para $c_{x_0} * \alpha \simeq_{\{0,1\}} \alpha$ sirve la misma $F$ que en la prueba del teorema (con $F(1,t) = \alpha(1) = x_1$). Para $\alpha * c_{x_1} \simeq_{\{0,1\}} \alpha$ definimos
+\[ G(s,t) = \begin{cases} \alpha\left( \dfrac{2s}{1+t} \right) & \text{si } s \in \left[0, \dfrac{1+t}{2}\right], \\[2ex] x_1 & \text{si } s \in \left[\dfrac{1+t}{2}, 1\right]. \end{cases} \]
+En $s = \frac{1+t}{2}$ ambas valen $\alpha(1) = x_1$; $G_0 = \alpha * c_{x_1}$, $G_1 = \alpha$, $G(0,t) = x_0$ y $G(1,t) = x_1$.
+
+\textbf{d)} Definimos
+\[ F(s,t) = \begin{cases} \alpha(2s(1-t)) & \text{si } s \in [0,\frac12], \\ \alpha((2-2s)(1-t)) & \text{si } s \in [\frac12,1]. \end{cases} \]
+En $s = \frac12$ ambas valen $\alpha(1-t)$. Para $t = 0$: $F(s,0) = \alpha(2s)$ si $s \le \frac12$ y $\alpha(2-2s) = \alpha^{-1}(2s-1)$ si $s \ge \frac12$, es decir, $F_0 = \alpha * \alpha^{-1}$. Para $t = 1$: $F_1 = c_{\alpha(0)} = c_{x_0}$. Y $F(0,t) = F(1,t) = \alpha(0) = x_0$. Luego $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$. Aplicando esto a $\alpha^{-1} \in C_{x_1,x_0}(X)$, y como $(\alpha^{-1})^{-1} = \alpha$, se obtiene $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_1}$.
+\end{proof}
+
+(Nótese que en el enunciado original las dos fórmulas de d) estaban intercambiadas: $\alpha * \alpha^{-1}$ es un lazo en $x_0$, y $\alpha^{-1} * \alpha$ es un lazo en $x_1$.)
+
 \begin{proposicion}{Inverso homotópico de caminos}{inverso_homotopico}
 Sea $X$ espacio topológico, $x_0, x_1 \in X$. Sean $\alpha, \beta \in C_{x_0, x_1}(X)$ que verifican que $\alpha \simeq_{\{0,1\}} \beta$, entonces $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$. (Ejercicio para casa).
 \end{proposicion}
 
- david
+\begin{proof}[Solución]
+Sea $H \colon \alpha \simeq_{\{0,1\}} \beta$. Definimos $G(s,t) = H(1-s,t)$, continua. Entonces $G_0(s) = \alpha(1-s) = \alpha^{-1}(s)$, $G_1 = \beta^{-1}$, $G(0,t) = H(1,t) = x_1$ y $G(1,t) = H(0,t) = x_0$ no dependen de $t$. Luego $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$.
+\end{proof}
+
 \textbf{Ejercicio:} Sean $\alpha, \beta \in C_{x_0, x_1}(X)$, prueba que $(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$.
 \begin{proof}
 Por definición de camino inverso y producto:
@@ -580,6 +686,16 @@ También se puede definir para el caso $n$-ésimo. Sean $\alpha_1, \dots, \alpha
 Esta aplicación es continua. Como ejercicio, probar que $[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma] = [\alpha * (\beta * \gamma)]$.
 \end{definicion}
 
+\begin{proof}[Solución de los ejercicios sobre la concatenación conjunta]
+\begin{enumerate}
+    \item \emph{$[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma]$.} Se tiene $\alpha * \beta * \gamma = ((\alpha * \beta) * \gamma) \circ g$, con
+    \[ g(s) = \begin{cases} \frac{3s}{4} & \text{si } s \in [0,\frac23], \\ \frac{3s-1}{2} & \text{si } s \in [\frac23,1]. \end{cases} \]
+    En efecto, $g$ es continua ($g(\frac23) = \frac12$ por ambos lados), $g(0) = 0$, $g(1) = 1$, y comparando con la expresión a trozos de $(\alpha * \beta) * \gamma$ (que usa $\alpha(4u)$ en $[0,\frac14]$, $\beta(4u-1)$ en $[\frac14,\frac12]$ y $\gamma(2u-1)$ en $[\frac12,1]$) se obtiene $\alpha(3s)$, $\beta(3s-1)$ y $\gamma(3s-2)$ en los tres tramos de $s$. Por la proposición de reparametrización (Tema 3), $\alpha * \beta * \gamma \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
+    \item \emph{$[\alpha * \beta * \gamma] = [\alpha * (\beta * \gamma)]$.} Análogamente, $\alpha * \beta * \gamma = (\alpha * (\beta * \gamma)) \circ h$ con $h(s) = \frac{3s}{2}$ si $s \in [0,\frac13]$ y $h(s) = \frac{3s+1}{4}$ si $s \in [\frac13,1]$ (continua, $h(0)=0$, $h(1)=1$).
+    \item \emph{$(\alpha_1 * \alpha_2) * (\alpha_3 * \alpha_4) = \alpha_1 * \alpha_2 * \alpha_3 * \alpha_4$.} Esta es una igualdad de aplicaciones, no solo de clases: $(\alpha_1 * \alpha_2)(2s)$ vale $\alpha_1(4s)$ si $s \in [0,\frac14]$ y $\alpha_2(4s-1)$ si $s \in [\frac14,\frac12]$; y $(\alpha_3 * \alpha_4)(2s-1)$ vale $\alpha_3(4s-2)$ si $s \in [\frac12,\frac34]$ y $\alpha_4(4s-3)$ si $s \in [\frac34,1]$. Es exactamente la concatenación conjunta de cuatro caminos.
+\end{enumerate}
+\end{proof}
+
 Sea $X$ un espacio topológico y $x_0 \in X$. Denotamos por $\pi_1(X, x_0)$ al grupo fundamental de $X$ en $x_0$.
 
 Sean $x_0, x_1 \in X$, y supongamos que $x_0$ y $x_1$ están unidos por un arco. Es decir, existe $\omega : I \to X$ continua con $\omega(0) = x_0$ y $\omega(1) = x_1$.
@@ -633,6 +749,12 @@ Este grupo se denota a partir de ahora $\pi_1(X) = \pi_1(X, x_0)$, siendo $x_0$ 
 
 Consideremos ahora una aplicación continua. Ejercicio: Sea $X$ e.t., $x_0, x_1 \in X$ y sean $\omega_0, \omega_1 \in C_{x_0, x_1}(X)$. Prueba que si $\omega_0 \simeq_{\{0,1\}} \omega_1$ entonces $P_{\omega_0} = P_{\omega_1}$.
 
+\begin{proof}[Solución]
+Por la proposición del inverso homotópico, $\omega_0^{-1} \simeq_{\{0,1\}} \omega_1^{-1}$. Sea $[\alpha] \in \pi_1(X,x_0)$. Aplicando dos veces la propiedad a) de la extensión a arcos:
+\[ \alpha * \omega_0 \simeq_{\{0,1\}} \alpha * \omega_1 \quad\text{y}\quad \omega_0^{-1} * (\alpha * \omega_0) \simeq_{\{0,1\}} \omega_1^{-1} * (\alpha * \omega_1). \]
+Por tanto $P_{\omega_0}([\alpha]) = [\omega_0^{-1} * \alpha * \omega_0] = [\omega_1^{-1} * \alpha * \omega_1] = P_{\omega_1}([\alpha])$.
+\end{proof}
+
 \begin{definicion}{Homomorfismo inducido}{def_hom_ind}
 Sea $f: X \to Y$ continua, sea $x_0 \in X$ y sea $y_0 = f(x_0)$. Definimos:
 \begin{align*}
@@ -672,6 +794,8 @@ Como coinciden para todo $s \in I$, se verifica la igualdad de las clases.
 \end{proof}
 
 \textbf{Ejercicio:} Sea $x_0 \in X$, probar que $(g \circ f)_* = g_* \circ f_*$.
+
+\textbf{25/09/2026}
 
 \begin{nota}{Resumen}{}
 
@@ -793,25 +917,31 @@ Entonces el siguiente diagrama conmuta, cumpliéndose que $g_* = P_\sigma \circ 
 
 \textbf{Demostración:}
 Para todo $[\alpha] \in \pi_1(X, x_0)$, necesitamos probar que $[g \circ \alpha] = [\sigma^{-1} * (f \circ \alpha) * \sigma]$.
-Definimos una homotopía no relativa a los extremos $G \colon I \times I \longrightarrow Y$ mediante $(s,t) \longmapsto F(\alpha(s), t)$.
-Notemos que $G_0(s) = (f \circ \alpha)(s)$ y $G_1(s) = (g \circ \alpha)(s)$.
-Consideremos en el dominio $I \times I$ el lazo constante $\gamma = \lambda_1 * \lambda_2 * \lambda_3 * \lambda_4$ que recorre los bordes del cuadrado unitario, donde $[\gamma] = 1$. Entonces $G_*([\gamma]) = [C_{f(x_0)}]$.
-Sustituyendo los caminos por sus imágenes bajo $G$, la concatenación forma el lazo cerrado en $Y$:
 
+Definimos $G \colon I \times I \longrightarrow Y$ por $G(s,t) = F(\alpha(s), t)$, que es continua (no es una homotopía relativa a los extremos). Tenemos $G_0 = f \circ \alpha$, $G_1 = g \circ \alpha$ y, como $\alpha(0) = \alpha(1) = x_0$,
+\[ G(0,t) = G(1,t) = F(x_0,t) = \sigma(t) \quad \forall t \in I. \]
 
-$$[\sigma * (g \circ \alpha) * \sigma^{-1} * (f \circ \alpha)^{-1}] = [C_{f(x_0)}]$$
+Recorremos el borde del cuadrado $I \times I$ con los cuatro arcos
+\[ \lambda_1(s) = (s,0), \quad \lambda_2(t) = (1,t), \quad \lambda_3(s) = (1-s,1), \quad \lambda_4(t) = (0,1-t), \]
+es decir, la base de izquierda a derecha, el lado derecho hacia arriba, el techo de derecha a izquierda y el lado izquierdo hacia abajo. Entonces $\gamma = \lambda_1 * \lambda_2 * \lambda_3 * \lambda_4$ es un lazo en $I \times I$ con base $(0,0)$. Calculamos las imágenes por $G$:
+\begin{align*}
+(G \circ \lambda_1)(s) &= G(s,0) = (f \circ \alpha)(s), & G \circ \lambda_1 &= f \circ \alpha, \\
+(G \circ \lambda_2)(t) &= G(1,t) = \sigma(t), & G \circ \lambda_2 &= \sigma, \\
+(G \circ \lambda_3)(s) &= G(1-s,1) = (g \circ \alpha)(1-s), & G \circ \lambda_3 &= (g \circ \alpha)^{-1}, \\
+(G \circ \lambda_4)(t) &= G(0,1-t) = \sigma(1-t), & G \circ \lambda_4 &= \sigma^{-1}.
+\end{align*}
+Como $G \circ (\lambda_1 * \dots * \lambda_4) = (G \circ \lambda_1) * \dots * (G \circ \lambda_4)$, se tiene
+\[ G \circ \gamma = (f \circ \alpha) * \sigma * (g \circ \alpha)^{-1} * \sigma^{-1}, \]
+que es un lazo en $Y$ con base $G(0,0) = f(x_0)$.
 
-
-Despejando:
-
-
-$$[\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] \cdot [f \circ \alpha]^{-1} = [C_{f(x_0)}]$$
-
-
-Multiplicando por $[\sigma^{-1}]$ por la izquierda y $[f \circ \alpha]$ por la derecha obtenemos la relación buscada:
-
-
-$$[g \circ \alpha] = [\sigma^{-1}] \cdot [f \circ \alpha] \cdot [\sigma] = [\sigma^{-1} * (f \circ \alpha) * \sigma] \qed$$
+Como $I \times I$ es convexo, en particular estrellado, $\pi_1(I \times I) = 1$ y por tanto $\gamma \simeq_{\{0,1\}} c_{(0,0)}$. Componiendo esta homotopía con $G$ obtenemos $G \circ \gamma \simeq_{\{0,1\}} c_{f(x_0)}$, es decir,
+\[ [f \circ \alpha] \cdot [\sigma] \cdot [g \circ \alpha]^{-1} \cdot [\sigma^{-1}] = [c_{f(x_0)}]. \]
+Multiplicando por $[f \circ \alpha]^{-1}$ por la izquierda:
+\[ [\sigma] \cdot [g \circ \alpha]^{-1} \cdot [\sigma^{-1}] = [f \circ \alpha]^{-1}. \]
+Tomando inversos en ambos lados (y usando $[\sigma]^{-1} = [\sigma^{-1}]$):
+\[ [\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] = [f \circ \alpha]. \]
+Finalmente, multiplicando por $[\sigma^{-1}]$ por la izquierda y por $[\sigma]$ por la derecha obtenemos la relación buscada:
+\[ [g \circ \alpha] = [\sigma^{-1}] \cdot [f \circ \alpha] \cdot [\sigma] = [\sigma^{-1} * (f \circ \alpha) * \sigma] \qed \]
 
 
 \end{teorema}
@@ -824,3 +954,7 @@ Existen $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ continua
 Por el teorema anterior, la homotopía $g \circ f \simeq 1_X$ implica que $(g \circ f)_{*, x_0} = P_\sigma \circ (1_X)_{*, x_0} = P_\sigma$. Como $(g \circ f)_{*, x_0} = g_{*, f(x_0)} \circ f_{*, x_0}$ y $P_\sigma$ es un isomorfismo (biyectiva), deducimos que $f_{*, x_0}$ es inyectiva y $g_{*, f(x_0)}$ es sobreyectiva.
 Repitiendo simétricamente el razonamiento con la homotopía $f \circ g \simeq 1_Y$, concluimos que $g_*$ es inyectiva y $f_*$ es sobreyectiva. Ambos homomorfismos resultan biyectivos, por lo que $f_*$ y $g_*$ son isomorfismos de grupos. \qed
 \end{proposicion}
+
+\begin{observacion}{Invariancia homotópica vs. invariancia topológica}{obs_invariancia_homotopica}
+La proposición anterior es más general que la invariancia topológica del grupo fundamental (homeomorfismo induce isomorfismo): como $X \cong Y \implies X \simeq Y$, esta última es un caso particular. La inclusión es estricta: por ejemplo $D(0,1) \simeq \{\text{punto}\}$ sin ser homeomorfos, y la invariancia homotópica da $\pi_1(D(0,1)) \cong \pi_1(\{\text{punto}\}) = 1$, algo que la invariancia topológica no permite deducir. Igualmente, $S^1 \times [-1,1] \simeq S^1$ y por tanto ambos tienen el mismo grupo fundamental aunque no sean homeomorfos.
+\end{observacion}
