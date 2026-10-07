@@ -1,4 +1,7 @@
+\textbf{09/09/2026}
+
 \section{Resultados preliminares de topología general}
+
 
 \subsection{Espacios topológicos y continuidad}
 
@@ -84,6 +87,10 @@ Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son homeomorfos si $\ex
 A pesar de que más adelante aplicaremos la noción de grupo fundamental para deducir que no son homeomorfos, encontraremos otra vía más sencilla para concluir que no son homeomorfos.
 \end{observacion}
 
+\begin{definicion}{Componente conexa}{def_comp_conexa}
+Sea $X$ un espacio topológico. Una \textbf{componente conexa} de $X$ es un subespacio conexo maximal, es decir, un subespacio conexo $C \subseteq X$ tal que si $C \subseteq D \subseteq X$ con $D$ conexo, entonces $D = C$. Las componentes conexas de $X$ forman una partición de $X$, y $X$ es conexo si y solo si tiene una única componente conexa. Denotamos por $c(X)$ el número de componentes conexas de $X$ (que puede ser infinito).
+\end{definicion}
+
 \begin{definicion}{Invariante por componentes conexas}{def_componentes}
 Sea $X$ un espacio topológico. Sea $p \in X$. Denotamos por $C_p(X)$ el nº de componentes conexas de $X \setminus \{p\}$.
 \end{definicion}
@@ -91,6 +98,17 @@ Sea $X$ un espacio topológico. Sea $p \in X$. Denotamos por $C_p(X)$ el nº de 
 Es muy sencillo probar que $\{C_p(X) \mid p \in X\} := \Theta(X)$ es un invariante topológico de $X$ (Ejercicio).
 \[ X \cong Y \implies \Theta(X) = \Theta(Y) \]
 
+
+\begin{proposicion}{$\Theta$ es un invariante topológico}{Theta_invariante}
+Sea $\Theta(X) = \{\, c(X \setminus \{p\}) : p \in X \,\}$. Si $X \cong Y$, entonces $\Theta(X) = \Theta(Y)$.
+\end{proposicion}
+ 
+\begin{proof}
+Sea $f \colon X \to Y$ un homeomorfismo y $p \in X$. La restricción $f \colon X \setminus \{p\} \to Y \setminus \{f(p)\}$ es un homeomorfismo. Un homeomorfismo $\varphi \colon A \to B$ lleva componentes conexas de $A$ en componentes conexas de $B$: si $C$ es una componente de $A$, $\varphi(C)$ es conexo (Teorema 1.1); y si $\varphi(C) \subseteq D$ con $D$ conexo, entonces $C \subseteq \varphi^{-1}(D)$ con $\varphi^{-1}(D)$ conexo, luego $C = \varphi^{-1}(D)$ y $D = \varphi(C)$. Así $\varphi$ induce una biyección entre componentes conexas y $c(X \setminus \{p\}) = c(Y \setminus \{f(p)\})$. Como $f$ es sobreyectiva, recorremos todos los puntos de $Y$, y $\Theta(X) = \Theta(Y)$.
+\end{proof}
+ 
+\textbf{Consecuencia.} Si $\Theta(X) \neq \Theta(Y)$, entonces $X \not\cong Y$.
+ 
 \textbf{Ejemplos:}
 \begin{itemize}
     \item Cruz: $C_{(0,0)}(X) = 4$, $C_{(1/2,0)}(X) = 2$. $\Theta(X) = \{1,2,4\}$.
@@ -108,7 +126,15 @@ Es muy sencillo probar que $\{C_p(X) \mid p \in X\} := \Theta(X)$ es un invarian
     \end{center}
     
     \item Línea $Y$: $\Theta(Y) = \{1,2,3\}$.
+    \item Para todo $p \in S^1$, $S^1 \setminus \{p\} \cong\; ]0,1[$ es conexo (imagen continua del intervalo $]0,2\pi[$), luego $\Theta(S^1) = \{1\}$. En cambio $[0,1] \setminus \{\frac12\} = [0,\frac12[\, \cup\, ]\frac12,1]$ es disconexo, con $2$ componentes, y $[0,1] \setminus \{0\} = \,]0,1]$ es conexo, luego $\Theta([0,1]) = \{1,2\}$. Como $\{1\} \neq \{1,2\}$, $S^1 \not\cong [0,1]$.
+ 
 \end{itemize}
+
+\textbf{Observación ($\Theta$ no distingue $S^2$ de $T^2$).}
+$S^2 \setminus \{p\} \cong \mathbb{R}^2$ es conexo para todo $p$, así que $\Theta(S^2) = \{1\}$. Para el toro $T^2 = S^1 \times S^1$ y $p = (a,b)$:
+\[ T^2 \setminus \{p\} = \big( (S^1 \setminus \{a\}) \times S^1 \big) \cup \big( S^1 \times (S^1 \setminus \{b\}) \big), \]
+unión de dos conexos (productos de conexos) con intersección no vacía, luego conexa. Así $\Theta(T^2) = \{1\} = \Theta(S^2)$ y este invariante no basta para decidir si $S^2 \cong T^2$.
+
 
 \subsection{Conexión y Compacidad}
 
@@ -124,6 +150,11 @@ Diremos que $X$ es disconexo cuando no es conexo, es decir, cuando admite una de
 Si $f \colon X \to Y$ es continua y $X$ es conexa, entonces $f(X)$ es conexo en $Y$ respecto a $\tau_Y$.
 \end{teorema}
 
+\begin{proof}[Demostración del Teorema 1.1]
+Sea $f \colon X \to Y$ continua con $X$ conexo. Podemos suponer $f$ sobreyectiva, sustituyendo $Y$ por $f(X)$. Si $Y$ fuera disconexo, existirían abiertos disjuntos y no vacíos $U, V \subseteq Y$ con $Y = U \cup V$. Entonces $f^{-1}(U)$ y $f^{-1}(V)$ serían abiertos de $X$, disjuntos, no vacíos (por ser $f$ sobreyectiva) y con unión $X$, lo que contradice que $X$ sea conexo. Luego $f(X)$ es conexo.
+\end{proof}
+
+
 \begin{definicion}{Compacidad}{def_compacidad}
 Sea $X$ un espacio topológico. Se dice que $X$ es compacto cuando para todo recubrimiento abierto de $X$ existe un subrecubrimiento finito.
 Equivalentemente, $X$ es compacto $\iff \forall \{A_\alpha\}_{\alpha \in \Lambda} \subseteq \tau_X$ tal que $\bigcup_{\alpha \in \Lambda} A_\alpha = X$, $\exists F \subseteq \{A_\alpha\}_{\alpha \in \Lambda}$ finito tal que $\bigcup_{A \in F} A = X$.
@@ -133,7 +164,16 @@ Equivalentemente, $X$ es compacto $\iff \forall \{A_\alpha\}_{\alpha \in \Lambda
 Sea $X \subseteq \mathbb{R}^n$. $X$ es compacto $\iff X$ cerrado y acotado.
 \end{teorema}
 
-\textbf{Corolario:} La compacidad es un invariante topológico, i.e. si $X \cong Y$ y $X$ es compacto $\implies Y$ es compacto.
+\begin{teorema}{Imagen continua de un compacto}{imagen_compacta}
+Sea $f \colon X \to Y$ continua y $K \subseteq X$ compacto. Entonces $f(K)$ es compacto.
+\end{teorema}
+ 
+\begin{proof}
+Sea $\{U_i\}_{i \in \Lambda}$ un recubrimiento abierto de $f(K)$ por abiertos de $Y$. Entonces $\{f^{-1}(U_i)\}_{i \in \Lambda}$ es un recubrimiento abierto de $K$ por abiertos de $X$. Por compacidad existen $i_1, \dots, i_m$ con $K \subseteq f^{-1}(U_{i_1}) \cup \dots \cup f^{-1}(U_{i_m})$, y por tanto $f(K) \subseteq U_{i_1} \cup \dots \cup U_{i_m}$.
+\end{proof}
+ 
+\textbf{Corolario.} Si $X \cong Y$, entonces $X$ es compacto si y solo si $Y$ lo es: la compacidad es un invariante topológico. Por ejemplo, $[0,1[ \,\not\cong S^1$ y $]0,1[ \,\not\cong [0,1]$.
+
 
 \subsection{Lemas de Continuidad}
 

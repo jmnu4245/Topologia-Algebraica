@@ -134,8 +134,9 @@ $\exists 0 = t_0 < t_1 < \dots < t_n = 1$ tal que $\forall j \in \{1 \dots n\}$,
   \draw[gray, thick] (1.2, 0) ellipse (1.5 and 0.6);
   \node[gray] at (2, -0.4) {$V_1$};
   
-  \draw[gray, thick] (2.5, 0.8) ellipse (2 and 0.8);
-  \node[gray] at (3.5, 0.3) {$V_2$};
+  % Nabaliwan ti sentro ken radias ti V2 tapno mailanad ti x0
+  \draw[gray, thick] (1.8, 0.8) ellipse (2.8 and 1.2);
+  \node[gray] at (4.0, 1.6) {$V_2$};
 
   \coordinate (T1) at (1.8, 0.1);
   \coordinate (T2) at (3.8, 0.7);
@@ -258,3 +259,162 @@ Por aplicación directa del teorema anterior concluimos que $S^n$ es simplemente
 
 La prueba del corolario no funciona cuando $n=1$, ya que $V_1 \cap V_2$ no es arco-conexo. Veremos que $\pi_1(S^1) \cong (\mathbb{Z}, +)$.
 \end{proof}
+
+\begin{center}
+    \textbf{07/10/2026 (Clase 8)}
+\end{center}
+
+En la última clase vimos el siguiente resultado:
+
+\begin{teorema}{Condición para que un espacio sea simplemente conexo}{}
+Sea $X$ un espacio topológico, sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$. Supongamos que:
+\begin{itemize}
+    \item[a)] $V_i$ es simplemente conexo, $\forall i \in \Lambda$.
+    \item[b)] $V_i \cap V_j$ es arcoconexo, $\forall i,j \in \Lambda, i \neq j$.
+    \item[c)] $\bigcap_{i \in \Lambda} V_i \neq \emptyset$.
+\end{itemize}
+Entonces $X$ es simplemente conexo (es arcoconexo y $\pi_1(X)=1$).
+\end{teorema}
+
+Recordatorio: $S^n = \{(x_1,\dots,x_{n+1}) \in \mathbb{R}^{n+1} : x_1^2+\dots+x_{n+1}^2=1\}$ es la $n$-esfera de dimensión $n$. ($S^0 = \{-1,1\}$, $S^1 = \bigcirc$).
+
+Como corolario vimos que:
+
+\textbf{Corolario:} Si $n \geq 2$, $S^n$ es simplemente conexo.
+
+\textbf{Demostración:}
+Sean $N=(0,\dots,0,1) \in \mathbb{R}^{n+1}$ y $S=(0,\dots,0,-1) \in \mathbb{R}^{n+1}$.
+Sea $U = S^n \setminus \{N\}$, que es simplemente conexo, y $V = S^n \setminus \{S\}$, que es simplemente conexo.
+$U \cap V = S^n \setminus \{N,S\} \cong S^{n-1} \times ]-1,1[$ (homeomorfos). \qed
+
+\vspace{0.5cm}
+\textbf{Conjetura de Poincaré:}
+
+Sea $X$ un espacio métrico \underline{localmente homeomorfo a $\mathbb{R}^3$} (significa que $\forall p \in X$, existe un entorno abierto de $p$ homeomorfo a algún abierto conexo de $\mathbb{R}^3$; es decir, una 3-variedad).
+Supongamos que $X$ es simplemente conexo. Entonces: $X \cong S^3$.
+
+\begin{itemize}
+    \item Cuando $n=4 \implies$ Freedman
+    \item Cuando $n\geq 7 \implies$ Stalling
+    \item Cuando $n=5,6 \implies$ Zeeman
+    \item Cuando $n\geq 5 \implies$ Smale
+    \item Cuando $n=3 \implies$ G. Perelman 2006 (en arXiv)
+\end{itemize}
+
+\vspace{0.5cm}
+Vamos a ver que $\pi_1(S^1) \cong (\mathbb{Z},+)$.
+
+\begin{definicion}{Aplicación exponencial}{}
+$p: \mathbb{R} \to S^1$, $p(t) = e^{2\pi i t}$, $\forall t \in \mathbb{R}$ ($S^1 \subseteq \mathbb{R}^2, S^1 \subseteq \mathbb{C}$).
+\end{definicion}
+
+\begin{definicion}{Aplicación recubridora (Covering map)}{}
+Sea $f: X \to Y$. Diremos que es una aplicación recubridora cuando $\forall y \in Y$ existe un entorno abierto $U$ de $y$ tal que:
+\begin{enumerate}
+    \item $f^{-1}(U)$ es unión disjunta de abiertos: $f^{-1}(U) = \bigcup_{j \in \Lambda} V_j$.
+    \item $f|_{V_j} : V_j \to U$ es un homeomorfismo $\forall j \in \Lambda$.
+\end{enumerate}
+\end{definicion}
+
+Si $t \in \left]-\frac{1}{2}, \frac{1}{2}\right[$:
+
+\textbf{Lema:}
+$p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[} : \left]-\frac{1}{2}, \frac{1}{2}\right[ \to S^1 \setminus \{(-1,0)\}$ es un homeomorfismo.
+
+Denotaremos por $\Psi$ la inversa de esta aplicación, i.e. $\Psi = \left(p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[}\right)^{-1}$.
+Es sencillo comprobar que $\Psi(z) = \frac{\arg_0(z)}{2\pi}$.
+Recordemos que $\arg_0(z)$ es el único argumento de $z$ que pertenece a $]-\pi, \pi[$ (suponiendo que $z \notin ]-\infty, 0]$).
+
+\begin{definicion}{Elevación o levantamiento}{}
+Sea $f: X \to S^1$ continua (con $X$ cualquier espacio topológico). Una elevación (o levantamiento) de $f$ es una aplicación $\tilde{f}: X \to \mathbb{R}$ tal que $p \circ \tilde{f} = f$.
+\end{definicion}
+
+\begin{proposicion}{Unicidad de levantamientos}{}
+Sea $X$ conexo. Sea $f: X \to S^1$ continua. Sean $f_1, f_2 : X \to \mathbb{R}$ levantamientos de $f$. Supongamos que $\exists x_0 \in X$ tal que $f_1(x_0) = f_2(x_0) \implies f_1 = f_2$.
+\end{proposicion}
+
+\textbf{Demostración:}
+$p: \mathbb{R} \to S^1$ es un homomorfismo de grupos:
+$p: (\mathbb{R},+) \to (S^1, \cdot)$, ya que $p(t_1+t_2) = e^{2\pi i (t_1+t_2)} = e^{2\pi i t_1} \cdot e^{2\pi i t_2} = p(t_1)p(t_2)$.
+$\ker(p) = \{t \in \mathbb{R} \mid e^{2\pi i t} = 1\} = \mathbb{Z}$ (y por tanto $\mathbb{R}/\mathbb{Z} \cong S^1$).
+
+Consideremos $g = f_1 - f_2$.
+\[ (p \circ g)(x) = p(f_1(x) - f_2(x)) = e^{2\pi i (f_1(x)-f_2(x))} = \frac{e^{2\pi i f_1(x)}}{e^{2\pi i f_2(x)}} = \frac{p(f_1(x))}{p(f_2(x))} = \frac{f(x)}{f(x)} = 1 \]
+Por tanto, $\text{Img}(g) \subseteq p^{-1}(1) = \mathbb{Z}$.
+
+Como $X$ es conexo y $g$ continua $\implies g(X)$ es conexo.
+Como $g(X)$ es conexo y $g(X) \subseteq \mathbb{Z} \implies g(x)$ es constante.
+Luego $\exists k \in \mathbb{Z}$ tal que $g(x) = k \ \forall x \in X$. Como $g(x_0) = f_1(x_0) - f_2(x_0) = 0$, se tiene que $k=0 \implies f_1(x) = f_2(x) \ \forall x \in X$. \qed
+
+\vspace{0.5cm}
+\textbf{Teorema existencia de elevaciones:}
+
+\begin{definicion}{Continuidad uniforme}{}
+Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$. Diremos que $f$ es uniformemente continua cuando $\forall \varepsilon > 0$, $\exists \delta > 0$ tal que $\forall x, x' \in X$ que cumplan $\|x-x'\| < \delta$, se verifica que $\|f(x)-f(x')\| < \varepsilon$.
+\end{definicion}
+
+Es obvio que $f$ uniformemente continua $\implies f$ continua (en todos los puntos de $X$). Esto es falso en general, pero es cierto si $X$ es compacto.
+
+\textbf{Lema:}
+Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$ continua, con $X$ compacto $\implies f$ uniformemente continua.
+
+\textbf{Demostración:}
+Sea $\varepsilon > 0$. Sea $x \in X$. Por hipótesis:
+$\exists \delta_x > 0$ tal que $\forall x' \in X$ con $\|x-x'\| < \delta_x$, se cumple que $\|f(x)-f(x')\| < \varepsilon/2$. ($B(x,\delta_x) = \{y \in X \mid \|x-y\| < \delta_x\}$, bola abierta de centro $x$, radio $\delta_x$).
+Claramente, $X = \bigcup_{x\in X} B(x, \delta_x/2)$.
+Como $X$ es compacto, admite un subrecubrimiento finito: $\exists x_1, \dots, x_r \in X$ tales que $X = \bigcup_{j=1}^r B(x_j, \delta_{x_j}/2)$.
+Sea $\delta = \min \left\{\frac{\delta_{x_1}}{2}, \dots, \frac{\delta_{x_r}}{2}\right\}$.
+Veamos que $\delta$ funciona:
+Sea $x,x' \in X$ con $\|x-x'\| < \delta$. Veamos que $\|f(x)-f(x')\| < \varepsilon$.
+Dado que $x \in X$, $\exists j \in \{1,\dots,r\}$ tal que $x \in B(x_j, \delta_{x_j}/2)$, por tanto, $\|x-x_j\| < \delta_{x_j}/2$.
+Observamos que:
+\[ \|x'-x_j\| \leq \|x'-x\| + \|x-x_j\| < \delta + \frac{\delta_{x_j}}{2} \leq \frac{\delta_{x_j}}{2} + \frac{\delta_{x_j}}{2} = \delta_{x_j} \implies \|f(x')-f(x_j)\| < \frac{\varepsilon}{2} \]
+Finalmente:
+\[ \|f(x)-f(x')\| \leq \|f(x)-f(x_j)\| + \|f(x_j)-f(x')\| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \] \qed
+
+\begin{teorema}{Existencia de elevaciones}{}
+Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es conexo y compacto. Sea $f: X \to S^1$ continua. Sea $x_0 \in X$. Sea $t_0 \in \mathbb{R}$ tal que $p(t_0) = f(x_0)$. Entonces existe una única elevación $\tilde{f} : X \to \mathbb{R}$ de $f$ tal que $\tilde{f}(x_0) = t_0$.
+\end{teorema}
+
+\textbf{Demostración:}
+En virtud del teorema anterior se deduce automáticamente la unicidad (ya que $X$ es conexo).
+Veamos la existencia de $\tilde{f}$:
+\begin{enumerate}
+    \item $f$ es uniformemente continua (ya que $X$ es compacto). Como consecuencia: $\exists \delta > 0$ tal que $\forall x,x' \in X$ si $\|x-x'\| < \delta \implies \|f(x)-f(x')\| < 2$.
+    \item $X$ está acotado (por ser compacto): $\exists k > 0$ tal que $\|x\| < k, \forall x \in X \implies \frac{\|x\|}{\delta} < \frac{k}{\delta}, \forall x \in X$. Sea $m \in \mathbb{Z}_{\geq 1}$ tal que $\frac{k}{\delta} < m$. Por consiguiente $\frac{\|x\|}{\delta} < \frac{k}{\delta} < m, \forall x \in X$, para algún $m \in \mathbb{Z}_{\geq 1}$.
+    \item Sea $j \in \{0,1,\dots,m-1\}$. Definimos $g_j: X \to S^1 \setminus \{(-1,0)\}$ como:
+    \[ g_j(x) = \frac{f\left(\frac{j+1}{m}x\right)}{f\left(\frac{j}{m}x\right)}, \quad \forall x \in X \]
+    ¿Puede valer $0$ la función $f(\frac{j}{m}x)$? $\implies$ No ($S^1 \not\ni 0$).
+    ¿Puede valer $-1$? $\implies$ Sí, si son antipodales, pero su diferencia es $<2$ luego no lo son.
+    \item Sea $j \in \{0,\dots,m-1\}$. Sea $x$ cualquier punto de $X$. Observamos que:
+    \[ \left\|\frac{j+1}{m}x - \frac{j}{m}x\right\| = \frac{\|x\|}{m} < \delta \implies \left\|f\left(\frac{j+1}{m}x\right) - f\left(\frac{j}{m}x\right)\right\| < 2 \]
+    Sabemos que $\Psi = \left(p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[}\right)^{-1} : S^1 \setminus \{(-1,0)\} \to \left]-\frac{1}{2}, \frac{1}{2}\right[$.
+    \item Defino $\tilde{f}: X \to \mathbb{R}$ como:
+    \[ \tilde{f}(x) = t_0 + \Psi(g_0(x)) + \Psi(g_1(x)) + \dots + \Psi(g_{m-1}(x)) = t_0 + \sum_{j=0}^{m-1} \Psi(g_j(x)) \]
+    \item $\tilde{f}$ cumple 1 y 2:
+    \begin{itemize}
+        \item (1) $\tilde{f}(x_0) = t_0 + \sum_{j=0}^{m-1} \Psi(g_j(x_0)) = t_0 + \sum_{j=0}^{m-1} \Psi(1) = t_0$. (A partir de ahora suponemos $x_0 = 0$. Veremos luego el caso general (*)).
+        \item (2) 
+        \begin{align*}
+        (p \circ \tilde{f})(x) &= p(t_0) \cdot p(\Psi(g_0(x))) \cdot p(\Psi(g_1(x))) \dots p(\Psi(g_{m-1}(x))) \\
+        &= f(0) \cdot g_0(x) \cdot g_1(x) \dots g_{m-1}(x) \\
+        &= f(0) \cdot \frac{f(\frac{1}{m}x)}{f(0)} \cdot \frac{f(\frac{2}{m}x)}{f(\frac{1}{m}x)} \dots \frac{f(\frac{m}{m}x)}{f(\frac{m-1}{m}x)} = f(x)
+        \end{align*}
+    \end{itemize}
+\end{enumerate}
+
+(*) Veamos el caso general. Veamos que, suponiendo que hemos encontrado $\tilde{g}: X \to \mathbb{R}$ que cumple las condiciones requeridas para $x_0 = 0$, automáticamente se cumple la existencia de una aplicación verificando 1 y 2 partiendo de un $x_0$ cualquiera no necesariamente igual a 0.
+
+Por tanto, supongamos que $x_0$ es ahora cualquier punto de $X$.
+Sea $L: \mathbb{R}^n \to \mathbb{R}^n$ dada por $x \mapsto x - x_0$ (traslación).
+Como $X$ es convexo y compacto $\implies L(X)$ también es convexo y compacto.
+Además $x_0 \in X \implies L(x_0) = 0 \in L(X)$.
+
+Sea $g = f \circ L^{-1} : L(X) \to S^1$.
+De acuerdo con la prueba anterior: $\exists \tilde{g}: L(X) \to \mathbb{R}$ que cumple $\tilde{g}(0) = t_0$ y $p \circ \tilde{g} = g$.
+
+Definimos $\tilde{f} = \tilde{g} \circ L$. Solo queda comprobar que $\tilde{f}$ cumple:
+\begin{itemize}
+    \item (2) $p \circ \tilde{f} = p \circ (\tilde{g} \circ L) = (p \circ \tilde{g}) \circ L = g \circ L = (f \circ L^{-1}) \circ L = f$.
+    \item (1) $\tilde{f}(x_0) = (\tilde{g} \circ L)(x_0) = \tilde{g}(L(x_0)) = \tilde{g}(0) = t_0$. \qed
+\end{itemize}
