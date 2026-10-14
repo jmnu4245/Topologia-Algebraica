@@ -6,7 +6,8 @@
 *.fdb
 *.fdb_latexmk
 *.toc
-*.sh
 *.sz
 *.gz
 .singularhistory
+*.md
+Imagenes

@@ -1,0 +1,677 @@
+\section{El Grupo Fundamental}
+
+Sea $X$ e.t., $x_0, x_1 \in X$. Al conjunto $C_{x_0, x_1}(X) = \{ \alpha \colon [0,1] \to X \text{ cont } \mid \alpha(0) = x_0, \alpha(1) = x_1 \}$ se le denomina conjunto de arcos o caminos. 
+
+Saber que dos arcos cualesquiera son homotópicos no es suficiente para "cazar" agujeros topológicos. Por ello, requerimos fijar subconjuntos durante la deformación.
+
+\begin{definicion}{Homotopía relativa}{def_homotopia_relativa}
+Sea $A \subseteq X$. Sean $f, g \colon X \to Y$ continuas. Diremos que $f, g$ son homotópicas respecto a $A$ (denotado $f \simeq_A g$) cuando $\exists F \colon X \times I \to Y$ continua tal que:
+\begin{enumerate}
+    \item $F_0 = f$
+    \item $F_1 = g$
+    \item $\forall a \in A, \forall t \in I \colon F(a,t)$ es constante (no depende de $t$). En particular, $F(a,t) = f(a) = g(a) \ \forall t \in I$.
+\end{enumerate}
+\end{definicion}
+
+Para caminos con extremos fijos, $\alpha \simeq_{\{0,1\}} \beta \iff \exists F \colon I \times I \to X$ continua tal que:
+1. $F_0 = \alpha$ \\
+2. $F_1 = \beta$ \\
+3. $F(0,t) = \alpha(0) = \beta(0)$, y $F(1,t) = \alpha(1) = \beta(1) \quad \forall t \in I$.
+
+Si $x_0 = x_1$, notaremos $C_{x_0}(X)$ al conjunto de \textbf{lazos} con base en $x_0$.
+
+\begin{observacion}{Propiedades de la homotopía relativa}{obs_relativa}
+\begin{enumerate}
+    \item Si $f \simeq_A g$ mediante $F$, entonces para cada $a \in A$ se tiene $F_t(a) = F(a,t) = f(a)$ para todo $t \in I$. En particular $F_t(A) = f(A)$ no depende de $t$: $A$ permanece invariante (de hecho, punto a punto) durante la deformación.
+    \item En consecuencia, $f \simeq_A g \implies f|_A = g|_A$. Solo pueden ser homotópicas relativas a $A$ aplicaciones que coinciden sobre $A$.
+    \item Si $f \simeq_A g$ entonces $f \simeq g$, pero el recíproco es falso: $\simeq_{\{0,1\}}$ es mucho más restrictiva que $\simeq$. Por ejemplo, si $X$ es arco-conexo, \emph{cualesquiera} dos aplicaciones $\alpha, \beta \colon I \to X$ son homotópicas: $F(s,t) = \alpha((1-t)s)$ da $\alpha \simeq c_{\alpha(0)}$, y si $\gamma$ es un arco de $\alpha(0)$ a $\beta(0)$, $H(s,t) = \gamma(t)$ da $c_{\alpha(0)} \simeq c_{\beta(0)} \simeq \beta$. En cambio, en $S^1$ el lazo constante $c_1$ y el lazo $s \mapsto e^{2\pi i s}$ \emph{no} son homotópicos relativos a $\{0,1\}$ (veremos que $\pi_1(S^1) \cong \mathbb{Z}$). Es esta rigidez la que permite ``cazar agujeros''.
+\end{enumerate}
+\end{observacion}
+
+\begin{teorema}{Relación de equivalencia relativa (Se dejó como ejercicio) }{teo_rbe_relativa}
+La relación $\simeq_A$ es una R.B.E. en $C(X,Y)$. 
+\end{teorema}
+
+\begin{proof}
+Es la misma prueba que para $\simeq$, comprobando además que $A$ queda fijo.
+\begin{enumerate}
+    \item \textbf{Reflexiva:} $F(x,t) = f(x)$ cumple $F_0 = F_1 = f$ y $F(a,t) = f(a)$ para todo $a \in A$.
+    \item \textbf{Simétrica:} si $F \colon f \simeq_A g$, definimos $G(x,t) = F(x,1-t)$. Entonces $G_0 = g$, $G_1 = f$ y $G(a,t) = F(a,1-t) = f(a) = g(a)$ no depende de $t$.
+    \item \textbf{Transitiva:} sean $F^{(1)} \colon f \simeq_A g$ y $F^{(2)} \colon g \simeq_A h$. Definimos $F(x,t) = F^{(1)}(x,2t)$ si $t \in [0,\frac12]$ y $F(x,t) = F^{(2)}(x,2t-1)$ si $t \in [\frac12,1]$, que es continua como en el Teorema 2.1. Para $a \in A$: si $t \le \frac12$, $F(a,t) = f(a)$; si $t \ge \frac12$, $F(a,t) = g(a) = f(a)$ (porque $f|_A = g|_A$ por la observación anterior). Luego $F(a,t)$ es constante en $t$ y $f \simeq_A h$.
+\end{enumerate}
+\end{proof}
+
+\begin{definicion}{Grupo fundamental}{def_grupo_fundamental}
+Sea $X$ e.t., sea $x_0 \in X$. Definimos el grupo fundamental de $X$ en $x_0$, denotado como $\pi_1(X, x_0)$, al conjunto cociente de lazos bajo homotopía relativa a los extremos:
+\[ \pi_1(X, x_0) \equiv C_{x_0}(X) / \simeq_{\{0,1\}} \]
+A la clase de equivalencia de un lazo $\alpha$ la denotamos como $[\alpha]$.
+
+Es imporante notar que aun no hemos demostrado que se trata de un grupo, se demuestra en \ref{poincare}
+\end{definicion}
+
+Para dotar a $\pi_1(X, x_0)$ de estructura de grupo, introducimos operaciones en caminos:
+Sean $x_0, x_1, x_2 \in X$ y caminos $\alpha \colon I \to X$ (de $x_0$ a $x_1$) y $\beta \colon I \to X$ (de $x_1$ a $x_2$).
+Definimos la \textbf{concatenación} $\gamma = \alpha * \beta \colon I \to X$ dada por:
+\[ \gamma(t) = \begin{cases} \alpha(2t), & \forall t \in [0, 1/2] \\ \beta(2t-1), & \forall t \in [1/2, 1] \end{cases} \]
+Definimos el \textbf{camino inverso} $\alpha^{-1} \colon I \to X$ como $\alpha^{-1}(t) = \alpha(1-t)$, el cual va de $x_1$ a $x_0$.
+
+\begin{teorema}{Conexión por caminos}{teo_contractil_arcoconexo}
+Sea $X$ contractil. Entonces $X$ es arco-conexo.
+\end{teorema}
+\begin{proof}
+Sean $x, y \in X$. Por ser contractil, $\exists x_0 \in X \mid 1_X \simeq c_{x_0}$. Es decir, $\exists F \colon X \times I \to X$ continua con $F_0 = 1_X, F_1 = c_{x_0}$.
+Definimos el camino $\alpha \colon I \to X$ dado por $t \mapsto F(x,t)$, que une $\alpha(0)=x$ con $\alpha(1)=x_0$.
+Definimos el camino $\beta \colon I \to X$ dado por $t \mapsto F(y,t)$, que une $\beta(0)=y$ con $\beta(1)=x_0$.
+El camino concatenado $\delta = \alpha * \beta^{-1}$ une los puntos $x$ e $y$ de forma continua.
+\end{proof}
+
+\begin{observacion}{El recíproco es falso}{obs_recip_contractil}
+Arco-conexo $\not\implies$ contráctil. El ejemplo es $S^1$: es arco-conexo, pero no es contráctil, pues veremos que $\pi_1(S^1) \cong \mathbb{Z} \neq 1$, mientras que todo espacio contráctil tiene grupo fundamental trivial.
+\end{observacion}
+
+\begin{nota}{Asociatividad de caminos}{nota_asociatividad}
+Es importante notar que $\alpha * (\beta * \gamma) \neq (\alpha * \beta) * \gamma$ a nivel de aplicaciones, ya que las parametrizaciones difieren en los intervalos temporales. Sin embargo, sí son equivalentes bajo homotopía relativa a los extremos. 
+Definimos entonces el producto de clases como:
+\[ [\alpha] \cdot [\beta] = [\alpha * \beta] \]
+\end{nota}
+
+\begin{teorema}{de Poincaré}{poincare}
+Sea $X$ un espacio topológico y sea $x_0 \in X$. Entonces 
+\[
+(\pi_1(X, x_0), \cdot)
+\]
+es un grupo.
+\end{teorema}
+
+\textbf{18/09/2026}
+
+\begin{proof}
+Dividimos la demostración en la comprobación de la buena definición de la operación y el cumplimiento de los axiomas de grupo:
+
+\begin{enumerate}
+    \item \textbf{La operación está bien definida.}
+    
+    Sean $\alpha, \alpha', \beta, \beta' \in \mathcal{C}_{x_0}(X)$. Se debe probar que:
+    \[
+    \left.
+    \begin{aligned}
+    \alpha &\simeq_{\{0,1\}} \alpha' \\
+    \beta &\simeq_{\{0,1\}} \beta'
+    \end{aligned}
+    \right\} \implies \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'
+    \]
+    Por hipótesis, existen homotopías relativas:
+    \begin{itemize}
+        \item $H^{(1)} : I \times I \to X$ continua con:
+        \[
+        H_0^{(1)} = \alpha, \quad H_1^{(1)} = \alpha', \quad H^{(1)}(0, t) = \alpha(0) = \alpha'(0) = x_0, \quad H^{(1)}(1, t) = \alpha(1) = \alpha'(1) = x_0 \quad (\forall t \in I)
+        \]
+        \item $H^{(2)} : I \times I \to X$ continua con:
+        \[
+        H_0^{(2)} = \beta, \quad H_1^{(2)} = \beta', \quad H^{(2)}(0, t) = x_0, \quad H^{(2)}(1, t) = x_0 \quad (\forall t \in I)
+        \]
+    \end{itemize}
+
+    Se define la aplicación $H : I \times I \to X$ dada a trozos por:
+    \[
+    H(s, t) = 
+    \begin{cases}
+    H^{(1)}(2s, t) & \text{si } s \in [0, 1/2], \\
+    H^{(2)}(2s - 1, t) & \text{si } s \in [1/2, 1].
+    \end{cases}
+    \]
+
+    \begin{itemize}
+        \item \emph{Coincidencia en la frontera común ($s = 1/2$):}
+        \[
+        H(1/2, t) = 
+        \begin{cases}
+        H^{(1)}\left(2 \cdot \frac{1}{2}, t\right) = H^{(1)}(1, t) = x_0, \\
+        H^{(2)}\left(2 \cdot \frac{1}{2} - 1, t\right) = H^{(2)}(0, t) = x_0.
+        \end{cases}
+        \]
+        Por tanto, $H$ está bien definida.
+
+        \item \emph{Continuidad de $H$:}
+        Escribimos $I \times I = B_1 \cup B_2$, donde:
+        \[
+        B_1 = [0, 1/2] \times I, \qquad B_2 = [1/2, 1] \times I
+        \]
+        Ambos subconjuntos son cerrados en $I \times I$. Como $H|_{B_1}$ y $H|_{B_2}$ son continuas y coinciden en $B_1 \cap B_2$, por el lema de pegamiento (continuidad a trozos), $H$ es continua.
+
+        \item \emph{Instantes $t = 0$ y $t = 1$:}
+        \[
+        H_0(s) = H(s, 0) = 
+        \begin{cases}
+        H^{(1)}(2s, 0) = \alpha(2s) & \text{si } s \in [0, 1/2], \\
+        H^{(2)}(2s - 1, 0) = \beta(2s - 1) & \text{si } s \in [1/2, 1],
+        \end{cases}
+        \implies H_0 = \alpha * \beta
+        \]
+        \[
+        H_1(s) = H(s, 1) = 
+        \begin{cases}
+        H^{(1)}(2s, 1) = \alpha'(2s) & \text{si } s \in [0, 1/2], \\
+        H^{(2)}(2s - 1, 1) = \beta'(2s - 1) & \text{si } s \in [1/2, 1],
+        \end{cases}
+        \implies H_1 = \alpha' * \beta'
+        \]
+
+        \item \emph{Fijación de los extremos ($s = 0$ y $s = 1$):}
+        \[
+        \begin{aligned}
+        H(0, t) &= H^{(1)}(0, t) = x_0, \\
+        H(1, t) &= H^{(2)}(1, t) = x_0.
+        \end{aligned}
+        \]
+        No dependen de $t$. En consecuencia, $H : \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
+    \end{itemize}
+
+    \item \textbf{Propiedad asociativa.}
+    
+    Se debe probar que:
+    \[
+    [\alpha] \cdot ([\beta] \cdot [\gamma]) = ([\alpha] \cdot [\beta]) \cdot [\gamma], \quad \forall \alpha, \beta, \gamma \in \mathcal{C}_{x_0}(X)
+    \]
+    lo cual equivale a demostrar que $(\alpha * \beta) * \gamma \simeq_{\{0,1\}} \alpha * (\beta * \gamma)$.
+    
+    Explícitamente, las parametrizaciones son:
+    \[
+    ((\alpha * \beta) * \gamma)(s) = 
+    \begin{cases}
+    \alpha(4s) & \text{si } s \in [0, 1/4], \\
+    \beta(4s - 1) & \text{si } s \in [1/4, 1/2], \\
+    \gamma(2s - 1) & \text{si } s \in [1/2, 1];
+    \end{cases}
+    \]
+    \[
+    (\alpha * (\beta * \gamma))(s) = 
+    \begin{cases}
+    \alpha(2s) & \text{si } s \in [0, 1/2], \\
+    \beta(4s - 2) & \text{si } s \in [1/2, 3/4], \\
+    \gamma(4s - 3) & \text{si } s \in [3/4, 1].
+    \end{cases}
+    \]
+    
+    Se define la homotopía $H : I \times I \to X$ mediante reparametrizaciones afines a trozos sobre los intervalos que varían linealmente con $t$:
+    \[
+    H(s, t) = 
+    \begin{cases}
+    \alpha\left( \dfrac{4}{t + 1} s \right) & \text{si } s \in \left[ 0, \dfrac{t+1}{4} \right], \\[2ex]
+    \beta(4s - t - 1) & \text{si } s \in \left[ \dfrac{t+1}{4}, \dfrac{t+2}{4} \right], \\[2ex]
+    \gamma\left( \dfrac{4s - 2 - t}{2 - t} \right) & \text{si } s \in \left[ \dfrac{t+2}{4}, 1 \right].
+    \end{cases}
+    \]
+    
+    \begin{itemize}
+        \item \emph{Buena definición en las fronteras:}
+        \begin{itemize}
+            \item En $s = \frac{t+1}{4}$:
+            \[
+            \alpha\left( \frac{4}{t+1} \cdot \frac{t+1}{4} \right) = \alpha(1) = x_0, \qquad \beta\left( 4 \cdot \frac{t+1}{4} - t - 1 \right) = \beta(0) = x_0.
+            \]
+            \item En $s = \frac{t+2}{4}$:
+            \[
+            \beta\left( 4 \cdot \frac{t+2}{4} - t - 1 \right) = \beta(1) = x_0, \qquad \gamma\left( \frac{4\frac{t+2}{4} - 2 - t}{2 - t} \right) = \gamma(0) = x_0.
+            \]
+        \end{itemize}
+        \item \emph{Continuidad:} Por el lema de pegamiento en los subconjuntos cerrados determinados por las rectas $s = \frac{t+1}{4}$ y $s = \frac{t+2}{4}$, $H$ es continua.
+        \item \emph{Evaluación en los extremos temporales:}
+        \[
+        H(s, 0) = ((\alpha * \beta) * \gamma)(s), \qquad H(s, 1) = (\alpha * (\beta * \gamma))(s).
+        \]
+        \item \emph{Extremos espaciales:}
+        \[
+        H(0, t) = \alpha(0) = x_0, \qquad H(1, t) = \gamma(1) = x_0 \quad (\forall t \in I).
+        \]
+    \end{itemize}
+    Por tanto, $H$ es una homotopía relativa y la operación es asociativa.
+
+    \item \textbf{Existencia de elemento neutro.}
+    
+    Sea $c_{x_0} : I \to X$ el lazo constante $c_{x_0}(s) = x_0$ para todo $s \in I$. Se debe probar que:
+    \[
+    [c_{x_0}] \cdot [\alpha] = [\alpha] \iff c_{x_0} * \alpha \simeq_{\{0,1\}} \alpha.
+    \]
+    El producto con el neutro es:
+    \[
+    (c_{x_0} * \alpha)(s) = 
+    \begin{cases}
+    c_{x_0}(2s) = x_0 & \text{si } s \in [0, 1/2], \\
+    \alpha(2s - 1) & \text{si } s \in [1/2, 1].
+    \end{cases}
+    \]
+    Se construye la homotopía $F : I \times I \to X$:
+    \[
+    F(s, t) = 
+    \begin{cases}
+    x_0 & \text{si } s \in \left[0, \dfrac{1-t}{2}\right], \\[2ex]
+    \alpha\left( \dfrac{2s + t - 1}{t + 1} \right) & \text{si } s \in \left[\dfrac{1-t}{2}, 1\right].
+    \end{cases}
+    \]
+    \begin{itemize}
+        \item En $s = \frac{1-t}{2}$, $\alpha\left( \frac{2\frac{1-t}{2} + t - 1}{t+1} \right) = \alpha(0) = x_0$, coincidiendo con el valor constante.
+        \item $F(s, 0) = (c_{x_0} * \alpha)(s)$ y $F(s, 1) = \alpha(s)$.
+        \item $F(0, t) = x_0$ y $F(1, t) = \alpha(1) = x_0$ para todo $t \in I$.
+    \end{itemize}
+    Análogamente se comprueba para $[\alpha] \cdot [c_{x_0}] = [\alpha]$.
+
+    \textbf{23/09/2026}
+
+    \item \textbf{Existencia de elemento simétrico (inverso).} \hfill 
+    
+    Para cada lazo $\alpha \in \mathcal{C}_{x_0}(X)$, se define el lazo inverso $\alpha^{-1} : I \to X$ como:
+    \[
+    \alpha^{-1}(s) = \alpha(1 - s).
+    \]
+    
+    \begin{itemize}
+        \item \emph{Buena definición de la clase inversa:} Si $\alpha \simeq_{\{0,1\}} \gamma$ mediante una homotopía $F(s, t)$, entonces $G(s, t) = F(1 - s, t)$ proporciona una homotopía relativa entre $\alpha^{-1}$ y $\gamma^{-1}$, por lo que $[\alpha]^{-1} = [\alpha^{-1}]$ está bien definido.
+        \item \emph{Simétrico respecto al producto:} Falta probar que $[\alpha^{-1}] \cdot [\alpha] = [c_{x_0}]$, es decir, $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_0}$.
+    \end{itemize}
+    La homotopía explícita $F : I \times I \to X$ viene dada por:
+    \[
+    F(s, t) = 
+    \begin{cases}
+    \alpha^{-1}(2s(1 - t)) = \alpha(1 - 2s(1 - t)) & \text{si } s \in [0, 1/2], \\[1ex]
+    \alpha(2s(1 - t) + 2t - 1) & \text{si } s \in [1/2, 1].
+    \end{cases}
+    \]
+    \begin{itemize}
+        \item En $s = 1/2$:
+        \[
+        \alpha(1 - 2(1/2)(1 - t)) = \alpha(t), \qquad \alpha(2(1/2)(1 - t) + 2t - 1) = \alpha(t).
+        \]
+        \item Para $t = 0$: $F(s, 0) = (\alpha^{-1} * \alpha)(s)$.
+        \item Para $t = 1$: $F(s, 1) = \alpha(1) = x_0 = c_{x_0}(s)$.
+        \item En los extremos: $F(0, t) = \alpha(1) = x_0$ y $F(1, t) = \alpha(1) = x_0$ para todo $t \in I$.
+    \end{itemize}
+    El mismo procedimiento demuestra que $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$.
+\end{enumerate}
+
+\end{proof}
+
+Si $X$ espacio topológico, $x_0 \in X$, consideremos la familia $\{\pi_1(X, x) : x \in X\}$. ¿Qué propiedades tienen y qué relación hay entre ellos?
+
+\textbf{Ejercicio:} Reproduce las pruebas del teorema de Poincaré para arcos cualquiera.
+
+Recordamos que vimos:
+\begin{align*}
+    [\alpha]([\beta][\gamma]) &= ([\alpha][\beta])[\gamma] \quad \forall \alpha, \beta, \gamma \in C_{x_0}(X) \\
+    [c_{x_0}][\alpha] &= [\alpha] \quad \forall \alpha \in C_{x_0}(X) \\
+    [\alpha^{-1}][\alpha] &= [c_{x_0}] \quad \forall \alpha \in C_{x_0}(X)
+\end{align*}
+Además, si $[\alpha] = [\alpha']$ y $[\beta] = [\beta'] \implies [\alpha * \beta] = [\alpha' * \beta']$ para todo $\alpha, \beta \in C_{x_0}(X)$.
+
+Probar que esta propiedad se cumple de igual manera para arcos, además que para el elemento neutro:
+\begin{enumerate}
+    \item[a)] Si $\alpha \simeq_{\{0,1\}} \alpha'$ y $\beta \simeq_{\{0,1\}} \beta' \implies \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
+    \item[b)] $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
+    \item[c)] $c_{x_0} * \alpha \simeq_{\{0,1\}} \alpha$ y $\alpha * c_{x_1} \simeq_{\{0,1\}} \alpha$.
+    \item[d)] $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$ y $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_1}$.
+\end{enumerate}
+
+\begin{proof}[Solución]
+Sean $\alpha, \alpha' \in C_{x_0,x_1}(X)$, $\beta, \beta' \in C_{x_1,x_2}(X)$ y $\gamma \in C_{x_2,x_3}(X)$.
+
+\textbf{a)} Sean $H^{(1)} \colon \alpha \simeq_{\{0,1\}} \alpha'$ y $H^{(2)} \colon \beta \simeq_{\{0,1\}} \beta'$. Definimos $H(s,t) = H^{(1)}(2s,t)$ si $s \in [0,\frac12]$ y $H(s,t) = H^{(2)}(2s-1,t)$ si $s \in [\frac12,1]$. En $s = \frac12$ ambas expresiones valen $H^{(1)}(1,t) = x_1 = H^{(2)}(0,t)$, así que $H$ está bien definida, y es continua por el lema de pegamiento. Además $H_0 = \alpha * \beta$, $H_1 = \alpha' * \beta'$, $H(0,t) = x_0$ y $H(1,t) = x_2$ para todo $t$.
+
+\textbf{b)} Sirve la misma $H$ que en la prueba del teorema de Poincaré. Está bien definida porque $\alpha(1) = x_1 = \beta(0)$ y $\beta(1) = x_2 = \gamma(0)$, y cumple $H(0,t) = \alpha(0) = x_0$ y $H(1,t) = \gamma(1) = x_3$ para todo $t$.
+
+\textbf{c)} Para $c_{x_0} * \alpha \simeq_{\{0,1\}} \alpha$ sirve la misma $F$ que en la prueba del teorema (con $F(1,t) = \alpha(1) = x_1$). Para $\alpha * c_{x_1} \simeq_{\{0,1\}} \alpha$ definimos
+\[ G(s,t) = \begin{cases} \alpha\left( \dfrac{2s}{1+t} \right) & \text{si } s \in \left[0, \dfrac{1+t}{2}\right], \\[2ex] x_1 & \text{si } s \in \left[\dfrac{1+t}{2}, 1\right]. \end{cases} \]
+En $s = \frac{1+t}{2}$ ambas valen $\alpha(1) = x_1$; $G_0 = \alpha * c_{x_1}$, $G_1 = \alpha$, $G(0,t) = x_0$ y $G(1,t) = x_1$.
+
+\textbf{d)} Definimos
+\[ F(s,t) = \begin{cases} \alpha(2s(1-t)) & \text{si } s \in [0,\frac12], \\ \alpha((2-2s)(1-t)) & \text{si } s \in [\frac12,1]. \end{cases} \]
+En $s = \frac12$ ambas valen $\alpha(1-t)$. Para $t = 0$: $F(s,0) = \alpha(2s)$ si $s \le \frac12$ y $\alpha(2-2s) = \alpha^{-1}(2s-1)$ si $s \ge \frac12$, es decir, $F_0 = \alpha * \alpha^{-1}$. Para $t = 1$: $F_1 = c_{\alpha(0)} = c_{x_0}$. Y $F(0,t) = F(1,t) = \alpha(0) = x_0$. Luego $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$. Aplicando esto a $\alpha^{-1} \in C_{x_1,x_0}(X)$, y como $(\alpha^{-1})^{-1} = \alpha$, se obtiene $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_1}$.
+\end{proof}
+
+(Nótese que en el enunciado original las dos fórmulas de d) estaban intercambiadas: $\alpha * \alpha^{-1}$ es un lazo en $x_0$, y $\alpha^{-1} * \alpha$ es un lazo en $x_1$.)
+
+\begin{proposicion}{Inverso homotópico de caminos}{inverso_homotopico}
+Sea $X$ espacio topológico, $x_0, x_1 \in X$. Sean $\alpha, \beta \in C_{x_0, x_1}(X)$ que verifican que $\alpha \simeq_{\{0,1\}} \beta$, entonces $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$. (Ejercicio para casa).
+\end{proposicion}
+
+\begin{proof}[Solución]
+Sea $H \colon \alpha \simeq_{\{0,1\}} \beta$. Definimos $G(s,t) = H(1-s,t)$, continua. Entonces $G_0(s) = \alpha(1-s) = \alpha^{-1}(s)$, $G_1 = \beta^{-1}$, $G(0,t) = H(1,t) = x_1$ y $G(1,t) = H(0,t) = x_0$ no dependen de $t$. Luego $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$.
+\end{proof}
+
+\textbf{Ejercicio:} Sean $\alpha, \beta \in C_{x_0, x_1}(X)$, prueba que $(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$.
+\begin{proof}
+Por definición de camino inverso y producto:
+\[
+(\alpha * \beta)^{-1}(s) = (\alpha * \beta)(1-s) = 
+\begin{cases} 
+\alpha(2(1-s)), & \text{si } 1-s \in [0, 1/2] \\ 
+\beta(2(1-s)-1), & \text{si } 1-s \in [1/2, 1] 
+\end{cases}
+\]
+Equivalentemente:
+\[
+(\alpha * \beta)^{-1}(s) =
+\begin{cases} 
+\beta(1-2s), & \text{si } s \in [0, 1/2] \\ 
+\alpha(2-2s), & \text{si } s \in [1/2, 1] 
+\end{cases}
+\]
+
+Por otro lado:
+\[
+(\beta^{-1} * \alpha^{-1})(s) = 
+\begin{cases} 
+\beta^{-1}(2s), & \text{si } s \in [0, 1/2] \\ 
+\alpha^{-1}(2s-1), & \text{si } s \in [1/2, 1] 
+\end{cases}
+= 
+\begin{cases} 
+\beta(1-2s), & \text{si } s \in [0, 1/2] \\ 
+\alpha(1-(2s-1)), & \text{si } s \in [1/2, 1] 
+\end{cases}
+\]
+Como $\alpha(1-(2s-1)) = \alpha(2-2s)$, ambas expresiones coinciden para todo $s \in I$. Luego $(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$.
+\end{proof}
+
+\begin{observacion}{}{obs_inversos}
+\begin{enumerate}
+    \item Volviendo a $\pi_1(X, x_0)$, vimos que el inverso de un elemento $[\alpha] \in \pi_1(X, x_0)$ es $[\alpha^{-1}]$. Luego $[\alpha]^{-1} = [\alpha^{-1}]$.
+    \item Si $\alpha \in C_{x_0}(X)$, entonces $[\alpha^{-1}][\alpha] = [\alpha][\alpha^{-1}] = [c_{x_0}]$, y $[c_{x_0}][\alpha] = [\alpha][c_{x_0}] = [\alpha]$. Además, $([\alpha]^{-1})^{-1} = [\alpha]$.
+    \item $\alpha * (\beta * \gamma) \ne (\alpha * \beta) * \gamma$ pero $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$. Por tanto, $[\alpha * \beta * \gamma] := [\alpha * (\beta * \gamma)] = [(\alpha * \beta) * \gamma]$ para todo $\alpha,\beta,\gamma \in C_{x_0}(X)$. En cambio, la expresión $\alpha * \beta * \gamma$ no está definida por sí sola como producto binario.
+\end{enumerate}
+\end{observacion}
+
+\begin{definicion}{Concatenación conjunta}{concat_conjunta}
+Así definimos la concatenación conjunta de tres caminos $\alpha * \beta * \gamma$:
+\[
+(\alpha * \beta * \gamma)(s) = 
+\begin{cases} 
+\alpha(3s), & s \in [0, 1/3] \to [0,1] \\ 
+\beta(3s-1), & s \in [1/3, 2/3] \to [0,1] \\ 
+\gamma(3s-2), & s \in [2/3, 1] \to [0,1] 
+\end{cases}
+\]
+También se puede definir para el caso $n$-ésimo. Sean $\alpha_1, \dots, \alpha_n$ tales que $\alpha_1(1) = \alpha_2(0), \alpha_2(1) = \alpha_3(0), \dots, \alpha_{n-1}(1) = \alpha_n(0)$:
+\[
+(\alpha_1 * \alpha_2 * \dots * \alpha_n)(s) = 
+\begin{cases} 
+\alpha_1(ns), & s \in [0, \frac{1}{n}] \to [0,1] \\ 
+\alpha_2(ns-1), & s \in [\frac{1}{n}, \frac{2}{n}] \to [0,1] \\ 
+\vdots & \vdots \\ 
+\alpha_n(ns-(n-1)), & s \in [\frac{n-1}{n}, 1] \to [0,1] 
+\end{cases}
+\]
+Esta aplicación es continua. Como ejercicio, probar que $[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma] = [\alpha * (\beta * \gamma)]$.
+\end{definicion}
+
+\begin{proof}[Solución de los ejercicios sobre la concatenación conjunta]
+\begin{enumerate}
+    \item \emph{$[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma]$.} Se tiene $\alpha * \beta * \gamma = ((\alpha * \beta) * \gamma) \circ g$, con
+    \[ g(s) = \begin{cases} \frac{3s}{4} & \text{si } s \in [0,\frac23], \\ \frac{3s-1}{2} & \text{si } s \in [\frac23,1]. \end{cases} \]
+    En efecto, $g$ es continua ($g(\frac23) = \frac12$ por ambos lados), $g(0) = 0$, $g(1) = 1$, y comparando con la expresión a trozos de $(\alpha * \beta) * \gamma$ (que usa $\alpha(4u)$ en $[0,\frac14]$, $\beta(4u-1)$ en $[\frac14,\frac12]$ y $\gamma(2u-1)$ en $[\frac12,1]$) se obtiene $\alpha(3s)$, $\beta(3s-1)$ y $\gamma(3s-2)$ en los tres tramos de $s$. Por la proposición de reparametrización (Tema 3), $\alpha * \beta * \gamma \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
+    \item \emph{$[\alpha * \beta * \gamma] = [\alpha * (\beta * \gamma)]$.} Análogamente, $\alpha * \beta * \gamma = (\alpha * (\beta * \gamma)) \circ h$ con $h(s) = \frac{3s}{2}$ si $s \in [0,\frac13]$ y $h(s) = \frac{3s+1}{4}$ si $s \in [\frac13,1]$ (continua, $h(0)=0$, $h(1)=1$).
+    \item \emph{$(\alpha_1 * \alpha_2) * (\alpha_3 * \alpha_4) = \alpha_1 * \alpha_2 * \alpha_3 * \alpha_4$.} Esta es una igualdad de aplicaciones, no solo de clases: $(\alpha_1 * \alpha_2)(2s)$ vale $\alpha_1(4s)$ si $s \in [0,\frac14]$ y $\alpha_2(4s-1)$ si $s \in [\frac14,\frac12]$; y $(\alpha_3 * \alpha_4)(2s-1)$ vale $\alpha_3(4s-2)$ si $s \in [\frac12,\frac34]$ y $\alpha_4(4s-3)$ si $s \in [\frac34,1]$. Es exactamente la concatenación conjunta de cuatro caminos.
+\end{enumerate}
+\end{proof}
+
+Sea $X$ un espacio topológico y $x_0 \in X$. Denotamos por $\pi_1(X, x_0)$ al grupo fundamental de $X$ en $x_0$.
+
+Sean $x_0, x_1 \in X$, y supongamos que $x_0$ y $x_1$ están unidos por un arco. Es decir, existe $\omega : I \to X$ continua con $\omega(0) = x_0$ y $\omega(1) = x_1$.
+
+\begin{definicion}{Isomorfismo de cambio de base}{def_cambio_base}
+Definimos la aplicación $P_\omega : \pi_1(X, x_0) \to \pi_1(X, x_1)$ dada por:
+\[
+[\alpha] \mapsto [\omega^{-1} * \alpha * \omega]
+\]
+\end{definicion}
+
+\begin{teorema}{Isomorfismo de cambio de base}{teo_cambio_base}
+$P_\omega$ es un isomorfismo de grupos.
+\end{teorema}
+
+\begin{proof}
+1) $P_\omega$ está bien definido. Necesitamos probar que si $[\alpha]=[\alpha']$, entonces $[\omega^{-1} * \alpha * \omega] = [\omega^{-1} * \alpha' * \omega]$.
+Si $\alpha \simeq_{\{0,1\}} \alpha'$, entonces $\alpha * \omega \simeq_{\{0,1\}} \alpha' * \omega$. Aplicando lo anterior se tiene:
+\[
+\omega^{-1} * (\alpha * \omega) \simeq_{\{0,1\}} \omega^{-1} * (\alpha' * \omega) \implies \omega^{-1} * \alpha * \omega \simeq_{\{0,1\}} \omega^{-1} * \alpha' * \omega
+\]
+Por tanto, $[\omega^{-1} * \alpha * \omega] = [\omega^{-1} * \alpha' * \omega]$.
+
+2) $P_\omega$ es homomorfismo de grupos. Para cualesquiera $[\alpha], [\beta] \in \pi_1(X, x_0)$:
+\begin{align*}
+P_\omega([\alpha] \cdot [\beta]) &= P_\omega([\alpha * \beta]) = [\omega^{-1} * (\alpha * \beta) * \omega] \\
+&= [(\omega^{-1} * \alpha) * (\beta * \omega)] \\
+&= [(\omega^{-1} * \alpha) * (\omega * \omega^{-1}) * (\beta * \omega)] \quad (\text{pues } \omega * \omega^{-1} \simeq_{\{0,1\}} c_{x_0}) \\
+&= [(\omega^{-1} * \alpha * \omega) * (\omega^{-1} * \beta * \omega)] \\
+&= [\omega^{-1} * \alpha * \omega] \cdot [\omega^{-1} * \beta * \omega] = P_\omega([\alpha]) \cdot P_\omega([\beta])
+\end{align*}
+
+3) $P_\omega$ es biyectiva. Comprobaremos que $P_\omega^{-1} = P_{\omega^{-1}}$.
+Para todo $[\gamma] \in C_{x_1}(X)$:
+\[
+P_\omega(P_{\omega^{-1}}([\gamma])) = P_\omega([(\omega^{-1})^{-1} * \gamma * \omega^{-1}]) = [\omega^{-1} * (\omega * \gamma * \omega^{-1}) * \omega] = [c_{x_1} * \gamma * c_{x_1}] = [\gamma]
+\]
+Análogamente, para todo $[\alpha] \in C_{x_0}(X)$:
+\[
+P_{\omega^{-1}}(P_\omega([\alpha])) = P_{\omega^{-1}}([\omega^{-1} * \alpha * \omega]) = [\omega * (\omega^{-1} * \alpha * \omega) * \omega^{-1}] = [c_{x_0} * \alpha * c_{x_0}] = [\alpha]
+\]
+\end{proof}
+
+\begin{proposicion}{}{cor_arco}
+Si $X$ es arcoconexo y $x_0, x_1 \in X$, entonces $\pi_1(X, x_0) \cong \pi_1(X, x_1)$.
+\end{proposicion}
+
+\begin{nota}{Grupo fundamental}{nota_grupo_fund}
+Este grupo se denota a partir de ahora $\pi_1(X) = \pi_1(X, x_0)$, siendo $x_0$ cualquier punto de $X$, y se denomina \textbf{grupo fundamental} de $X$.
+\end{nota}
+
+Consideremos ahora una aplicación continua. Ejercicio: Sea $X$ e.t., $x_0, x_1 \in X$ y sean $\omega_0, \omega_1 \in C_{x_0, x_1}(X)$. Prueba que si $\omega_0 \simeq_{\{0,1\}} \omega_1$ entonces $P_{\omega_0} = P_{\omega_1}$.
+
+\begin{proof}[Solución]
+Por la proposición del inverso homotópico, $\omega_0^{-1} \simeq_{\{0,1\}} \omega_1^{-1}$. Sea $[\alpha] \in \pi_1(X,x_0)$. Aplicando dos veces la propiedad a) de la extensión a arcos:
+\[ \alpha * \omega_0 \simeq_{\{0,1\}} \alpha * \omega_1 \quad\text{y}\quad \omega_0^{-1} * (\alpha * \omega_0) \simeq_{\{0,1\}} \omega_1^{-1} * (\alpha * \omega_1). \]
+Por tanto $P_{\omega_0}([\alpha]) = [\omega_0^{-1} * \alpha * \omega_0] = [\omega_1^{-1} * \alpha * \omega_1] = P_{\omega_1}([\alpha])$.
+\end{proof}
+
+\begin{definicion}{Homomorfismo inducido}{def_hom_ind}
+Sea $f: X \to Y$ continua, sea $x_0 \in X$ y sea $y_0 = f(x_0)$. Definimos:
+\begin{align*}
+f_* : \pi_1(X, x_0) &\to \pi_1(Y, f(x_0)) \\
+[\alpha] &\mapsto [f \circ \alpha]
+\end{align*}
+También se puede denotar como $\pi_1(f)$ o $\pi_{1,x_0}(f)$.
+\end{definicion}
+
+\begin{teorema}{Propiedades del homomorfismo inducido}{teo_hom_ind}
+$f_*$ es un homomorfismo de grupos.
+\end{teorema}
+
+\begin{proof}
+1) Bien definido. ¿$f \circ \alpha$ es un lazo?
+Si $[\alpha] = [\alpha'] \implies \alpha \simeq_{\{0,1\}} \alpha' \implies f \circ \alpha \simeq_{\{0,1\}} f \circ \alpha'$, lo que significa que $[f \circ \alpha] = [f \circ \alpha']$.
+(Si existe una homotopía $F: I \times I \to X$, entonces $f \circ F : I \times I \to Y$ es la homotopía en $Y$).
+
+2) $f_*$ es homomorfismo de grupos. Debemos probar que $f_*([\alpha][\beta]) = f_*([\alpha]) f_*([\beta])$ para todo $\alpha, \beta \in C_{x_0}(X)$.
+Tenemos que $f_*([\alpha * \beta]) = [f \circ (\alpha * \beta)]$ y que $f_*([\alpha])f_*([\beta]) = [(f \circ \alpha) * (f \circ \beta)]$. Evaluando el camino:
+\[
+(f \circ (\alpha * \beta))(s) = 
+\begin{cases} 
+f(\alpha(2s)), & \text{si } s \in [0, 1/2] \\ 
+f(\beta(2s-1)), & \text{si } s \in [1/2, 1] 
+\end{cases}
+\]
+Por otra parte:
+\[
+((f \circ \alpha) * (f \circ \beta))(s) = 
+\begin{cases} 
+f(\alpha(2s)), & \text{si } s \in [0, 1/2] \\ 
+f(\beta(2s-1)), & \text{si } s \in [1/2, 1] 
+\end{cases}
+\]
+Como coinciden para todo $s \in I$, se verifica la igualdad de las clases.
+\end{proof}
+
+\textbf{Ejercicio:} Sea $x_0 \in X$, probar que $(g \circ f)_* = g_* \circ f_*$.
+
+\textbf{25/09/2026}
+
+\begin{nota}{Resumen}{}
+
+
+$$\pi_1(X, x_0) = C(X, x_0) / \simeq_{\{0,1\}}$$
+
+Dadas $\alpha \in C_{x_0, x_1}(X)$ y $\beta \in C_{x_1, x_2}(X)$, se tiene la concatenación $\alpha * \beta \in C_{x_0, x_2}(X)$.
+Si $\alpha \simeq_{\{0,1\}} \alpha'$ con $\alpha, \alpha' \in C_{x_0, x_1}(X)$ y $\beta \simeq_{\{0,1\}} \beta'$ con $\beta, \beta' \in C_{x_1, x_2}(X)$, entonces se cumple que $\alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
+
+Esto nos permite definir la aplicación:
+
+
+$$C_{x_0, x_1}(X) / \simeq_{\{0,1\}} \times C_{x_1, x_2}(X) / \simeq_{\{0,1\}} \longrightarrow C_{x_0, x_2}(X) / \simeq_{\{0,1\}}$$
+
+$$([\alpha], [\beta]) \longmapsto [\alpha] \cdot [\beta] = [\alpha * \beta]$$
+
+
+Donde $[\alpha]$ es la clase de equivalencia de $\alpha$ respecto de $\simeq_{\{0,1\}}$.
+
+Se cumplen las siguientes propiedades algebraicas de grupo:
+\begin{itemize}
+\item Asociatividad: $[\alpha] \cdot ([\beta] \cdot [\gamma]) = ([\alpha] \cdot [\beta]) \cdot [\gamma]$, es decir, $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
+\item Elemento neutro: $[C_{x_0}] \cdot [\alpha] = [\alpha] \cdot [C_{x_1}] = [\alpha]$.
+\item Elemento inverso: $[\alpha] \cdot [\alpha^{-1}] = [\alpha * \alpha^{-1}] = [C_{x_0}]$ y $[\alpha^{-1}] \cdot [\alpha] = [C_{x_1}]$.
+\end{itemize}
+
+Si $X$ es arcoconexo, dados dos puntos $x_0, x_1 \in X$ unidos por un camino $\omega$, se define $P_\omega \colon \pi_1(X, x_0) \longrightarrow \pi_1(X, x_1)$ dado por $[\alpha] \longmapsto [\omega^{-1} * \alpha * \omega]$, el cual es un isomorfismo de grupos (con $P_\omega^{-1} = P_{\omega^{-1}}$). Por tanto, escribiremos $\pi_1(X) = \pi_1(X, x_0)$ independientemente del punto base elegido.
+\end{nota}
+
+\begin{observacion}{Homomorfismo Inducido}{}
+Dada $f \colon X \longrightarrow Y$ continua, y tomando $x_0 \in X$ con $f(x_0) = y_0$, tenemos $f \colon (X, x_0) \longrightarrow (Y, y_0)$. Se define el homomorfismo inducido:
+
+
+$$ f_* (= f_{\#, x_0}) \colon \pi_1(X, x_0) \longrightarrow \pi_1(Y, y_0) $$
+
+$$[\alpha] \longmapsto [f \circ \alpha]$$
+
+
+Para comprobar que $f_*$ está bien definido, tomemos dos elementos $\alpha \simeq_{\{0,1\}} \alpha'$. Existe una homotopía $F \colon I \times I \longrightarrow X$ tal que $F_0 = \alpha$, $F_1 = \alpha'$ y los extremos $F(0, t) = x_0$, $F(1, t) = x_0$ no dependen de $t$.
+Dado que $f(\alpha(0)) = f(x_0) = y_0$ y $f(\alpha(1)) = f(x_0) = y_0$, se tiene $f \circ \alpha \in C_{y_0}(Y)$. Definimos $G \colon I \times I \longrightarrow Y$ como $G(s,t) = f(F(s,t))$. Entonces $G_0(s) = (f \circ \alpha)(s)$, $G_1(s) = (f \circ \alpha')(s)$, $G(0,t) = y_0$ y $G(1,t) = y_0$. Por tanto, $f \circ \alpha \simeq_{\{0,1\}} f \circ \alpha'$ y $f_*$ es un homomorfismo de grupos.
+\end{observacion}
+
+\begin{teorema}{Funtorialidad de $\pi_1$}{funtorialidad_pi1}
+Sea $X$ un espacio topológico y $x_0 \in X$.
+\begin{enumerate}
+\item $(1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$
+\item Dadas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow Z$ continuas, se cumple que $(g \circ f)_* = g_* \circ f_*$.
+\end{enumerate}
+\textbf{Demostración:}
+a) Directamente, $(1_X)_{*, x_0}([\alpha]) = [1_X \circ \alpha] = [\alpha]$.
+
+b) Tenemos que probar que $(g \circ f)_{*, x_0} = g_{*, f(x_0)} \circ f_{*, x_0}$. Evaluando en una clase $[\alpha]$:
+
+
+$$(g \circ f)_{*, x_0}([\alpha]) = [g \circ f \circ \alpha]$$
+
+$$(g_{*, f(x_0)} \circ f_{*, x_0})([\alpha]) = g_{*, f(x_0)}([f \circ \alpha]) = [g \circ f \circ \alpha] \qed$$
+
+
+\end{teorema}
+
+\begin{proposicion}{Homeomorfismo induce isomorfismo de grupos fundamentales}{homeomorfismo_pi1}
+Sean $X$ e $Y$ espacios topológicos arco-conexos. Si $X \cong Y$, entonces $\pi_1(X) \cong \pi_1(Y)$.
+
+\textbf{Demostración:}
+Dado que $X$ e $Y$ son homeomorfos, existen funciones continuas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ que son biyectivas y una inversa de la otra ($f \circ g = 1_Y$, $g \circ f = 1_X$). Sea $x_0 \in X$ y $y_0 = f(x_0)$.
+Por la funtorialidad, de $f \circ g = 1_Y$ obtenemos $(f \circ g)_{*, y_0} = (1_Y)_{*, y_0} = 1_{\pi_1(Y, y_0)}$, lo cual implica $f_{*, g(y_0)} \circ g_{*, y_0} = 1_{\pi_1(Y, y_0)}$.
+De $g \circ f = 1_X$ obtenemos $(g \circ f)_{*, x_0} = (1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$, implicando $g_{*, f(x_0)} \circ f_{*, x_0} = 1_{\pi_1(X, x_0)}$.
+Por consiguiente, $f_*$ y $g_*$ son isomorfismos. \qed
+\end{proposicion}
+
+\begin{proposicion}{Grupo fundamental de un espacio estrellado}{estrellado}
+Sea $X \subseteq \mathbb{R}^n$, con $X$ estrellado. Entonces $\pi_1(X) = 1$.
+
+\textbf{Demostración:}
+Al ser estrellado, $X$ es arcoconexo, así que $\pi_1(X) = \pi_1(X, x_0) = C_{x_0}(X) / \simeq_{\{0,1\}}$. Además, existe un punto base $x_0 \in X$ tal que para todo $x \in X$ y todo $t \in [0,1]$, el segmento $t \cdot x + (1-t) \cdot x_0 \in X$.
+Necesitamos probar que $[\alpha] = [C_{x_0}]$ para cualquier $\alpha \in C_{x_0}(X)$ (es decir, $\alpha \simeq_{\{0,1\}} C_{x_0}$).
+Buscamos una homotopía $F \colon I \times I \longrightarrow X$ definida por:
+
+
+$$F(s,t) = t \cdot \alpha(s) + (1-t) \cdot x_0$$
+
+
+Comprobamos los extremos espaciales para asegurar que preserva el punto base:
+
+
+$$F(0, t) = t \cdot \alpha(0) + (1-t) \cdot x_0 = t \cdot x_0 + (1-t) \cdot x_0 = x_0$$
+
+$$F(1, t) = t \cdot \alpha(1) + (1-t) \cdot x_0 = t \cdot x_0 + (1-t) \cdot x_0 = x_0$$
+
+
+Por tanto, $F$ es una homotopía de lazos que conecta el lazo constante $C_{x_0}$ (en $t=0$) con el lazo $\alpha$ (en $t=1$). \qed
+\end{proposicion}
+
+\begin{definicion}{Espacio simplemente conexo}{simp_conexo}
+Diremos que $X$ es simplemente conexo si:
+\begin{enumerate}
+\item $X$ es arco-conexo.
+\item $\pi_1(X) = 1$.
+\end{enumerate}
+\end{definicion}
+
+Ejemplos básicos de espacios simplemente conexos son $\pi_1(I \times I) = 1$ y $\pi_1(\triangle) = 1$.
+
+\begin{teorema}{Homomorfismos inducidos por aplicaciones homotópicas}{aplicaciones_homotopicas}
+Sean $f, g \colon X \longrightarrow Y$ aplicaciones continuas y homotópicas ($f \simeq g$). Existe $F \colon X \times I \longrightarrow Y$ continua tal que $F_0 = f, F_1 = g$.
+Fijando $x_0 \in X$, definimos el camino $\sigma \colon I \longrightarrow Y$ dado por $t \longmapsto F(x_0, t)$, donde $\sigma(0) = f(x_0)$ y $\sigma(1) = g(x_0)$.
+Entonces el siguiente diagrama conmuta, cumpliéndose que $g_* = P_\sigma \circ f_*$:
+\begin{center}
+\begin{tikzpicture}
+\node (A) at (0,2) {$\pi_1(X, x_0)$};
+\node (B) at (4,2) {$\pi_1(Y, f(x_0))$};
+\node (C) at (4,0) {$\pi_1(Y, g(x_0))$};
+\draw[->] (A) -- (B) node[midway, above] {$f_*$};
+\draw[->] (B) -- (C) node[midway, right] {$P_\sigma$};
+\draw[->] (A) -- (C) node[midway, below left] {$g_*$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Demostración:}
+Para todo $[\alpha] \in \pi_1(X, x_0)$, necesitamos probar que $[g \circ \alpha] = [\sigma^{-1} * (f \circ \alpha) * \sigma]$.
+
+Definimos $G \colon I \times I \longrightarrow Y$ por $G(s,t) = F(\alpha(s), t)$, que es continua (no es una homotopía relativa a los extremos). Tenemos $G_0 = f \circ \alpha$, $G_1 = g \circ \alpha$ y, como $\alpha(0) = \alpha(1) = x_0$,
+\[ G(0,t) = G(1,t) = F(x_0,t) = \sigma(t) \quad \forall t \in I. \]
+
+Recorremos el borde del cuadrado $I \times I$ con los cuatro arcos
+\[ \lambda_1(s) = (s,0), \quad \lambda_2(t) = (1,t), \quad \lambda_3(s) = (1-s,1), \quad \lambda_4(t) = (0,1-t), \]
+es decir, la base de izquierda a derecha, el lado derecho hacia arriba, el techo de derecha a izquierda y el lado izquierdo hacia abajo. Entonces $\gamma = \lambda_1 * \lambda_2 * \lambda_3 * \lambda_4$ es un lazo en $I \times I$ con base $(0,0)$. Calculamos las imágenes por $G$:
+\begin{align*}
+(G \circ \lambda_1)(s) &= G(s,0) = (f \circ \alpha)(s), & G \circ \lambda_1 &= f \circ \alpha, \\
+(G \circ \lambda_2)(t) &= G(1,t) = \sigma(t), & G \circ \lambda_2 &= \sigma, \\
+(G \circ \lambda_3)(s) &= G(1-s,1) = (g \circ \alpha)(1-s), & G \circ \lambda_3 &= (g \circ \alpha)^{-1}, \\
+(G \circ \lambda_4)(t) &= G(0,1-t) = \sigma(1-t), & G \circ \lambda_4 &= \sigma^{-1}.
+\end{align*}
+Como $G \circ (\lambda_1 * \dots * \lambda_4) = (G \circ \lambda_1) * \dots * (G \circ \lambda_4)$, se tiene
+\[ G \circ \gamma = (f \circ \alpha) * \sigma * (g \circ \alpha)^{-1} * \sigma^{-1}, \]
+que es un lazo en $Y$ con base $G(0,0) = f(x_0)$.
+
+Como $I \times I$ es convexo, en particular estrellado, $\pi_1(I \times I) = 1$ y por tanto $\gamma \simeq_{\{0,1\}} c_{(0,0)}$. Componiendo esta homotopía con $G$ obtenemos $G \circ \gamma \simeq_{\{0,1\}} c_{f(x_0)}$, es decir,
+\[ [f \circ \alpha] \cdot [\sigma] \cdot [g \circ \alpha]^{-1} \cdot [\sigma^{-1}] = [c_{f(x_0)}]. \]
+Multiplicando por $[f \circ \alpha]^{-1}$ por la izquierda:
+\[ [\sigma] \cdot [g \circ \alpha]^{-1} \cdot [\sigma^{-1}] = [f \circ \alpha]^{-1}. \]
+Tomando inversos en ambos lados (y usando $[\sigma]^{-1} = [\sigma^{-1}]$):
+\[ [\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] = [f \circ \alpha]. \]
+Finalmente, multiplicando por $[\sigma^{-1}]$ por la izquierda y por $[\sigma]$ por la derecha obtenemos la relación buscada:
+\[ [g \circ \alpha] = [\sigma^{-1}] \cdot [f \circ \alpha] \cdot [\sigma] = [\sigma^{-1} * (f \circ \alpha) * \sigma] \qed \]
+
+
+\end{teorema}
+
+\begin{proposicion}{Equivalencia Homotópica}{equiv_homotopica}
+Sean $X, Y$ espacios arco-conexos. Si $X$ e $Y$ tienen el mismo tipo de homotopía ($X \simeq Y$), entonces $\pi_1(X) \cong \pi_1(Y)$.
+
+\textbf{Demostración:}
+Existen $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ continuas tales que $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$.
+Por el teorema anterior, la homotopía $g \circ f \simeq 1_X$ implica que $(g \circ f)_{*, x_0} = P_\sigma \circ (1_X)_{*, x_0} = P_\sigma$. Como $(g \circ f)_{*, x_0} = g_{*, f(x_0)} \circ f_{*, x_0}$ y $P_\sigma$ es un isomorfismo (biyectiva), deducimos que $f_{*, x_0}$ es inyectiva y $g_{*, f(x_0)}$ es sobreyectiva.
+Repitiendo simétricamente el razonamiento con la homotopía $f \circ g \simeq 1_Y$, concluimos que $g_*$ es inyectiva y $f_*$ es sobreyectiva. Ambos homomorfismos resultan biyectivos, por lo que $f_*$ y $g_*$ son isomorfismos de grupos. \qed
+\end{proposicion}
+
+\begin{observacion}{Invariancia homotópica vs. invariancia topológica}{obs_invariancia_homotopica}
+La proposición anterior es más general que la invariancia topológica del grupo fundamental (homeomorfismo induce isomorfismo): como $X \cong Y \implies X \simeq Y$, esta última es un caso particular. La inclusión es estricta: por ejemplo $D(0,1) \simeq \{\text{punto}\}$ sin ser homeomorfos, y la invariancia homotópica da $\pi_1(D(0,1)) \cong \pi_1(\{\text{punto}\}) = 1$, algo que la invariancia topológica no permite deducir. Igualmente, $S^1 \times [-1,1] \simeq S^1$ y por tanto ambos tienen el mismo grupo fundamental aunque no sean homeomorfos.
+\end{observacion}
