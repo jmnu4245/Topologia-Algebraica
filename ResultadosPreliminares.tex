@@ -1,11 +1,12 @@
-\textbf{09/09/2026}
+%fecha
+(1) \textbf{09/09/2026}
 
 \section{Resultados preliminares de topología general}
 
 
 \subsection{Espacios topológicos y continuidad}
 
-\begin{definicion}{Topología}{def_topologia}
+\begin{definicion}{Topología (1)}{def_topologia}
 Sea $X$ un conjunto. Recordemos que una topología en $X$ es una familia $\tau \subseteq \mathcal{P}(X)$ tal que:
 \begin{enumerate}
     \item $\emptyset$ y $X$ están en $\tau$.
@@ -14,18 +15,18 @@ Sea $X$ un conjunto. Recordemos que una topología en $X$ es una familia $\tau \
 \end{enumerate}
 \end{definicion}
 
-\begin{nota}{Espacios métricos}{nota_metricos}
+\begin{nota}{Espacios métricos (2) }{nota_metricos}
 Todo espacio métrico $(X, d)$ es un espacio topológico:
 \[ \tau = \{A \subseteq X \mid \text{para todo } x \in A, \exists \varepsilon > 0 \text{ tal que } B(x, \varepsilon) \subseteq A\} \]
 \end{nota}
 
-\begin{definicion}{Topología de subespacio}{def_subespacio}
+\begin{definicion}{Topología de subespacio (1) }{def_subespacio}
 Sea $X$ un espacio topológico. Sea $B \subseteq X$. La topología en $B$ inducida por la de $X$ es:
 \[ \tau_B = \{A \cap B \mid A \text{ es abierta en } X\} \]
 Se le llama topología de subespacio o heredada por la de $X$.
 \end{definicion}
 
-\begin{definicion}{Continuidad}{def_continua}
+\begin{definicion}{Continuidad (1) }{def_continua}
 Sea $f \colon X \to Y$ una aplicación (suponemos $X, Y$ espacios topológicos). Se dice que $f$ es continua cuando:
 \[ \forall A \in \tau_Y, \quad f^{-1}(A) \in \tau_X \]
 Es decir, la antiimagen de todo abierto en $Y$ es un abierto en $X$.
@@ -47,7 +48,7 @@ En matemáticas se suele tener una noción sobre qué es que dos cosas sean lo m
 \end{nota}
 
 \begin{observacion}{Equivalencia topológica}{obs_equivalencia}
-La \cref{def_homeomorfismo} es la noción natural de equivalencia en la categoría de espacios topológicos, es una forma de establecer el significado de cuándo dos espacios son lo mismo.
+La \cref{def:def_homeomorfismo} es la noción natural de equivalencia en la categoría de espacios topológicos, es una forma de establecer el significado de cuándo dos espacios son lo mismo.
 \end{observacion}
 
 Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son homeomorfos si $\exists f \colon X \to Y$ homeomorfismo. Esta definición es análoga a la de isomorfismo de grupos: se dice que $G_1, G_2$ son grupos isomorfos cuando $\exists f \colon G_1 \to G_2$ isomorfismo. De igual forma, espacios $E_1, E_2$ son espacios isomorfos.
