@@ -1,0 +1,140 @@
+\textbf{16/10/2026 (Clase 10)}
+\section{Aplicaciones de la teoría de homotopía}
+
+\subsection{Retractos y el teorema del punto fijo de Brouwer}
+
+\begin{definicion}{Retracto [C10.1]}{def_retracto}
+Sea $A \subseteq X$, con $X$ espacio topológico. Diremos que $A$ es un \textbf{retracto} de $X$ cuando existe una aplicación continua $r \colon X \to A$ tal que $r|_A = 1_A$, es decir, $r(a) = a$ para todo $a \in A$.
+\end{definicion}
+
+\begin{teorema}{No retracción en dimensión 2 [C10.2]}{teo_no_retracto}
+No existe ninguna aplicación continua $D^2 \to S^1$ cuya restricción a $S^1$ coincida con la identidad de $S^1$. Equivalentemente, $S^1$ no es un retracto de $D^2$.
+\end{teorema}
+
+\begin{proof}
+Supongamos que existe $r \colon D^2 \to S^1$ continua con $r|_{S^1} = 1_{S^1}$. Sea $i \colon S^1 \to D^2$ la inclusión, de modo que $r \circ i = 1_{S^1}$. Fijado $x_0 \in S^1$, por funtorialidad
+\[ r_{*,x_0} \circ i_{*,x_0} = (r \circ i)_{*,x_0} = (1_{S^1})_{*,x_0} = 1_{\pi_1(S^1,x_0)}. \]
+Pero $i_{*,x_0} \colon \pi_1(S^1,x_0) \cong \mathbb{Z} \to \pi_1(D^2,x_0) = 1$, de modo que la identidad de $\mathbb{Z}$ factoriza a través del grupo trivial, lo cual es absurdo.
+\begin{center}
+\begin{tikzpicture}
+\node (A) at (0,2) {$\pi_1(S^1,x_0)$};
+\node (B) at (4,2) {$\pi_1(S^1,x_0)$};
+\node (C) at (0,0) {$\pi_1(D^2,x_0)$};
+\draw[->] (A) -- (B) node[midway, above] {$1$};
+\draw[->] (A) -- (C) node[midway, left] {$i_{*,x_0}$};
+\draw[->] (C) -- (B) node[midway, below right] {$r_{*,x_0}$};
+\end{tikzpicture}
+\end{center}
+\end{proof}
+
+\begin{teorema}{Punto fijo de Brouwer [C10.3]}{teo_brouwer}
+Sea $f \colon D^2 \to D^2$ continua. Entonces existe $x_0 \in D^2$ tal que $f(x_0) = x_0$.
+\end{teorema}
+
+\begin{proof}
+Supongamos que $f(x) \neq x$ para todo $x \in D^2$, es decir, $f(x) - x \neq 0$. Para cada $x \in D^2$ sea $r_x$ la semirrecta que parte de $f(x)$ con vector director $x - f(x)$, y sea $\varphi(x)$ el punto de intersección de $r_x$ con $S^1$ (el punto de salida del disco).
+
+Escribimos $r_x = \{ f(x) + \lambda (x - f(x)) : \lambda \in [0,+\infty[ \}$. Un punto de $r_x$ tiene módulo $1$ cuando $\lambda$ vale
+\[ \lambda = \frac{-f(x) \cdot (x - f(x)) + \sqrt{\big(f(x) \cdot (x - f(x))\big)^2 + \|x - f(x)\|^2 \big(1 - \|f(x)\|^2\big)}}{\|x - f(x)\|^2}. \]
+Esta expresión analítica muestra que $\lambda$, y por tanto $\varphi$, es continua. Además, si $x \in S^1$ entonces $\varphi(x) = x$ (para $x \in S^1$ se tiene $f(x)\cdot(x-f(x)) \le 0$, y el valor $\lambda = 1$ es la raíz mayor). Luego $\varphi \colon D^2 \to S^1$ es continua y $\varphi|_{S^1} = 1_{S^1}$, lo que contradice el teorema anterior.
+\end{proof}
+
+\subsection{Teorema fundamental del álgebra}
+
+\begin{teorema}{Teorema fundamental del álgebra [C10.5]}{teo_fund_algebra}
+Todo polinomio no constante de $\mathbb{C}[z]$ tiene al menos una raíz en $\mathbb{C}$.
+\end{teorema}
+
+\begin{proposicion}{Lema (cota de las raíces) [C10.4]}{lema_cota_raices}
+Sea $P(z) \in \mathbb{C}[z]$ mónico y no constante, de grado $k \geq 1$:
+\[ P(z) = z^k + a_1 z^{k-1} + \dots + a_{k-1} z + a_k. \]
+Si $z_0 \in \mathbb{C}$ cumple $P(z_0) = 0$, entonces $|z_0| < 1 + |a_1| + |a_2| + \dots + |a_k|$.
+\end{proposicion}
+
+\begin{proof}
+Si $a_1 = \dots = a_k = 0$, la desigualdad es trivial ($0 < 1$). Supongamos que no todos los coeficientes son nulos y distingamos casos. Si $|z_0| \leq 1$, entonces $|z_0| \leq 1 < 1 + |a_1| + \dots + |a_k|$. Si $|z_0| > 1$:
+\[ |z_0^k| = |-a_1 z_0^{k-1} - a_2 z_0^{k-2} - \dots - a_k| \leq |a_1||z_0|^{k-1} + \dots + |a_k|. \]
+Dividiendo por $|z_0|^{k-1}$:
+\[ |z_0| \leq |a_1| + |a_2|\frac{1}{|z_0|} + \dots + |a_k| \frac{1}{|z_0|^{k-1}} < |a_1| + |a_2| + \dots + |a_k| < 1 + |a_1| + \dots + |a_k|. \]
+\end{proof}
+
+\begin{proof}[Demostración del teorema fundamental del álgebra]
+Sin pérdida de generalidad podemos suponer que $P(z)$ es mónico. Escribimos
+\[ P(z) = z^k + a_1 z^{k-1} + \dots + a_{k-1} z + a_k, \qquad a_1,\dots,a_k \in \mathbb{C},\ k \geq 1. \]
+Para $t \in [0,1]$ sea $P_t(z) = z^k + t a_1 z^{k-1} + t a_2 z^{k-2} + \dots + t a_{k-1} z + t a_k$, y sea $r := 1 + |a_1| + |a_2| + \dots + |a_k|$. Por el lema anterior, $P_t^{-1}(0) \subseteq B(0,r)$ para todo $t$; en particular, $P_t$ no se anula en la circunferencia $S^1_r = \{x \in \mathbb{R}^2 : \|x\| = r\}$.
+
+Consideramos el lazo $\alpha \colon I \to S^1_r$, $\alpha(s) = r e^{2\pi i s}$, basado en $(r,0)$. Definimos
+\[ H \colon I \times I \to S^1, \qquad H(s,t) = \frac{P_t(\alpha(s))}{P_t(r)} \cdot \left| \frac{P_t(r)}{P_t(\alpha(s))} \right|. \]
+\begin{enumerate}
+    \item $H$ es continua.
+    \item $H_0(s) = \dfrac{\alpha(s)^k}{r^k} \cdot \dfrac{r^k}{|\alpha(s)|^k} = \left( \dfrac{\alpha(s)}{r} \right)^k = e^{2\pi i s k} =: w_k(s)$, con $w_k \colon I \to S^1$, $s \mapsto e^{2\pi i s k}$.
+    \item $H_1(s) = \dfrac{P(\alpha(s))}{P(r)} \cdot \dfrac{|P(r)|}{|P(\alpha(s))|} =: \sigma(s)$.
+    \item $H(0,t) = \dfrac{P_t(r)}{P_t(r)} \cdot \dfrac{|P_t(r)|}{|P_t(r)|} = 1$, no depende de $t$ (pues $\alpha(0) = r$).
+    \item $H(1,t) = 1$, no depende de $t$ (pues $\alpha(1) = r$).
+\end{enumerate}
+Por (1)--(5), $H \colon w_k \simeq_{\{0,1\}} \sigma$, luego $\deg(\sigma) = \deg(w_k) = k$.
+
+Supongamos ahora que $P(z)$ no tiene raíces en $\mathbb{C}$. Consideramos
+\[ F \colon I \times I \to S^1, \qquad F(s,t) = \frac{P(t\,\alpha(s))}{P(t\,r)} \cdot \left| \frac{P(t\,r)}{P(t\,\alpha(s))} \right|, \]
+que está bien definida por no haber raíces (en particular $a_k = P(0) \neq 0$).
+\begin{enumerate}
+    \item $F$ es continua.
+    \item $F(s,0) = \dfrac{P(0)}{P(0)} \cdot \dfrac{|P(0)|}{|P(0)|} = 1$.
+    \item $F(s,1) = \dfrac{P(\alpha(s))}{P(r)} \cdot \dfrac{|P(r)|}{|P(\alpha(s))|} = \sigma(s)$.
+    \item $F(0,t) = 1$, no depende de $t$.
+    \item $F(1,t) = 1$, no depende de $t$.
+\end{enumerate}
+Luego $F \colon c_1 \simeq_{\{0,1\}} \sigma$ y, por tanto, $\deg(c_1) = \deg(\sigma)$. Pero $\deg(c_1) = 0$, así que $0 = k \geq 1$, lo cual es absurdo. Concluimos que $P$ tiene alguna raíz en $\mathbb{C}$.
+\end{proof}
+
+\subsection{El grado no depende de la elevación}
+
+\textbf{Repaso de levantamientos.} Sea $(1,0) \in S^1$. Tenemos la aplicación $\deg \colon \pi_1(S^1,(1,0)) \to \mathbb{Z}$, $[\alpha] \mapsto \deg(\alpha) := \tilde{\alpha}(1)$, siendo $\tilde{\alpha}$ la única elevación de $\alpha$ con $\tilde{\alpha}(0) = 0$. Esto se apoya en el teorema de existencia y unicidad de elevaciones para $X \subseteq \mathbb{R}^n$ compacto y convexo: dada $f \colon X \to S^1$ continua y $t_0 \in \mathbb{R}$ con $p(t_0) = f(x_0)$, existe una única elevación $\tilde{f}$ de $f$ con $\tilde{f}(x_0) = t_0$.
+
+\begin{proposicion}{Lema (dos elevaciones) [C10.6]}{lema_dos_elevaciones}
+Sea $\omega \colon I \to S^1$ continua y sean $\tilde{\omega}_1, \tilde{\omega}_2$ dos elevaciones de $\omega$. Entonces existe $k \in \mathbb{Z}$ tal que $\tilde{\omega}_1 = \tilde{\omega}_2 + k$. En particular, $\tilde{\omega}_1(1) - \tilde{\omega}_1(0) = \tilde{\omega}_2(1) - \tilde{\omega}_2(0)$.
+\end{proposicion}
+
+\begin{proof}
+Como $\tilde{\omega}_1,\tilde{\omega}_2$ son elevaciones de $\omega$, para cada $t \in I$
+\[ p(\tilde{\omega}_1(t)) = \omega(t) = p(\tilde{\omega}_2(t)), \quad\text{es decir,}\quad e^{2\pi i \tilde{\omega}_1(t)} = e^{2\pi i \tilde{\omega}_2(t)}. \]
+Luego existe $k(t) \in \mathbb{Z}$ con $2\pi i\,\tilde{\omega}_1(t) = 2\pi i\,\tilde{\omega}_2(t) + 2\pi i\,k(t)$, esto es, $k(t) = \tilde{\omega}_1(t) - \tilde{\omega}_2(t) \in \mathbb{Z}$. Automáticamente hemos definido una aplicación continua $k \colon I \to \mathbb{Z}$, luego $k$ es constante (por conexión). Así existe $k \in \mathbb{Z}$ con $\tilde{\omega}_1(t) = \tilde{\omega}_2(t) + k$ para todo $t \in I$, y
+\[ \tilde{\omega}_1(1) - \tilde{\omega}_1(0) = \tilde{\omega}_2(1) + k - \tilde{\omega}_2(0) - k = \tilde{\omega}_2(1) - \tilde{\omega}_2(0). \]
+\end{proof}
+
+\begin{definicion}{Grado en un punto base cualquiera [C10.7]}{def_grado_x0}
+Sean $x_0 \in S^1$ y $\alpha \in C_{x_0}(S^1)$. Definimos $\deg_{x_0}(\alpha) := \tilde{\alpha}(1) - \tilde{\alpha}(0)$, siendo $\tilde{\alpha}$ \emph{cualquier} elevación de $\alpha$ (está bien definido por el lema anterior).
+\end{definicion}
+
+\begin{teorema}{Cambio de punto base y grado [C10.9]}{teo_cambio_base_grado}
+Sea $x_0 \in S^1$ y sea $\omega \colon I \to S^1$ una aplicación continua con $\omega(0) = x_0$ y $\omega(1) = (1,0)$. El diagrama
+\begin{center}
+\begin{tikzpicture}
+\node (A) at (0,2) {$\pi_1(S^1,x_0)$};
+\node (B) at (5,2) {$\pi_1(S^1,(1,0))$};
+\node (C) at (2.5,0) {$\mathbb{Z}$};
+\draw[->] (A) -- (B) node[midway, above] {$P_\omega$};
+\draw[->] (A) -- (C) node[midway, below left] {$\deg_{x_0}$};
+\draw[->] (B) -- (C) node[midway, below right] {$\deg$};
+\end{tikzpicture}
+\end{center}
+conmuta, es decir, $P_\omega([\alpha]) = [\omega^{-1} * \alpha * \omega] \in \pi_1(S^1,(1,0))$ y $\deg_{x_0}(\alpha) = \deg(\omega^{-1} * \alpha * \omega)$.
+\end{teorema}
+
+\textbf{Demostración:} ejercicio (propuesto en clase).
+
+\subsection{Funciones pares e impares: el teorema de paridad}
+
+\begin{definicion}{Conjunto simétrico, función par e impar [C10.10]}{def_par_impar}
+Sea $A \subseteq \mathbb{R}^n$. Diremos que $A$ es \textbf{simétrico} cuando $x \in A \implies -x \in A$. Sea $f \colon A \to \mathbb{R}^m$ con $A$ simétrico. Diremos que $f$ es \textbf{par} cuando $f(x) = f(-x)$ para todo $x \in A$, e \textbf{impar} cuando $f(x) = -f(-x)$ para todo $x \in A$.
+\end{definicion}
+
+\begin{teorema}{De paridad de Borsuk--Hirsch [C10.11]}{teo_paridad}
+Sea $\sigma \colon I \to S^1$, $\sigma(s) = e^{2\pi i s}$ para todo $s \in I$, y sea $f \colon S^1 \to S^1$ continua. Entonces:
+\begin{enumerate}
+    \item[a)] Si $f$ es par, entonces $\deg(f \circ \sigma)$ es par.
+    \item[b)] Si $f$ es impar, entonces $\deg(f \circ \sigma)$ es impar.
+\end{enumerate}
+\end{teorema}
+
+\textit{(La clase del 16/10 queda aquí: el enunciado del teorema de paridad está en las notas, pero su demostración no figura en ellas.)}

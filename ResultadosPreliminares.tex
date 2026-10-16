@@ -6,7 +6,7 @@
 
 \subsection{Espacios topológicos y continuidad}
 
-\begin{definicion}{Topología (1)}{def_topologia}
+\begin{definicion}{Topología [C1.1]}{def_topologia}
 Sea $X$ un conjunto. Recordemos que una topología en $X$ es una familia $\tau \subseteq \mathcal{P}(X)$ tal que:
 \begin{enumerate}
     \item $\emptyset$ y $X$ están en $\tau$.
@@ -15,18 +15,18 @@ Sea $X$ un conjunto. Recordemos que una topología en $X$ es una familia $\tau \
 \end{enumerate}
 \end{definicion}
 
-\begin{nota}{Espacios métricos (2) }{nota_metricos}
+\begin{nota}{Espacios métricos [C1.2]}{nota_metricos}
 Todo espacio métrico $(X, d)$ es un espacio topológico:
 \[ \tau = \{A \subseteq X \mid \text{para todo } x \in A, \exists \varepsilon > 0 \text{ tal que } B(x, \varepsilon) \subseteq A\} \]
 \end{nota}
 
-\begin{definicion}{Topología de subespacio (1) }{def_subespacio}
+\begin{definicion}{Topología de subespacio [C1.3]}{def_subespacio}
 Sea $X$ un espacio topológico. Sea $B \subseteq X$. La topología en $B$ inducida por la de $X$ es:
 \[ \tau_B = \{A \cap B \mid A \text{ es abierta en } X\} \]
 Se le llama topología de subespacio o heredada por la de $X$.
 \end{definicion}
 
-\begin{definicion}{Continuidad (1) }{def_continua}
+\begin{definicion}{Continuidad [C1.1]}{def_continua}
 Sea $f \colon X \to Y$ una aplicación (suponemos $X, Y$ espacios topológicos). Se dice que $f$ es continua cuando:
 \[ \forall A \in \tau_Y, \quad f^{-1}(A) \in \tau_X \]
 Es decir, la antiimagen de todo abierto en $Y$ es un abierto en $X$.
@@ -34,7 +34,7 @@ Es decir, la antiimagen de todo abierto en $Y$ es un abierto en $X$.
 
 \subsection{Homeomorfismos e invariantes topológicos}
 
-\begin{definicion}{Homeomorfismo}{def_homeomorfismo}
+\begin{definicion}{Homeomorfismo [C1.6]}{def_homeomorfismo}
 Sea $f \colon X \to Y$ una aplicación. Se dice que $f$ es un homeomorfismo cuando:
 \begin{itemize}
     \item $f$ es continua.
@@ -43,11 +43,11 @@ Sea $f \colon X \to Y$ una aplicación. Se dice que $f$ es un homeomorfismo cuan
 \end{itemize}
 \end{definicion}
 
-\begin{nota}{Noción de isomorfismo}{nota_isomorfismo}
+\begin{nota}{Noción de isomorfismo [C1.6]}{nota_isomorfismo}
 En matemáticas se suele tener una noción sobre qué es que dos cosas sean lo mismo. Por ejemplo, sea $f \colon G_1 \to G_2$ una aplicación donde $G_1, G_2$ son grupos. Se dice que $f$ es un isomorfismo de grupos si $f$ es un homomorfismo y $f$ es biyectiva.
 \end{nota}
 
-\begin{observacion}{Equivalencia topológica}{obs_equivalencia}
+\begin{observacion}{Equivalencia topológica [C1.6]}{obs_equivalencia}
 La \cref{def:def_homeomorfismo} es la noción natural de equivalencia en la categoría de espacios topológicos, es una forma de establecer el significado de cuándo dos espacios son lo mismo.
 \end{observacion}
 
@@ -88,11 +88,29 @@ Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son homeomorfos si $\ex
 A pesar de que más adelante aplicaremos la noción de grupo fundamental para deducir que no son homeomorfos, encontraremos otra vía más sencilla para concluir que no son homeomorfos.
 \end{observacion}
 
-\begin{definicion}{Componente conexa}{def_comp_conexa}
+\begin{proposicion}{Proyección estereográfica [C1.7]}{proy_estereografica}
+Sea $N = (0,\dots,0,1) \in S^n \subseteq \mathbb{R}^{n+1}$. La aplicación
+\[ \pi \colon S^n \setminus \{N\} \to \mathbb{R}^n, \qquad \pi(x_1,\dots,x_{n+1}) = \frac{(x_1,\dots,x_n)}{1 - x_{n+1}} \]
+es un homeomorfismo. En particular ($n=2$), la proyección estereográfica es un homeomorfismo entre $S^2 \setminus \{(0,0,1)\}$ y $\mathbb{R}^2$.
+\end{proposicion}
+
+\begin{proof}
+Si $x \in S^n \setminus \{N\}$ entonces $x_{n+1} \neq 1$, luego $\pi$ está bien definida y es continua. Definimos
+\[ \sigma \colon \mathbb{R}^n \to S^n \setminus \{N\}, \qquad \sigma(y) = \frac{(2y,\ \|y\|^2 - 1)}{\|y\|^2 + 1}, \]
+que es continua. Está bien definida: $\|\sigma(y)\|^2 = \dfrac{4\|y\|^2 + (\|y\|^2-1)^2}{(\|y\|^2+1)^2} = 1$, y su última coordenada $\frac{\|y\|^2-1}{\|y\|^2+1}$ es distinta de $1$.
+
+Veamos que $\pi \circ \sigma = 1_{\mathbb{R}^n}$: como $1 - \frac{\|y\|^2-1}{\|y\|^2+1} = \frac{2}{\|y\|^2+1}$, se tiene $\pi(\sigma(y)) = \dfrac{2y/(\|y\|^2+1)}{2/(\|y\|^2+1)} = y$.
+
+Veamos que $\sigma \circ \pi = 1_{S^n \setminus \{N\}}$: sea $x \in S^n \setminus \{N\}$ e $y = \pi(x)$. Entonces $\|y\|^2 = \dfrac{1 - x_{n+1}^2}{(1-x_{n+1})^2} = \dfrac{1+x_{n+1}}{1-x_{n+1}}$, de donde $x_{n+1} = \dfrac{\|y\|^2-1}{\|y\|^2+1}$ y $1-x_{n+1} = \dfrac{2}{\|y\|^2+1}$. Por tanto $(x_1,\dots,x_n) = (1-x_{n+1})\,y = \dfrac{2y}{\|y\|^2+1}$, es decir, $\sigma(y) = x$.
+
+Luego $\pi$ es continua y biyectiva con inversa continua $\sigma$.
+\end{proof}
+
+\begin{definicion}{Componente conexa [C1.10]}{def_comp_conexa}
 Sea $X$ un espacio topológico. Una \textbf{componente conexa} de $X$ es un subespacio conexo maximal, es decir, un subespacio conexo $C \subseteq X$ tal que si $C \subseteq D \subseteq X$ con $D$ conexo, entonces $D = C$. Las componentes conexas de $X$ forman una partición de $X$, y $X$ es conexo si y solo si tiene una única componente conexa. Denotamos por $c(X)$ el número de componentes conexas de $X$ (que puede ser infinito).
 \end{definicion}
 
-\begin{definicion}{Invariante por componentes conexas}{def_componentes}
+\begin{definicion}{Invariante por componentes conexas [C1.11]}{def_componentes}
 Sea $X$ un espacio topológico. Sea $p \in X$. Denotamos por $C_p(X)$ el nº de componentes conexas de $X \setminus \{p\}$.
 \end{definicion}
 
@@ -100,7 +118,7 @@ Es muy sencillo probar que $\{C_p(X) \mid p \in X\} := \Theta(X)$ es un invarian
 \[ X \cong Y \implies \Theta(X) = \Theta(Y) \]
 
 
-\begin{proposicion}{$\Theta$ es un invariante topológico}{Theta_invariante}
+\begin{proposicion}{$\Theta$ es un invariante topológico [C1.12]}{Theta_invariante}
 Sea $\Theta(X) = \{\, c(X \setminus \{p\}) : p \in X \,\}$. Si $X \cong Y$, entonces $\Theta(X) = \Theta(Y)$.
 \end{proposicion}
  
@@ -126,7 +144,6 @@ Sea $f \colon X \to Y$ un homeomorfismo y $p \in X$. La restricción $f \colon X
     \end{tikzpicture}
     \end{center}
     
-    \item Línea $Y$: $\Theta(Y) = \{1,2,3\}$.
     \item Para todo $p \in S^1$, $S^1 \setminus \{p\} \cong\; ]0,1[$ es conexo (imagen continua del intervalo $]0,2\pi[$), luego $\Theta(S^1) = \{1\}$. En cambio $[0,1] \setminus \{\frac12\} = [0,\frac12[\, \cup\, ]\frac12,1]$ es disconexo, con $2$ componentes, y $[0,1] \setminus \{0\} = \,]0,1]$ es conexo, luego $\Theta([0,1]) = \{1,2\}$. Como $\{1\} \neq \{1,2\}$, $S^1 \not\cong [0,1]$.
  
 \end{itemize}
@@ -139,7 +156,7 @@ unión de dos conexos (productos de conexos) con intersección no vacía, luego 
 
 \subsection{Conexión y Compacidad}
 
-\begin{definicion}{Desconexión y conexión}{def_desconexion}
+\begin{definicion}{Desconexión y conexión [C1.8]}{def_desconexion}
 Sea $X$ un espacio topológico. Una desconexión de $X$ es el par $(A,B)$ de abiertos de $X$ tal que $A \cup B = X$, $A, B \neq \emptyset$, $A \cap B = \emptyset$.
 Diremos que $X$ es conexo cuando no admite ninguna desconexión.
 Diremos que $X$ es disconexo cuando no es conexo, es decir, cuando admite una desconexión.
@@ -147,7 +164,7 @@ Diremos que $X$ es disconexo cuando no es conexo, es decir, cuando admite una de
 
 \textbf{Ejemplo:} $[0,1]$ es conexo. $B = [0,1] \cup [2,15]$ es disconexo. Insistimos en que en los ejemplos, cuando consideramos subconjuntos de $\mathbb{R}^n$, consideramos la topología usual (la inducida por la distancia euclídea).
 
-\begin{teorema}{Continuidad y conexión}{teo_cont_conex}
+\begin{teorema}{Continuidad y conexión [C1.9]}{teo_cont_conex}
 Si $f \colon X \to Y$ es continua y $X$ es conexa, entonces $f(X)$ es conexo en $Y$ respecto a $\tau_Y$.
 \end{teorema}
 
@@ -156,16 +173,16 @@ Sea $f \colon X \to Y$ continua con $X$ conexo. Podemos suponer $f$ sobreyectiva
 \end{proof}
 
 
-\begin{definicion}{Compacidad}{def_compacidad}
+\begin{definicion}{Compacidad [C1.13]}{def_compacidad}
 Sea $X$ un espacio topológico. Se dice que $X$ es compacto cuando para todo recubrimiento abierto de $X$ existe un subrecubrimiento finito.
 Equivalentemente, $X$ es compacto $\iff \forall \{A_\alpha\}_{\alpha \in \Lambda} \subseteq \tau_X$ tal que $\bigcup_{\alpha \in \Lambda} A_\alpha = X$, $\exists F \subseteq \{A_\alpha\}_{\alpha \in \Lambda}$ finito tal que $\bigcup_{A \in F} A = X$.
 \end{definicion}
 
-\begin{teorema}{Heine-Borel}{teo_heine_borel}
+\begin{teorema}{Heine-Borel [C1.15]}{teo_heine_borel}
 Sea $X \subseteq \mathbb{R}^n$. $X$ es compacto $\iff X$ cerrado y acotado.
 \end{teorema}
 
-\begin{teorema}{Imagen continua de un compacto}{imagen_compacta}
+\begin{teorema}{Imagen continua de un compacto [C1.14]}{imagen_compacta}
 Sea $f \colon X \to Y$ continua y $K \subseteq X$ compacto. Entonces $f(K)$ es compacto.
 \end{teorema}
  
@@ -178,7 +195,7 @@ Sea $\{U_i\}_{i \in \Lambda}$ un recubrimiento abierto de $f(K)$ por abiertos de
 
 \subsection{Lemas de Continuidad}
 
-\begin{nota}{Cerrados en la topología relativa}{nota_relativa}
+\begin{nota}{Cerrados en la topología relativa [C1.5]}{nota_relativa}
 Sea $X$ un espacio topológico. Sea $B \subseteq X$. La topología relativa/subconjunto/heredada por la de $X$ en $B$ es $\tau_B = \{A \cap B \mid A \in \tau_X\}$.
 Todo abierto de $B$ es de la forma $(\text{abierto de } X) \cap B$.
 ¿Todo cerrado de $B$ es de la forma $(\text{cerrado de } X) \cap B$? \textbf{SÍ}.
@@ -189,7 +206,7 @@ Observamos que:
 Como $A$ es abierto en $X$, el conjunto $X \setminus A$ es cerrado, demostrando que $C$ tiene la forma deseada.
 \end{nota}
 
-\begin{proposicion}{Lema previo}{prop_lema_previo}
+\begin{proposicion}{Lema previo [C1.16]}{prop_lema_previo}
 Sea $f \colon X \to Y$ una aplicación. Entonces $f$ es continua $\iff f^{-1}(C)$ es cerrado en $X$, $\forall C$ cerrado en $Y$.
 \end{proposicion}
 
@@ -200,7 +217,7 @@ $\impliedby$: Supongamos que $f^{-1}(C)$ es cerrado para todo cerrado $C \subset
 Tenemos que $f^{-1}(A) = X \setminus (X \setminus f^{-1}(A)) = X \setminus f^{-1}(Y \setminus A)$. Como $Y \setminus A$ es un conjunto cerrado, $f^{-1}(Y \setminus A)$ es cerrado por hipótesis. Entonces, el complementario $X \setminus f^{-1}(Y \setminus A)$ es abierto, por lo que $f^{-1}(A)$ es abierto y $f$ es continua.
 \end{proof}
 
-\begin{teorema}{Lema de continuidad}{teo_lema_continuidad}
+\begin{teorema}{Lema de continuidad [C1.17]}{teo_lema_continuidad}
 Sea $f \colon X \to Y$ una aplicación. Sean $B_1, B_2$ cerrados en $X$, con $X = B_1 \cup B_2$. Supongamos que las restricciones $f|_{B_1} \colon B_1 \to Y$ y $f|_{B_2} \colon B_2 \to Y$ son continuas. Entonces $f$ es continua.
 \end{teorema}
 

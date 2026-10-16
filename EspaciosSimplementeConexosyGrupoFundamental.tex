@@ -7,11 +7,11 @@ Recordamos que si $X \simeq Y$, entonces $\pi_1(X) \cong \pi_1(Y)$ suponiendo qu
 Como consecuencia, si $X$ es contractible (es decir, $X \simeq \{p\}$), entonces se tiene que $\pi_1(X) = 1$.
 \end{observacion}
 
-\begin{definicion}{Espacio simplemente conexo}{def_simp_conexo}
+\begin{definicion}{Espacio simplemente conexo [C7.1]}{def_simp_conexo}
 Sea $X$ un espacio topológico. Diremos que $X$ es simplemente conexo cuando es arco-conexo y $\pi_1(X) = 1$.
 \end{definicion}
 
-\begin{proposicion}{}{prop_arco_conexo}
+\begin{proposicion}{ [C7.2]}{prop_arco_conexo}
 Sea $X$ un espacio arco-conexo. Entonces:
 
 $$\pi_1(X) = 1 \iff \forall x_0, x_1 \in X, \forall \alpha, \beta \in C_{x_0, x_1}(X) : \alpha \simeq_{\{0,1\}} \beta$$
@@ -39,7 +39,7 @@ Dado que $\pi_1(X) = 1$, se cumple que $[\alpha * \overline{\beta}] = 1$. Esto i
 $\Leftarrow)$ Trivial tomando $x_0 = x_1$.
 \end{proof}
 
-\begin{proposicion}{}{prop_reparametrizacion}
+\begin{proposicion}{ [C7.3]}{prop_reparametrizacion}
 Sea $g: I \longrightarrow I$ una aplicación continua tal que $g(0)=0$ y $g(1)=1$. Sea $\alpha: I \longrightarrow X$ una aplicación continua, siendo $X$ un espacio topológico cualquiera. Entonces se cumple que $\alpha \simeq_{\{0,1\}} \alpha \circ g$.
 \end{proposicion}
 \begin{figure}[htbp]
@@ -63,7 +63,7 @@ Sea $F: I \times I \longrightarrow X$ la aplicación continua definida por $F(s,
 \end{itemize}
 \end{proof}
 
-\begin{teorema}{Lema de Lebesgue}{lema_lebesgue}
+\begin{teorema}{Lema de Lebesgue [C7.4]}{lema_lebesgue}
 Sea $(X,d)$ un espacio métrico compacto y sea $\mathcal{U} = \{U_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$ (lo que significa que $U_i$ es abierto en $X$ y además $\bigcup_{i \in \Lambda} U_i = X$). Entonces, $\exists \delta > 0$ tal que $\forall x \in X, \exists i(x) \in \Lambda$ verificando que $B(x,\delta) \subseteq U_{i(x)}$.
 \end{teorema}
 
@@ -82,7 +82,7 @@ $$d(y, x_j) \le d(y,x) + d(x,x_j) < \delta + \frac{r(x_j)}{2} \le \frac{r(x_j)}{
 Hemos llegado a la conclusión de que $B(x,\delta) \subseteq B(x_j, r(x_j)) \subseteq U_{i(x_j)}$.
 \end{proof}
 
-\begin{teorema}{Condición suficiente para que un espacio sea simplemente conexo}{cond_simp_conexo}
+\begin{teorema}{Condición suficiente para que un espacio sea simplemente conexo [C7.5]}{cond_simp_conexo}
 Sea $X$ un espacio topológico y sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$. Supongamos que:
 \begin{itemize}
 \item[a)] $V_i$ es simplemente conexo para todo $i \in \Lambda$.
@@ -221,7 +221,7 @@ Por hipótesis cada $V_j$ es simplemente conexo, por lo que cada uno se anula a 
 \end{figure}
 \end{proof}
 
-\begin{proposicion}{}{corolario_sn}
+\begin{proposicion}{ [C7.6]}{corolario_sn}
 Para $n \ge 2$, $S^n$ es simplemente conexo.
 \end{proposicion}
 
@@ -266,7 +266,7 @@ La prueba del corolario no funciona cuando $n=1$, ya que $V_1 \cap V_2$ no es ar
 
 En la última clase vimos el siguiente resultado:
 
-\begin{teorema}{Condición para que un espacio sea simplemente conexo}{}
+\begin{teorema}{Condición para que un espacio sea simplemente conexo [C7.5]}{}
 Sea $X$ un espacio topológico, sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$. Supongamos que:
 \begin{itemize}
     \item[a)] $V_i$ es simplemente conexo, $\forall i \in \Lambda$.
@@ -280,7 +280,7 @@ Recordatorio: $S^n = \{(x_1,\dots,x_{n+1}) \in \mathbb{R}^{n+1} : x_1^2+\dots+x_
 
 Como corolario vimos que:
 
-\textbf{Corolario:} Si $n \geq 2$, $S^n$ es simplemente conexo.
+\textbf{Corolario [C7.6]:} Si $n \geq 2$, $S^n$ es simplemente conexo.
 
 \textbf{Demostración:}
 Sean $N=(0,\dots,0,1) \in \mathbb{R}^{n+1}$ y $S=(0,\dots,0,-1) \in \mathbb{R}^{n+1}$.
@@ -288,27 +288,27 @@ Sea $U = S^n \setminus \{N\}$, que es simplemente conexo, y $V = S^n \setminus \
 $U \cap V = S^n \setminus \{N,S\} \cong S^{n-1} \times ]-1,1[$ (homeomorfos). \qed
 
 \vspace{0.5cm}
-\textbf{Conjetura de Poincaré:}
+\textbf{Conjetura de Poincaré [C8.1]:}
 
-Sea $X$ un espacio métrico \underline{localmente homeomorfo a $\mathbb{R}^3$} (significa que $\forall p \in X$, existe un entorno abierto de $p$ homeomorfo a algún abierto conexo de $\mathbb{R}^3$; es decir, una 3-variedad).
+Sea $X$ un espacio métrico compacto \underline{localmente homeomorfo a $\mathbb{R}^3$} (significa que $\forall p \in X$, existe un entorno abierto de $p$ homeomorfo a algún abierto conexo de $\mathbb{R}^3$; es decir, una 3-variedad).
 Supongamos que $X$ es simplemente conexo. Entonces: $X \cong S^3$.
 
 \begin{itemize}
-    \item Cuando $n=4 \implies$ Freedman
-    \item Cuando $n\geq 7 \implies$ Stalling
-    \item Cuando $n=5,6 \implies$ Zeeman
-    \item Cuando $n\geq 5 \implies$ Smale
-    \item Cuando $n=3 \implies$ G. Perelman 2006 (en arXiv)
+    \item Cuando $n\geq 7 \implies$ Stallings (1960)
+    \item Cuando $n=5,6 \implies$ Zeeman (1961)
+    \item Cuando $n\geq 5 \implies$ Smale (1961, con otra técnica: h-cobordismo)
+    \item Cuando $n=4 \implies$ Freedman (1982)
+    \item Cuando $n=3 \implies$ G. Perelman (2002--2003, en arXiv)
 \end{itemize}
 
 \vspace{0.5cm}
-Vamos a ver que $\pi_1(S^1) \cong (\mathbb{Z},+)$.
+\textbf{Objetivo [C8.2]:} ver que $\pi_1(S^1) \cong (\mathbb{Z},+)$.
 
-\begin{definicion}{Aplicación exponencial}{}
+\begin{definicion}{Aplicación exponencial [C8.4]}{}
 $p: \mathbb{R} \to S^1$, $p(t) = e^{2\pi i t}$, $\forall t \in \mathbb{R}$ ($S^1 \subseteq \mathbb{R}^2, S^1 \subseteq \mathbb{C}$).
 \end{definicion}
 
-\begin{definicion}{Aplicación recubridora (Covering map)}{}
+\begin{definicion}{Aplicación recubridora (Covering map) [C8.3]}{}
 Sea $f: X \to Y$. Diremos que es una aplicación recubridora cuando $\forall y \in Y$ existe un entorno abierto $U$ de $y$ tal que:
 \begin{enumerate}
     \item $f^{-1}(U)$ es unión disjunta de abiertos: $f^{-1}(U) = \bigcup_{j \in \Lambda} V_j$.
@@ -318,18 +318,18 @@ Sea $f: X \to Y$. Diremos que es una aplicación recubridora cuando $\forall y \
 
 Si $t \in \left]-\frac{1}{2}, \frac{1}{2}\right[$:
 
-\textbf{Lema:}
+\textbf{Lema [C8.6]:}
 $p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[} : \left]-\frac{1}{2}, \frac{1}{2}\right[ \to S^1 \setminus \{(-1,0)\}$ es un homeomorfismo.
 
 Denotaremos por $\Psi$ la inversa de esta aplicación, i.e. $\Psi = \left(p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[}\right)^{-1}$.
 Es sencillo comprobar que $\Psi(z) = \frac{\arg_0(z)}{2\pi}$.
 Recordemos que $\arg_0(z)$ es el único argumento de $z$ que pertenece a $]-\pi, \pi[$ (suponiendo que $z \notin ]-\infty, 0]$).
 
-\begin{definicion}{Elevación o levantamiento}{}
+\begin{definicion}{Elevación o levantamiento [C8.7]}{}
 Sea $f: X \to S^1$ continua (con $X$ cualquier espacio topológico). Una elevación (o levantamiento) de $f$ es una aplicación $\tilde{f}: X \to \mathbb{R}$ tal que $p \circ \tilde{f} = f$.
 \end{definicion}
 
-\begin{proposicion}{Unicidad de levantamientos}{}
+\begin{proposicion}{Unicidad de levantamientos [C8.8]}{}
 Sea $X$ conexo. Sea $f: X \to S^1$ continua. Sean $f_1, f_2 : X \to \mathbb{R}$ levantamientos de $f$. Supongamos que $\exists x_0 \in X$ tal que $f_1(x_0) = f_2(x_0) \implies f_1 = f_2$.
 \end{proposicion}
 
@@ -349,13 +349,13 @@ Luego $\exists k \in \mathbb{Z}$ tal que $g(x) = k \ \forall x \in X$. Como $g(x
 \vspace{0.5cm}
 \textbf{Teorema existencia de elevaciones:}
 
-\begin{definicion}{Continuidad uniforme}{}
+\begin{definicion}{Continuidad uniforme [C8.9]}{}
 Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$. Diremos que $f$ es uniformemente continua cuando $\forall \varepsilon > 0$, $\exists \delta > 0$ tal que $\forall x, x' \in X$ que cumplan $\|x-x'\| < \delta$, se verifica que $\|f(x)-f(x')\| < \varepsilon$.
 \end{definicion}
 
 Es obvio que $f$ uniformemente continua $\implies f$ continua (en todos los puntos de $X$). Esto es falso en general, pero es cierto si $X$ es compacto.
 
-\textbf{Lema:}
+\textbf{Lema [C8.10]:}
 Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$ continua, con $X$ compacto $\implies f$ uniformemente continua.
 
 \textbf{Demostración:}
@@ -372,8 +372,8 @@ Observamos que:
 Finalmente:
 \[ \|f(x)-f(x')\| \leq \|f(x)-f(x_j)\| + \|f(x_j)-f(x')\| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \] \qed
 
-\begin{teorema}{Existencia de elevaciones}{}
-Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es conexo y compacto. Sea $f: X \to S^1$ continua. Sea $x_0 \in X$. Sea $t_0 \in \mathbb{R}$ tal que $p(t_0) = f(x_0)$. Entonces existe una única elevación $\tilde{f} : X \to \mathbb{R}$ de $f$ tal que $\tilde{f}(x_0) = t_0$.
+\begin{teorema}{Existencia de elevaciones [C8.11]}{}
+Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es convexo y compacto. Sea $f: X \to S^1$ continua. Sea $x_0 \in X$. Sea $t_0 \in \mathbb{R}$ tal que $p(t_0) = f(x_0)$. Entonces existe una única elevación $\tilde{f} : X \to \mathbb{R}$ de $f$ tal que $\tilde{f}(x_0) = t_0$.
 \end{teorema}
 
 \textbf{Demostración:}
@@ -418,3 +418,76 @@ Definimos $\tilde{f} = \tilde{g} \circ L$. Solo queda comprobar que $\tilde{f}$ 
     \item (2) $p \circ \tilde{f} = p \circ (\tilde{g} \circ L) = (p \circ \tilde{g}) \circ L = g \circ L = (f \circ L^{-1}) \circ L = f$.
     \item (1) $\tilde{f}(x_0) = (\tilde{g} \circ L)(x_0) = \tilde{g}(L(x_0)) = \tilde{g}(0) = t_0$. \qed
 \end{itemize}
+\begin{center}
+    \textbf{14/10/2026 (Clase 9)}
+\end{center}
+
+Recordamos el resultado de la clase anterior:
+
+\begin{teorema}{Existencia y unicidad de elevaciones [C8.11]}{teo_elevaciones_recordatorio}
+Sea $f \colon X \to S^1$ continua, con $X \subseteq \mathbb{R}^n$ convexo y compacto. Sea $x_0 \in X$ y sea $t_0 \in \mathbb{R}$ tal que $p(t_0) = f(x_0)$. Entonces existe una única elevación $\tilde{f} \colon X \to \mathbb{R}$ de $f$ con $\tilde{f}(x_0) = t_0$.
+\end{teorema}
+
+\textbf{Objetivo:} probar que $\pi_1(S^1) \cong (\mathbb{Z},+)$.
+
+\begin{proposicion}{Elevación de arcos [C9.1]}{cor_elev_arcos}
+Sea $\alpha \colon I \to S^1$ continua tal que $\alpha(0) = (1,0)$. Entonces existe una única elevación $\tilde{\alpha} \colon I \to \mathbb{R}$ de $\alpha$ tal que $\tilde{\alpha}(0) = 0$.
+\end{proposicion}
+
+\begin{proposicion}{Elevación de homotopías [C9.2]}{cor_elev_homotopias}
+Sea $F \colon I \times I \to S^1$ continua tal que $F(0,0) = (1,0)$. Entonces existe una única elevación $\tilde{F} \colon I \times I \to \mathbb{R}$ de $F$ tal que $\tilde{F}(0,0) = 0$.
+\end{proposicion}
+
+Ambos resultados se deducen del teorema anterior, ya que $I$ e $I \times I$ son convexos y compactos.
+
+\begin{definicion}{Grado de un lazo [C9.3]}{def_grado}
+Sea $\alpha \in C_{(1,0)}(S^1)$. Se define el \textbf{grado} de $\alpha$ como $\deg(\alpha) := \tilde{\alpha}(1)$, siendo $\tilde{\alpha}$ la única elevación de $\alpha$ con $\tilde{\alpha}(0) = 0$. Está bien definido por la elevación de arcos.
+\end{definicion}
+
+Geométricamente, $\deg(\alpha)$ es el número de vueltas completas de $\alpha$ en sentido antihorario. Como $p(\tilde{\alpha}(1)) = \alpha(1) = (1,0)$, se tiene $\tilde{\alpha}(1) \in p^{-1}(1,0) = \mathbb{Z}$, luego $\deg(\alpha) \in \mathbb{Z}$.
+
+\textbf{Ejemplo.} Para $n \in \mathbb{Z}$, sea $\omega_n \colon I \to S^1$, $\omega_n(t) = e^{2\pi i n t}$. Su elevación con $\tilde{\omega}_n(0)=0$ es $\tilde{\omega}_n(t) = nt$, luego $\deg(\omega_n) = n$.
+
+\begin{teorema}{$\pi_1(S^1)\cong \mathbb{Z}$ [C9.5]}{teo_pi1_s1}
+La aplicación $\deg \colon \pi_1(S^1,(1,0)) \to \mathbb{Z}$, $[\alpha] \mapsto \deg(\alpha)$, es un isomorfismo de grupos.
+\end{teorema}
+
+\begin{proof}
+\begin{enumerate}
+    \item \textbf{Está bien definida.} Sean $\alpha, \beta \in C_{(1,0)}(S^1)$ con $\alpha \simeq_{\{0,1\}} \beta$ mediante $F \colon I \times I \to S^1$:
+    \[ F(s,0) = \alpha(s), \quad F(s,1) = \beta(s), \quad F(0,t) = F(1,t) = (1,0) \quad \forall s,t \in I. \]
+    Sea $\tilde{F}$ la elevación de $F$ con $\tilde{F}(0,0) = 0$. Entonces $s \mapsto \tilde{F}(s,0)$ es la elevación de $\alpha$ que vale $0$ en $0$, es decir $\tilde{\alpha}$, y $s \mapsto \tilde{F}(s,1)$ es la elevación de $\beta$ que vale $0$ en $0$ (pues $\tilde{F}(0,t)\in p^{-1}(1,0)=\mathbb{Z}$ es constante por conexión y vale $\tilde{F}(0,0)=0$). Por otro lado, $\tilde{F}(\{1\} \times I) \subseteq p^{-1}(1,0) = \mathbb{Z}$ es conexo, luego $\tilde{F}(1,t) = k$ para cierto $k \in \mathbb{Z}$ y todo $t$. Así
+    \[ \deg(\alpha) = \tilde{\alpha}(1) = \tilde{F}(1,0) = k = \tilde{F}(1,1) = \tilde{\beta}(1) = \deg(\beta). \]
+
+    \item \textbf{Es homomorfismo.} Sean $\alpha, \beta \in C_{(1,0)}(S^1)$ con elevaciones $\tilde{\alpha}, \tilde{\beta}$ que valen $0$ en $0$. Definimos $w \colon I \to \mathbb{R}$ por
+    \[ w(s) = \begin{cases} \tilde{\alpha}(2s), & s \in [0,\tfrac12], \\ \tilde{\alpha}(1) + \tilde{\beta}(2s-1), & s \in [\tfrac12,1]. \end{cases} \]
+    Es continua (en $s=\tfrac12$ ambas valen $\tilde{\alpha}(1)$), $w(0)=0$ y $p \circ w = \alpha * \beta$, pues $p(\tilde{\alpha}(1) + \tilde{\beta}(u)) = p(\tilde{\alpha}(1))\,p(\tilde{\beta}(u)) = \beta(u)$ ya que $p(\tilde{\alpha}(1)) = (1,0)$. Luego $w$ es la elevación de $\alpha*\beta$ que empieza en $0$ y
+    \[ \deg(\alpha * \beta) = w(1) = \tilde{\alpha}(1) + \tilde{\beta}(1) = \deg(\alpha) + \deg(\beta). \]
+
+    \item \textbf{Inyectiva.} Sean $\alpha, \beta \in C_{(1,0)}(S^1)$ con $\deg(\alpha) = \deg(\beta)$. Consideramos la homotopía convexa entre sus elevaciones
+    \[ H \colon I \times I \to \mathbb{R}, \quad H(s,t) = (1-t)\tilde{\alpha}(s) + t\tilde{\beta}(s). \]
+    Entonces $H(0,t) = 0$ y $H(1,t) = (1-t)\deg(\alpha) + t\deg(\beta) = \deg(\alpha)$ no dependen de $t$, es decir, $H \colon \tilde{\alpha} \simeq_{\{0,1\}} \tilde{\beta}$. Sea $F = p \circ H$. Entonces $F_0 = p\circ\tilde{\alpha} = \alpha$, $F_1 = \beta$, $F(0,t) = p(0) = (1,0)$ y $F(1,t) = p(\deg\alpha) = (1,0)$, luego $F \colon \alpha \simeq_{\{0,1\}} \beta$.
+
+    \item \textbf{Sobreyectiva.} Dado $n \in \mathbb{Z}$, el lazo $\omega_n$ cumple $\deg([\omega_n]) = n$ (ejemplo anterior).
+\end{enumerate}
+\end{proof}
+
+\begin{proposicion}{$S^1$ no es contráctil [C9.6]}{cor_s1_no_contractil}
+$S^1$ no es contráctil, ya que $\pi_1(S^1) \cong \mathbb{Z} \neq 1$.
+\end{proposicion}
+
+\begin{proposicion}{$S^2$ y $T^2$ no son homeomorfos [C9.7]}{cor_s2_t2}
+$S^2$ y $T^2$ no son homeomorfos.
+\end{proposicion}
+
+\begin{proof}
+$S^2$ es simplemente conexo, así que $\pi_1(S^2) = 1$, mientras que $\pi_1(T^2) \cong \mathbb{Z} \times \mathbb{Z}$ (véase el ejercicio siguiente con $T^2 = S^1 \times S^1$). Como el grupo fundamental es un invariante topológico, $S^2 \not\cong T^2$.
+\end{proof}
+
+\textbf{Ejercicio [C9.8].} Sean $X$ e $Y$ espacios topológicos y $(x_0,y_0) \in X \times Y$. Entonces
+\[ \pi_1(X \times Y, (x_0,y_0)) \cong \pi_1(X,x_0) \times \pi_1(Y,y_0). \]
+En particular, si $X$ e $Y$ son arco-conexos, $\pi_1(X \times Y) \cong \pi_1(X) \times \pi_1(Y)$.
+
+\begin{observacion}{Grupo fundamental del cilindro [C9.9]}{obs_cilindro}
+El grupo fundamental del cilindro $S^1 \times I$ es $\mathbb{Z}$, ya que $S^1$ y $S^1 \times I$ son del mismo tipo de homotopía.
+\end{observacion}

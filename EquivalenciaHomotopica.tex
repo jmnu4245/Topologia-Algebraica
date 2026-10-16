@@ -39,14 +39,14 @@ En este tema relajaremos las condiciones de la definición de homeomorfismo para
 
 \subsection{Homotopía entre aplicaciones}
 
-\begin{definicion}{Homotopía entre aplicaciones}{def_homotopia}
+\begin{definicion}{Homotopía entre aplicaciones [C2.2]}{def_homotopia}
 Sea $f \colon X \to Y$ aplicación continua. \\
 Sea $g \colon X \to Y$ aplicación continua.
 
 Diremos que $f, g$ son homotópicas cuando $\exists F \colon X \times I = [0,1] \to Y$ continua tal que $F_0 = f, F_1 = g$.
 \end{definicion}
 
-\begin{nota}{Notación}{nota_homotopia}
+\begin{nota}{Notación [C2.1]}{nota_homotopia}
 Sea $t \in [0,1]$, definimos $F_t \colon X \to Y$ como $x \mapsto F(x,t)$.
 \end{nota}
 
@@ -91,7 +91,7 @@ Recordemos que $S^n = \{x \in \mathbb{R}^{n+1} \mid |x| = 1\}$.
 
 Llamamos $C(X,Y) = \{f \colon X \to Y \mid f \text{ continua}\}$. Vimos que $\simeq$ es R.B.E en $C(X,Y)$. Luego podemos hablar del conjunto cociente $C(X,Y)/\simeq$, que se suele denotar por $[X,Y]$.
 
-\begin{teorema}{Relación de equivalencia en $C(X,Y)$}{teo_rel_eq}
+\begin{teorema}{Relación de equivalencia en $C(X,Y)$ [C2.5]}{teo_rel_eq}
 La homotopía $\simeq$ es una Relación de Equivalencia (R.B.E.) en $C(X,Y)$.
 \end{teorema}
 
@@ -115,7 +115,7 @@ La homotopía $\simeq$ es una Relación de Equivalencia (R.B.E.) en $C(X,Y)$.
 Por tanto, podremos hablar del espacio cociente $C(X,Y)/\simeq$.
 \end{proof}
 
-\begin{teorema}{Composición de homotopías}{teo_comp_homo}
+\begin{teorema}{Composición de homotopías [C2.6]}{teo_comp_homo}
 Sean $X \xrightarrow{f_1, f_2} Y \xrightarrow{g_1, g_2} Z$. Si suponemos que $f_1 \simeq f_2$ y $g_1 \simeq g_2$, entonces $g_1 \circ f_1 \simeq g_2 \circ f_2$.
 \end{teorema}
 
@@ -131,13 +131,13 @@ Como $H$ es continua, queda probado que $g_1 \circ f_1 \simeq g_2 \circ f_2$.
 
 \subsection{Equivalencia homotópica entre espacios}
 
-\begin{definicion}{Equivalencia homotópica}{def_eq_homotopica}
+\begin{definicion}{Equivalencia homotópica [C2.7]}{def_eq_homotopica}
 Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son del mismo tipo de homotopía ($X \simeq Y$) cuando $\exists f \colon X \to Y$ continua y $\exists g \colon Y \to X$ continua tales que $f \circ g \simeq 1_Y$ y $g \circ f \simeq 1_X$. 
 
 En este caso también diremos que $f$ es una \textbf{equivalencia homotópica} y $g$ la \textbf{inversa homotópica} de $f$ (no necesariamente $f$ biyectiva).
 \end{definicion}
 
-\begin{observacion}{Relación con el homeomorfismo}{obs_iso}
+\begin{observacion}{Relación con el homeomorfismo [C2.8]}{obs_iso}
 $X \cong Y \implies X \simeq Y$ (y $g$ es inversa de $f$).
 Tomando $f \colon X \to Y, g \colon Y \to X$ biyecciones donde $g \circ f = 1_X$ y $f \circ g = 1_Y$, se sigue que son trivialmente homotópicas a las identidades ($g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$).
 
@@ -177,7 +177,7 @@ Como consecuencia de las propiedades topológicas: si $X \cong Y$, dado $P \in X
     Construimos $F \colon X \times I \to X$ dada por $F((x,y,z), t) = (x,y, t \cdot z)$. Se verifica que $F_0 = g \circ f$ y $F_1 = 1_X \implies X \simeq Y$.
 \end{enumerate}
 
-\begin{definicion}{Unión por un punto y ramo de circunferencias}{def_wedge}
+\begin{definicion}{Unión por un punto y ramo de circunferencias [C2.9]}{def_wedge}
 Sean $(X,x_0)$ e $(Y,y_0)$ espacios con un punto base. Su \textbf{unión por un punto} es
 \[ X \vee Y = (X \sqcup Y)/(x_0 \sim y_0), \]
 es decir, se pegan $X$ e $Y$ identificando $x_0$ con $y_0$. Escribimos $\bigvee_k S^1 = S^1 \vee \dots \vee S^1$ ($k$ veces) y lo llamamos \textbf{ramo de $k$ circunferencias}: $k$ circunferencias que comparten un único punto. Para $k=2$ es la ``figura ocho'' $S^1 \vee S^1$; por convenio $\bigvee_0 S^1$ es un punto.
@@ -188,7 +188,7 @@ Más ejemplos de espacios del mismo tipo de homotopía:
     \setcounter{enumi}{3}
     \item $S^2 \setminus \{N\} \simeq \{\text{punto}\}$, con $N = (0,0,1)$.
 
-    La proyección estereográfica es un homeomorfismo $S^2 \setminus \{N\} \cong \mathbb{R}^2$ (ver la proposición de la proyección estereográfica en el Tema 3, que lo prueba para $S^n$). Como $\mathbb{R}^2$ es convexo, es contráctil; y como homeomorfo implica mismo tipo de homotopía y $\simeq$ es transitiva, $S^2 \setminus \{N\} \simeq \mathbb{R}^2 \simeq \{\text{punto}\}$.
+    La proyección estereográfica es un homeomorfismo $S^2 \setminus \{N\} \cong \mathbb{R}^2$ (véase la \cref{prop:proy_estereografica}, que lo prueba para $S^n$). Como $\mathbb{R}^2$ es convexo, es contráctil; y como homeomorfo implica mismo tipo de homotopía y $\simeq$ es transitiva, $S^2 \setminus \{N\} \simeq \mathbb{R}^2 \simeq \{\text{punto}\}$.
 
     \item $\mathbb{R}^2 \setminus \{(0,0)\} \simeq S^1$.
 
@@ -212,11 +212,11 @@ Más ejemplos de espacios del mismo tipo de homotopía:
 
 \subsection{Espacios Contractiles, Convexos y Estrellados}
 
-\begin{definicion}{Espacio topológico contractil}{def_contractil}
+\begin{definicion}{Espacio topológico contractil [C2.11]}{def_contractil}
 Un espacio topológico $X \neq \emptyset$ es contractil si $\exists x_0 \in X \mid 1_X \simeq c_{x_0}$ (donde $c_{x_0}$ es la aplicación constante $x \mapsto x_0$).
 \end{definicion}
 
-\begin{teorema}{Caracterización de espacios contractiles}{teo_contractil}
+\begin{teorema}{Caracterización de espacios contractiles [C2.12]}{teo_contractil}
 Son equivalentes las siguientes afirmaciones para un e.t. $X \neq \emptyset$:
 \begin{enumerate}
     \item[a)] $X$ es contractil.
@@ -245,7 +245,7 @@ Probamos (a)$\Rightarrow$(b)$\Rightarrow$(c)$\Rightarrow$(a) y (a)$\Leftrightarr
 
 Sean $X, Y$ espacios topológicos.
 
-\begin{definicion}{Homeomorfismo y Equivalencia Homotópica}{def_hom_homot}
+\begin{definicion}{Homeomorfismo y Equivalencia Homotópica [C2.8]}{def_hom_homot}
 \textbf{$X \cong Y$ ($X, Y$ homeomorfos):}
 \begin{itemize}
     \item $\exists f: X \to Y$ continua
@@ -292,7 +292,7 @@ La respuesta es negativa. Como contraejemplo consideremos:
 \end{itemize}
 \end{nota}
 
-\begin{observacion}{Conjunto cociente de clases de homotopía}{obs_cociente}
+\begin{observacion}{Conjunto cociente de clases de homotopía [C3.2]}{obs_cociente}
 Dadas $f, g: X \to Y$. Si $f \simeq g$, existe una homotopía $F: X \times [0,1] \to Y$ continua tal que:
 $$F_0 = f, \quad F_1 = g$$
 donde definimos $F_t: X \to Y$ mediante $x \mapsto F(x,t)$.
@@ -303,12 +303,12 @@ $$C(X,Y)/\simeq$$
 Este conjunto cociente de clases de homotopía se suele denotar por $[X,Y]$.
 \end{observacion}
 
-\begin{definicion}{Conjunto convexo}{def_convexo}
+\begin{definicion}{Conjunto convexo [C3.3]}{def_convexo}
 Sea $X \subseteq \mathbb{R}^n$. Diremos que $X$ es convexo cuando todo segmento que une dos puntos cualesquiera de $X$ está contenido en $X$. Equivalentemente:
 \[ \forall x,y \in X, \forall t \in [0,1]: \quad tx + (1-t)y \in X \]
 \end{definicion}
 
-\begin{teorema}{Contracción de conjuntos convexos}{teo_convexo_contractil}
+\begin{teorema}{Contracción de conjuntos convexos [C3.3]}{teo_convexo_contractil}
 Todo subconjunto convexo de $\mathbb{R}^n$ es contractil (del mismo tipo de homotopía que un punto).
 \end{teorema}
 
@@ -321,16 +321,16 @@ Claramente $f \circ g = 1_{\{x_0\}}$. Veamos que $g \circ f = c_{x_0} \simeq 1_X
 Evaluando en los extremos, $F_0(x) = x_0 = c_{x_0}$ y $F_1(x) = x = 1_X$. Luego $g \circ f \simeq 1_X$.
 \end{proof}
 
-\begin{definicion}{Conjunto estrellado}{def_estrellado}
+\begin{definicion}{Conjunto estrellado [C3.3]}{def_estrellado}
 Sea $X \subseteq \mathbb{R}^n$. Diremos $X$ estrellado cuando $\exists x_0 \in X$ tal que todo segmento que une $x_0$ con algún punto de $X$, esté contenido en $X$. Equivalentemente:
 \[ X \text{ estrellado} \iff \exists x_0 \in X \mid \forall x \in X, \forall t \in [0,1]: \quad tx + (1-t)x_0 \in X \]
 \end{definicion}
 
-\begin{observacion}{}{obs_convexo_estrellado}
+\begin{observacion}{ [C3.3]}{obs_convexo_estrellado}
 Todo conjunto convexo es estrellado (Convexo $\implies$ estrellado).
 \end{observacion}
 
-\begin{observacion}{Los recíprocos no se cumplen}{obs_reciprocos}
+\begin{observacion}{Los recíprocos no se cumplen [C3.3]}{obs_reciprocos}
 Para subconjuntos de $\mathbb{R}^n$ tenemos convexo $\implies$ estrellado $\implies$ contráctil, pero ninguna de las dos implicaciones puede invertirse:
 \begin{itemize}
     \item \textbf{Estrellado $\not\implies$ convexo.} La cruz $C = [-1,1] \times \{0\} \cup \{0\} \times [-1,1]$ es estrellada respecto del origen (el segmento que une $(0,0)$ con cualquier punto de $C$ está en $C$), pero no es convexa: $(1,0), (0,1) \in C$ y su punto medio $(\tfrac12, \tfrac12) \notin C$.
@@ -338,7 +338,7 @@ Para subconjuntos de $\mathbb{R}^n$ tenemos convexo $\implies$ estrellado $\impl
 \end{itemize}
 \end{observacion}
 
-\begin{teorema}{Contracción de conjuntos estrellados}{teo_estrellado_contractil}
+\begin{teorema}{Contracción de conjuntos estrellados [C3.3]}{teo_estrellado_contractil}
 Sea $X \subseteq \mathbb{R}^n$. Si $X$ es estrellado $\implies X$ es contractil.
 \end{teorema}
 \begin{proof}
