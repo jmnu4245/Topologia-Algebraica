@@ -4,7 +4,7 @@ Sea $X$ e.t., $x_0, x_1 \in X$. Al conjunto $C_{x_0, x_1}(X) = \{ \alpha \colon 
 
 Saber que dos arcos cualesquiera son homotópicos no es suficiente para "cazar" agujeros topológicos. Por ello, requerimos fijar subconjuntos durante la deformación.
 
-\begin{definicion}{Homotopía relativa}{def_homotopia_relativa}
+\begin{definicion}{Homotopía relativa [C3.7]}{def_homotopia_relativa}
 Sea $A \subseteq X$. Sean $f, g \colon X \to Y$ continuas. Diremos que $f, g$ son homotópicas respecto a $A$ (denotado $f \simeq_A g$) cuando $\exists F \colon X \times I \to Y$ continua tal que:
 \begin{enumerate}
     \item $F_0 = f$
@@ -20,7 +20,7 @@ Para caminos con extremos fijos, $\alpha \simeq_{\{0,1\}} \beta \iff \exists F \
 
 Si $x_0 = x_1$, notaremos $C_{x_0}(X)$ al conjunto de \textbf{lazos} con base en $x_0$.
 
-\begin{observacion}{Propiedades de la homotopía relativa}{obs_relativa}
+\begin{observacion}{Propiedades de la homotopía relativa [C3.8]}{obs_relativa}
 \begin{enumerate}
     \item Si $f \simeq_A g$ mediante $F$, entonces para cada $a \in A$ se tiene $F_t(a) = F(a,t) = f(a)$ para todo $t \in I$. En particular $F_t(A) = f(A)$ no depende de $t$: $A$ permanece invariante (de hecho, punto a punto) durante la deformación.
     \item En consecuencia, $f \simeq_A g \implies f|_A = g|_A$. Solo pueden ser homotópicas relativas a $A$ aplicaciones que coinciden sobre $A$.
@@ -28,7 +28,7 @@ Si $x_0 = x_1$, notaremos $C_{x_0}(X)$ al conjunto de \textbf{lazos} con base en
 \end{enumerate}
 \end{observacion}
 
-\begin{teorema}{Relación de equivalencia relativa (Se dejó como ejercicio) }{teo_rbe_relativa}
+\begin{teorema}{Relación de equivalencia relativa (Se dejó como ejercicio) [C3.9]}{teo_rbe_relativa}
 La relación $\simeq_A$ es una R.B.E. en $C(X,Y)$. 
 \end{teorema}
 
@@ -41,12 +41,12 @@ Es la misma prueba que para $\simeq$, comprobando además que $A$ queda fijo.
 \end{enumerate}
 \end{proof}
 
-\begin{definicion}{Grupo fundamental}{def_grupo_fundamental}
+\begin{definicion}{Grupo fundamental [C3.17]}{def_grupo_fundamental}
 Sea $X$ e.t., sea $x_0 \in X$. Definimos el grupo fundamental de $X$ en $x_0$, denotado como $\pi_1(X, x_0)$, al conjunto cociente de lazos bajo homotopía relativa a los extremos:
 \[ \pi_1(X, x_0) \equiv C_{x_0}(X) / \simeq_{\{0,1\}} \]
 A la clase de equivalencia de un lazo $\alpha$ la denotamos como $[\alpha]$.
 
-Es imporante notar que aun no hemos demostrado que se trata de un grupo, se demuestra en \ref{poincare}
+Es importante notar que aun no hemos demostrado que se trata de un grupo, se demuestra en \cref{thm:poincare}
 \end{definicion}
 
 Para dotar a $\pi_1(X, x_0)$ de estructura de grupo, introducimos operaciones en caminos:
@@ -55,7 +55,7 @@ Definimos la \textbf{concatenación} $\gamma = \alpha * \beta \colon I \to X$ da
 \[ \gamma(t) = \begin{cases} \alpha(2t), & \forall t \in [0, 1/2] \\ \beta(2t-1), & \forall t \in [1/2, 1] \end{cases} \]
 Definimos el \textbf{camino inverso} $\alpha^{-1} \colon I \to X$ como $\alpha^{-1}(t) = \alpha(1-t)$, el cual va de $x_1$ a $x_0$.
 
-\begin{teorema}{Conexión por caminos}{teo_contractil_arcoconexo}
+\begin{teorema}{Conexión por caminos [C3.6]}{teo_contractil_arcoconexo}
 Sea $X$ contractil. Entonces $X$ es arco-conexo.
 \end{teorema}
 \begin{proof}
@@ -65,17 +65,17 @@ Definimos el camino $\beta \colon I \to X$ dado por $t \mapsto F(y,t)$, que une 
 El camino concatenado $\delta = \alpha * \beta^{-1}$ une los puntos $x$ e $y$ de forma continua.
 \end{proof}
 
-\begin{observacion}{El recíproco es falso}{obs_recip_contractil}
+\begin{observacion}{El recíproco es falso [C3.6]}{obs_recip_contractil}
 Arco-conexo $\not\implies$ contráctil. El ejemplo es $S^1$: es arco-conexo, pero no es contráctil, pues veremos que $\pi_1(S^1) \cong \mathbb{Z} \neq 1$, mientras que todo espacio contráctil tiene grupo fundamental trivial.
 \end{observacion}
 
-\begin{nota}{Asociatividad de caminos}{nota_asociatividad}
+\begin{nota}{Asociatividad de caminos [C3.13]}{nota_asociatividad}
 Es importante notar que $\alpha * (\beta * \gamma) \neq (\alpha * \beta) * \gamma$ a nivel de aplicaciones, ya que las parametrizaciones difieren en los intervalos temporales. Sin embargo, sí son equivalentes bajo homotopía relativa a los extremos. 
 Definimos entonces el producto de clases como:
 \[ [\alpha] \cdot [\beta] = [\alpha * \beta] \]
 \end{nota}
 
-\begin{teorema}{de Poincaré}{poincare}
+\begin{teorema}{de Poincaré [C3.16]}{poincare}
 Sea $X$ un espacio topológico y sea $x_0 \in X$. Entonces 
 \[
 (\pi_1(X, x_0), \cdot)
@@ -256,9 +256,7 @@ Dividimos la demostración en la comprobación de la buena definición de la ope
     \end{itemize}
     Análogamente se comprueba para $[\alpha] \cdot [c_{x_0}] = [\alpha]$.
 
-    \textbf{23/09/2026}
-
-    \item \textbf{Existencia de elemento simétrico (inverso).} \hfill 
+    \item \textbf{Existencia de elemento simétrico (inverso).} \hfill \textit{(23/09/2026)}
     
     Para cada lazo $\alpha \in \mathcal{C}_{x_0}(X)$, se define el lazo inverso $\alpha^{-1} : I \to X$ como:
     \[
@@ -327,9 +325,7 @@ En $s = \frac{1+t}{2}$ ambas valen $\alpha(1) = x_1$; $G_0 = \alpha * c_{x_1}$, 
 En $s = \frac12$ ambas valen $\alpha(1-t)$. Para $t = 0$: $F(s,0) = \alpha(2s)$ si $s \le \frac12$ y $\alpha(2-2s) = \alpha^{-1}(2s-1)$ si $s \ge \frac12$, es decir, $F_0 = \alpha * \alpha^{-1}$. Para $t = 1$: $F_1 = c_{\alpha(0)} = c_{x_0}$. Y $F(0,t) = F(1,t) = \alpha(0) = x_0$. Luego $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$. Aplicando esto a $\alpha^{-1} \in C_{x_1,x_0}(X)$, y como $(\alpha^{-1})^{-1} = \alpha$, se obtiene $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_1}$.
 \end{proof}
 
-(Nótese que en el enunciado original las dos fórmulas de d) estaban intercambiadas: $\alpha * \alpha^{-1}$ es un lazo en $x_0$, y $\alpha^{-1} * \alpha$ es un lazo en $x_1$.)
-
-\begin{proposicion}{Inverso homotópico de caminos}{inverso_homotopico}
+\begin{proposicion}{Inverso homotópico de caminos [C5.2]}{inverso_homotopico}
 Sea $X$ espacio topológico, $x_0, x_1 \in X$. Sean $\alpha, \beta \in C_{x_0, x_1}(X)$ que verifican que $\alpha \simeq_{\{0,1\}} \beta$, entonces $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$. (Ejercicio para casa).
 \end{proposicion}
 
@@ -372,7 +368,7 @@ Por otro lado:
 Como $\alpha(1-(2s-1)) = \alpha(2-2s)$, ambas expresiones coinciden para todo $s \in I$. Luego $(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$.
 \end{proof}
 
-\begin{observacion}{}{obs_inversos}
+\begin{observacion}{ [C5.7]}{obs_inversos}
 \begin{enumerate}
     \item Volviendo a $\pi_1(X, x_0)$, vimos que el inverso de un elemento $[\alpha] \in \pi_1(X, x_0)$ es $[\alpha^{-1}]$. Luego $[\alpha]^{-1} = [\alpha^{-1}]$.
     \item Si $\alpha \in C_{x_0}(X)$, entonces $[\alpha^{-1}][\alpha] = [\alpha][\alpha^{-1}] = [c_{x_0}]$, y $[c_{x_0}][\alpha] = [\alpha][c_{x_0}] = [\alpha]$. Además, $([\alpha]^{-1})^{-1} = [\alpha]$.
@@ -380,7 +376,7 @@ Como $\alpha(1-(2s-1)) = \alpha(2-2s)$, ambas expresiones coinciden para todo $s
 \end{enumerate}
 \end{observacion}
 
-\begin{definicion}{Concatenación conjunta}{concat_conjunta}
+\begin{definicion}{Concatenación conjunta [C5.4]}{concat_conjunta}
 Así definimos la concatenación conjunta de tres caminos $\alpha * \beta * \gamma$:
 \[
 (\alpha * \beta * \gamma)(s) = 
@@ -417,14 +413,14 @@ Sea $X$ un espacio topológico y $x_0 \in X$. Denotamos por $\pi_1(X, x_0)$ al g
 
 Sean $x_0, x_1 \in X$, y supongamos que $x_0$ y $x_1$ están unidos por un arco. Es decir, existe $\omega : I \to X$ continua con $\omega(0) = x_0$ y $\omega(1) = x_1$.
 
-\begin{definicion}{Isomorfismo de cambio de base}{def_cambio_base}
+\begin{definicion}{Isomorfismo de cambio de base [C5.8]}{def_cambio_base}
 Definimos la aplicación $P_\omega : \pi_1(X, x_0) \to \pi_1(X, x_1)$ dada por:
 \[
 [\alpha] \mapsto [\omega^{-1} * \alpha * \omega]
 \]
 \end{definicion}
 
-\begin{teorema}{Isomorfismo de cambio de base}{teo_cambio_base}
+\begin{teorema}{Isomorfismo de cambio de base [C5.9]}{teo_cambio_base}
 $P_\omega$ es un isomorfismo de grupos.
 \end{teorema}
 
@@ -456,11 +452,11 @@ P_{\omega^{-1}}(P_\omega([\alpha])) = P_{\omega^{-1}}([\omega^{-1} * \alpha * \o
 \]
 \end{proof}
 
-\begin{proposicion}{}{cor_arco}
+\begin{proposicion}{ [C5.10]}{cor_arco}
 Si $X$ es arcoconexo y $x_0, x_1 \in X$, entonces $\pi_1(X, x_0) \cong \pi_1(X, x_1)$.
 \end{proposicion}
 
-\begin{nota}{Grupo fundamental}{nota_grupo_fund}
+\begin{nota}{Grupo fundamental [C5.11]}{nota_grupo_fund}
 Este grupo se denota a partir de ahora $\pi_1(X) = \pi_1(X, x_0)$, siendo $x_0$ cualquier punto de $X$, y se denomina \textbf{grupo fundamental} de $X$.
 \end{nota}
 
@@ -472,7 +468,7 @@ Por la proposición del inverso homotópico, $\omega_0^{-1} \simeq_{\{0,1\}} \om
 Por tanto $P_{\omega_0}([\alpha]) = [\omega_0^{-1} * \alpha * \omega_0] = [\omega_1^{-1} * \alpha * \omega_1] = P_{\omega_1}([\alpha])$.
 \end{proof}
 
-\begin{definicion}{Homomorfismo inducido}{def_hom_ind}
+\begin{definicion}{Homomorfismo inducido [C5.13]}{def_hom_ind}
 Sea $f: X \to Y$ continua, sea $x_0 \in X$ y sea $y_0 = f(x_0)$. Definimos:
 \begin{align*}
 f_* : \pi_1(X, x_0) &\to \pi_1(Y, f(x_0)) \\
@@ -481,7 +477,7 @@ f_* : \pi_1(X, x_0) &\to \pi_1(Y, f(x_0)) \\
 También se puede denotar como $\pi_1(f)$ o $\pi_{1,x_0}(f)$.
 \end{definicion}
 
-\begin{teorema}{Propiedades del homomorfismo inducido}{teo_hom_ind}
+\begin{teorema}{Propiedades del homomorfismo inducido [C5.14–5.15]}{teo_hom_ind}
 $f_*$ es un homomorfismo de grupos.
 \end{teorema}
 
@@ -542,7 +538,7 @@ Se cumplen las siguientes propiedades algebraicas de grupo:
 Si $X$ es arcoconexo, dados dos puntos $x_0, x_1 \in X$ unidos por un camino $\omega$, se define $P_\omega \colon \pi_1(X, x_0) \longrightarrow \pi_1(X, x_1)$ dado por $[\alpha] \longmapsto [\omega^{-1} * \alpha * \omega]$, el cual es un isomorfismo de grupos (con $P_\omega^{-1} = P_{\omega^{-1}}$). Por tanto, escribiremos $\pi_1(X) = \pi_1(X, x_0)$ independientemente del punto base elegido.
 \end{nota}
 
-\begin{observacion}{Homomorfismo Inducido}{}
+\begin{observacion}{Homomorfismo Inducido [C5.13]}{}
 Dada $f \colon X \longrightarrow Y$ continua, y tomando $x_0 \in X$ con $f(x_0) = y_0$, tenemos $f \colon (X, x_0) \longrightarrow (Y, y_0)$. Se define el homomorfismo inducido:
 
 
@@ -555,7 +551,7 @@ Para comprobar que $f_*$ está bien definido, tomemos dos elementos $\alpha \sim
 Dado que $f(\alpha(0)) = f(x_0) = y_0$ y $f(\alpha(1)) = f(x_0) = y_0$, se tiene $f \circ \alpha \in C_{y_0}(Y)$. Definimos $G \colon I \times I \longrightarrow Y$ como $G(s,t) = f(F(s,t))$. Entonces $G_0(s) = (f \circ \alpha)(s)$, $G_1(s) = (f \circ \alpha')(s)$, $G(0,t) = y_0$ y $G(1,t) = y_0$. Por tanto, $f \circ \alpha \simeq_{\{0,1\}} f \circ \alpha'$ y $f_*$ es un homomorfismo de grupos.
 \end{observacion}
 
-\begin{teorema}{Funtorialidad de $\pi_1$}{funtorialidad_pi1}
+\begin{teorema}{Funtorialidad de $\pi_1$ [C6.2]}{funtorialidad_pi1}
 Sea $X$ un espacio topológico y $x_0 \in X$.
 \begin{enumerate}
 \item $(1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$
@@ -574,7 +570,7 @@ $$(g_{*, f(x_0)} \circ f_{*, x_0})([\alpha]) = g_{*, f(x_0)}([f \circ \alpha]) =
 
 \end{teorema}
 
-\begin{proposicion}{Homeomorfismo induce isomorfismo de grupos fundamentales}{homeomorfismo_pi1}
+\begin{proposicion}{Homeomorfismo induce isomorfismo de grupos fundamentales [C6.3]}{homeomorfismo_pi1}
 Sean $X$ e $Y$ espacios topológicos arco-conexos. Si $X \cong Y$, entonces $\pi_1(X) \cong \pi_1(Y)$.
 
 \textbf{Demostración:}
@@ -584,7 +580,7 @@ De $g \circ f = 1_X$ obtenemos $(g \circ f)_{*, x_0} = (1_X)_{*, x_0} = 1_{\pi_1
 Por consiguiente, $f_*$ y $g_*$ son isomorfismos. \qed
 \end{proposicion}
 
-\begin{proposicion}{Grupo fundamental de un espacio estrellado}{estrellado}
+\begin{proposicion}{Grupo fundamental de un espacio estrellado [C6.5]}{estrellado}
 Sea $X \subseteq \mathbb{R}^n$, con $X$ estrellado. Entonces $\pi_1(X) = 1$.
 
 \textbf{Demostración:}
@@ -607,7 +603,7 @@ $$F(1, t) = t \cdot \alpha(1) + (1-t) \cdot x_0 = t \cdot x_0 + (1-t) \cdot x_0 
 Por tanto, $F$ es una homotopía de lazos que conecta el lazo constante $C_{x_0}$ (en $t=0$) con el lazo $\alpha$ (en $t=1$). \qed
 \end{proposicion}
 
-\begin{definicion}{Espacio simplemente conexo}{simp_conexo}
+\begin{definicion}{Espacio simplemente conexo [C7.1]}{simp_conexo}
 Diremos que $X$ es simplemente conexo si:
 \begin{enumerate}
 \item $X$ es arco-conexo.
@@ -617,7 +613,7 @@ Diremos que $X$ es simplemente conexo si:
 
 Ejemplos básicos de espacios simplemente conexos son $\pi_1(I \times I) = 1$ y $\pi_1(\triangle) = 1$.
 
-\begin{teorema}{Homomorfismos inducidos por aplicaciones homotópicas}{aplicaciones_homotopicas}
+\begin{teorema}{Homomorfismos inducidos por aplicaciones homotópicas [C6.7]}{aplicaciones_homotopicas}
 Sean $f, g \colon X \longrightarrow Y$ aplicaciones continuas y homotópicas ($f \simeq g$). Existe $F \colon X \times I \longrightarrow Y$ continua tal que $F_0 = f, F_1 = g$.
 Fijando $x_0 \in X$, definimos el camino $\sigma \colon I \longrightarrow Y$ dado por $t \longmapsto F(x_0, t)$, donde $\sigma(0) = f(x_0)$ y $\sigma(1) = g(x_0)$.
 Entonces el siguiente diagrama conmuta, cumpliéndose que $g_* = P_\sigma \circ f_*$:
@@ -663,7 +659,7 @@ Finalmente, multiplicando por $[\sigma^{-1}]$ por la izquierda y por $[\sigma]$ 
 
 \end{teorema}
 
-\begin{proposicion}{Equivalencia Homotópica}{equiv_homotopica}
+\begin{proposicion}{Equivalencia Homotópica [C6.8]}{equiv_homotopica}
 Sean $X, Y$ espacios arco-conexos. Si $X$ e $Y$ tienen el mismo tipo de homotopía ($X \simeq Y$), entonces $\pi_1(X) \cong \pi_1(Y)$.
 
 \textbf{Demostración:}
@@ -672,6 +668,6 @@ Por el teorema anterior, la homotopía $g \circ f \simeq 1_X$ implica que $(g \c
 Repitiendo simétricamente el razonamiento con la homotopía $f \circ g \simeq 1_Y$, concluimos que $g_*$ es inyectiva y $f_*$ es sobreyectiva. Ambos homomorfismos resultan biyectivos, por lo que $f_*$ y $g_*$ son isomorfismos de grupos. \qed
 \end{proposicion}
 
-\begin{observacion}{Invariancia homotópica vs. invariancia topológica}{obs_invariancia_homotopica}
+\begin{observacion}{Invariancia homotópica vs. invariancia topológica [C6.8]}{obs_invariancia_homotopica}
 La proposición anterior es más general que la invariancia topológica del grupo fundamental (homeomorfismo induce isomorfismo): como $X \cong Y \implies X \simeq Y$, esta última es un caso particular. La inclusión es estricta: por ejemplo $D(0,1) \simeq \{\text{punto}\}$ sin ser homeomorfos, y la invariancia homotópica da $\pi_1(D(0,1)) \cong \pi_1(\{\text{punto}\}) = 1$, algo que la invariancia topológica no permite deducir. Igualmente, $S^1 \times [-1,1] \simeq S^1$ y por tanto ambos tienen el mismo grupo fundamental aunque no sean homeomorfos.
 \end{observacion}
