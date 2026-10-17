@@ -2,9 +2,10 @@
 \textbf{02/10/2026}
 \section{Espacios simplemente conexos, deformación de aplicaciones y grupo fundamental de $S^n$}
 
+\subsection{Espacios simplemente conexos}
+
 \begin{observacion}{}{}
-Recordamos que si $X \simeq Y$, entonces $\pi_1(X) \cong \pi_1(Y)$ suponiendo que $X$ e $Y$ son arco-conexos.
-Como consecuencia, si $X$ es contractible (es decir, $X \simeq \{p\}$), entonces se tiene que $\pi_1(X) = 1$.
+Por la \cref{prop:equiv_homotopica}, si $X$ es contráctil (es decir, $X \simeq \{p\}$), entonces $\pi_1(X) = 1$.
 \end{observacion}
 
 \begin{definicion}{Espacio simplemente conexo [C7.1]}{def_simp_conexo}
@@ -38,6 +39,8 @@ Dado que $\pi_1(X) = 1$, se cumple que $[\alpha * \overline{\beta}] = 1$. Esto i
 
 $\Leftarrow)$ Trivial tomando $x_0 = x_1$.
 \end{proof}
+
+\subsection{Reparametrización de arcos y lema de Lebesgue}
 
 \begin{proposicion}{ [C7.3]}{prop_reparametrizacion}
 Sea $g: I \longrightarrow I$ una aplicación continua tal que $g(0)=0$ y $g(1)=1$. Sea $\alpha: I \longrightarrow X$ una aplicación continua, siendo $X$ un espacio topológico cualquiera. Entonces se cumple que $\alpha \simeq_{\{0,1\}} \alpha \circ g$.
@@ -82,6 +85,8 @@ $$d(y, x_j) \le d(y,x) + d(x,x_j) < \delta + \frac{r(x_j)}{2} \le \frac{r(x_j)}{
 Hemos llegado a la conclusión de que $B(x,\delta) \subseteq B(x_j, r(x_j)) \subseteq U_{i(x_j)}$.
 \end{proof}
 
+\subsection{Condición suficiente para ser simplemente conexo}
+
 \begin{teorema}{Condición suficiente para que un espacio sea simplemente conexo [C7.5]}{cond_simp_conexo}
 Sea $X$ un espacio topológico y sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$. Supongamos que:
 \begin{itemize}
@@ -125,41 +130,43 @@ $\exists 0 = t_0 < t_1 < \dots < t_n = 1$ tal que $\forall j \in \{1 \dots n\}$,
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.5]
+\begin{tikzpicture}[scale=1.4]
+  % Los abiertos V_j: todos contienen a x_0 y cada uno contiene al arco alpha_j
+  \draw[gray, thick, rotate around={20:(1.128,0.41)}] (1.128,0.41) ellipse (2 and 1.15);
+  \node[gray] at (3.25,1.2) {$V_1$};
+  \draw[gray, thick, rotate around={75:(0.311,1.159)}] (0.311,1.159) ellipse (2 and 1.15);
+  \node[gray] at (0.9,3.35) {$V_2$};
+  \draw[gray, thick, rotate around={130:(-0.771,0.919)}] (-0.771,0.919) ellipse (2 and 1.15);
+  \node[gray] at (-2.25,2.65) {$V_3$};
+  \draw[gray, thick, rotate around={235:(-0.688,-0.983)}] (-0.688,-0.983) ellipse (2 and 1.15);
+  \node[gray] at (-1.95,-2.8) {$V_n$};
+
   \coordinate (X0) at (0,0);
-  \node[below] at (X0) {$\alpha(t_0)=\alpha(t_n)$};
-  \node[left] at (X0) {$x_0$};
-  \filldraw (X0) circle (1pt);
+  \coordinate (T1) at (1.3,1.39);
+  \coordinate (T2) at (-0.35,1.97);
+  \coordinate (T3) at (-1.68,0.89);
+  \coordinate (TN) at (-1.72,-0.8);
 
-  \draw[gray, thick] (1.2, 0) ellipse (1.5 and 0.6);
-  \node[gray] at (2, -0.4) {$V_1$};
-  
-  % Nabaliwan ti sentro ken radias ti V2 tapno mailanad ti x0
-  \draw[gray, thick] (1.8, 0.8) ellipse (2.8 and 1.2);
-  \node[gray] at (4.0, 1.6) {$V_2$};
+  % Los caminos rho_j (segmentos: cada V_j \cap V_{j+1} es convexo y contiene x_0 y alpha(t_j))
+  \draw[blue, thick, ->] (X0) -- (T1) node[pos=0.55, below right] {$\rho_1$};
+  \draw[blue, thick, ->] (X0) -- (T2) node[pos=0.6, right] {$\rho_2$};
+  \draw[blue, thick, ->] (X0) -- (T3) node[pos=0.55, below] {$\rho_3$};
+  \draw[blue, thick, ->] (X0) -- (TN) node[pos=0.6, above] {$\rho_{n-1}$};
 
-  \coordinate (T1) at (1.8, 0.1);
-  \coordinate (T2) at (3.8, 0.7);
-  \coordinate (T3) at (3.5, 1.8);
-  \coordinate (TN) at (-0.8, 1.2);
-  
-  \filldraw[red] (T1) circle (1pt) node[black, below right] {$\alpha(t_1)$};
-  \filldraw[red] (T2) circle (1pt) node[black, right] {$\alpha(t_2)$};
-  \filldraw[red] (T3) circle (1pt) node[black, right] {$\alpha(t_3)$};
-  \filldraw[red] (TN) circle (1pt) node[black, left] {$\alpha(t_{n-1})$};
+  % El lazo alpha dividido en los arcos alpha_j
+  \draw[thick] (X0) .. controls (0.9,0.0) and (1.4,0.6) .. (T1) node[pos=0.7, right, red] {$\alpha_1$};
+  \draw[thick] (T1) .. controls (0.9,1.9) and (0.2,2.1) .. (T2) node[pos=0.45, above right, red] {$\alpha_2$};
+  \draw[thick] (T2) .. controls (-0.8,2.0) and (-1.4,1.6) .. (T3) node[midway, above left, red] {$\alpha_3$};
+  \draw[thick, dashed] (T3) .. controls (-1.9,0.4) and (-2.0,-0.3) .. (TN) node[midway, left] {$\dots$};
+  \draw[thick] (TN) .. controls (-1.2,-1.0) and (-0.5,-0.5) .. (X0) node[midway, below right, red] {$\alpha_n$};
 
-  \draw[thick] (X0) to[out=-20, in=180] node[midway, below, red] {$\alpha_1$} (T1);
-  \draw[thick] (T1) to[out=0, in=-90] node[midway, right, red] {$\alpha_2$} (T2);
-  \draw[thick] (T2) to[out=90, in=-20] node[midway, right, red] {$\alpha_3$} (T3);
-  \draw[thick] (T3) to[out=160, in=90] node[midway, above] {$\dots$} (TN);
-  \draw[thick] (TN) to[out=-90, in=135] (X0);
-  
-  \draw[blue, thick, ->] (X0) to[out=10, in=160] node[midway, above] {$\rho_1$} (T1);
-  \draw[blue, thick, ->] (X0) to[out=30, in=160] node[midway, above left] {$\rho_2$} (T2);
-  \draw[blue, thick, ->] (X0) to[out=50, in=190] node[midway, above left] {$\rho_3$} (T3);
-  \draw[blue, thick, ->] (X0) to[out=110, in=-45] node[midway, right] {$\rho_{n-1}$} (TN);
+  \filldraw (X0) circle (1pt) node[below right, fill=white, fill opacity=0.85, text opacity=1, inner sep=1pt] {$x_0 = \alpha(t_0) = \alpha(t_n)$};
+  \filldraw[red] (T1) circle (1pt) node[right] {$\alpha(t_1)$};
+  \filldraw[red] (T2) circle (1pt) node[above left] {$\alpha(t_2)$};
+  \filldraw[red] (T3) circle (1pt) node[left] {$\alpha(t_3)$};
+  \filldraw[red] (TN) circle (1pt) node[left] {$\alpha(t_{n-1})$};
 \end{tikzpicture}
-\caption{Descomposición del lazo $\alpha$ en $\alpha_j$ y caminos $\rho_j$.}
+\caption{Descomposición del lazo $\alpha$ en $\alpha_j$ y caminos $\rho_j$. Cada $V_j$ contiene a $x_0$ y al arco $\alpha_j$.}
 \end{figure}
 
 Para cada $j$:
@@ -221,12 +228,13 @@ Por hipótesis cada $V_j$ es simplemente conexo, por lo que cada uno se anula a 
 \end{figure}
 \end{proof}
 
+\subsection{La esfera $S^n$ es simplemente conexa}
+
 \begin{proposicion}{ [C7.6]}{corolario_sn}
 Para $n \ge 2$, $S^n$ es simplemente conexo.
 \end{proposicion}
 
 \begin{proof}
-Recordemos que $S^n \subseteq \mathbb{R}^{n+1}$, $S^n := \{ (x_1, \dots, x_{n+1}) \in \mathbb{R}^{n+1} / x_1^2 + \dots + x_{n+1}^2 = 1 \}$.
 Supongamos $n \ge 2$:
 Tomamos $V_1 := S^n \setminus \{(0, \dots, 0, 1)\} = S^n \setminus \{N\}$ y $V_2 := S^n \setminus \{(0, \dots, 0, -1)\} = S^n \setminus \{S\}$.
 \begin{itemize}
@@ -264,34 +272,14 @@ La prueba del corolario no funciona cuando $n=1$, ya que $V_1 \cap V_2$ no es ar
     \textbf{07/10/2026 (Clase 8)}
 \end{center}
 
-En la última clase vimos el siguiente resultado:
+\subsection{La conjetura de Poincaré}
 
-\begin{teorema}{Condición para que un espacio sea simplemente conexo [C7.5]}{}
-Sea $X$ un espacio topológico, sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$. Supongamos que:
-\begin{itemize}
-    \item[a)] $V_i$ es simplemente conexo, $\forall i \in \Lambda$.
-    \item[b)] $V_i \cap V_j$ es arcoconexo, $\forall i,j \in \Lambda, i \neq j$.
-    \item[c)] $\bigcap_{i \in \Lambda} V_i \neq \emptyset$.
-\end{itemize}
-Entonces $X$ es simplemente conexo (es arcoconexo y $\pi_1(X)=1$).
-\end{teorema}
-
-Recordatorio: $S^n = \{(x_1,\dots,x_{n+1}) \in \mathbb{R}^{n+1} : x_1^2+\dots+x_{n+1}^2=1\}$ es la $n$-esfera de dimensión $n$. ($S^0 = \{-1,1\}$, $S^1 = \bigcirc$).
-
-Como corolario vimos que:
-
-\textbf{Corolario [C7.6]:} Si $n \geq 2$, $S^n$ es simplemente conexo.
-
-\textbf{Demostración:}
-Sean $N=(0,\dots,0,1) \in \mathbb{R}^{n+1}$ y $S=(0,\dots,0,-1) \in \mathbb{R}^{n+1}$.
-Sea $U = S^n \setminus \{N\}$, que es simplemente conexo, y $V = S^n \setminus \{S\}$, que es simplemente conexo.
-$U \cap V = S^n \setminus \{N,S\} \cong S^{n-1} \times ]-1,1[$ (homeomorfos). \qed
-
-\vspace{0.5cm}
 \textbf{Conjetura de Poincaré [C8.1]:}
 
 Sea $X$ un espacio métrico compacto \underline{localmente homeomorfo a $\mathbb{R}^3$} (significa que $\forall p \in X$, existe un entorno abierto de $p$ homeomorfo a algún abierto conexo de $\mathbb{R}^3$; es decir, una 3-variedad).
-Supongamos que $X$ es simplemente conexo. Entonces: $X \cong S^3$.
+Supongamos que $X$ es simplemente conexo. Entonces: $X \cong S^3$. Es el recíproco, en dimensión 3, de la \cref{prop:corolario_sn}.
+
+La afirmación análoga en dimensión $n$ ($X$ localmente homeomorfo a $\mathbb{R}^n$ y simplemente conexo implica $X \cong S^n$) fue demostrada, según los casos, por:
 
 \begin{itemize}
     \item Cuando $n\geq 7 \implies$ Stallings (1960)
@@ -302,6 +290,8 @@ Supongamos que $X$ es simplemente conexo. Entonces: $X \cong S^3$.
 \end{itemize}
 
 \vspace{0.5cm}
+\subsection{Aplicación recubridora y elevaciones}
+
 \textbf{Objetivo [C8.2]:} ver que $\pi_1(S^1) \cong (\mathbb{Z},+)$.
 
 \begin{definicion}{Aplicación exponencial [C8.4]}{}
@@ -347,6 +337,8 @@ Como $g(X)$ es conexo y $g(X) \subseteq \mathbb{Z} \implies g(x)$ es constante.
 Luego $\exists k \in \mathbb{Z}$ tal que $g(x) = k \ \forall x \in X$. Como $g(x_0) = f_1(x_0) - f_2(x_0) = 0$, se tiene que $k=0 \implies f_1(x) = f_2(x) \ \forall x \in X$. \qed
 
 \vspace{0.5cm}
+\subsection{Existencia de elevaciones}
+
 \textbf{Teorema existencia de elevaciones:}
 
 \begin{definicion}{Continuidad uniforme [C8.9]}{}
@@ -372,7 +364,7 @@ Observamos que:
 Finalmente:
 \[ \|f(x)-f(x')\| \leq \|f(x)-f(x_j)\| + \|f(x_j)-f(x')\| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \] \qed
 
-\begin{teorema}{Existencia de elevaciones [C8.11]}{}
+\begin{teorema}{Existencia de elevaciones [C8.11]}{teo_existencia_elevaciones}
 Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es convexo y compacto. Sea $f: X \to S^1$ continua. Sea $x_0 \in X$. Sea $t_0 \in \mathbb{R}$ tal que $p(t_0) = f(x_0)$. Entonces existe una única elevación $\tilde{f} : X \to \mathbb{R}$ de $f$ tal que $\tilde{f}(x_0) = t_0$.
 \end{teorema}
 
@@ -422,13 +414,9 @@ Definimos $\tilde{f} = \tilde{g} \circ L$. Solo queda comprobar que $\tilde{f}$ 
     \textbf{14/10/2026 (Clase 9)}
 \end{center}
 
-Recordamos el resultado de la clase anterior:
+\subsection{El grupo fundamental de $S^1$}
 
-\begin{teorema}{Existencia y unicidad de elevaciones [C8.11]}{teo_elevaciones_recordatorio}
-Sea $f \colon X \to S^1$ continua, con $X \subseteq \mathbb{R}^n$ convexo y compacto. Sea $x_0 \in X$ y sea $t_0 \in \mathbb{R}$ tal que $p(t_0) = f(x_0)$. Entonces existe una única elevación $\tilde{f} \colon X \to \mathbb{R}$ de $f$ con $\tilde{f}(x_0) = t_0$.
-\end{teorema}
-
-\textbf{Objetivo:} probar que $\pi_1(S^1) \cong (\mathbb{Z},+)$.
+El objetivo es probar que $\pi_1(S^1) \cong (\mathbb{Z},+)$ (\cref{thm:teo_pi1_s1}).
 
 \begin{proposicion}{Elevación de arcos [C9.1]}{cor_elev_arcos}
 Sea $\alpha \colon I \to S^1$ continua tal que $\alpha(0) = (1,0)$. Entonces existe una única elevación $\tilde{\alpha} \colon I \to \mathbb{R}$ de $\alpha$ tal que $\tilde{\alpha}(0) = 0$.
@@ -438,7 +426,7 @@ Sea $\alpha \colon I \to S^1$ continua tal que $\alpha(0) = (1,0)$. Entonces exi
 Sea $F \colon I \times I \to S^1$ continua tal que $F(0,0) = (1,0)$. Entonces existe una única elevación $\tilde{F} \colon I \times I \to \mathbb{R}$ de $F$ tal que $\tilde{F}(0,0) = 0$.
 \end{proposicion}
 
-Ambos resultados se deducen del teorema anterior, ya que $I$ e $I \times I$ son convexos y compactos.
+Ambos resultados se deducen del \cref{thm:teo_existencia_elevaciones}, ya que $I$ e $I \times I$ son convexos y compactos.
 
 \begin{definicion}{Grado de un lazo [C9.3]}{def_grado}
 Sea $\alpha \in C_{(1,0)}(S^1)$. Se define el \textbf{grado} de $\alpha$ como $\deg(\alpha) := \tilde{\alpha}(1)$, siendo $\tilde{\alpha}$ la única elevación de $\alpha$ con $\tilde{\alpha}(0) = 0$. Está bien definido por la elevación de arcos.

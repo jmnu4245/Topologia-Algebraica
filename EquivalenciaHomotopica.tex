@@ -1,5 +1,5 @@
 \textbf{11/09/2026}
-\section{Tema 2. Equivalencia homotópica}
+\section{Equivalencia homotópica}
 
 \subsection{Motivación: Homeomorfismo vs. Homotopía}
 
@@ -67,7 +67,7 @@ $F$ captura una transformación parametrizada y continua entre $f$ y $g$.
 \vspace{0.5cm}
 \textbf{Ejemplos:} ¿$f$ y $g$ son homotópicas?
 
-Recordemos que $S^n = \{x \in \mathbb{R}^{n+1} \mid |x| = 1\}$.
+Denotamos por $S^n = \{x \in \mathbb{R}^{n+1} \mid |x| = 1\}$ la esfera de dimensión $n$ (así, $S^0 = \{-1,1\}$ y $S^1$ es la circunferencia).
 
 \begin{enumerate}
     \item $f \colon S^1 \to S^1, \quad z \mapsto z$ \\
@@ -89,7 +89,7 @@ Recordemos que $S^n = \{x \in \mathbb{R}^{n+1} \mid |x| = 1\}$.
 
 \subsubsection{Estructura en $C(X,Y)$}
 
-Llamamos $C(X,Y) = \{f \colon X \to Y \mid f \text{ continua}\}$. Vimos que $\simeq$ es R.B.E en $C(X,Y)$. Luego podemos hablar del conjunto cociente $C(X,Y)/\simeq$, que se suele denotar por $[X,Y]$.
+Llamamos $C(X,Y) = \{f \colon X \to Y \mid f \text{ continua}\}$ al conjunto de aplicaciones continuas entre $X$ e $Y$.
 
 \begin{teorema}{Relación de equivalencia en $C(X,Y)$ [C2.5]}{teo_rel_eq}
 La homotopía $\simeq$ es una Relación de Equivalencia (R.B.E.) en $C(X,Y)$.
@@ -112,8 +112,11 @@ La homotopía $\simeq$ es una Relación de Equivalencia (R.B.E.) en $C(X,Y)$.
     $F_1(x) = F(x,1) = F^{(2)}(x,1) = h(x), \forall x \in X$.
     Como consecuencia de todo lo anterior, $f \simeq h$.
 \end{enumerate}
-Por tanto, podremos hablar del espacio cociente $C(X,Y)/\simeq$.
 \end{proof}
+
+\begin{definicion}{Conjunto de clases de homotopía [C3.2]}{def_cociente_homotopia}
+Como $\simeq$ es una relación de equivalencia en $C(X,Y)$ (\cref{thm:teo_rel_eq}), podemos considerar el conjunto cociente $C(X,Y)/\simeq$, que se denota por $[X,Y]$.
+\end{definicion}
 
 \begin{teorema}{Composición de homotopías [C2.6]}{teo_comp_homo}
 Sean $X \xrightarrow{f_1, f_2} Y \xrightarrow{g_1, g_2} Z$. Si suponemos que $f_1 \simeq f_2$ y $g_1 \simeq g_2$, entonces $g_1 \circ f_1 \simeq g_2 \circ f_2$.
@@ -131,7 +134,7 @@ Como $H$ es continua, queda probado que $g_1 \circ f_1 \simeq g_2 \circ f_2$.
 
 \subsection{Equivalencia homotópica entre espacios}
 
-\begin{definicion}{Equivalencia homotópica [C2.7]}{def_eq_homotopica}
+\begin{definicion}{Equivalencia homotópica [C2.7, C3.1]}{def_eq_homotopica}
 Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son del mismo tipo de homotopía ($X \simeq Y$) cuando $\exists f \colon X \to Y$ continua y $\exists g \colon Y \to X$ continua tales que $f \circ g \simeq 1_Y$ y $g \circ f \simeq 1_X$. 
 
 En este caso también diremos que $f$ es una \textbf{equivalencia homotópica} y $g$ la \textbf{inversa homotópica} de $f$ (no necesariamente $f$ biyectiva).
@@ -150,23 +153,13 @@ Sean $X = [0,1]$ e $Y = \{0\}$. Definimos $f \colon X \to Y$, $f(x) = 0$, y $g \
 
 Sin embargo $[0,1] \not\cong \{0\}$, pues no existe ninguna biyección entre un conjunto con un único elemento e $[0,1]$. Así, ``tener el mismo tipo de homotopía'' es estrictamente más débil que ``ser homeomorfos''.
 
-\begin{nota}{Invarianza por eliminación de puntos}{nota_agujeros}
-Como consecuencia de las propiedades topológicas: si $X \cong Y$, dado $P \in X$, entonces $X \setminus \{P\} \cong Y \setminus \{f(P)\}$. Para el caso homotópico, la pregunta análoga es si $\forall P \in X, \exists Q \in Y$ tal que $X \setminus \{P\} \simeq Y \setminus \{Q\}$.
-\end{nota}
-
 \textbf{Ejemplos:}
 \begin{enumerate}
     \item Sea $X = D(0,1) = \{(x,y) \in \mathbb{R}^2 \mid ||(x,y)|| < 1\}$ y $Y = \{(0,0)\}$.
-    Definimos $f \colon X \to Y$, $f = \text{cte}$, es decir, $f(x,y) = (0,0), \forall (x,y) \in X$.
-    Definimos $g \colon Y \to X$, $g(0,0) = (0,0)$.
-    
-    Tenemos que $f \circ g(0,0) = (0,0) \implies f \circ g = 1_Y \implies f \circ g \simeq 1_Y$.
-    Y también $g \circ f(x,y) = g(0,0) = (0,0), \forall (x,y) \in X \implies g \circ f = c_{(0,0)}$.
-    
-    Sea $F \colon X \times I \to X$ continua dada por $F((x,y), t) = t \cdot (x,y)$. Se tiene $F_0 = c_{(0,0)}$ y $F_1 = 1_X$. Por tanto, $g \circ f \simeq 1_X$, y concluimos que $X \simeq Y$.
+    Como $D(0,1)$ es convexo, es contráctil (\cref{thm:teo_convexo_contractil}), es decir, del mismo tipo de homotopía que un punto (\cref{thm:teo_contractil}).
     
     \item Sean $X = [-1,1]$ y $Y = [-1,1] \times \{0\} \cup \{0\} \times [-1,1]$. 
-    Evaluando el número de componentes conexas al quitar un punto: $\mathcal{O}(X) = \{1, 2\}$ y $\mathcal{O}(Y) = \{1, 2, 4\}$. Como $\mathcal{O}(X) \neq \mathcal{O}(Y) \implies X \not\cong Y$. Sin embargo, se puede demostrar que $X \simeq Y$.
+    Por la \cref{prop:Theta_invariante}, como $\Theta(X) = \{1,2\} \neq \{1,2,4\} = \Theta(Y)$, se tiene $X \not\cong Y$. Sin embargo, se puede demostrar que $X \simeq Y$.
     
     \item Sean $X = S^1 \times [-1,1]$ (cilindro) y $Y = S^1$.
     $f \colon X \to Y, (x,y,z) \mapsto (x,y)$.
@@ -176,6 +169,12 @@ Como consecuencia de las propiedades topológicas: si $X \cong Y$, dado $P \in X
     $g \circ f(x,y,z) = g(x,y) = (x,y,0)$. 
     Construimos $F \colon X \times I \to X$ dada por $F((x,y,z), t) = (x,y, t \cdot z)$. Se verifica que $F_0 = g \circ f$ y $F_1 = 1_X \implies X \simeq Y$.
 \end{enumerate}
+
+\begin{nota}{Extraer un punto: caso topológico y caso homotópico}{nota_extraer_punto}
+Si $f \colon X \to Y$ es un homeomorfismo y $P \in X$, entonces $f$ restringe a un homeomorfismo $X \setminus \{P\} \cong Y \setminus \{f(P)\}$ (es lo que se usa en la \cref{prop:Theta_invariante}).
+
+Para el caso homotópico, la pregunta análoga es si, cuando $X \simeq Y$, se tiene $\forall P \in X,\ \exists Q \in Y$ tal que $X \setminus \{P\} \simeq Y \setminus \{Q\}$. La respuesta es \textbf{negativa}: el cilindro $Y = S^1 \times [-1,1]$ es del mismo tipo de homotopía que $X = S^1$ (ejemplo anterior), pero $S^1 \setminus \{P\}$ es homeomorfo a un intervalo, luego contráctil, mientras que $Y \setminus \{Q\}$ no lo es para ningún $Q$ (su grupo fundamental no es trivial).
+\end{nota}
 
 \begin{definicion}{Unión por un punto y ramo de circunferencias [C2.9]}{def_wedge}
 Sean $(X,x_0)$ e $(Y,y_0)$ espacios con un punto base. Su \textbf{unión por un punto} es
@@ -210,7 +209,7 @@ Más ejemplos de espacios del mismo tipo de homotopía:
 \end{enumerate}
 
 
-\subsection{Espacios Contractiles, Convexos y Estrellados}
+\subsection{Espacios contráctiles}
 
 \begin{definicion}{Espacio topológico contractil [C2.11]}{def_contractil}
 Un espacio topológico $X \neq \emptyset$ es contractil si $\exists x_0 \in X \mid 1_X \simeq c_{x_0}$ (donde $c_{x_0}$ es la aplicación constante $x \mapsto x_0$).
@@ -229,7 +228,7 @@ Son equivalentes las siguientes afirmaciones para un e.t. $X \neq \emptyset$:
 \begin{proof}
 Probamos (a)$\Rightarrow$(b)$\Rightarrow$(c)$\Rightarrow$(a) y (a)$\Leftrightarrow$(d).
 
-(a)$\Rightarrow$(b): Sea $x_0 \in X$ con $1_X \simeq c_{x_0}$. Dado $x \in X$, como $X$ es arco-conexo (por ser contráctil, ver el teorema de más abajo, cuya prueba no usa este resultado) existe un arco $\omega \colon I \to X$ con $\omega(0) = x_0$ y $\omega(1) = x$. La aplicación $H \colon X \times I \to X$, $H(y,t) = \omega(t)$, es continua con $H_0 = c_{x_0}$ y $H_1 = c_x$, luego $c_{x_0} \simeq c_x$. Por transitividad, $1_X \simeq c_{x_0} \simeq c_x$.
+(a)$\Rightarrow$(b): Sea $x_0 \in X$ con $1_X \simeq c_{x_0}$. Dado $x \in X$, como $X$ es arco-conexo (por ser contráctil, \cref{thm:teo_contractil_arcoconexo}, cuya prueba no usa este resultado) existe un arco $\omega \colon I \to X$ con $\omega(0) = x_0$ y $\omega(1) = x$. La aplicación $H \colon X \times I \to X$, $H(y,t) = \omega(t)$, es continua con $H_0 = c_{x_0}$ y $H_1 = c_x$, luego $c_{x_0} \simeq c_x$. Por transitividad, $1_X \simeq c_{x_0} \simeq c_x$.
 
 (b)$\Rightarrow$(c): Sean $f, g \colon T \to X$ continuas y fijemos $x \in X$. Como $1_X \simeq c_x$ y $f \simeq f$, el teorema de composición de homotopías da $1_X \circ f \simeq c_x \circ f$, es decir, $f \simeq c_x$ (donde ahora $c_x \colon T \to X$). Igualmente $g \simeq c_x$. Por simetría y transitividad, $f \simeq g$.
 
@@ -240,95 +239,39 @@ Probamos (a)$\Rightarrow$(b)$\Rightarrow$(c)$\Rightarrow$(a) y (a)$\Leftrightarr
 (d)$\Rightarrow$(a): Sean $f \colon X \to \{p\}$ y $g \colon \{p\} \to X$ con $g \circ f \simeq 1_X$. Pero $g \circ f = c_{g(p)}$, luego $1_X \simeq c_{x_0}$ con $x_0 = g(p)$.
 \end{proof}
 
-%fecha
-(3) \textbf{15/09/2026}
+\textbf{15/09/2026}
 
-Sean $X, Y$ espacios topológicos.
-
-\begin{definicion}{Homeomorfismo y Equivalencia Homotópica [C2.8]}{def_hom_homot}
-\textbf{$X \cong Y$ ($X, Y$ homeomorfos):}
-\begin{itemize}
-    \item $\exists f: X \to Y$ continua
-    \item $\exists g: Y \to X$ continua
-    \item $f \circ g = 1_Y$, $g \circ f = 1_X$
-    \item ($g$ es la inversa de $f$)
-\end{itemize}
-
-\textbf{$X \simeq Y$ ($X, Y$ del mismo tipo de homotopía):}
-\begin{itemize}
-    \item $\exists f: X \to Y$ continua
-    \item $\exists g: Y \to X$ continua
-    \item $f \circ g \simeq 1_Y$, $g \circ f \simeq 1_X$
-    \item (No necesariamente $f$ biyectiva)
-\end{itemize}
-En este caso también diremos que $f$ es una \textbf{equivalencia homotópica} y que $g$ es la \textbf{inversa homotópica} de $f$.
-\end{definicion}
-
-\begin{observacion}{Invariancia al extraer un punto}{obs_extraer_punto}
-Si $X \cong Y$ mediante una función $f: X \to Y$ continua y biyectiva, para un $p \in X$, se tiene como consecuencia que la restricción:
-$$f|_{X\setminus\{p\}} : X\setminus\{p\} \to Y\setminus\{f(p)\}$$
-también es un homeomorfismo.
-
-Definimos $\mathcal{O}(X) = \{ C_p(X) \mid p \in X \}$, donde $C_p(X)$ representa el número de componentes conexas al quitar el punto $p$. 
-Se cumple que:
-$$X \cong Y \implies \mathcal{O}(X) = \mathcal{O}(Y)$$
-
-\textbf{Ejemplo:}
-Sea $X = ([-1,1] \times \{0\}) \cup (\{0\} \times [-1,1])$ (cruz en los ejes).
-$$\mathcal{O}(X) = \{1, 2, 4\}$$
-Sea $Y = [-1,1]$. 
-$$\mathcal{O}(Y) = \{1, 2\}$$
-Como $\mathcal{O}(X) \neq \mathcal{O}(Y)$, deducimos que $X \not\cong Y$.
-\end{observacion}
-
-\begin{nota}{Homotopía al extraer un punto}{nota_homotopia_punto}
-Si partimos de $X \simeq Y$, con $f: X \to Y$ y $g: Y \to X$ continuas tales que $f \circ g \simeq 1_Y$ y $g \circ f \simeq 1_X$.
-¿Es cierto que $\forall p \in X, \exists q \in Y$ tal que $X\setminus\{p\} \simeq Y\setminus\{q\}$?
-
-La respuesta es negativa. Como contraejemplo consideremos:
-\begin{itemize}
-    \item $X = S^1$ (circunferencia)
-    \item $Y = S^1 \times [-1,1]$ (cilindro)
-\end{itemize}
-\end{nota}
-
-\begin{observacion}{Conjunto cociente de clases de homotopía [C3.2]}{obs_cociente}
-Dadas $f, g: X \to Y$. Si $f \simeq g$, existe una homotopía $F: X \times [0,1] \to Y$ continua tal que:
-$$F_0 = f, \quad F_1 = g$$
-donde definimos $F_t: X \to Y$ mediante $x \mapsto F(x,t)$.
-
-Vimos que $\simeq$ es una Relación de Equivalencia (R.E.) en el conjunto de aplicaciones continuas $C(X,Y)$.
-Luego podemos hablar del conjunto cociente:
-$$C(X,Y)/\simeq$$
-Este conjunto cociente de clases de homotopía se suele denotar por $[X,Y]$.
-\end{observacion}
+\subsection{Conjuntos convexos y estrellados}
 
 \begin{definicion}{Conjunto convexo [C3.3]}{def_convexo}
 Sea $X \subseteq \mathbb{R}^n$. Diremos que $X$ es convexo cuando todo segmento que une dos puntos cualesquiera de $X$ está contenido en $X$. Equivalentemente:
 \[ \forall x,y \in X, \forall t \in [0,1]: \quad tx + (1-t)y \in X \]
 \end{definicion}
 
-\begin{teorema}{Contracción de conjuntos convexos [C3.3]}{teo_convexo_contractil}
-Todo subconjunto convexo de $\mathbb{R}^n$ es contractil (del mismo tipo de homotopía que un punto).
-\end{teorema}
-
-\begin{proof}
-Sea $x_0 \in X$. Tomamos un punto cualquiera de $X$ y definimos:
-\[ f \colon X \to \{x_0\} \hookrightarrow X, \quad x \mapsto x_0 \]
-\[ g \colon \{x_0\} \to X, \quad x_0 \mapsto x_0 \]
-Claramente $f \circ g = 1_{\{x_0\}}$. Veamos que $g \circ f = c_{x_0} \simeq 1_X$. Definimos la homotopía $F \colon X \times I \to X$ como:
-\[ F(x,t) = tx + (1-t)x_0 \]
-Evaluando en los extremos, $F_0(x) = x_0 = c_{x_0}$ y $F_1(x) = x = 1_X$. Luego $g \circ f \simeq 1_X$.
-\end{proof}
-
 \begin{definicion}{Conjunto estrellado [C3.3]}{def_estrellado}
-Sea $X \subseteq \mathbb{R}^n$. Diremos $X$ estrellado cuando $\exists x_0 \in X$ tal que todo segmento que une $x_0$ con algún punto de $X$, esté contenido en $X$. Equivalentemente:
+Sea $X \subseteq \mathbb{R}^n$. Diremos $X$ estrellado cuando $\exists x_0 \in X$ tal que todo segmento que une $x_0$ con algún punto de $X$ esté contenido en $X$. Equivalentemente:
 \[ X \text{ estrellado} \iff \exists x_0 \in X \mid \forall x \in X, \forall t \in [0,1]: \quad tx + (1-t)x_0 \in X \]
 \end{definicion}
 
 \begin{observacion}{ [C3.3]}{obs_convexo_estrellado}
-Todo conjunto convexo es estrellado (Convexo $\implies$ estrellado).
+Todo conjunto convexo es estrellado (cualquier punto $x_0$ sirve como centro).
 \end{observacion}
+
+\begin{teorema}{Contracción de conjuntos estrellados [C3.3]}{teo_estrellado_contractil}
+Sea $X \subseteq \mathbb{R}^n$. Si $X$ es estrellado, entonces $X$ es contráctil.
+\end{teorema}
+
+\begin{proof}
+Sea $x_0$ el centro de $X$. Por ser $X$ estrellado, la aplicación $F \colon X \times I \to X$, $F(x,t) = tx + (1-t)x_0$, está bien definida (el segmento que une $x_0$ con $x$ está en $X$) y es continua. Además $F_0 = c_{x_0}$ y $F_1 = 1_X$, luego $1_X \simeq c_{x_0}$ y $X$ es contráctil.
+\end{proof}
+
+\begin{teorema}{Contracción de conjuntos convexos [C3.3]}{teo_convexo_contractil}
+Todo subconjunto convexo de $\mathbb{R}^n$ es contráctil (del mismo tipo de homotopía que un punto).
+\end{teorema}
+
+\begin{proof}
+Es consecuencia de la \cref{obs:obs_convexo_estrellado} y del \cref{thm:teo_estrellado_contractil}.
+\end{proof}
 
 \begin{observacion}{Los recíprocos no se cumplen [C3.3]}{obs_reciprocos}
 Para subconjuntos de $\mathbb{R}^n$ tenemos convexo $\implies$ estrellado $\implies$ contráctil, pero ninguna de las dos implicaciones puede invertirse:
@@ -337,12 +280,3 @@ Para subconjuntos de $\mathbb{R}^n$ tenemos convexo $\implies$ estrellado $\impl
     \item \textbf{Contráctil $\not\implies$ estrellado.} Sea la ``U'' $U = \{0\} \times [0,1] \cup [0,1] \times \{0\} \cup \{1\} \times [0,1]$. Es homeomorfa a un intervalo, luego contráctil. Pero no es estrellada: dado $x_0 \in U$, si $x_0$ está en la base o en el lado izquierdo y $x_0 \neq (1,0)$ tomamos $y = (1,1)$; en otro caso tomamos $y = (0,1)$. En ambos casos los puntos interiores del segmento $[x_0, y]$ tienen abscisa en $]0,1[$ y ordenada $> 0$, y los únicos puntos de $U$ con ordenada $> 0$ tienen abscisa $0$ o $1$; luego $[x_0,y] \not\subseteq U$.
 \end{itemize}
 \end{observacion}
-
-\begin{teorema}{Contracción de conjuntos estrellados [C3.3]}{teo_estrellado_contractil}
-Sea $X \subseteq \mathbb{R}^n$. Si $X$ es estrellado $\implies X$ es contractil.
-\end{teorema}
-\begin{proof}
-Análogo a la demostración del teorema de espacios convexos, utilizando el punto central $x_0$ que define el conjunto estrellado para construir la homotopía de contracción. Explícitamente: por ser $X$ estrellado, $F \colon X \times I \to X$, $F(x,t) = tx + (1-t)x_0$ está bien definida (el segmento que une $x_0$ con $x$ está en $X$) y es continua; además $F_0 = c_{x_0}$ y $F_1 = 1_X$. Luego $1_X \simeq c_{x_0}$ y $X$ es contráctil.
-\end{proof}
-
-
