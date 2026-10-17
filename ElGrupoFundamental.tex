@@ -1,5 +1,7 @@
 \section{El Grupo Fundamental}
 
+\subsection{Arcos, lazos y homotopía relativa}
+
 Sea $X$ e.t., $x_0, x_1 \in X$. Al conjunto $C_{x_0, x_1}(X) = \{ \alpha \colon [0,1] \to X \text{ cont } \mid \alpha(0) = x_0, \alpha(1) = x_1 \}$ se le denomina conjunto de arcos o caminos. 
 
 Saber que dos arcos cualesquiera son homotópicos no es suficiente para "cazar" agujeros topológicos. Por ello, requerimos fijar subconjuntos durante la deformación.
@@ -37,9 +39,11 @@ Es la misma prueba que para $\simeq$, comprobando además que $A$ queda fijo.
 \begin{enumerate}
     \item \textbf{Reflexiva:} $F(x,t) = f(x)$ cumple $F_0 = F_1 = f$ y $F(a,t) = f(a)$ para todo $a \in A$.
     \item \textbf{Simétrica:} si $F \colon f \simeq_A g$, definimos $G(x,t) = F(x,1-t)$. Entonces $G_0 = g$, $G_1 = f$ y $G(a,t) = F(a,1-t) = f(a) = g(a)$ no depende de $t$.
-    \item \textbf{Transitiva:} sean $F^{(1)} \colon f \simeq_A g$ y $F^{(2)} \colon g \simeq_A h$. Definimos $F(x,t) = F^{(1)}(x,2t)$ si $t \in [0,\frac12]$ y $F(x,t) = F^{(2)}(x,2t-1)$ si $t \in [\frac12,1]$, que es continua como en el Teorema 2.1. Para $a \in A$: si $t \le \frac12$, $F(a,t) = f(a)$; si $t \ge \frac12$, $F(a,t) = g(a) = f(a)$ (porque $f|_A = g|_A$ por la observación anterior). Luego $F(a,t)$ es constante en $t$ y $f \simeq_A h$.
+    \item \textbf{Transitiva:} sean $F^{(1)} \colon f \simeq_A g$ y $F^{(2)} \colon g \simeq_A h$. Definimos $F(x,t) = F^{(1)}(x,2t)$ si $t \in [0,\frac12]$ y $F(x,t) = F^{(2)}(x,2t-1)$ si $t \in [\frac12,1]$, que es continua como en el \cref{thm:teo_rel_eq}. Para $a \in A$: si $t \le \frac12$, $F(a,t) = f(a)$; si $t \ge \frac12$, $F(a,t) = g(a) = f(a)$ (porque $f|_A = g|_A$ por la observación anterior). Luego $F(a,t)$ es constante en $t$ y $f \simeq_A h$.
 \end{enumerate}
 \end{proof}
+
+\subsection{El grupo fundamental y el teorema de Poincaré}
 
 \begin{definicion}{Grupo fundamental [C3.17]}{def_grupo_fundamental}
 Sea $X$ e.t., sea $x_0 \in X$. Definimos el grupo fundamental de $X$ en $x_0$, denotado como $\pi_1(X, x_0)$, al conjunto cociente de lazos bajo homotopía relativa a los extremos:
@@ -289,19 +293,11 @@ Dividimos la demostración en la comprobación de la buena definición de la ope
 
 \end{proof}
 
+\subsection{Extensión a arcos y concatenación conjunta}
+
 Si $X$ espacio topológico, $x_0 \in X$, consideremos la familia $\{\pi_1(X, x) : x \in X\}$. ¿Qué propiedades tienen y qué relación hay entre ellos?
 
-\textbf{Ejercicio:} Reproduce las pruebas del teorema de Poincaré para arcos cualquiera.
-
-Recordamos que vimos:
-\begin{align*}
-    [\alpha]([\beta][\gamma]) &= ([\alpha][\beta])[\gamma] \quad \forall \alpha, \beta, \gamma \in C_{x_0}(X) \\
-    [c_{x_0}][\alpha] &= [\alpha] \quad \forall \alpha \in C_{x_0}(X) \\
-    [\alpha^{-1}][\alpha] &= [c_{x_0}] \quad \forall \alpha \in C_{x_0}(X)
-\end{align*}
-Además, si $[\alpha] = [\alpha']$ y $[\beta] = [\beta'] \implies [\alpha * \beta] = [\alpha' * \beta']$ para todo $\alpha, \beta \in C_{x_0}(X)$.
-
-Probar que esta propiedad se cumple de igual manera para arcos, además que para el elemento neutro:
+\textbf{Ejercicio:} Reproduce las pruebas del \cref{thm:poincare} para arcos cualesquiera. Es decir, probar las siguientes propiedades (para $\alpha, \alpha' \in C_{x_0,x_1}(X)$, $\beta, \beta' \in C_{x_1,x_2}(X)$ y $\gamma \in C_{x_2,x_3}(X)$):
 \begin{enumerate}
     \item[a)] Si $\alpha \simeq_{\{0,1\}} \alpha'$ y $\beta \simeq_{\{0,1\}} \beta' \implies \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
     \item[b)] $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
@@ -370,8 +366,7 @@ Como $\alpha(1-(2s-1)) = \alpha(2-2s)$, ambas expresiones coinciden para todo $s
 
 \begin{observacion}{ [C5.7]}{obs_inversos}
 \begin{enumerate}
-    \item Volviendo a $\pi_1(X, x_0)$, vimos que el inverso de un elemento $[\alpha] \in \pi_1(X, x_0)$ es $[\alpha^{-1}]$. Luego $[\alpha]^{-1} = [\alpha^{-1}]$.
-    \item Si $\alpha \in C_{x_0}(X)$, entonces $[\alpha^{-1}][\alpha] = [\alpha][\alpha^{-1}] = [c_{x_0}]$, y $[c_{x_0}][\alpha] = [\alpha][c_{x_0}] = [\alpha]$. Además, $([\alpha]^{-1})^{-1} = [\alpha]$.
+    \item El inverso de $[\alpha] \in \pi_1(X, x_0)$ es $[\alpha^{-1}]$, es decir, $[\alpha]^{-1} = [\alpha^{-1}]$ (\cref{thm:poincare}).
     \item $\alpha * (\beta * \gamma) \ne (\alpha * \beta) * \gamma$ pero $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$. Por tanto, $[\alpha * \beta * \gamma] := [\alpha * (\beta * \gamma)] = [(\alpha * \beta) * \gamma]$ para todo $\alpha,\beta,\gamma \in C_{x_0}(X)$. En cambio, la expresión $\alpha * \beta * \gamma$ no está definida por sí sola como producto binario.
 \end{enumerate}
 \end{observacion}
@@ -403,11 +398,13 @@ Esta aplicación es continua. Como ejercicio, probar que $[\alpha * \beta * \gam
 \begin{enumerate}
     \item \emph{$[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma]$.} Se tiene $\alpha * \beta * \gamma = ((\alpha * \beta) * \gamma) \circ g$, con
     \[ g(s) = \begin{cases} \frac{3s}{4} & \text{si } s \in [0,\frac23], \\ \frac{3s-1}{2} & \text{si } s \in [\frac23,1]. \end{cases} \]
-    En efecto, $g$ es continua ($g(\frac23) = \frac12$ por ambos lados), $g(0) = 0$, $g(1) = 1$, y comparando con la expresión a trozos de $(\alpha * \beta) * \gamma$ (que usa $\alpha(4u)$ en $[0,\frac14]$, $\beta(4u-1)$ en $[\frac14,\frac12]$ y $\gamma(2u-1)$ en $[\frac12,1]$) se obtiene $\alpha(3s)$, $\beta(3s-1)$ y $\gamma(3s-2)$ en los tres tramos de $s$. Por la proposición de reparametrización (Tema 3), $\alpha * \beta * \gamma \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
+    En efecto, $g$ es continua ($g(\frac23) = \frac12$ por ambos lados), $g(0) = 0$, $g(1) = 1$, y comparando con la expresión a trozos de $(\alpha * \beta) * \gamma$ (que usa $\alpha(4u)$ en $[0,\frac14]$, $\beta(4u-1)$ en $[\frac14,\frac12]$ y $\gamma(2u-1)$ en $[\frac12,1]$) se obtiene $\alpha(3s)$, $\beta(3s-1)$ y $\gamma(3s-2)$ en los tres tramos de $s$. Por la \cref{prop:prop_reparametrizacion} (reparametrización), $\alpha * \beta * \gamma \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
     \item \emph{$[\alpha * \beta * \gamma] = [\alpha * (\beta * \gamma)]$.} Análogamente, $\alpha * \beta * \gamma = (\alpha * (\beta * \gamma)) \circ h$ con $h(s) = \frac{3s}{2}$ si $s \in [0,\frac13]$ y $h(s) = \frac{3s+1}{4}$ si $s \in [\frac13,1]$ (continua, $h(0)=0$, $h(1)=1$).
     \item \emph{$(\alpha_1 * \alpha_2) * (\alpha_3 * \alpha_4) = \alpha_1 * \alpha_2 * \alpha_3 * \alpha_4$.} Esta es una igualdad de aplicaciones, no solo de clases: $(\alpha_1 * \alpha_2)(2s)$ vale $\alpha_1(4s)$ si $s \in [0,\frac14]$ y $\alpha_2(4s-1)$ si $s \in [\frac14,\frac12]$; y $(\alpha_3 * \alpha_4)(2s-1)$ vale $\alpha_3(4s-2)$ si $s \in [\frac12,\frac34]$ y $\alpha_4(4s-3)$ si $s \in [\frac34,1]$. Es exactamente la concatenación conjunta de cuatro caminos.
 \end{enumerate}
 \end{proof}
+
+\subsection{Cambio de punto base}
 
 Sea $X$ un espacio topológico y $x_0 \in X$. Denotamos por $\pi_1(X, x_0)$ al grupo fundamental de $X$ en $x_0$.
 
@@ -468,8 +465,10 @@ Por la proposición del inverso homotópico, $\omega_0^{-1} \simeq_{\{0,1\}} \om
 Por tanto $P_{\omega_0}([\alpha]) = [\omega_0^{-1} * \alpha * \omega_0] = [\omega_1^{-1} * \alpha * \omega_1] = P_{\omega_1}([\alpha])$.
 \end{proof}
 
+\subsection{Homomorfismo inducido}
+
 \begin{definicion}{Homomorfismo inducido [C5.13]}{def_hom_ind}
-Sea $f: X \to Y$ continua, sea $x_0 \in X$ y sea $y_0 = f(x_0)$. Definimos:
+Sea $f: X \to Y$ continua, sea $x_0 \in X$ y sea $y_0 = f(x_0)$ (escribimos $f \colon (X,x_0) \to (Y,y_0)$ para indicar esta situación). Definimos:
 \begin{align*}
 f_* : \pi_1(X, x_0) &\to \pi_1(Y, f(x_0)) \\
 [\alpha] &\mapsto [f \circ \alpha]
@@ -506,50 +505,15 @@ f(\beta(2s-1)), & \text{si } s \in [1/2, 1]
 Como coinciden para todo $s \in I$, se verifica la igualdad de las clases.
 \end{proof}
 
-\textbf{Ejercicio:} Sea $x_0 \in X$, probar que $(g \circ f)_* = g_* \circ f_*$.
-
 \textbf{25/09/2026}
 
-\begin{nota}{Resumen}{}
-
-
-$$\pi_1(X, x_0) = C(X, x_0) / \simeq_{\{0,1\}}$$
-
-Dadas $\alpha \in C_{x_0, x_1}(X)$ y $\beta \in C_{x_1, x_2}(X)$, se tiene la concatenación $\alpha * \beta \in C_{x_0, x_2}(X)$.
-Si $\alpha \simeq_{\{0,1\}} \alpha'$ con $\alpha, \alpha' \in C_{x_0, x_1}(X)$ y $\beta \simeq_{\{0,1\}} \beta'$ con $\beta, \beta' \in C_{x_1, x_2}(X)$, entonces se cumple que $\alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
-
-Esto nos permite definir la aplicación:
-
-
-$$C_{x_0, x_1}(X) / \simeq_{\{0,1\}} \times C_{x_1, x_2}(X) / \simeq_{\{0,1\}} \longrightarrow C_{x_0, x_2}(X) / \simeq_{\{0,1\}}$$
-
-$$([\alpha], [\beta]) \longmapsto [\alpha] \cdot [\beta] = [\alpha * \beta]$$
-
-
-Donde $[\alpha]$ es la clase de equivalencia de $\alpha$ respecto de $\simeq_{\{0,1\}}$.
-
-Se cumplen las siguientes propiedades algebraicas de grupo:
-\begin{itemize}
-\item Asociatividad: $[\alpha] \cdot ([\beta] \cdot [\gamma]) = ([\alpha] \cdot [\beta]) \cdot [\gamma]$, es decir, $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
-\item Elemento neutro: $[C_{x_0}] \cdot [\alpha] = [\alpha] \cdot [C_{x_1}] = [\alpha]$.
-\item Elemento inverso: $[\alpha] \cdot [\alpha^{-1}] = [\alpha * \alpha^{-1}] = [C_{x_0}]$ y $[\alpha^{-1}] \cdot [\alpha] = [C_{x_1}]$.
-\end{itemize}
-
-Si $X$ es arcoconexo, dados dos puntos $x_0, x_1 \in X$ unidos por un camino $\omega$, se define $P_\omega \colon \pi_1(X, x_0) \longrightarrow \pi_1(X, x_1)$ dado por $[\alpha] \longmapsto [\omega^{-1} * \alpha * \omega]$, el cual es un isomorfismo de grupos (con $P_\omega^{-1} = P_{\omega^{-1}}$). Por tanto, escribiremos $\pi_1(X) = \pi_1(X, x_0)$ independientemente del punto base elegido.
-\end{nota}
-
-\begin{observacion}{Homomorfismo Inducido [C5.13]}{}
-Dada $f \colon X \longrightarrow Y$ continua, y tomando $x_0 \in X$ con $f(x_0) = y_0$, tenemos $f \colon (X, x_0) \longrightarrow (Y, y_0)$. Se define el homomorfismo inducido:
-
-
-$$ f_* (= f_{\#, x_0}) \colon \pi_1(X, x_0) \longrightarrow \pi_1(Y, y_0) $$
-
-$$[\alpha] \longmapsto [f \circ \alpha]$$
-
-
-Para comprobar que $f_*$ está bien definido, tomemos dos elementos $\alpha \simeq_{\{0,1\}} \alpha'$. Existe una homotopía $F \colon I \times I \longrightarrow X$ tal que $F_0 = \alpha$, $F_1 = \alpha'$ y los extremos $F(0, t) = x_0$, $F(1, t) = x_0$ no dependen de $t$.
-Dado que $f(\alpha(0)) = f(x_0) = y_0$ y $f(\alpha(1)) = f(x_0) = y_0$, se tiene $f \circ \alpha \in C_{y_0}(Y)$. Definimos $G \colon I \times I \longrightarrow Y$ como $G(s,t) = f(F(s,t))$. Entonces $G_0(s) = (f \circ \alpha)(s)$, $G_1(s) = (f \circ \alpha')(s)$, $G(0,t) = y_0$ y $G(1,t) = y_0$. Por tanto, $f \circ \alpha \simeq_{\{0,1\}} f \circ \alpha'$ y $f_*$ es un homomorfismo de grupos.
+\begin{observacion}{Producto de clases de arcos [C6.6]}{obs_producto_arcos}
+Dados $\alpha \in C_{x_0,x_1}(X)$ y $\beta \in C_{x_1,x_2}(X)$, definimos $[\alpha] \cdot [\beta] := [\alpha * \beta]$. Esta \emph{no} es una operación binaria interna, sino una aplicación
+\[ C_{x_0,x_1}(X)/{\simeq_{\{0,1\}}} \times C_{x_1,x_2}(X)/{\simeq_{\{0,1\}}} \longrightarrow C_{x_0,x_2}(X)/{\simeq_{\{0,1\}}}, \]
+que está bien definida por el apartado a) del ejercicio anterior. Cumple asociatividad, $[c_{x_0}] \cdot [\alpha] = [\alpha] = [\alpha] \cdot [c_{x_1}]$, y $[\alpha] \cdot [\alpha^{-1}] = [c_{x_0}]$, $[\alpha^{-1}] \cdot [\alpha] = [c_{x_1}]$.
 \end{observacion}
+
+\subsection{Funtorialidad e invariancia topológica}
 
 \begin{teorema}{Funtorialidad de $\pi_1$ [C6.2]}{funtorialidad_pi1}
 Sea $X$ un espacio topológico y $x_0 \in X$.
@@ -577,14 +541,24 @@ Sean $X$ e $Y$ espacios topológicos arco-conexos. Si $X \cong Y$, entonces $\pi
 Dado que $X$ e $Y$ son homeomorfos, existen funciones continuas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ que son biyectivas y una inversa de la otra ($f \circ g = 1_Y$, $g \circ f = 1_X$). Sea $x_0 \in X$ y $y_0 = f(x_0)$.
 Por la funtorialidad, de $f \circ g = 1_Y$ obtenemos $(f \circ g)_{*, y_0} = (1_Y)_{*, y_0} = 1_{\pi_1(Y, y_0)}$, lo cual implica $f_{*, g(y_0)} \circ g_{*, y_0} = 1_{\pi_1(Y, y_0)}$.
 De $g \circ f = 1_X$ obtenemos $(g \circ f)_{*, x_0} = (1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$, implicando $g_{*, f(x_0)} \circ f_{*, x_0} = 1_{\pi_1(X, x_0)}$.
-Por consiguiente, $f_*$ y $g_*$ son isomorfismos. \qed
+Es decir, $f_{*,x_0}$ y $g_{*,y_0}$ son inversos el uno del otro:
+
+\begin{center}
+\begin{tikzpicture}
+\node (A) at (0,0) {$\pi_1(X, x_0)$};
+\node (B) at (5,0) {$\pi_1(Y, y_0)$};
+\draw[->, bend left=20] (A) to node[above] {$f_{*,x_0}$} (B);
+\draw[->, bend left=20] (B) to node[below] {$g_{*,y_0}$} (A);
+\end{tikzpicture}
+\end{center}
+Por consiguiente, $f_{*,x_0}$ es un isomorfismo, con inversa $g_{*,y_0}$. Como $X$ e $Y$ son arco-conexos, $\pi_1(X) \cong \pi_1(X,x_0) \cong \pi_1(Y,y_0) \cong \pi_1(Y)$. \qed
 \end{proposicion}
 
 \begin{proposicion}{Grupo fundamental de un espacio estrellado [C6.5]}{estrellado}
 Sea $X \subseteq \mathbb{R}^n$, con $X$ estrellado. Entonces $\pi_1(X) = 1$.
 
 \textbf{Demostración:}
-Al ser estrellado, $X$ es arcoconexo, así que $\pi_1(X) = \pi_1(X, x_0) = C_{x_0}(X) / \simeq_{\{0,1\}}$. Además, existe un punto base $x_0 \in X$ tal que para todo $x \in X$ y todo $t \in [0,1]$, el segmento $t \cdot x + (1-t) \cdot x_0 \in X$.
+Al ser estrellado, $X$ es arcoconexo (cada punto se une con el centro $x_0$ por un segmento), así que $\pi_1(X) = \pi_1(X, x_0) = C_{x_0}(X) / \simeq_{\{0,1\}}$. Además, existe un punto base $x_0 \in X$ tal que para todo $x \in X$ y todo $t \in [0,1]$, el segmento $t \cdot x + (1-t) \cdot x_0 \in X$.
 Necesitamos probar que $[\alpha] = [C_{x_0}]$ para cualquier $\alpha \in C_{x_0}(X)$ (es decir, $\alpha \simeq_{\{0,1\}} C_{x_0}$).
 Buscamos una homotopía $F \colon I \times I \longrightarrow X$ definida por:
 
@@ -603,15 +577,9 @@ $$F(1, t) = t \cdot \alpha(1) + (1-t) \cdot x_0 = t \cdot x_0 + (1-t) \cdot x_0 
 Por tanto, $F$ es una homotopía de lazos que conecta el lazo constante $C_{x_0}$ (en $t=0$) con el lazo $\alpha$ (en $t=1$). \qed
 \end{proposicion}
 
-\begin{definicion}{Espacio simplemente conexo [C7.1]}{simp_conexo}
-Diremos que $X$ es simplemente conexo si:
-\begin{enumerate}
-\item $X$ es arco-conexo.
-\item $\pi_1(X) = 1$.
-\end{enumerate}
-\end{definicion}
+Los espacios estrellados son, por tanto, simplemente conexos (\cref{def:def_simp_conexo}). En particular, $\pi_1(I \times I) = 1$ y $\pi_1(\triangle) = 1$.
 
-Ejemplos básicos de espacios simplemente conexos son $\pi_1(I \times I) = 1$ y $\pi_1(\triangle) = 1$.
+\subsection{Invariancia homotópica}
 
 \begin{teorema}{Homomorfismos inducidos por aplicaciones homotópicas [C6.7]}{aplicaciones_homotopicas}
 Sean $f, g \colon X \longrightarrow Y$ aplicaciones continuas y homotópicas ($f \simeq g$). Existe $F \colon X \times I \longrightarrow Y$ continua tal que $F_0 = f, F_1 = g$.
@@ -647,7 +615,7 @@ Como $G \circ (\lambda_1 * \dots * \lambda_4) = (G \circ \lambda_1) * \dots * (G
 \[ G \circ \gamma = (f \circ \alpha) * \sigma * (g \circ \alpha)^{-1} * \sigma^{-1}, \]
 que es un lazo en $Y$ con base $G(0,0) = f(x_0)$.
 
-Como $I \times I$ es convexo, en particular estrellado, $\pi_1(I \times I) = 1$ y por tanto $\gamma \simeq_{\{0,1\}} c_{(0,0)}$. Componiendo esta homotopía con $G$ obtenemos $G \circ \gamma \simeq_{\{0,1\}} c_{f(x_0)}$, es decir,
+Como $I \times I$ es convexo, en particular estrellado, $\pi_1(I \times I) = 1$ (\cref{prop:estrellado}) y por tanto $\gamma \simeq_{\{0,1\}} c_{(0,0)}$. Componiendo esta homotopía con $G$ obtenemos $G \circ \gamma \simeq_{\{0,1\}} c_{f(x_0)}$, es decir,
 \[ [f \circ \alpha] \cdot [\sigma] \cdot [g \circ \alpha]^{-1} \cdot [\sigma^{-1}] = [c_{f(x_0)}]. \]
 Multiplicando por $[f \circ \alpha]^{-1}$ por la izquierda:
 \[ [\sigma] \cdot [g \circ \alpha]^{-1} \cdot [\sigma^{-1}] = [f \circ \alpha]^{-1}. \]
@@ -663,9 +631,37 @@ Finalmente, multiplicando por $[\sigma^{-1}]$ por la izquierda y por $[\sigma]$ 
 Sean $X, Y$ espacios arco-conexos. Si $X$ e $Y$ tienen el mismo tipo de homotopía ($X \simeq Y$), entonces $\pi_1(X) \cong \pi_1(Y)$.
 
 \textbf{Demostración:}
-Existen $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ continuas tales que $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$.
-Por el teorema anterior, la homotopía $g \circ f \simeq 1_X$ implica que $(g \circ f)_{*, x_0} = P_\sigma \circ (1_X)_{*, x_0} = P_\sigma$. Como $(g \circ f)_{*, x_0} = g_{*, f(x_0)} \circ f_{*, x_0}$ y $P_\sigma$ es un isomorfismo (biyectiva), deducimos que $f_{*, x_0}$ es inyectiva y $g_{*, f(x_0)}$ es sobreyectiva.
-Repitiendo simétricamente el razonamiento con la homotopía $f \circ g \simeq 1_Y$, concluimos que $g_*$ es inyectiva y $f_*$ es sobreyectiva. Ambos homomorfismos resultan biyectivos, por lo que $f_*$ y $g_*$ son isomorfismos de grupos. \qed
+Existen $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ continuas tales que $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$. Sea $x_0 \in X$ e $y_0 = f(x_0)$.
+
+Sea $F \colon 1_X \simeq g \circ f$ (existe por simetría) y $\sigma(t) = F(x_0,t)$, un arco de $x_0$ a $g(f(x_0))$. Por el teorema anterior, el siguiente diagrama conmuta:
+
+\begin{center}
+\begin{tikzpicture}
+\node (A) at (0,2) {$\pi_1(X, x_0)$};
+\node (B) at (5,2) {$\pi_1(X, x_0)$};
+\node (C) at (5,0) {$\pi_1(X, g(f(x_0)))$};
+\draw[->] (A) -- (B) node[midway, above] {$(1_X)_{*,x_0}$};
+\draw[->] (B) -- (C) node[midway, right] {$P_\sigma$};
+\draw[->] (A) -- (C) node[midway, below left] {$(g \circ f)_{*,x_0}$};
+\end{tikzpicture}
+\end{center}
+es decir, $(g \circ f)_{*,x_0} = P_\sigma \circ (1_X)_{*,x_0} = P_\sigma$. Como $(g \circ f)_{*,x_0} = g_{*,y_0} \circ f_{*,x_0}$ y $P_\sigma$ es un isomorfismo, deducimos que $f_{*,x_0}$ es inyectiva y que $g_{*,y_0}$ es sobreyectiva.
+
+Análogamente, sea $G \colon 1_Y \simeq f \circ g$ y $\tau(t) = G(y_0,t)$. Por el teorema anterior, el siguiente diagrama conmuta:
+
+\begin{center}
+\begin{tikzpicture}
+\node (A) at (0,2) {$\pi_1(Y, y_0)$};
+\node (B) at (5,2) {$\pi_1(Y, y_0)$};
+\node (C) at (5,0) {$\pi_1(Y, f(g(y_0)))$};
+\draw[->] (A) -- (B) node[midway, above] {$(1_Y)_{*,y_0}$};
+\draw[->] (B) -- (C) node[midway, right] {$P_\tau$};
+\draw[->] (A) -- (C) node[midway, below left] {$(f \circ g)_{*,y_0}$};
+\end{tikzpicture}
+\end{center}
+es decir, $(f \circ g)_{*,y_0} = P_\tau \circ (1_Y)_{*,y_0} = P_\tau$, y como $(f \circ g)_{*,y_0} = f_{*,g(y_0)} \circ g_{*,y_0}$ con $P_\tau$ isomorfismo, deducimos que $g_{*,y_0}$ es inyectiva (y $f_{*,g(y_0)}$ sobreyectiva).
+
+Por tanto $g_{*,y_0} \colon \pi_1(Y,y_0) \to \pi_1(X,g(y_0))$ es inyectiva y sobreyectiva, es decir, un isomorfismo de grupos. Como $X$ e $Y$ son arco-conexos, $\pi_1(Y) \cong \pi_1(Y,y_0) \cong \pi_1(X,g(y_0)) \cong \pi_1(X)$. \qed
 \end{proposicion}
 
 \begin{observacion}{Invariancia homotópica vs. invariancia topológica [C6.8]}{obs_invariancia_homotopica}

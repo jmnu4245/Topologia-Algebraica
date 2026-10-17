@@ -60,7 +60,7 @@ Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son homeomorfos si $\ex
     \item Si $X = [0,1]$ (no finito) y $Y = \{0,1\}$ (finito) $\implies X \not\cong Y$. No son homeomorfos.
     \item Si $X = [0,1] \setminus \{1/2\}$, entonces $X$ no es conexo. Si $Y = [0,1]$, $Y$ es conexo. $\implies X \not\cong Y$ por invariante topológico.
     \item $X = [0,1]$ y $Y = \{z \in \mathbb{C} \mid |z| = 1\} = S^1$.
-    \textbf{Spoiler:} Asociamos a un espacio un Grupo Fundamental: $X \rightsquigarrow \pi_1(X)$. Si dos espacios son homeomorfos, entonces sus grupos fundamentales son isomorfos ($X \cong Y \implies \pi_1(X) \cong \pi_1(Y)$). No es un invariante topológico completo. Veremos más adelante con la noción de grupo fundamental que $X$ e $Y$ no son homeomorfos.
+    \textbf{Spoiler:} Asociamos a un espacio un Grupo Fundamental: $X \rightsquigarrow \pi_1(X)$. Si dos espacios son homeomorfos, entonces sus grupos fundamentales son isomorfos ($X \cong Y \implies \pi_1(X) \cong \pi_1(Y)$). No es un invariante topológico completo. Veremos más adelante, con la noción de grupo fundamental, que $X$ e $Y$ no son homeomorfos (\cref{prop:cor_s1_no_contractil}).
     \item Sea $S^2 \subseteq \mathbb{R}^3$, donde $S^2 = \{(x,y,z) \in \mathbb{R}^3 \mid ||(x,y,z)|| = 1\} \implies$ Grupo trivial.
     
     \begin{center}
@@ -81,11 +81,11 @@ Sean $X, Y$ espacios topológicos. Diremos que $X$ e $Y$ son homeomorfos si $\ex
     \end{tikzpicture}
     \end{center}
     
-    Sus grupos fundamentales no son isomorfos, luego $S^2 \not\cong T^2$.
+    Sus grupos fundamentales no son isomorfos, luego $S^2 \not\cong T^2$ (\cref{prop:cor_s2_t2}).
 \end{enumerate}
 
 \begin{observacion}{Sobre el ejemplo 4}{obs_ejemplo4}
-A pesar de que más adelante aplicaremos la noción de grupo fundamental para deducir que no son homeomorfos, encontraremos otra vía más sencilla para concluir que no son homeomorfos.
+A pesar de que más adelante aplicaremos la noción de grupo fundamental para deducir que $[0,1]$ y $S^1$ no son homeomorfos, hay otra vía más sencilla: el invariante $\Theta$ de la subsección siguiente (\cref{prop:Theta_invariante}).
 \end{observacion}
 
 \begin{proposicion}{Proyección estereográfica [C1.7]}{proy_estereografica}
@@ -106,24 +106,22 @@ Veamos que $\sigma \circ \pi = 1_{S^n \setminus \{N\}}$: sea $x \in S^n \setminu
 Luego $\pi$ es continua y biyectiva con inversa continua $\sigma$.
 \end{proof}
 
+\subsection{Componentes conexas e invariante $\Theta$}
+
 \begin{definicion}{Componente conexa [C1.10]}{def_comp_conexa}
 Sea $X$ un espacio topológico. Una \textbf{componente conexa} de $X$ es un subespacio conexo maximal, es decir, un subespacio conexo $C \subseteq X$ tal que si $C \subseteq D \subseteq X$ con $D$ conexo, entonces $D = C$. Las componentes conexas de $X$ forman una partición de $X$, y $X$ es conexo si y solo si tiene una única componente conexa. Denotamos por $c(X)$ el número de componentes conexas de $X$ (que puede ser infinito).
 \end{definicion}
 
 \begin{definicion}{Invariante por componentes conexas [C1.11]}{def_componentes}
-Sea $X$ un espacio topológico. Sea $p \in X$. Denotamos por $C_p(X)$ el nº de componentes conexas de $X \setminus \{p\}$.
+Sea $X$ un espacio topológico. Sea $p \in X$. Denotamos por $C_p(X)$ el nº de componentes conexas de $X \setminus \{p\}$, y por $\Theta(X) = \{C_p(X) \mid p \in X\}$ el conjunto de estos números al variar $p$.
 \end{definicion}
 
-Es muy sencillo probar que $\{C_p(X) \mid p \in X\} := \Theta(X)$ es un invariante topológico de $X$ (Ejercicio).
-\[ X \cong Y \implies \Theta(X) = \Theta(Y) \]
-
-
 \begin{proposicion}{$\Theta$ es un invariante topológico [C1.12]}{Theta_invariante}
-Sea $\Theta(X) = \{\, c(X \setminus \{p\}) : p \in X \,\}$. Si $X \cong Y$, entonces $\Theta(X) = \Theta(Y)$.
+Si $X \cong Y$, entonces $\Theta(X) = \Theta(Y)$.
 \end{proposicion}
  
 \begin{proof}
-Sea $f \colon X \to Y$ un homeomorfismo y $p \in X$. La restricción $f \colon X \setminus \{p\} \to Y \setminus \{f(p)\}$ es un homeomorfismo. Un homeomorfismo $\varphi \colon A \to B$ lleva componentes conexas de $A$ en componentes conexas de $B$: si $C$ es una componente de $A$, $\varphi(C)$ es conexo (Teorema 1.1); y si $\varphi(C) \subseteq D$ con $D$ conexo, entonces $C \subseteq \varphi^{-1}(D)$ con $\varphi^{-1}(D)$ conexo, luego $C = \varphi^{-1}(D)$ y $D = \varphi(C)$. Así $\varphi$ induce una biyección entre componentes conexas y $c(X \setminus \{p\}) = c(Y \setminus \{f(p)\})$. Como $f$ es sobreyectiva, recorremos todos los puntos de $Y$, y $\Theta(X) = \Theta(Y)$.
+Sea $f \colon X \to Y$ un homeomorfismo y $p \in X$. La restricción $f \colon X \setminus \{p\} \to Y \setminus \{f(p)\}$ es un homeomorfismo. Un homeomorfismo $\varphi \colon A \to B$ lleva componentes conexas de $A$ en componentes conexas de $B$: si $C$ es una componente de $A$, $\varphi(C)$ es conexo (\cref{thm:teo_cont_conex}); y si $\varphi(C) \subseteq D$ con $D$ conexo, entonces $C \subseteq \varphi^{-1}(D)$ con $\varphi^{-1}(D)$ conexo, luego $C = \varphi^{-1}(D)$ y $D = \varphi(C)$. Así $\varphi$ induce una biyección entre componentes conexas y $C_p(X) = C_{f(p)}(Y)$. Como $f$ es sobreyectiva, recorremos todos los puntos de $Y$, y $\Theta(X) = \Theta(Y)$.
 \end{proof}
  
 \textbf{Consecuencia.} Si $\Theta(X) \neq \Theta(Y)$, entonces $X \not\cong Y$.
@@ -168,7 +166,7 @@ Diremos que $X$ es disconexo cuando no es conexo, es decir, cuando admite una de
 Si $f \colon X \to Y$ es continua y $X$ es conexa, entonces $f(X)$ es conexo en $Y$ respecto a $\tau_Y$.
 \end{teorema}
 
-\begin{proof}[Demostración del Teorema 1.1]
+\begin{proof}
 Sea $f \colon X \to Y$ continua con $X$ conexo. Podemos suponer $f$ sobreyectiva, sustituyendo $Y$ por $f(X)$. Si $Y$ fuera disconexo, existirían abiertos disjuntos y no vacíos $U, V \subseteq Y$ con $Y = U \cup V$. Entonces $f^{-1}(U)$ y $f^{-1}(V)$ serían abiertos de $X$, disjuntos, no vacíos (por ser $f$ sobreyectiva) y con unión $X$, lo que contradice que $X$ sea conexo. Luego $f(X)$ es conexo.
 \end{proof}
 
@@ -196,8 +194,7 @@ Sea $\{U_i\}_{i \in \Lambda}$ un recubrimiento abierto de $f(K)$ por abiertos de
 \subsection{Lemas de Continuidad}
 
 \begin{nota}{Cerrados en la topología relativa [C1.5]}{nota_relativa}
-Sea $X$ un espacio topológico. Sea $B \subseteq X$. La topología relativa/subconjunto/heredada por la de $X$ en $B$ es $\tau_B = \{A \cap B \mid A \in \tau_X\}$.
-Todo abierto de $B$ es de la forma $(\text{abierto de } X) \cap B$.
+Sea $B \subseteq X$ con la topología de subespacio (\cref{def:def_subespacio}). Todo abierto de $B$ es de la forma $(\text{abierto de } X) \cap B$.
 ¿Todo cerrado de $B$ es de la forma $(\text{cerrado de } X) \cap B$? \textbf{SÍ}.
 
 Sea $C$ un cerrado en $B$ respecto de $\tau_B \implies B \setminus C$ es abierto en $\tau_B \implies \exists A \in \tau_X$ tal que $B \setminus C = A \cap B$.
