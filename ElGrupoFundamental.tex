@@ -604,7 +604,34 @@ Definimos $G \colon I \times I \longrightarrow Y$ por $G(s,t) = F(\alpha(s), t)$
 
 Recorremos el borde del cuadrado $I \times I$ con los cuatro arcos
 \[ \lambda_1(s) = (s,0), \quad \lambda_2(t) = (1,t), \quad \lambda_3(s) = (1-s,1), \quad \lambda_4(t) = (0,1-t), \]
-es decir, la base de izquierda a derecha, el lado derecho hacia arriba, el techo de derecha a izquierda y el lado izquierdo hacia abajo. Entonces $\gamma = \lambda_1 * \lambda_2 * \lambda_3 * \lambda_4$ es un lazo en $I \times I$ con base $(0,0)$. Calculamos las imágenes por $G$:
+es decir, la base de izquierda a derecha, el lado derecho hacia arriba, el techo de derecha a izquierda y el lado izquierdo hacia abajo. Entonces $\gamma = \lambda_1 * \lambda_2 * \lambda_3 * \lambda_4$ es un lazo en $I \times I$ con base $(0,0)$.
+
+\begin{center}
+\begin{tikzpicture}[scale=2.2]
+  \fill[gray!15] (0,0) rectangle (1,1);
+  \draw[->] (0,-0.12) -- (0,1.12);
+  \draw[->] (-0.12,0) -- (1.12,0);
+  \draw[thick] (0,0) -- (1,0);
+  \draw[thick] (1,0) -- (1,1);
+  \draw[thick] (1,1) -- (0,1);
+  \draw[thick] (0,1) -- (0,0);
+  \draw[thick, -latex] (0.44,0) -- (0.58,0);
+  \draw[thick, -latex] (1,0.44) -- (1,0.58);
+  \draw[thick, -latex] (0.58,1) -- (0.44,1);
+  \draw[thick, -latex] (0,0.58) -- (0,0.44);
+  \filldraw (0,0) circle (0.8pt) node[below left] {$(0,0)$};
+  \filldraw (1,0) circle (0.8pt) node[below right] {$(1,0)$};
+  \filldraw (1,1) circle (0.8pt) node[above right] {$(1,1)$};
+  \filldraw (0,1) circle (0.8pt) node[above left] {$(0,1)$};
+  \node[below] at (0.5,-0.02) {$\lambda_1$};
+  \node[right] at (1.02,0.5) {$\lambda_2$};
+  \node[above] at (0.5,1.02) {$\lambda_3$};
+  \node[left] at (-0.02,0.5) {$\lambda_4$};
+  \node at (0.5,0.5) {$I \times I$};
+\end{tikzpicture}
+\end{center}
+
+Calculamos las imágenes por $G$:
 \begin{align*}
 (G \circ \lambda_1)(s) &= G(s,0) = (f \circ \alpha)(s), & G \circ \lambda_1 &= f \circ \alpha, \\
 (G \circ \lambda_2)(t) &= G(1,t) = \sigma(t), & G \circ \lambda_2 &= \sigma, \\
