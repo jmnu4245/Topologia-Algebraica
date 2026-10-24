@@ -539,8 +539,13 @@ Sean $X$ e $Y$ espacios topológicos arco-conexos. Si $X \cong Y$, entonces $\pi
 
 \textbf{Demostración:}
 Dado que $X$ e $Y$ son homeomorfos, existen funciones continuas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ que son biyectivas y una inversa de la otra ($f \circ g = 1_Y$, $g \circ f = 1_X$). Sea $x_0 \in X$ y $y_0 = f(x_0)$.
-Por la funtorialidad, de $f \circ g = 1_Y$ obtenemos $(f \circ g)_{*, y_0} = (1_Y)_{*, y_0} = 1_{\pi_1(Y, y_0)}$, lo cual implica $f_{*, g(y_0)} \circ g_{*, y_0} = 1_{\pi_1(Y, y_0)}$.
-De $g \circ f = 1_X$ obtenemos $(g \circ f)_{*, x_0} = (1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$, implicando $g_{*, f(x_0)} \circ f_{*, x_0} = 1_{\pi_1(X, x_0)}$.
+
+Por la funtorialidad,
+\begin{align*}
+f \circ g = 1_Y &\ \Rightarrow\ f_{*, g(y_0)} \circ g_{*, y_0} = (f \circ g)_{*, y_0} = 1_{\pi_1(Y, y_0)}, \\
+g \circ f = 1_X &\ \Rightarrow\ g_{*, f(x_0)} \circ f_{*, x_0} = (g \circ f)_{*, x_0} = 1_{\pi_1(X, x_0)}.
+\end{align*}
+
 Es decir, $f_{*,x_0}$ y $g_{*,y_0}$ son inversos el uno del otro:
 
 \begin{center}
@@ -603,52 +608,49 @@ Definimos $G \colon I \times I \longrightarrow Y$ por $G(s,t) = F(\alpha(s), t)$
 \[ G(0,t) = G(1,t) = F(x_0,t) = \sigma(t) \quad \forall t \in I. \]
 
 Recorremos el borde del cuadrado $I \times I$ con los cuatro arcos
-\[ \lambda_1(s) = (s,0), \quad \lambda_2(t) = (1,t), \quad \lambda_3(s) = (1-s,1), \quad \lambda_4(t) = (0,1-t), \]
-es decir, la base de izquierda a derecha, el lado derecho hacia arriba, el techo de derecha a izquierda y el lado izquierdo hacia abajo. Entonces $\gamma = \lambda_1 * \lambda_2 * \lambda_3 * \lambda_4$ es un lazo en $I \times I$ con base $(0,0)$.
+\[ \lambda_1(s) = (0,s), \quad \lambda_2(s) = (s,1), \quad \lambda_3(s) = (1,1-s), \quad \lambda_4(s) = (1-s,0), \]
+es decir, el lado izquierdo hacia arriba, el techo de izquierda a derecha, el lado derecho hacia abajo y la base de derecha a izquierda. Entonces $\gamma = \lambda_1 * \lambda_2 * \lambda_3 * \lambda_4$ es un lazo en $I \times I$ con base $(0,0)$.
 
 \begin{center}
 \begin{tikzpicture}[scale=2.2]
   \fill[gray!15] (0,0) rectangle (1,1);
   \draw[->] (0,-0.12) -- (0,1.12);
   \draw[->] (-0.12,0) -- (1.12,0);
-  \draw[thick] (0,0) -- (1,0);
-  \draw[thick] (1,0) -- (1,1);
-  \draw[thick] (1,1) -- (0,1);
-  \draw[thick] (0,1) -- (0,0);
-  \draw[thick, -latex] (0.44,0) -- (0.58,0);
-  \draw[thick, -latex] (1,0.44) -- (1,0.58);
-  \draw[thick, -latex] (0.58,1) -- (0.44,1);
-  \draw[thick, -latex] (0,0.58) -- (0,0.44);
+  \draw[thick] (0,0) -- (0,1);
+  \draw[thick] (0,1) -- (1,1);
+  \draw[thick] (1,1) -- (1,0);
+  \draw[thick] (1,0) -- (0,0);
+  \draw[thick, -latex] (0,0.44) -- (0,0.58);
+  \draw[thick, -latex] (0.44,1) -- (0.58,1);
+  \draw[thick, -latex] (1,0.58) -- (1,0.44);
+  \draw[thick, -latex] (0.58,0) -- (0.44,0);
   \filldraw (0,0) circle (0.8pt) node[below left] {$(0,0)$};
   \filldraw (1,0) circle (0.8pt) node[below right] {$(1,0)$};
   \filldraw (1,1) circle (0.8pt) node[above right] {$(1,1)$};
   \filldraw (0,1) circle (0.8pt) node[above left] {$(0,1)$};
-  \node[below] at (0.5,-0.02) {$\lambda_1$};
-  \node[right] at (1.02,0.5) {$\lambda_2$};
-  \node[above] at (0.5,1.02) {$\lambda_3$};
-  \node[left] at (-0.02,0.5) {$\lambda_4$};
+  \node[left] at (-0.02,0.5) {$\lambda_1$};
+  \node[above] at (0.5,1.02) {$\lambda_2$};
+  \node[right] at (1.02,0.5) {$\lambda_3$};
+  \node[below] at (0.5,-0.02) {$\lambda_4$};
   \node at (0.5,0.5) {$I \times I$};
 \end{tikzpicture}
 \end{center}
 
 Calculamos las imágenes por $G$:
 \begin{align*}
-(G \circ \lambda_1)(s) &= G(s,0) = (f \circ \alpha)(s), & G \circ \lambda_1 &= f \circ \alpha, \\
-(G \circ \lambda_2)(t) &= G(1,t) = \sigma(t), & G \circ \lambda_2 &= \sigma, \\
-(G \circ \lambda_3)(s) &= G(1-s,1) = (g \circ \alpha)(1-s), & G \circ \lambda_3 &= (g \circ \alpha)^{-1}, \\
-(G \circ \lambda_4)(t) &= G(0,1-t) = \sigma(1-t), & G \circ \lambda_4 &= \sigma^{-1}.
+(G \circ \lambda_1)(s) &= G(0,s) = F(\alpha(0),s) = F(x_0,s) = \sigma(s), \\
+(G \circ \lambda_2)(s) &= G(s,1) = F(\alpha(s),1) = (g \circ \alpha)(s), \\
+(G \circ \lambda_3)(s) &= G(1,1-s) = F(x_0,1-s) = \sigma^{-1}(s), \\
+(G \circ \lambda_4)(s) &= G(1-s,0) = F(\alpha(1-s),0) = (f \circ \alpha)(1-s),
 \end{align*}
+es decir, $G \circ \lambda_1 = \sigma$, $G \circ \lambda_2 = g \circ \alpha$, $G \circ \lambda_3 = \sigma^{-1}$ y $G \circ \lambda_4 = (f \circ \alpha)^{-1}$.
 Como $G \circ (\lambda_1 * \dots * \lambda_4) = (G \circ \lambda_1) * \dots * (G \circ \lambda_4)$, se tiene
-\[ G \circ \gamma = (f \circ \alpha) * \sigma * (g \circ \alpha)^{-1} * \sigma^{-1}, \]
+\[ G \circ \gamma = \sigma * (g \circ \alpha) * \sigma^{-1} * (f \circ \alpha)^{-1}, \]
 que es un lazo en $Y$ con base $G(0,0) = f(x_0)$.
 
 Como $I \times I$ es convexo, en particular estrellado, $\pi_1(I \times I) = 1$ (\cref{prop:estrellado}) y por tanto $\gamma \simeq_{\{0,1\}} c_{(0,0)}$. Componiendo esta homotopía con $G$ obtenemos $G \circ \gamma \simeq_{\{0,1\}} c_{f(x_0)}$, es decir,
-\[ [f \circ \alpha] \cdot [\sigma] \cdot [g \circ \alpha]^{-1} \cdot [\sigma^{-1}] = [c_{f(x_0)}]. \]
-Multiplicando por $[f \circ \alpha]^{-1}$ por la izquierda:
-\[ [\sigma] \cdot [g \circ \alpha]^{-1} \cdot [\sigma^{-1}] = [f \circ \alpha]^{-1}. \]
-Tomando inversos en ambos lados (y usando $[\sigma]^{-1} = [\sigma^{-1}]$):
-\[ [\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] = [f \circ \alpha]. \]
-Finalmente, multiplicando por $[\sigma^{-1}]$ por la izquierda y por $[\sigma]$ por la derecha obtenemos la relación buscada:
+\[ [\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] \cdot [f \circ \alpha]^{-1} = [c_{f(x_0)}]. \]
+Multiplicando por $[f \circ \alpha]$ por la derecha, $[\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] = [f \circ \alpha]$, y multiplicando por $[\sigma^{-1}] = [\sigma]^{-1}$ por la izquierda y por $[\sigma]$ por la derecha obtenemos la relación buscada:
 \[ [g \circ \alpha] = [\sigma^{-1}] \cdot [f \circ \alpha] \cdot [\sigma] = [\sigma^{-1} * (f \circ \alpha) * \sigma] \qed \]
 
 
