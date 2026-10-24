@@ -1,0 +1,221 @@
+% Mapa de dependencias entre teoremas. Generado por generar.py
+% Compilar con pdflatex mapa.tex  (las coordenadas son fijas: se puede editar a mano)
+\documentclass[tikz,border=14pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usetikzlibrary{arrows.meta,calc,backgrounds}
+
+\colorlet{tUno}{orange!90!black}
+\colorlet{tDos}{green!50!black}
+\colorlet{tTres}{blue!75!black}
+\colorlet{tCuatro}{violet!80!black}
+\colorlet{tCinco}{red!75!black}
+
+\tikzset{
+  nodo/.style={draw=#1, fill=#1!6, rounded corners=3pt, line width=0.7pt,
+     align=left, inner sep=3.5pt, anchor=center},
+  flecha/.style={-{Stealth[length=4.5pt,width=4pt]}, line width=0.55pt, rounded corners=3pt},
+  etiqueta/.style={font=\fontsize{6}{6.5}\selectfont, fill=white, fill opacity=0.9, text opacity=1,
+     inner sep=1pt, rounded corners=1pt, align=center},
+}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+
+\begin{scope}[on background layer]
+\fill[tUno!5,rounded corners=6pt] (-4.95,-61.22) rectangle (4.95,2.40);
+\draw[tUno!40,rounded corners=6pt,line width=0.6pt] (-4.95,-61.22) rectangle (4.95,2.40);
+\fill[tDos!5,rounded corners=6pt] (5.25,-61.22) rectangle (15.15,2.40);
+\draw[tDos!40,rounded corners=6pt,line width=0.6pt] (5.25,-61.22) rectangle (15.15,2.40);
+\fill[tTres!5,rounded corners=6pt] (15.45,-61.22) rectangle (25.35,2.40);
+\draw[tTres!40,rounded corners=6pt,line width=0.6pt] (15.45,-61.22) rectangle (25.35,2.40);
+\fill[tCuatro!5,rounded corners=6pt] (25.65,-61.22) rectangle (35.55,2.40);
+\draw[tCuatro!40,rounded corners=6pt,line width=0.6pt] (25.65,-61.22) rectangle (35.55,2.40);
+\fill[tCinco!5,rounded corners=6pt] (35.85,-61.22) rectangle (45.75,2.40);
+\draw[tCinco!40,rounded corners=6pt,line width=0.6pt] (35.85,-61.22) rectangle (45.75,2.40);
+\end{scope}
+\node[font=\large\bfseries,text=tUno] at (0.00,1.70) {T1\ \ Tema 1: topología general};
+\node[font=\large\bfseries,text=tDos] at (10.20,1.70) {T2\ \ Tema 2: equivalencia homotópica};
+\node[font=\large\bfseries,text=tTres] at (20.40,1.70) {T3\ \ Tema 3: el grupo fundamental};
+\node[font=\large\bfseries,text=tCuatro] at (30.60,1.70) {T4\ \ Tema 4: simplemente conexos y $\pi_1(S^1)$};
+\node[font=\large\bfseries,text=tCinco] at (40.80,1.70) {T5\ \ Tema 5: aplicaciones};
+\node[nodo=tUno, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (npeg) at (0.00,-0.75) {{\bfseries\footnotesize\color{tUno}Lema de pegamiento}\hfill{\tiny\color{tUno}T1}\\[-1pt]{\scriptsize $X=B_1\cup B_2$ con $B_i$ cerrados y $f|_{B_i}$ continuas $\Rightarrow f$ continua.}};
+\node[nodo=tUno, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nconexo) at (0.00,-3.85) {{\bfseries\footnotesize\color{tUno}Conexión}\hfill{\tiny\color{tUno}T1}\\[-1pt]{\scriptsize $f$ continua y $X$ conexo $\Rightarrow f(X)$ conexo. Si $f\colon X\to\mathbb Z$ es continua y $X$ conexo, $f$ es constante.}};
+\node[nodo=tUno, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (ncompacto) at (0.00,-7.92) {{\bfseries\footnotesize\color{tUno}Compacidad}\hfill{\tiny\color{tUno}T1}\\[-1pt]{\scriptsize Imagen continua de compacto es compacta. Heine--Borel: en $\mathbb R^n$, compacto $\iff$ cerrado y acotado.}};
+\node[nodo=tUno, minimum width=6.8cm, minimum height=1.15cm, text width=6.3cm] (nestereo) at (0.00,-11.83) {{\bfseries\footnotesize\color{tUno}Proyección estereográfica}\hfill{\tiny\color{tUno}T1}\\[-1pt]{\scriptsize $S^n\setminus\{N\}\cong\mathbb R^n$.}};
+\node[nodo=tDos, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nequiv) at (10.20,-7.75) {{\bfseries\footnotesize\color{tDos}$\simeq$ es relación de equivalencia}\hfill{\tiny\color{tDos}T2}\\[-1pt]{\scriptsize Reflexiva, simétrica ($F(x,1-t)$) y transitiva (se concatenan las homotopías).}};
+\node[nodo=tDos, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (ncomphomo) at (10.20,-0.75) {{\bfseries\footnotesize\color{tDos}Composición de homotopías}\hfill{\tiny\color{tDos}T2}\\[-1pt]{\scriptsize $f_1\simeq f_2$ y $g_1\simeq g_2\Rightarrow g_1f_1\simeq g_2f_2$, con $H(x,t)=G(F(x,t),t)$.}};
+\node[nodo=tDos, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (ncontractil) at (10.20,-19.32) {{\bfseries\footnotesize\color{tDos}Caracterización de contráctil}\hfill{\tiny\color{tDos}T2}\\[-1pt]{\scriptsize Equivalen: (a) $1_X\simeq c_{x_0}$ para algún $x_0$; (b) para todo $x$; (c) dos aplicaciones cualesquiera $T\to X$ son homotópicas; (d) $X\simeq$ punto.}};
+\node[nodo=tDos, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nestrellado) at (10.20,-3.85) {{\bfseries\footnotesize\color{tDos}Convexo $\Rightarrow$ estrellado $\Rightarrow$ contráctil}\hfill{\tiny\color{tDos}T2}\\[-1pt]{\scriptsize $F(x,t)=tx+(1-t)x_0$ contrae un $X\subseteq\mathbb R^n$ estrellado.}};
+\node[nodo=tDos, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nejemplos) at (10.20,-15.45) {{\bfseries\footnotesize\color{tDos}Ejemplos de equivalencia homotópica}\hfill{\tiny\color{tDos}T2}\\[-1pt]{\scriptsize $S^1\times[-1,1]\simeq S^1$, $\mathbb R^2\setminus\{0\}\simeq S^1$, el cono es contráctil, $S^2\setminus\{N\}\simeq$ punto.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nrelA) at (20.40,-12.00) {{\bfseries\footnotesize\color{tTres}$\simeq_A$ es relación de equivalencia}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize Igual que $\simeq$, comprobando además que $A$ queda fijo.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.15cm, text width=6.3cm] (ncontr_arco) at (20.40,-22.43) {{\bfseries\footnotesize\color{tTres}Contráctil $\Rightarrow$ arco-conexo}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize $\alpha(t)=F(x,t)$ une $x$ con $x_0$; se concatenan dos.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (npoincare) at (20.40,-25.59) {{\bfseries\footnotesize\color{tTres}Teorema de Poincaré}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize $\pi_1(X,x_0)=C_{x_0}(X)/\!\simeq_{\{0,1\}}$ es un grupo: producto bien definido, asociativo, neutro $c_{x_0}$ e inverso $[\alpha^{-1}]$.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (ncambiobase) at (20.40,-29.14) {{\bfseries\footnotesize\color{tTres}Cambio de punto base}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize $P_\omega[\alpha]=[\omega^{-1}*\alpha*\omega]$ es un isomorfismo $\pi_1(X,x_0)\to\pi_1(X,x_1)$, con inverso $P_{\omega^{-1}}$.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nfuntor) at (20.40,-32.51) {{\bfseries\footnotesize\color{tTres}Homomorfismo inducido y funtorialidad}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize $f_*[\alpha]=[f\circ\alpha]$ es homomorfismo; $(g f)_*=g_*f_*$ y $(1_X)_*=1$.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.15cm, text width=6.3cm] (nhomeo) at (20.40,-40.30) {{\bfseries\footnotesize\color{tTres}Homeomorfismo $\Rightarrow$ $\pi_1$ isomorfo}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize Si $f$ es homeomorfismo, $f_*g_*=1$ y $g_*f_*=1$.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nestr_pi1) at (20.40,-36.76) {{\bfseries\footnotesize\color{tTres}Estrellado $\Rightarrow\pi_1=1$}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize $F(s,t)=t\alpha(s)+(1-t)x_0$ contrae todo lazo dejando fijos los extremos.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (ngstar) at (20.40,-44.38) {{\bfseries\footnotesize\color{tTres}Aplicaciones homotópicas}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize $f\simeq g$ con $\sigma(t)=F(x_0,t)\Rightarrow g_*=P_\sigma\circ f_*$ (se recorre el borde del cuadrado).}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.15cm, text width=6.3cm] (ninvhom) at (20.40,-47.31) {{\bfseries\footnotesize\color{tTres}Invariancia homotópica}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize $X\simeq Y$ arco-conexos $\Rightarrow\pi_1(X)\cong\pi_1(Y)$.}};
+\node[nodo=tTres, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (ncontr_pi1) at (20.40,-50.65) {{\bfseries\footnotesize\color{tTres}Contráctil $\Rightarrow\pi_1=1$}\hfill{\tiny\color{tTres}T3}\\[-1pt]{\scriptsize Un contráctil tiene el tipo de homotopía de un punto.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nsimpconexo) at (30.60,-29.14) {{\bfseries\footnotesize\color{tCuatro}Simplemente conexo}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize En un arco-conexo, $\pi_1=1\iff$ dos arcos con los mismos extremos son siempre $\simeq_{\{0,1\}}$.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nreparam) at (30.60,-0.75) {{\bfseries\footnotesize\color{tCuatro}Reparametrización}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $g\colon I\to I$ continua con $g(0)=0$, $g(1)=1\Rightarrow\alpha\simeq_{\{0,1\}}\alpha\circ g$.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (nlebesgue) at (30.60,-12.18) {{\bfseries\footnotesize\color{tCuatro}Lema de Lebesgue}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $X$ métrico compacto y $\{U_i\}$ recubrimiento abierto $\Rightarrow\exists\delta$: cada $B(x,\delta)$ está en algún $U_i$. En $[0,1]$: partición regular $t_j=j/n$.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (ncondsuf) at (30.60,-36.93) {{\bfseries\footnotesize\color{tCuatro}Condición suficiente}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $X=\bigcup V_i$ abiertos con $V_i$ simplemente conexos, $V_i\cap V_j$ arco-conexo y $\bigcap V_i\neq\emptyset\Rightarrow X$ simplemente conexo.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nsn) at (30.60,-44.38) {{\bfseries\footnotesize\color{tCuatro}$S^n$ ($n\geq2$) es simplemente conexa}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $V_1=S^n\setminus\{N\}$, $V_2=S^n\setminus\{S\}$; $V_1\cap V_2\cong S^{n-1}\times]-1,1[$ es arco-conexo.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (nrecubr) at (30.60,-15.61) {{\bfseries\footnotesize\color{tCuatro}Exponencial y unicidad de elevaciones}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $p(t)=e^{2\pi it}$ es homomorfismo con $\ker p=\mathbb Z$. Si $X$ es conexo, dos elevaciones de $f$ que coinciden en un punto son iguales.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nunifcont) at (30.60,-19.16) {{\bfseries\footnotesize\color{tCuatro}Compacto $\Rightarrow$ uniformemente continua}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize Una $f$ continua definida en un compacto de $\mathbb R^n$ es uniformemente continua.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nexistelev) at (30.60,-22.60) {{\bfseries\footnotesize\color{tCuatro}Existencia de elevaciones}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $X\subseteq\mathbb R^n$ convexo y compacto, $f\colon X\to S^1$, $p(t_0)=f(x_0)\Rightarrow\exists!\,\tilde f$ con $\tilde f(x_0)=t_0$.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nelevarcos) at (30.60,-25.43) {{\bfseries\footnotesize\color{tCuatro}Elevación de arcos y homotopías}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize Para $I$ e $I\times I$: existe una única elevación que empieza en $0$.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (npi1s1) at (30.60,-32.68) {{\bfseries\footnotesize\color{tCuatro}$\pi_1(S^1)\cong\mathbb Z$}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $\deg[\alpha]=\tilde\alpha(1)$ es un isomorfismo $\pi_1(S^1)\to\mathbb Z$ (bien definido, homomorfismo, inyectivo, sobreyectivo).}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.15cm, text width=6.3cm] (nprodpi1) at (30.60,-40.30) {{\bfseries\footnotesize\color{tCuatro}Grupo fundamental de un producto}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $\pi_1(X\times Y,(x_0,y_0))\cong\pi_1(X,x_0)\times\pi_1(Y,y_0)$.}};
+\node[nodo=tCuatro, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nnocontr) at (30.60,-54.02) {{\bfseries\footnotesize\color{tCuatro}Consecuencias}\hfill{\tiny\color{tCuatro}T4}\\[-1pt]{\scriptsize $S^1$ no es contráctil. $S^2\not\cong T^2$, pues $\pi_1(S^2)=1$ y $\pi_1(T^2)=\mathbb Z^2$.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nnoretr) at (40.80,-40.47) {{\bfseries\footnotesize\color{tCinco}No retracción $D^2\to S^1$}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize No existe $r\colon D^2\to S^1$ continua con $r|_{S^1}=1$: $r_*i_*=1_{\mathbb Z}$ factorizaría por $\pi_1(D^2)=1$.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.15cm, text width=6.3cm] (nbrouwer) at (40.80,-50.48) {{\bfseries\footnotesize\color{tCinco}Punto fijo de Brouwer}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize Toda $f\colon D^2\to D^2$ continua tiene un punto fijo.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (ndosel) at (40.80,-19.32) {{\bfseries\footnotesize\color{tCinco}Dos elevaciones y $\deg_{x_0}$}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize Dos elevaciones de un arco difieren en una constante entera; $\deg_{x_0}(\alpha)=\tilde\alpha(1)-\tilde\alpha(0)$ está bien definido.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (ndegbase) at (40.80,-44.38) {{\bfseries\footnotesize\color{tCinco}Cambio de base y grado}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize $\deg_{(1,0)}\circ P_\omega=\deg_{x_0}$; en particular $\deg_{x_0}$ solo depende de la clase de homotopía.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (ntfa) at (40.80,-47.65) {{\bfseries\footnotesize\color{tCinco}Teorema fundamental del álgebra}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize Todo polinomio no constante de $\mathbb C[z]$ tiene una raíz: si no la tuviera, el grado de $\sigma$ valdría $0$ y $k\geq1$.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nparidad) at (40.80,-25.43) {{\bfseries\footnotesize\color{tCinco}Paridad de Borsuk--Hirsch}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize $f\colon S^1\to S^1$ par $\Rightarrow\deg(f\circ\sigma)$ par; $f$ impar $\Rightarrow\deg(f\circ\sigma)$ impar.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nnoimpar) at (40.80,-54.02) {{\bfseries\footnotesize\color{tCinco}No hay impares $S^2\to S^1$}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize Si $g$ fuese impar, $f=g\circ j$ tendría $\deg(f\sigma)$ impar y, por ser $S^2$ simplemente conexo, también $0$.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.83cm, text width=6.3cm] (nborsuk) at (40.80,-56.75) {{\bfseries\footnotesize\color{tCinco}Teorema de Borsuk}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize $f\colon S^2\to\mathbb R^2$ continua $\Rightarrow\exists x$ con $f(x)=f(-x)$. Consecuencias: una impar se anula; no hay inyectivas $S^2\to\mathbb R^2$.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nlyus) at (40.80,-59.48) {{\bfseries\footnotesize\color{tCinco}Lyusternik--Schnirelmann}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize Si tres cerrados recubren $S^2$, alguno contiene dos puntos antipodales.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (npi0) at (40.80,-22.60) {{\bfseries\footnotesize\color{tCinco}$\#\pi_0$ es invariante homotópico}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize $\pi_0(X)$ es el conjunto de arco-componentes; $X\simeq Y\Rightarrow\#\pi_0(X)=\#\pi_0(Y)$.}};
+\node[nodo=tCinco, minimum width=6.8cm, minimum height=1.49cm, text width=6.3cm] (nseno) at (40.80,-29.14) {{\bfseries\footnotesize\color{tCinco}Curva seno topológica}\hfill{\tiny\color{tCinco}T5}\\[-1pt]{\scriptsize Es conexa pero tiene $2$ arco-componentes, luego no es contráctil.}};
+
+\draw[flecha,draw=tDos] (12.80,-4.59) -- (12.80,-4.99) -- (24.38,-4.99) -- (24.38,-41.61) -- (30.60,-41.61) -- (30.60,-43.63);
+\draw[flecha,draw=tUno] (2.60,-12.41) -- (2.60,-13.49) -- (24.52,-13.49) -- (24.52,-41.88) -- (28.00,-41.88) -- (28.00,-43.63);
+\draw[flecha,draw=tDos] (10.20,-20.24) -- (10.20,-20.64) -- (14.18,-20.64) -- (14.18,-48.96) -- (17.80,-48.96) -- (17.80,-49.90);
+\draw[flecha,draw=tDos] (10.20,-4.59) -- (10.20,-5.26) -- (14.32,-5.26) -- (14.32,-33.99) -- (17.80,-33.99) -- (17.80,-36.01);
+\draw[flecha,draw=tTres] (20.40,-23.00) -- (20.40,-23.74) -- (24.66,-23.74) -- (24.66,-48.96) -- (20.40,-48.96) -- (20.40,-49.90);
+\draw[flecha,draw=tCuatro,dashed] (30.60,-1.49) -- (30.60,-1.89) -- (24.80,-1.89) -- (24.80,-26.91) -- (23.00,-26.91) -- (23.00,-28.39);
+\draw[flecha,draw=tCinco] (40.80,-26.17) -- (40.80,-26.91) -- (44.78,-26.91) -- (44.78,-51.79) -- (40.80,-51.79) -- (40.80,-53.27);
+\draw[flecha,draw=tUno] (2.60,-1.49) -- (2.60,-1.89) -- (14.46,-1.89) -- (14.46,-23.74) -- (17.80,-23.74) -- (17.80,-24.68);
+\draw[flecha,draw=tCuatro] (30.60,-13.09) -- (30.60,-13.49) -- (34.58,-13.49) -- (34.58,-33.99) -- (28.00,-33.99) -- (28.00,-36.01);
+\draw[flecha,draw=tCinco] (43.40,-20.24) -- (43.40,-20.64) -- (44.92,-20.64) -- (44.92,-41.61) -- (43.40,-41.61) -- (43.40,-43.63);
+\draw[flecha,draw=tUno] (2.60,-4.59) -- (2.60,-5.53) -- (34.72,-5.53) -- (34.72,-23.74) -- (38.20,-23.74) -- (38.20,-24.68);
+\draw[flecha,draw=tCuatro] (28.00,-33.59) -- (28.00,-34.26) -- (34.72,-34.26) -- (34.72,-51.79) -- (30.60,-51.79) -- (30.60,-53.27);
+\draw[flecha,draw=tDos] (10.20,-1.49) -- (10.20,-2.16) -- (14.18,-2.16) -- (14.18,-16.93) -- (7.60,-16.93) -- (7.60,-18.41);
+\draw[flecha,draw=tTres] (20.40,-29.88) -- (20.40,-30.28) -- (24.80,-30.28) -- (24.80,-45.52) -- (17.80,-45.52) -- (17.80,-46.73);
+\draw[flecha,draw=tCuatro] (30.60,-16.53) -- (30.60,-16.93) -- (34.86,-16.93) -- (34.86,-30.28) -- (28.00,-30.28) -- (28.00,-31.76);
+\draw[flecha,draw=tCuatro] (33.20,-26.17) -- (33.20,-26.91) -- (35.00,-26.91) -- (35.00,-41.61) -- (40.80,-41.61) -- (40.80,-43.63);
+\draw[flecha,draw=tUno] (0.00,-4.59) -- (0.00,-5.80) -- (35.00,-5.80) -- (35.00,-17.20) -- (38.20,-17.20) -- (38.20,-18.41);
+\draw[flecha,draw=tDos] (12.80,-8.50) -- (12.80,-9.24) -- (35.14,-9.24) -- (35.14,-20.64) -- (40.80,-20.64) -- (40.80,-21.85);
+\draw[flecha,draw=tTres] (20.40,-12.75) -- (20.40,-13.76) -- (24.94,-13.76) -- (24.94,-24.01) -- (23.00,-24.01) -- (23.00,-24.68);
+\draw[flecha,draw=tTres] (20.40,-33.25) -- (20.40,-33.99) -- (24.94,-33.99) -- (24.94,-45.79) -- (20.40,-45.79) -- (20.40,-46.73);
+\draw[flecha,draw=tTres] (17.80,-29.88) -- (17.80,-30.55) -- (25.08,-30.55) -- (25.08,-42.15) -- (17.80,-42.15) -- (17.80,-43.63);
+\draw[flecha,draw=tTres] (23.00,-29.88) -- (23.00,-30.82) -- (35.14,-30.82) -- (35.14,-41.88) -- (38.20,-41.88) -- (38.20,-43.63);
+\draw[flecha,draw=tTres] (20.40,-40.87) -- (20.40,-42.42) -- (25.22,-42.42) -- (25.22,-51.79) -- (28.00,-51.79) -- (28.00,-53.27);
+\draw[flecha,draw=tCuatro] (30.60,-40.87) -- (30.60,-42.15) -- (34.58,-42.15) -- (34.58,-52.06) -- (31.90,-52.06) -- (31.90,-53.27);
+\draw[flecha,draw=tCuatro] (33.20,-33.59) -- (33.20,-34.53) -- (34.86,-34.53) -- (34.86,-45.52) -- (40.80,-45.52) -- (40.80,-46.73);
+\draw[flecha,draw=tUno] (0.00,-1.49) -- (0.00,-2.43) -- (14.60,-2.43) -- (14.60,-9.51) -- (17.80,-9.51) -- (17.80,-11.26);
+\draw[flecha,draw=tUno] (-2.60,-4.59) -- (-2.60,-6.07) -- (24.66,-6.07) -- (24.66,-14.03) -- (30.60,-14.03) -- (30.60,-14.70);
+\draw[flecha,draw=tUno] (2.60,-8.84) -- (2.60,-9.78) -- (25.08,-9.78) -- (25.08,-17.20) -- (30.60,-17.20) -- (30.60,-18.41);
+\draw[flecha,draw=tDos] (7.60,-8.50) -- (7.60,-10.05) -- (14.74,-10.05) -- (14.74,-17.20) -- (12.80,-17.20) -- (12.80,-18.41);
+\draw[flecha,draw=tDos] (7.60,-4.59) -- (7.60,-6.34) -- (14.88,-6.34) -- (14.88,-13.76) -- (12.80,-13.76) -- (12.80,-14.70);
+\draw[flecha,draw=tTres] (21.27,-26.51) -- (21.27,-27.18) -- (25.22,-27.18) -- (25.22,-34.26) -- (23.00,-34.26) -- (23.00,-36.01);
+\draw[flecha,draw=tTres] (19.10,-33.25) -- (19.10,-34.53) -- (25.36,-34.53) -- (25.36,-42.69) -- (20.40,-42.69) -- (20.40,-43.63);
+\draw[flecha,draw=tCuatro] (28.00,-45.12) -- (28.00,-45.79) -- (35.00,-45.79) -- (35.00,-52.33) -- (33.20,-52.33) -- (33.20,-53.27);
+\draw[flecha,draw=tCinco] (40.80,-41.21) -- (40.80,-41.88) -- (45.06,-41.88) -- (45.06,-48.96) -- (40.80,-48.96) -- (40.80,-49.90);
+\draw[flecha,draw=tCinco] (40.80,-45.12) -- (40.80,-45.79) -- (44.92,-45.79) -- (44.92,-52.06) -- (43.40,-52.06) -- (43.40,-53.27);
+\draw[flecha,draw=tCuatro] (33.20,-45.12) -- (33.20,-46.06) -- (35.14,-46.06) -- (35.14,-52.60) -- (38.20,-52.60) -- (38.20,-53.27);
+\draw[flecha,draw=tDos] (12.80,-20.24) -- (12.80,-20.91) -- (35.28,-20.91) -- (35.28,-27.18) -- (38.20,-27.18) -- (38.20,-28.39);
+\draw[flecha,draw=tUno] (-2.60,-1.49) -- (-2.60,-2.16) -- (3.98,-2.16) -- (3.98,-4.99) -- (10.20,-4.99) -- (10.20,-7.01);
+\draw[flecha,draw=tTres] (19.53,-26.51) -- (19.53,-27.45) -- (24.94,-27.45) -- (24.94,-31.09) -- (20.40,-31.09) -- (20.40,-31.76);
+\draw[flecha,draw=tTres] (21.70,-33.25) -- (21.70,-34.80) -- (25.50,-34.80) -- (25.50,-38.24) -- (30.60,-38.24) -- (30.60,-39.72);
+\draw[flecha,draw=tTres] (17.80,-33.25) -- (17.80,-35.07) -- (25.64,-35.07) -- (25.64,-38.51) -- (20.40,-38.51) -- (20.40,-39.72);
+\draw[flecha,draw=tTres] (23.00,-33.25) -- (23.00,-35.34) -- (35.28,-35.34) -- (35.28,-38.24) -- (38.20,-38.24) -- (38.20,-39.72);
+\draw[flecha,draw=tTres] (17.80,-37.50) -- (17.80,-38.78) -- (25.78,-38.78) -- (25.78,-42.96) -- (23.00,-42.96) -- (23.00,-43.63);
+\draw[flecha,draw=tCuatro] (30.60,-29.88) -- (30.60,-30.55) -- (35.42,-30.55) -- (35.42,-34.80) -- (33.20,-34.80) -- (33.20,-36.01);
+\draw[flecha,draw=tCuatro] (30.60,-37.84) -- (30.60,-38.51) -- (35.42,-38.51) -- (35.42,-42.42) -- (33.20,-42.42) -- (33.20,-43.63);
+\draw[flecha,draw=tCuatro] (28.00,-16.53) -- (28.00,-17.47) -- (35.42,-17.47) -- (35.42,-21.18) -- (28.00,-21.18) -- (28.00,-21.85);
+\draw[flecha,draw=tCuatro] (28.00,-26.17) -- (28.00,-27.45) -- (34.72,-27.45) -- (34.72,-31.09) -- (33.20,-31.09) -- (33.20,-31.76);
+\draw[flecha,draw=tCuatro] (30.60,-33.59) -- (30.60,-35.07) -- (35.56,-35.07) -- (35.56,-38.78) -- (43.40,-38.78) -- (43.40,-39.72);
+\draw[flecha,draw=tCinco] (38.20,-20.24) -- (38.20,-20.91) -- (44.78,-20.91) -- (44.78,-23.74) -- (43.40,-23.74) -- (43.40,-24.68);
+\draw[flecha,draw=tCinco] (40.80,-23.34) -- (40.80,-24.01) -- (45.06,-24.01) -- (45.06,-27.18) -- (43.40,-27.18) -- (43.40,-28.39);
+\draw[flecha,draw=tUno] (-2.60,-8.84) -- (-2.60,-10.32) -- (30.60,-10.32) -- (30.60,-11.26);
+\draw[flecha,draw=tUno] (-2.60,-12.41) -- (-2.60,-13.76) -- (7.60,-13.76) -- (7.60,-14.70);
+\draw[flecha,draw=tDos] (10.20,-8.50) -- (10.20,-10.59) -- (23.00,-10.59) -- (23.00,-11.26);
+\draw[flecha,draw=tDos] (7.60,-20.24) -- (7.60,-21.18) -- (20.40,-21.18) -- (20.40,-21.85);
+\draw[flecha,draw=tTres] (17.80,-26.51) -- (17.80,-28.39);
+\draw[flecha,draw=tTres] (23.00,-26.51) -- (23.00,-27.72) -- (30.60,-27.72) -- (30.60,-28.39);
+\draw[flecha,draw=tTres] (23.00,-37.50) -- (23.00,-39.05) -- (40.80,-39.05) -- (40.80,-39.72);
+\draw[flecha,draw=tTres] (20.40,-45.12) -- (20.40,-46.06) -- (23.00,-46.06) -- (23.00,-46.73);
+\draw[flecha,draw=tTres] (20.40,-47.88) -- (20.40,-49.23) -- (23.00,-49.23) -- (23.00,-49.90);
+\draw[flecha,draw=tTres] (20.40,-51.39) -- (20.40,-52.06) -- (29.30,-52.06) -- (29.30,-53.27);
+\draw[flecha,draw=tCuatro] (30.60,-19.90) -- (30.60,-20.64) -- (33.20,-20.64) -- (33.20,-21.85);
+\draw[flecha,draw=tCuatro] (30.60,-23.34) -- (30.60,-24.68);
+\draw[flecha,draw=tCuatro] (33.20,-16.53) -- (33.20,-17.74) -- (43.40,-17.74) -- (43.40,-18.41);
+\draw[flecha,draw=tCinco] (40.80,-54.76) -- (40.80,-55.83);
+\draw[flecha,draw=tCinco] (40.80,-57.66) -- (40.80,-58.73);
+\node[etiqueta,text=tDos] at (27.49,-41.61) {$\mathbb R^n$ es contráctil};
+\node[etiqueta,text=tUno] at (26.26,-41.88) {$V_i\cong\mathbb R^n$};
+\node[etiqueta,text=tDos] at (15.99,-48.96) {$X\simeq$ punto};
+\node[etiqueta,text=tDos] at (16.06,-33.99) {misma homotopía, extremos fijos};
+\node[etiqueta,text=tTres] at (22.53,-48.96) {$X$ es arco-conexo};
+\node[etiqueta,text=tCuatro] at (23.90,-26.91) {$[\alpha*\beta*\gamma]$ sin paréntesis};
+\node[etiqueta,text=tCinco] at (42.79,-51.79) {$\deg(f\sigma)$ impar};
+\node[etiqueta,text=tUno] at (16.13,-23.74) {pegar homotopías a trozos};
+\node[etiqueta,text=tCuatro] at (31.29,-33.99) {partición regular de $I$};
+\node[etiqueta,text=tCinco] at (44.30,-41.61) {$\tilde\omega_1-\tilde\omega_2$ constante};
+\node[etiqueta,text=tUno] at (36.46,-23.74) {$h$ y $g$ son constantes};
+\node[etiqueta,text=tCuatro] at (32.66,-51.79) {$\pi_1(S^1)=\mathbb Z\neq1$};
+\node[etiqueta,text=tDos] at (10.89,-16.93) {$1_X f\simeq c_x f$};
+\node[etiqueta,text=tTres] at (21.30,-45.52) {$P_\sigma$ es biyectiva};
+\node[etiqueta,text=tCuatro] at (31.43,-30.28) {$p^{-1}(1,0)=\mathbb Z$};
+\node[etiqueta,text=tCuatro] at (37.90,-41.61) {elevar $\omega^{-1}$, $\alpha$, $\omega$};
+\node[etiqueta,text=tUno] at (36.60,-17.20) {$k(t)$ es constante};
+\node[etiqueta,text=tDos] at (37.97,-20.64) {homotopía entre aplicaciones};
+\node[etiqueta,text=tTres] at (23.97,-24.01) {$\simeq_{\{0,1\}}$ define $\pi_1$};
+\node[etiqueta,text=tTres] at (22.67,-45.79) {$(gf)_*=g_*f_*$};
+\node[etiqueta,text=tTres] at (21.44,-42.15) {$P_\sigma$ transporta lazos};
+\node[etiqueta,text=tTres] at (36.67,-41.88) {$P_\omega[\alpha]=[\omega^{-1}\alpha\omega]$};
+\node[etiqueta,text=tTres] at (26.61,-51.79) {$\pi_1$ invariante topológico};
+\node[etiqueta,text=tCuatro] at (33.24,-52.06) {$\pi_1(T^2)=\mathbb Z^2$};
+\node[etiqueta,text=tCuatro] at (37.83,-45.52) {grado y homotopías relativas};
+\node[etiqueta,text=tUno] at (16.20,-9.51) {pegar, con $A$ fijo};
+\node[etiqueta,text=tUno] at (27.63,-14.03) {$f_1-f_2$ es constante};
+\node[etiqueta,text=tUno] at (27.84,-17.20) {recubrir con bolas};
+\node[etiqueta,text=tDos] at (13.77,-17.20) {simetría y transitividad};
+\node[etiqueta,text=tDos] at (13.84,-13.76) {$D^2$, $\mathbb R^2$ contráctiles};
+\node[etiqueta,text=tTres] at (24.11,-34.26) {$[\alpha]=[c_{x_0}]$};
+\node[etiqueta,text=tTres] at (22.88,-42.69) {componer con $G$};
+\node[etiqueta,text=tCuatro] at (34.10,-52.33) {$\pi_1(S^2)=1$};
+\node[etiqueta,text=tCinco] at (42.93,-48.96) {se construiría una retracción};
+\node[etiqueta,text=tCinco] at (44.30,-52.06) {$\deg_{x_0}$ solo depende de la clase};
+\node[etiqueta,text=tCuatro] at (36.67,-52.60) {$j\circ\sigma\simeq c$ en $S^2$};
+\node[etiqueta,text=tDos] at (36.74,-27.18) {contráctil $\simeq$ punto};
+\node[etiqueta,text=tUno] at (7.09,-4.99) {pegar $F^{(1)}$ y $F^{(2)}$};
+\node[etiqueta,text=tTres] at (22.67,-31.09) {$\pi_1$ es grupo};
+\node[etiqueta,text=tTres] at (28.05,-38.24) {proyecciones inducen};
+\node[etiqueta,text=tTres] at (23.02,-38.51) {$f_*g_*=1$};
+\node[etiqueta,text=tTres] at (36.74,-38.24) {$r_*i_*=1$};
+\node[etiqueta,text=tTres] at (24.39,-42.96) {$\pi_1(I\times I)=1$};
+\node[etiqueta,text=tCuatro] at (34.31,-34.80) {lazos triviales en cada $V_j$};
+\node[etiqueta,text=tCuatro] at (34.31,-42.42) {$V_1=S^n\setminus N$, $V_2=S^n\setminus S$};
+\node[etiqueta,text=tCuatro] at (31.71,-21.18) {unicidad};
+\node[etiqueta,text=tCuatro] at (34.10,-31.09) {elevar lazos y homotopías};
+\node[etiqueta,text=tCuatro] at (39.48,-38.78) {$\pi_1(S^1)=\mathbb Z$};
+\node[etiqueta,text=tCinco] at (44.30,-23.74) {grado con cualquier elevación};
+\node[etiqueta,text=tCinco] at (44.30,-27.18) {$\#\pi_0=2\neq1$};
+\node[etiqueta,text=tUno] at (14.00,-10.32) {subrecubrimiento finito};
+\node[etiqueta,text=tUno] at (2.50,-13.76) {$S^2\setminus\{N\}\cong\mathbb R^2$};
+\node[etiqueta,text=tDos] at (16.60,-10.59) {misma prueba};
+\node[etiqueta,text=tDos] at (14.00,-21.18) {$F(x,t)$ une $x$ con $x_0$};
+\node[etiqueta,text=tTres,anchor=west] at (17.92,-27.45) {concatenar arcos};
+\node[etiqueta,text=tTres] at (26.80,-27.72) {inversos: $\alpha*\beta^{-1}$};
+\node[etiqueta,text=tTres] at (31.90,-39.05) {$\pi_1(D^2)=1$};
+\node[etiqueta,text=tTres] at (21.70,-46.06) {$g_*f_*$ es $P_\sigma$};
+\node[etiqueta,text=tTres] at (21.70,-49.23) {$X\simeq$ punto};
+\node[etiqueta,text=tTres] at (24.85,-52.06) {contráctil $\Rightarrow\pi_1=1$};
+\node[etiqueta,text=tCuatro] at (31.90,-20.64) {$\|x-x'\|<\delta$};
+\node[etiqueta,text=tCuatro,anchor=west] at (30.72,-24.01) {$I$ e $I\times I$ convexos compactos};
+\node[etiqueta,text=tCuatro] at (38.30,-17.74) {$p$ es homomorfismo};
+\node[etiqueta,text=tCinco,anchor=west] at (40.92,-55.30) {$\frac{f(x)-f(-x)}{\|f(x)-f(-x)\|}$ sería impar};
+\node[etiqueta,text=tCinco,anchor=west] at (40.92,-58.20) {$g=(d(x,A_1),d(x,A_2))$};
+\node[anchor=west,font=\huge\bfseries] at (-5.10,4.60) {Mapa de dependencias entre teoremas (Topología Algebraica)};
+\node[anchor=west,font=\small,align=left] at (-5.10,3.40) {Una columna por tema; se lee de arriba abajo. Una flecha $A\to B$ significa que $A$ se usa para demostrar $B$ y la etiqueta dice cómo.\\El color de la flecha es el del tema de origen. Línea discontinua: referencia hacia atrás (la reparametrización está en el Tema 4 pero se usa antes).};
+\end{tikzpicture}
+\end{document}
