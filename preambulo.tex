@@ -138,7 +138,20 @@
     fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{magenta!40!blue!40!black,opacity=0.5},
     title style={left color=magenta!80!blue!80!black, right color=magenta!60!blue!60!black}
 }{not}
- 
+
+% Ejercicios resueltos en clase: \begin{ejercicio}{Título (p. ej. "Tema 5, ej. 3")} enunciado y solución \end{ejercicio}
+% Sin contador: el título lleva la numeración de la hoja de ejercicios.
+\newtcolorbox{ejercicio}[1]{
+    futuristicbase,
+    colback=teal!4!white,
+    colframe=teal!60!black,
+    boxrule=0.4pt,
+    coltitle=white,
+    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{teal!40!black,opacity=0.5},
+    title style={left color=teal!70!black, right color=teal!50!black},
+    title={Ejercicio: #1}
+}
+
 % --- Cabecera/pie de página ---
 \usepackage{fancyhdr}
 \setlength{\headheight}{12.5pt}

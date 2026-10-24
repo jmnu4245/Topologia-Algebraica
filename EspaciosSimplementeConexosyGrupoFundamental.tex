@@ -85,9 +85,18 @@ $$d(y, x_j) \le d(y,x) + d(x,x_j) < \delta + \frac{r(x_j)}{2} \le \frac{r(x_j)}{
 Hemos llegado a la conclusión de que $B(x,\delta) \subseteq B(x_j, r(x_j)) \subseteq U_{i(x_j)}$.
 \end{proof}
 
+\begin{proposicion}{Lebesgue para recubrimientos de $[0,1]$ [C7.5]}{cor_lebesgue_I}
+Sea $\mathcal{U} = \{U_i\}_{i \in \Lambda}$ un recubrimiento abierto de $I = [0,1]$. Entonces existe $n \geq 1$ tal que, para todo $j \in \{1,\dots,n\}$, existe $i(j) \in \Lambda$ con $\left[\frac{j-1}{n}, \frac{j}{n}\right] \subseteq U_{i(j)}$. Es decir, la partición $t_j = \frac{j}{n}$ (con distancia constante $\frac1n$ entre puntos consecutivos) subordinada a $\mathcal{U}$ puede tomarse \textbf{regular}.
+\end{proposicion}
+
+\begin{proof}
+Por el lema de Lebesgue existe $\delta > 0$ tal que, para todo $x \in I$, existe $i(x) \in \Lambda$ con $\left]x-\delta, x+\delta\right[ \cap I \subseteq U_{i(x)}$. Sea $n \in \mathbb{Z}_{\geq 1}$ con $\frac1n < \delta$ y sea $t_j = \frac jn$, para $j = 0,\dots,n$. Fijado $j \in \{1,\dots,n\}$, sea $x_j$ el punto medio de $[t_{j-1},t_j]$ y escribamos $i(j) := i(x_j)$. Entonces
+\[ [t_{j-1},t_j] \subseteq \left]x_j - \tfrac1n, x_j + \tfrac1n\right[ \cap I \subseteq \left]x_j - \delta, x_j + \delta\right[ \cap I \subseteq U_{i(j)}. \]
+\end{proof}
+
 \subsection{Condición suficiente para ser simplemente conexo}
 
-\begin{teorema}{Condición suficiente para que un espacio sea simplemente conexo [C7.5]}{cond_simp_conexo}
+\begin{teorema}{Condición suficiente para que un espacio sea simplemente conexo [C7.6]}{cond_simp_conexo}
 Sea $X$ un espacio topológico y sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$. Supongamos que:
 \begin{itemize}
 \item[a)] $V_i$ es simplemente conexo para todo $i \in \Lambda$.
@@ -124,9 +133,7 @@ Vemos claramente que $X$ es arco-conexo (se deduce de manera obvia a partir de l
 Sea $x_0 \in \bigcap_{i \in \Lambda} V_i$, se tiene que $\pi_1(X) \cong \pi_1(X, x_0)$.
 Sea $\alpha \in C_{x_0}(X)$, $\alpha: I \longrightarrow X$ continua, $\alpha(0)=\alpha(1)=x_0$. Debemos probar que $\alpha \simeq_{\{0,1\}} c_{x_0}$.
 
-Sea $\mathcal{U} = \{\alpha^{-1}(V_i)\}_{i \in \Lambda}$. Vemos que $\mathcal{U}$ es un recubrimiento abierto de $I$. Por el Lema de Lebesgue, $\exists \delta > 0 / \forall x \in I, \exists i(x) \in \Lambda$ tal que $B(x,\delta) \subseteq \alpha^{-1}(V_{i(x)})$. Equivalentemente:
-$\exists 0 = t_0 < t_1 < \dots < t_n = 1$ tal que $[t_{j-1}, t_j]$ está contenido en algún elemento de $\mathcal{U}$, $\forall j=1 \dots n$. Es decir:
-$\exists 0 = t_0 < t_1 < \dots < t_n = 1$ tal que $\forall j \in \{1 \dots n\}$, existe un $V_j \in \{V_i\}_{i \in \Lambda}$ tal que $\alpha([t_{j-1}, t_j]) \subseteq V_j$.
+Sea $\mathcal{U} = \{\alpha^{-1}(V_i)\}_{i \in \Lambda}$. Vemos que $\mathcal{U}$ es un recubrimiento abierto de $I$. Por la \cref{prop:cor_lebesgue_I}, existe $n \geq 1$ tal que, definiendo $t_j = \frac jn$ para $j = 0,1,\dots,n$, el intervalo $[t_{j-1}, t_j]$ está contenido en algún elemento de $\mathcal{U}$, para todo $j = 1,\dots,n$. Es decir: $0 = t_0 < t_1 < \dots < t_n = 1$ es una partición \textbf{regular} y, para todo $j \in \{1 \dots n\}$, existe un $V_j \in \{V_i\}_{i \in \Lambda}$ tal que $\alpha([t_{j-1}, t_j]) \subseteq V_j$. En particular $\alpha(t_j) \in V_j \cap V_{j+1}$ para $j = 1,\dots,n-1$.
 
 \begin{figure}[htbp]
 \centering
@@ -189,48 +196,19 @@ Sea $j \in \{1 \dots n\}: \alpha|_{[t_{j-1}, t_j]}$. Sea $\alpha_j: I \longright
 \caption{Detalle del sub-camino $\alpha_j$.}
 \end{figure}
 
-Lema: $\exists q: I \longrightarrow I$ continua, $q(0)=0, q(1)=1$ de manera que $\alpha_1 * \dots * \alpha_n = \alpha \circ q$.
-Sabemos que $[\alpha] = [\alpha \circ q]$. Por tanto:
-$$[\alpha] = [\alpha \circ q] = [\alpha_1 * \alpha_2 * \dots * \alpha_n]$$
+Como la partición es regular, $\alpha_j(s) = \alpha\left(\frac{j-1+s}{n}\right)$, y para $u \in [t_{j-1},t_j]$ se tiene $\alpha(u) = \alpha_j(nu - (j-1))$, que es exactamente el tramo $j$-ésimo de la concatenación conjunta. Por tanto $\alpha = \alpha_1 * \alpha_2 * \dots * \alpha_n$ (igualdad de aplicaciones, sin necesidad de reparametrizar). Entonces:
+$$[\alpha] = [\alpha_1 * \alpha_2 * \dots * \alpha_n]$$
 $$= [\alpha_1 * \rho_1^{-1} * \rho_1 * \alpha_2 * \rho_2^{-1} * \rho_2 * \alpha_3 * \rho_3^{-1} * \dots * \rho_{n-2} * \alpha_{n-1} * \rho_{n-1}^{-1} * \rho_{n-1} * \alpha_n]$$
 $$= [\alpha_1 * \rho_1^{-1}] \cdot [\rho_1 * \alpha_2 * \rho_2^{-1}] \cdot [\rho_2 * \alpha_3 * \rho_3^{-1}] \cdot \dots \cdot [\rho_{n-2} * \alpha_{n-1} * \rho_{n-1}^{-1}] \cdot [\rho_{n-1} * \alpha_n]$$
 
 Donde cada corchete está en $C_{x_0}(V_j)$ respectivamente.
 Por hipótesis cada $V_j$ es simplemente conexo, por lo que cada uno se anula a $[c_{x_0}]$. Por tanto $[\alpha] = [c_{x_0}]$.
 
-\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[xscale=6, yscale=2]
-  \draw (0,1) -- (1,1);
-  \draw (0,0.9) -- (0,1.1) node[below=5pt] {$0=t_0$};
-  \draw (0.2,0.9) -- (0.2,1.1) node[below=5pt] {$t_1$};
-  \draw (0.35,0.9) -- (0.35,1.1) node[below=5pt] {$t_2$};
-  \draw (0.5,0.9) -- (0.5,1.1) node[below=5pt] {$t_3$};
-  \draw (0.8,0.9) -- (0.8,1.1) node[below=5pt] {$t_{n-1}$};
-  \draw (1,0.9) -- (1,1.1) node[below=5pt] {$t_n=1$};
-
-  \draw (0,0) -- (1,0);
-  \draw (0,-0.1) -- (0,0.1) node[below=5pt] {$0$};
-  \draw (0.2,-0.1) -- (0.2,0.1) node[below=5pt] {$1/n$};
-  \draw (0.4,-0.1) -- (0.4,0.1) node[below=5pt] {$2/n$};
-  \draw (0.6,-0.1) -- (0.6,0.1) node[below=5pt] {$3/n$};
-  \draw (0.8,-0.1) -- (0.8,0.1) node[below=5pt] {$\frac{n-1}{n}$};
-  \draw (1,-0.1) -- (1,0.1) node[below=5pt] {$1$};
-
-  \draw[blue, thick] (0,0) -- (0,1);
-  \draw[blue, thick] (0.2,0) -- (0.2,1);
-  \draw[blue, thick] (0.4,0) -- (0.35,1);
-  \draw[blue, thick] (0.6,0) -- (0.5,1);
-  
-  \node at (1.1, 0.5) {$g: I \longrightarrow I$};
-\end{tikzpicture}
-\caption{Mapeo de subintervalos para la función de reparametrización $g$.}
-\end{figure}
 \end{proof}
 
 \subsection{La esfera $S^n$ es simplemente conexa}
 
-\begin{proposicion}{ [C7.6]}{corolario_sn}
+\begin{proposicion}{ [C7.7]}{corolario_sn}
 Para $n \ge 2$, $S^n$ es simplemente conexo.
 \end{proposicion}
 
@@ -479,3 +457,38 @@ En particular, si $X$ e $Y$ son arco-conexos, $\pi_1(X \times Y) \cong \pi_1(X) 
 \begin{observacion}{Grupo fundamental del cilindro [C9.9]}{obs_cilindro}
 El grupo fundamental del cilindro $S^1 \times I$ es $\mathbb{Z}$, ya que $S^1$ y $S^1 \times I$ son del mismo tipo de homotopía.
 \end{observacion}
+
+\subsection{Ejercicios resueltos en clase}
+
+\begin{center}
+\textbf{23/10/2026 (Clase 12)}
+\end{center}
+
+\begin{ejercicio}{Tema 4, ej. 1 (esferas tangentes)}
+Sean $S, S' \subseteq \mathbb{R}^3$ dos esferas del mismo radio que se cortan en un único punto $x_0$ (son tangentes). Probar que $A = S \cup S'$ es simplemente conexo, y lo mismo para una cadena finita de esferas $S_1, \dots, S_r$ con $S_i$ y $S_{i+1}$ tangentes y $S_1 \cap S_r = \emptyset$.
+
+\textbf{Solución.} Se aplica la \cref{thm:cond_simp_conexo} con un recubrimiento abierto de $A$ por dos conjuntos. Hay que tener cuidado con la topología: una esfera sola \emph{no} es abierta en $A$. Recordemos que $Y \subseteq A$ es abierto en $A$ (topología relativa) cuando para todo $p \in Y$ existe $\varepsilon > 0$ con $B(p,\varepsilon) \cap A \subseteq Y$.
+
+Sean $q \in S \setminus \{x_0\}$ y $q' \in S' \setminus \{x_0\}$. Tomamos
+\[ V_1 = S \cup (S' \setminus \{q'\}), \qquad V_2 = (S \setminus \{q\}) \cup S'. \]
+Ambos son abiertos en $A$ (su complementario es un punto) y $V_1 \cup V_2 = A$.
+\begin{itemize}
+    \item $V_1$ es una esfera con un disco abierto (contráctil, pues $S' \setminus \{q'\} \cong \mathbb{R}^2$) pegado por un punto, luego $V_1 \simeq S^2$, que es simplemente conexo. Igual con $V_2$.
+    \item $V_1 \cap V_2 = (S \setminus \{q\}) \cup (S' \setminus \{q'\})$ son dos copias de $\mathbb{R}^2$ unidas por $x_0$, que es arco-conexo.
+    \item $x_0 \in V_1 \cap V_2$.
+\end{itemize}
+Por el teorema, $A$ es simplemente conexo.
+
+Para la cadena de $r$ esferas se razona por \textbf{inducción} sobre $r$, añadiendo una esfera tangente en cada paso. La hipótesis $S_1 \cap S_r = \emptyset$ es necesaria: si la cadena se cierra formando un anillo de esferas, el espacio \textbf{no} es simplemente conexo.
+\end{ejercicio}
+
+\begin{ejercicio}{Tema 4, ej. 2, apartados a)--d) (grupo fundamental de subespacios)}
+En cada apartado se busca un espacio $Y$ del mismo tipo de homotopía que $X$ cuyo grupo fundamental sea conocido o fácil de deducir. Aunque el enunciado no lo pide, conviene explicitar una equivalencia homotópica entre $X$ e $Y$.
+\begin{enumerate}
+    \item[a)] $X = \{(x,y) \in \mathbb{R}^2 : 1 \leq x^2 + y^2 \leq 4\}$ (corona). Se tiene $X \simeq S^1$ y, por la invariancia homotópica, $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$. La equivalencia homotópica es
+    \[ f \colon S^1 \to X, \ (x,y) \mapsto (x,y), \qquad g \colon X \to S^1, \ (x,y) \mapsto \frac{(x,y)}{\|(x,y)\|}. \]
+    \item[b)] $X = \mathbb{R}^2 \setminus \{(0,0)\}$. $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$.
+    \item[c)] $X = \{(x,f(x)) : x \in [a,b]\}$, con $f$ continua. Es \textbf{contráctil} (homeomorfo a $[a,b]$), luego simplemente conexo.
+    \item[d)] $X = S^1 \cup \{y^2 = 1\}$ (la circunferencia y las dos rectas horizontales $y = \pm 1$, tangentes a ella). $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$.
+\end{enumerate}
+\end{ejercicio}

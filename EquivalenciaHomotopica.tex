@@ -228,9 +228,11 @@ Son equivalentes las siguientes afirmaciones para un e.t. $X \neq \emptyset$:
 \begin{proof}
 Probamos (a)$\Rightarrow$(b)$\Rightarrow$(c)$\Rightarrow$(a) y (a)$\Leftrightarrow$(d).
 
-(a)$\Rightarrow$(b): Sea $x_0 \in X$ con $1_X \simeq c_{x_0}$. Dado $x \in X$, como $X$ es arco-conexo (por ser contráctil, \cref{thm:teo_contractil_arcoconexo}, cuya prueba no usa este resultado) existe un arco $\omega \colon I \to X$ con $\omega(0) = x_0$ y $\omega(1) = x$. La aplicación $H \colon X \times I \to X$, $H(y,t) = \omega(t)$, es continua con $H_0 = c_{x_0}$ y $H_1 = c_x$, luego $c_{x_0} \simeq c_x$. Por transitividad, $1_X \simeq c_{x_0} \simeq c_x$.
+(a)$\Rightarrow$(b): Por hipótesis, $\exists x_0 \in X$ tal que $1_X \simeq c_{x_0}$. Sea $x$ cualquier otro punto de $X$ y sea $c_x \colon X \to X$ la aplicación constante $p \mapsto x$. Como $1_X \simeq c_{x_0}$ y $c_x \simeq c_x$ (reflexividad), el teorema de composición de homotopías (\cref{thm:teo_comp_homo}) da
+\[ 1_X \circ c_x \simeq c_{x_0} \circ c_x. \]
+Pero $1_X \circ c_x = c_x$ y $c_{x_0} \circ c_x = c_{x_0}$ (pues $p \mapsto x \mapsto x_0$), luego $c_x \simeq c_{x_0}$. Por simetría y transitividad, $1_X \simeq c_{x_0} \simeq c_x$. Esta prueba no usa que $X$ sea arco-conexo.
 
-(b)$\Rightarrow$(c): Sean $f, g \colon T \to X$ continuas y fijemos $x \in X$. Como $1_X \simeq c_x$ y $f \simeq f$, el teorema de composición de homotopías da $1_X \circ f \simeq c_x \circ f$, es decir, $f \simeq c_x$ (donde ahora $c_x \colon T \to X$). Igualmente $g \simeq c_x$. Por simetría y transitividad, $f \simeq g$.
+(b)$\Rightarrow$(c): Sean $f, g \colon T \to X$ continuas y sea $x_0$ un punto cualquiera de $X$. Por (b), $1_X \simeq c_{x_0}$, y $f \simeq f$, luego por el teorema de composición $1_X \circ f \simeq c_{x_0} \circ f$. Sea $d_{x_0} \colon T \to X$ la constante $p \mapsto x_0$; como $c_{x_0} \circ f = d_{x_0}$, se tiene $f \simeq d_{x_0}$. Igualmente $g \simeq d_{x_0}$. Por simetría y transitividad, $f \simeq g$.
 
 (c)$\Rightarrow$(a): Tomando $T = X$, $f = 1_X$ y $g = c_{x_0}$ (con $x_0 \in X$ cualquiera, pues $X \neq \emptyset$) obtenemos $1_X \simeq c_{x_0}$.
 
