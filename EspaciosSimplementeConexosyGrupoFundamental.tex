@@ -298,7 +298,7 @@ Sea $f: X \to S^1$ continua (con $X$ cualquier espacio topológico). Una elevaci
 \end{definicion}
 
 \begin{proposicion}{Unicidad de levantamientos [C8.8]}{}
-Sea $X$ conexo. Sea $f: X \to S^1$ continua. Sean $f_1, f_2 : X \to \mathbb{R}$ levantamientos de $f$. Supongamos que $\exists x_0 \in X$ tal que $f_1(x_0) = f_2(x_0) \implies f_1 = f_2$.
+Sea $X$ conexo. Sea $f: X \to S^1$ continua. Sean $f_1, f_2 : X \to \mathbb{R}$ levantamientos de $f$ tales que $f_1(x_0) = f_2(x_0)$ para algún $x_0 \in X$. Entonces $f_1 = f_2$.
 \end{proposicion}
 
 \textbf{Demostración:}
@@ -441,6 +441,10 @@ La aplicación $\deg \colon \pi_1(S^1,(1,0)) \to \mathbb{Z}$, $[\alpha] \mapsto 
 \begin{proposicion}{$S^1$ no es contráctil [C9.6]}{cor_s1_no_contractil}
 $S^1$ no es contráctil, ya que $\pi_1(S^1) \cong \mathbb{Z} \neq 1$.
 \end{proposicion}
+
+\begin{proof}
+Supongamos que $S^1$ es contráctil. Por la caracterización de contráctiles (\cref{thm:teo_contractil}), $S^1$ tiene el mismo tipo de homotopía que un espacio $\{p\}$ formado por un único punto. Como $S^1$ y $\{p\}$ son arco-conexos y el grupo fundamental es un invariante homotópico (\cref{prop:equiv_homotopica}), se tiene $\pi_1(S^1) \cong \pi_1(\{p\}) = 1$, es decir, $\mathbb{Z} \cong 1$, lo cual es absurdo. Luego $S^1$ no es contráctil.
+\end{proof}
 
 \begin{proposicion}{$S^2$ y $T^2$ no son homeomorfos [C9.7]}{cor_s2_t2}
 $S^2$ y $T^2$ no son homeomorfos.
