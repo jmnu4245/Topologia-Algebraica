@@ -322,10 +322,10 @@ En $s = \frac12$ ambas valen $\alpha(1-t)$. Para $t = 0$: $F(s,0) = \alpha(2s)$ 
 \end{proof}
 
 \begin{proposicion}{Inverso homotópico de caminos [C5.2]}{inverso_homotopico}
-Sea $X$ espacio topológico, $x_0, x_1 \in X$. Sean $\alpha, \beta \in C_{x_0, x_1}(X)$ que verifican que $\alpha \simeq_{\{0,1\}} \beta$, entonces $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$. (Ejercicio para casa).
+Sea $X$ espacio topológico, $x_0, x_1 \in X$. Sean $\alpha, \beta \in C_{x_0, x_1}(X)$ que verifican que $\alpha \simeq_{\{0,1\}} \beta$, entonces $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$. Es la versión para arcos cualesquiera de lo que se probó para lazos en el apartado del inverso del \cref{thm:poincare}: la clase $[\alpha^{-1}]$ no depende del representante de $[\alpha]$.
 \end{proposicion}
 
-\begin{proof}[Solución]
+\begin{proof}
 Sea $H \colon \alpha \simeq_{\{0,1\}} \beta$. Definimos $G(s,t) = H(1-s,t)$, continua. Entonces $G_0(s) = \alpha(1-s) = \alpha^{-1}(s)$, $G_1 = \beta^{-1}$, $G(0,t) = H(1,t) = x_1$ y $G(1,t) = H(0,t) = x_0$ no dependen de $t$. Luego $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$.
 \end{proof}
 
