@@ -656,6 +656,67 @@ Multiplicando por $[f \circ \alpha]$ por la derecha, $[\sigma] \cdot [g \circ \a
 
 \end{teorema}
 
+\begin{nota}{Nota explicativa: el cuadrado enrollado}{nota_expl_homotopicas}
+\begin{center}
+\begin{tikzpicture}[scale=0.85, every node/.style={font=\small},
+  marca/.style={postaction={decorate}, decoration={markings, mark=at position #1 with {\arrow{Stealth[length=5pt]}}}}]
+\colorlet{cF}{blue!75!black}\colorlet{cG}{red!75!black}\colorlet{cS}{green!50!black}
+\fill[gray!8] (0.00,0.40) rectangle (2.40,2.80);
+\draw[cF, very thick, marca=0.55] (2.40,0.40) -- (0.00,0.40);
+\draw[cG, very thick, marca=0.55] (0.00,2.80) -- (2.40,2.80);
+\draw[cS, very thick, marca=0.6] (0.00,0.40) -- (0.00,2.80);
+\draw[cS, very thick, marca=0.6] (2.40,2.80) -- (2.40,0.40);
+\node[cF, below] at (1.20,0.40) {$\lambda_4$};
+\node[cG, above] at (1.20,2.80) {$\lambda_2$};
+\node[cS, left] at (0.00,1.60) {$\lambda_1$};
+\node[cS, right] at (2.40,1.60) {$\lambda_3$};
+\node at (1.20,1.60) {$I\times I$};
+\draw[gray!60!black, -{Stealth[length=4pt]}] (0.00,-0.15) -- node[below, font=\scriptsize] {$s$} (0.70,-0.15);
+\draw[gray!60!black, -{Stealth[length=4pt]}] (-0.70,0.40) -- node[left, font=\scriptsize] {$t$} (-0.70,1.10);
+\draw[gray!60!black, fill=gray!8, fill opacity=0.6] (4.50,0.00) -- (7.90,0.00) -- (9.00,0.75) -- (5.60,0.75) -- cycle;
+\node[gray!60!black, font=\scriptsize, anchor=west] at (8.45,0.38) {$X\times\{0\}$};
+\draw[gray!60!black, fill=gray!8, fill opacity=0.6] (4.50,2.60) -- (7.90,2.60) -- (9.00,3.35) -- (5.60,3.35) -- cycle;
+\node[gray!60!black, font=\scriptsize, anchor=west] at (8.45,2.98) {$X\times\{1\}$};
+\draw[gray!60!black] (5.92,0.46) -- (5.92,3.06);
+\draw[gray!60!black] (7.58,0.29) -- (7.58,2.89);
+\draw[cF, very thick, dashed] plot coordinates {(7.58,0.29) (7.64,0.31) (7.68,0.33) (7.72,0.36) (7.76,0.38) (7.79,0.40) (7.81,0.43) (7.82,0.45) (7.83,0.47) (7.83,0.49) (7.83,0.52) (7.82,0.54) (7.80,0.56) (7.78,0.57) (7.75,0.59) (7.71,0.61) (7.67,0.62) (7.62,0.63) (7.57,0.64) (7.51,0.65) (7.44,0.66) (7.38,0.67) (7.31,0.67) (7.23,0.67) (7.15,0.67) (7.07,0.67) (6.99,0.67) (6.91,0.67) (6.82,0.66) (6.74,0.65) (6.65,0.64) (6.57,0.63) (6.48,0.61) (6.40,0.60) (6.32,0.58) (6.25,0.57) (6.17,0.55) (6.10,0.53) (6.04,0.51) (5.97,0.48) (5.92,0.46)};
+\draw[cF, very thick, marca=0.75] plot coordinates {(5.92,0.46) (5.86,0.44) (5.82,0.42) (5.78,0.39) (5.74,0.37) (5.71,0.35) (5.69,0.32) (5.68,0.30) (5.67,0.28) (5.67,0.26) (5.67,0.23) (5.68,0.21) (5.70,0.19) (5.72,0.18) (5.75,0.16) (5.79,0.14) (5.83,0.13) (5.88,0.12) (5.93,0.11) (5.99,0.10) (6.06,0.09) (6.12,0.08) (6.19,0.08) (6.27,0.08) (6.35,0.08) (6.43,0.08) (6.51,0.08) (6.59,0.08) (6.68,0.09) (6.76,0.10) (6.85,0.11) (6.93,0.12) (7.02,0.14) (7.10,0.15) (7.18,0.17) (7.25,0.18) (7.33,0.20) (7.40,0.22) (7.46,0.24) (7.53,0.27) (7.58,0.29)};
+\draw[cG, very thick, marca=0.3] plot coordinates {(7.75,2.98) (7.80,3.02) (7.83,3.07) (7.83,3.11) (7.81,3.15) (7.76,3.18) (7.69,3.21) (7.60,3.24) (7.48,3.26) (7.35,3.27) (7.21,3.27) (7.05,3.27) (6.89,3.26) (6.73,3.25) (6.56,3.23) (6.40,3.20) (6.25,3.17) (6.11,3.13) (5.98,3.09) (5.87,3.04) (5.79,3.00) (5.72,2.95) (5.68,2.91) (5.67,2.86) (5.68,2.82) (5.71,2.79) (5.77,2.75) (5.85,2.72) (5.95,2.70) (6.08,2.69) (6.21,2.68) (6.36,2.68) (6.52,2.68) (6.69,2.69) (6.85,2.71) (7.02,2.74) (7.17,2.77) (7.32,2.80) (7.45,2.84) (7.57,2.88) (7.67,2.93)} -- cycle;
+\draw[cS, very thick, marca=0.6] (5.69,0.20) -- (5.69,2.80);
+\fill[cS] (5.69,0.20) circle (1.7pt); \fill[cS] (5.69,2.80) circle (1.7pt);
+\node[cS, font=\scriptsize, anchor=west] at (5.77,1.50) {$\{x_0\}\times I$};
+\node[cF, font=\scriptsize] at (7.00,-0.22) {$\alpha\times\{0\}$};
+\node[cG, font=\scriptsize] at (7.00,3.58) {$\alpha\times\{1\}$};
+\draw[orange!70!black, fill=orange!6, thick] plot[smooth cycle, tension=0.8] coordinates {(3.82,-3.70) (4.68,-5.24) (6.95,-5.59) (9.65,-5.18) (11.38,-3.82) (11.16,-2.05) (9.11,-1.29) (6.30,-1.40) (4.25,-2.23)};
+\node[orange!70!black] at (4.30,-1.75) {$Y$};
+\draw[gray!50, thin] plot[smooth, tension=0.7] coordinates {(5.41,-2.40) (7.68,-2.50) (10.02,-2.10)};
+\draw[gray!50, thin] plot[smooth, tension=0.7] coordinates {(5.19,-4.50) (7.51,-4.20) (9.79,-4.40)};
+\draw[cF, very thick, dashed, opacity=0.55] plot coordinates {(5.41,-2.40) (5.37,-2.42) (5.33,-2.45) (5.30,-2.48) (5.26,-2.52) (5.23,-2.56) (5.20,-2.61) (5.16,-2.66) (5.13,-2.72) (5.10,-2.78) (5.08,-2.85) (5.05,-2.92) (5.02,-2.99) (5.00,-3.07) (4.97,-3.15) (4.95,-3.23) (4.93,-3.32) (4.91,-3.41) (4.90,-3.50) (4.89,-3.59) (4.88,-3.68) (4.87,-3.78) (4.87,-3.87) (4.87,-3.96) (4.88,-4.05) (4.89,-4.13) (4.90,-4.20) (4.92,-4.27) (4.94,-4.33) (4.97,-4.39) (4.99,-4.43) (5.02,-4.47) (5.06,-4.49) (5.09,-4.51) (5.12,-4.51) (5.16,-4.51) (5.19,-4.50)};
+\draw[cF, very thick, marca=0.5] plot coordinates {(5.19,-4.50) (5.23,-4.48) (5.27,-4.45) (5.30,-4.42) (5.34,-4.38) (5.37,-4.34) (5.40,-4.29) (5.44,-4.24) (5.47,-4.18) (5.50,-4.12) (5.52,-4.05) (5.55,-3.98) (5.58,-3.91) (5.60,-3.83) (5.63,-3.75) (5.65,-3.67) (5.67,-3.58) (5.69,-3.49) (5.70,-3.40) (5.71,-3.31) (5.72,-3.22) (5.73,-3.12) (5.73,-3.03) (5.73,-2.94) (5.72,-2.85) (5.71,-2.77) (5.70,-2.70) (5.68,-2.63) (5.66,-2.57) (5.63,-2.51) (5.61,-2.47) (5.58,-2.43) (5.54,-2.41) (5.51,-2.39) (5.48,-2.39) (5.44,-2.39) (5.41,-2.40)};
+\draw[violet!55, thick, dashed, opacity=0.55] plot coordinates {(7.68,-2.50) (7.65,-2.51) (7.62,-2.52) (7.59,-2.54) (7.56,-2.57) (7.52,-2.60) (7.49,-2.64) (7.46,-2.68) (7.43,-2.73) (7.41,-2.78) (7.38,-2.84) (7.35,-2.90) (7.33,-2.96) (7.31,-3.03) (7.29,-3.10) (7.27,-3.17) (7.26,-3.24) (7.25,-3.32) (7.24,-3.39) (7.23,-3.47) (7.23,-3.54) (7.23,-3.61) (7.23,-3.68) (7.24,-3.75) (7.25,-3.81) (7.26,-3.87) (7.27,-3.93) (7.29,-3.98) (7.30,-4.03) (7.32,-4.07) (7.35,-4.11) (7.37,-4.14) (7.40,-4.16) (7.42,-4.18) (7.45,-4.19) (7.48,-4.20) (7.51,-4.20)};
+\draw[violet!55, thick] plot coordinates {(7.51,-4.20) (7.55,-4.19) (7.58,-4.18) (7.61,-4.16) (7.64,-4.13) (7.68,-4.10) (7.71,-4.06) (7.74,-4.02) (7.77,-3.97) (7.79,-3.92) (7.82,-3.86) (7.85,-3.80) (7.87,-3.74) (7.89,-3.67) (7.91,-3.60) (7.93,-3.53) (7.94,-3.46) (7.95,-3.38) (7.96,-3.31) (7.97,-3.23) (7.97,-3.16) (7.97,-3.09) (7.97,-3.02) (7.96,-2.95) (7.95,-2.89) (7.94,-2.83) (7.93,-2.77) (7.91,-2.72) (7.90,-2.67) (7.88,-2.63) (7.85,-2.59) (7.83,-2.56) (7.80,-2.54) (7.78,-2.52) (7.75,-2.51) (7.72,-2.50) (7.68,-2.50)};
+\draw[cG, very thick, dashed, opacity=0.55] plot coordinates {(10.02,-2.10) (9.98,-2.10) (9.94,-2.10) (9.90,-2.12) (9.86,-2.15) (9.82,-2.18) (9.78,-2.23) (9.75,-2.29) (9.71,-2.35) (9.67,-2.43) (9.64,-2.51) (9.61,-2.60) (9.58,-2.69) (9.55,-2.79) (9.53,-2.89) (9.51,-2.99) (9.50,-3.10) (9.49,-3.20) (9.48,-3.30) (9.48,-3.40) (9.48,-3.49) (9.48,-3.59) (9.48,-3.67) (9.49,-3.76) (9.50,-3.84) (9.51,-3.91) (9.53,-3.98) (9.54,-4.05) (9.56,-4.11) (9.58,-4.17) (9.61,-4.22) (9.63,-4.26) (9.66,-4.31) (9.69,-4.34) (9.72,-4.37) (9.75,-4.39) (9.79,-4.40)};
+\draw[cG, very thick, marca=0.5] plot coordinates {(9.79,-4.40) (9.82,-4.40) (9.86,-4.40) (9.90,-4.38) (9.94,-4.35) (9.98,-4.32) (10.02,-4.27) (10.05,-4.21) (10.09,-4.15) (10.13,-4.07) (10.16,-3.99) (10.19,-3.90) (10.22,-3.81) (10.25,-3.71) (10.27,-3.61) (10.29,-3.51) (10.30,-3.40) (10.31,-3.30) (10.32,-3.20) (10.32,-3.10) (10.32,-3.01) (10.32,-2.91) (10.32,-2.83) (10.31,-2.74) (10.30,-2.66) (10.29,-2.59) (10.27,-2.52) (10.26,-2.45) (10.24,-2.39) (10.22,-2.33) (10.19,-2.28) (10.17,-2.24) (10.14,-2.19) (10.11,-2.16) (10.08,-2.13) (10.05,-2.11) (10.02,-2.10)};
+\draw[cS, very thick, -{Stealth[length=6pt]}] plot[smooth, tension=0.7] coordinates {(5.09,-4.51) (7.42,-4.30) (9.69,-4.34)};
+\draw[cS, thick, dashed, -{Stealth[length=6pt]}] plot[smooth, tension=0.7] coordinates {(9.64,-4.56) (7.42,-4.68) (5.14,-4.73)};
+\fill[cF] (5.09,-4.51) circle (1.8pt); \fill[cG] (9.69,-4.34) circle (1.8pt);
+\node[cF, anchor=east, font=\scriptsize, inner sep=2pt] at (5.01,-4.51) {$f(x_0)$};
+\node[cG, anchor=north west, font=\scriptsize, inner sep=1pt] at (9.74,-4.39) {$g(x_0)$};
+\node[cS, font=\scriptsize, fill=orange!6, inner sep=1pt] at (8.32,-4.13) {$\sigma$};
+\node[cS, font=\scriptsize, fill=orange!6, inner sep=1pt] at (8.32,-4.78) {$\sigma^{-1}$};
+\node[cF, font=\scriptsize] at (5.30,-2.15) {$f\circ\alpha$};
+\node[cG, font=\scriptsize] at (9.90,-1.85) {$g\circ\alpha$};
+\node[violet!70!black, font=\scriptsize] at (7.60,-2.25) {$F_t\circ\alpha$};
+\draw[gray!60!black, thick, -{Stealth[length=6pt]}] (3.05,1.75) to[bend left=18] node[above=2pt, font=\scriptsize] {$(s,t)\mapsto(\alpha(s),t)$} (4.55,1.45);
+\draw[gray!60!black, thick, -{Stealth[length=6pt]}] (9.3,-0.15) to[bend left=25] node[right] {$F$} (9.6,-1.2);
+\end{tikzpicture}
+\end{center}
+El cuadrado se \emph{enrolla} en el cilindro $\alpha \times I \subseteq X \times I$: la base y el techo se cierran en los lazos $\alpha \times \{0\}$ y $\alpha \times \{1\}$, y los lados $\lambda_1$, $\lambda_3$ se pegan en el segmento $\{x_0\} \times I$. Después $F$ lo lleva a $Y$: la base da $f \circ \alpha$, el techo $g \circ \alpha$, y la costura da $\sigma$ (recorrida a la ida por $\lambda_1$ y a la vuelta, como $\sigma^{-1}$, por $\lambda_3$). Como el cuadrado se contrae, su borde ($\sigma$, $g \circ \alpha$, $\sigma^{-1}$, $(f \circ \alpha)^{-1}$) es trivial en $Y$, y eso es $g_* = P_\sigma \circ f_*$: $g$ actúa sobre los lazos igual que $f$, pero vista desde el punto base desplazado por $\sigma$.
+
+\textbf{Atajo.} En el convexo $I\times I$, los caminos $\lambda_2$ (por arriba) y $\delta=\lambda_1^{-1}*\lambda_4^{-1}*\lambda_3^{-1}$ (por abajo) van de $(0,1)$ a $(1,1)$, luego $\lambda_2\simeq_{\{0,1\}}\delta$ por la homotopía recta; componiendo con $G$ sale directamente $g\circ\alpha\simeq_{\{0,1\}}\sigma^{-1}*(f\circ\alpha)*\sigma$, sin despejar en el grupo.
+\end{nota}
+
+
 \begin{proposicion}{Equivalencia Homotópica [C6.8]}{equiv_homotopica}
 Sean $X, Y$ espacios arco-conexos. Si $X$ e $Y$ tienen el mismo tipo de homotopía ($X \simeq Y$), entonces $\pi_1(X) \cong \pi_1(Y)$.
 
