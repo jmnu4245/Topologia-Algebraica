@@ -533,7 +533,7 @@ Sea $X$ un espacio topológico y $x_0 \in X$.
 \item $(1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$
 \item Dadas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow Z$ continuas, se cumple que $(g \circ f)_* = g_* \circ f_*$.
 \end{enumerate}
-\textbf{Demostración:}
+\begin{proof}
 a) Directamente, $(1_X)_{*, x_0}([\alpha]) = [1_X \circ \alpha] = [\alpha]$.
 
 b) Tenemos que probar que $(g \circ f)_{*, x_0} = g_{*, f(x_0)} \circ f_{*, x_0}$. Evaluando en una clase $[\alpha]$:
@@ -541,7 +541,8 @@ b) Tenemos que probar que $(g \circ f)_{*, x_0} = g_{*, f(x_0)} \circ f_{*, x_0}
 
 $$(g \circ f)_{*, x_0}([\alpha]) = [g \circ f \circ \alpha]$$
 
-$$(g_{*, f(x_0)} \circ f_{*, x_0})([\alpha]) = g_{*, f(x_0)}([f \circ \alpha]) = [g \circ f \circ \alpha] \qed$$
+$$(g_{*, f(x_0)} \circ f_{*, x_0})([\alpha]) = g_{*, f(x_0)}([f \circ \alpha]) = [g \circ f \circ \alpha]$$
+\end{proof}
 
 
 \end{teorema}
@@ -549,7 +550,7 @@ $$(g_{*, f(x_0)} \circ f_{*, x_0})([\alpha]) = g_{*, f(x_0)}([f \circ \alpha]) =
 \begin{proposicion}{Homeomorfismo induce isomorfismo de grupos fundamentales [C6.3]}{homeomorfismo_pi1}
 Sean $X$ e $Y$ espacios topológicos arco-conexos. Si $X \cong Y$, entonces $\pi_1(X) \cong \pi_1(Y)$.
 
-\textbf{Demostración:}
+\begin{proof}
 Dado que $X$ e $Y$ son homeomorfos, existen funciones continuas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ que son biyectivas y una inversa de la otra ($f \circ g = 1_Y$, $g \circ f = 1_X$). Sea $x_0 \in X$ y $y_0 = f(x_0)$.
 
 Por la funtorialidad,
@@ -568,13 +569,14 @@ Es decir, $f_{*,x_0}$ y $g_{*,y_0}$ son inversos el uno del otro:
 \draw[->, bend left=20] (B) to node[below] {$g_{*,y_0}$} (A);
 \end{tikzpicture}
 \end{center}
-Por consiguiente, $f_{*,x_0}$ es un isomorfismo, con inversa $g_{*,y_0}$. Como $X$ e $Y$ son arco-conexos, $\pi_1(X) \cong \pi_1(X,x_0) \cong \pi_1(Y,y_0) \cong \pi_1(Y)$. \qed
+Por consiguiente, $f_{*,x_0}$ es un isomorfismo, con inversa $g_{*,y_0}$. Como $X$ e $Y$ son arco-conexos, $\pi_1(X) \cong \pi_1(X,x_0) \cong \pi_1(Y,y_0) \cong \pi_1(Y)$.
+\end{proof}
 \end{proposicion}
 
 \begin{proposicion}{Grupo fundamental de un espacio estrellado [C6.5]}{estrellado}
 Sea $X \subseteq \mathbb{R}^n$, con $X$ estrellado. Entonces $\pi_1(X) = 1$.
 
-\textbf{Demostración:}
+\begin{proof}
 Al ser estrellado, $X$ es arcoconexo (cada punto se une con el centro $x_0$ por un segmento), así que $\pi_1(X) = \pi_1(X, x_0) = C_{x_0}(X) / \simeq_{\{0,1\}}$. Además, existe un punto base $x_0 \in X$ tal que para todo $x \in X$ y todo $t \in [0,1]$, el segmento $t \cdot x + (1-t) \cdot x_0 \in X$.
 Necesitamos probar que $[\alpha] = [C_{x_0}]$ para cualquier $\alpha \in C_{x_0}(X)$ (es decir, $\alpha \simeq_{\{0,1\}} C_{x_0}$).
 Buscamos una homotopía $F \colon I \times I \longrightarrow X$ definida por:
@@ -591,7 +593,8 @@ $$F(0, t) = t \cdot \alpha(0) + (1-t) \cdot x_0 = t \cdot x_0 + (1-t) \cdot x_0 
 $$F(1, t) = t \cdot \alpha(1) + (1-t) \cdot x_0 = t \cdot x_0 + (1-t) \cdot x_0 = x_0$$
 
 
-Por tanto, $F$ es una homotopía de lazos que conecta el lazo constante $C_{x_0}$ (en $t=0$) con el lazo $\alpha$ (en $t=1$). \qed
+Por tanto, $F$ es una homotopía de lazos que conecta el lazo constante $C_{x_0}$ (en $t=0$) con el lazo $\alpha$ (en $t=1$).
+\end{proof}
 \end{proposicion}
 
 Los espacios estrellados son, por tanto, simplemente conexos (\cref{def:def_simp_conexo}). En particular, $\pi_1(I \times I) = 1$ y $\pi_1(\triangle) = 1$.
@@ -613,7 +616,7 @@ Entonces el siguiente diagrama conmuta, cumpliéndose que $g_* = P_\sigma \circ 
 \end{tikzpicture}
 \end{center}
 
-\textbf{Demostración:}
+\begin{proof}
 Para todo $[\alpha] \in \pi_1(X, x_0)$, necesitamos probar que $[g \circ \alpha] = [\sigma^{-1} * (f \circ \alpha) * \sigma]$.
 
 Definimos $G \colon I \times I \longrightarrow Y$ por $G(s,t) = F(\alpha(s), t)$, que es continua (no es una homotopía relativa a los extremos). Tenemos $G_0 = f \circ \alpha$, $G_1 = g \circ \alpha$ y, como $\alpha(0) = \alpha(1) = x_0$,
@@ -663,7 +666,8 @@ que es un lazo en $Y$ con base $G(0,0) = f(x_0)$.
 Como $I \times I$ es convexo, en particular estrellado, $\pi_1(I \times I) = 1$ (\cref{prop:estrellado}) y por tanto $\gamma \simeq_{\{0,1\}} c_{(0,0)}$. Componiendo esta homotopía con $G$ obtenemos $G \circ \gamma \simeq_{\{0,1\}} c_{f(x_0)}$, es decir,
 \[ [\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] \cdot [f \circ \alpha]^{-1} = [c_{f(x_0)}]. \]
 Multiplicando por $[f \circ \alpha]$ por la derecha, $[\sigma] \cdot [g \circ \alpha] \cdot [\sigma^{-1}] = [f \circ \alpha]$, y multiplicando por $[\sigma^{-1}] = [\sigma]^{-1}$ por la izquierda y por $[\sigma]$ por la derecha obtenemos la relación buscada:
-\[ [g \circ \alpha] = [\sigma^{-1}] \cdot [f \circ \alpha] \cdot [\sigma] = [\sigma^{-1} * (f \circ \alpha) * \sigma] \qed \]
+\[ [g \circ \alpha] = [\sigma^{-1}] \cdot [f \circ \alpha] \cdot [\sigma] = [\sigma^{-1} * (f \circ \alpha) * \sigma] \]
+\end{proof}
 
 
 \end{teorema}
@@ -732,7 +736,7 @@ El cuadrado se \emph{enrolla} en el cilindro $\alpha \times I \subseteq X \times
 \begin{proposicion}{Equivalencia Homotópica [C6.8]}{equiv_homotopica}
 Sean $X, Y$ espacios arco-conexos. Si $X$ e $Y$ tienen el mismo tipo de homotopía ($X \simeq Y$), entonces $\pi_1(X) \cong \pi_1(Y)$.
 
-\textbf{Demostración:}
+\begin{proof}
 Sean $f \colon X \to Y$ y $g \colon Y \to X$ continuas con $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$. Sea $x_0 \in X$ e $y_0 = f(x_0)$.
 \begin{align*}
     &1.\; F \colon 1_X \simeq g \circ f, \quad \sigma(t) = F(x_0,t) \\
@@ -747,7 +751,7 @@ Sean $f \colon X \to Y$ y $g \colon Y \to X$ continuas con $g \circ f \simeq 1_X
     &\qquad \Longrightarrow g_{*,y_0} \colon \pi_1(Y,y_0) \to \pi_1(X,g(y_0)) \text{ es isomorfismo} \\
     &\qquad \Longrightarrow \pi_1(Y) \cong \pi_1(X), \text{ por ser arco-conexos.}
 \end{align*}
-\qed
+\end{proof}
 \end{proposicion}
 
 

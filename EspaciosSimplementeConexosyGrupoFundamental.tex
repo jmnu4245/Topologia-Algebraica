@@ -287,10 +287,9 @@ Sea $f: X \to Y$. Diremos que es una aplicación recubridora cuando $\forall y \
 \end{enumerate}
 \end{definicion}
 
-Si $t \in \left]-\frac{1}{2}, \frac{1}{2}\right[$:
-
-\textbf{Lema [C8.6]:}
+\begin{proposicion}{Lema (restricción de $p$) [C8.6]}{lema_restriccion_p}
 $p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[} : \left]-\frac{1}{2}, \frac{1}{2}\right[ \to S^1 \setminus \{(-1,0)\}$ es un homeomorfismo.
+\end{proposicion}
 
 Denotaremos por $\Psi$ la inversa de esta aplicación, i.e. $\Psi = \left(p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[}\right)^{-1}$.
 Es sencillo comprobar que $\Psi(z) = \frac{\arg_0(z)}{2\pi}$.
@@ -304,7 +303,7 @@ Sea $f: X \to S^1$ continua (con $X$ cualquier espacio topológico). Una elevaci
 Sea $X$ conexo. Sea $f: X \to S^1$ continua. Sean $f_1, f_2 : X \to \mathbb{R}$ levantamientos de $f$ tales que $f_1(x_0) = f_2(x_0)$ para algún $x_0 \in X$. Entonces $f_1 = f_2$.
 \end{proposicion}
 
-\textbf{Demostración:}
+\begin{proof}
 $p: \mathbb{R} \to S^1$ es un homomorfismo de grupos:
 $p: (\mathbb{R},+) \to (S^1, \cdot)$, ya que $p(t_1+t_2) = e^{2\pi i (t_1+t_2)} = e^{2\pi i t_1} \cdot e^{2\pi i t_2} = p(t_1)p(t_2)$.
 $\ker(p) = \{t \in \mathbb{R} \mid e^{2\pi i t} = 1\} = \mathbb{Z}$ (y por tanto $\mathbb{R}/\mathbb{Z} \cong S^1$).
@@ -315,7 +314,8 @@ Por tanto, $\text{Img}(g) \subseteq p^{-1}(1) = \mathbb{Z}$.
 
 Como $X$ es conexo y $g$ continua $\implies g(X)$ es conexo.
 Como $g(X)$ es conexo y $g(X) \subseteq \mathbb{Z} \implies g(x)$ es constante.
-Luego $\exists k \in \mathbb{Z}$ tal que $g(x) = k \ \forall x \in X$. Como $g(x_0) = f_1(x_0) - f_2(x_0) = 0$, se tiene que $k=0 \implies f_1(x) = f_2(x) \ \forall x \in X$. \qed
+Luego $\exists k \in \mathbb{Z}$ tal que $g(x) = k \ \forall x \in X$. Como $g(x_0) = f_1(x_0) - f_2(x_0) = 0$, se tiene que $k=0 \implies f_1(x) = f_2(x) \ \forall x \in X$.
+\end{proof}
 
 \vspace{0.5cm}
 \subsection{Existencia de elevaciones}
@@ -326,12 +326,13 @@ Luego $\exists k \in \mathbb{Z}$ tal que $g(x) = k \ \forall x \in X$. Como $g(x
 Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$. Diremos que $f$ es uniformemente continua cuando $\forall \varepsilon > 0$, $\exists \delta > 0$ tal que $\forall x, x' \in X$ que cumplan $\|x-x'\| < \delta$, se verifica que $\|f(x)-f(x')\| < \varepsilon$.
 \end{definicion}
 
-Es obvio que $f$ uniformemente continua $\implies f$ continua (en todos los puntos de $X$). Esto es falso en general, pero es cierto si $X$ es compacto.
+Es obvio que $f$ uniformemente continua $\implies f$ continua (en todos los puntos de $X$). El recíproco es falso en general, pero es cierto si $X$ es compacto.
 
-\textbf{Lema [C8.10]:}
+\begin{proposicion}{Lema (compacto $\Rightarrow$ uniformemente continua) [C8.10]}{lema_unif_continua}
 Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$ continua, con $X$ compacto $\implies f$ uniformemente continua.
+\end{proposicion}
 
-\textbf{Demostración:}
+\begin{proof}
 Sea $\varepsilon > 0$. Sea $x \in X$. Por hipótesis:
 $\exists \delta_x > 0$ tal que $\forall x' \in X$ con $\|x-x'\| < \delta_x$, se cumple que $\|f(x)-f(x')\| < \varepsilon/2$. ($B(x,\delta_x) = \{y \in X \mid \|x-y\| < \delta_x\}$, bola abierta de centro $x$, radio $\delta_x$).
 Claramente, $X = \bigcup_{x\in X} B(x, \delta_x/2)$.
@@ -343,13 +344,14 @@ Dado que $x \in X$, $\exists j \in \{1,\dots,r\}$ tal que $x \in B(x_j, \delta_{
 Observamos que:
 \[ \|x'-x_j\| \leq \|x'-x\| + \|x-x_j\| < \delta + \frac{\delta_{x_j}}{2} \leq \frac{\delta_{x_j}}{2} + \frac{\delta_{x_j}}{2} = \delta_{x_j} \implies \|f(x')-f(x_j)\| < \frac{\varepsilon}{2} \]
 Finalmente:
-\[ \|f(x)-f(x')\| \leq \|f(x)-f(x_j)\| + \|f(x_j)-f(x')\| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \] \qed
+\[ \|f(x)-f(x')\| \leq \|f(x)-f(x_j)\| + \|f(x_j)-f(x')\| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon. \]
+\end{proof}
 
 \begin{teorema}{Existencia de elevaciones [C8.11]}{teo_existencia_elevaciones}
 Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es convexo y compacto. Sea $f: X \to S^1$ continua. Sea $x_0 \in X$. Sea $t_0 \in \mathbb{R}$ tal que $p(t_0) = f(x_0)$. Entonces existe una única elevación $\tilde{f} : X \to \mathbb{R}$ de $f$ tal que $\tilde{f}(x_0) = t_0$.
 \end{teorema}
 
-\textbf{Demostración:}
+\begin{proof}
 En virtud del teorema anterior se deduce automáticamente la unicidad (ya que $X$ es conexo).
 Veamos la existencia de $\tilde{f}$:
 \begin{enumerate}
@@ -389,8 +391,9 @@ De acuerdo con la prueba anterior: $\exists \tilde{g}: L(X) \to \mathbb{R}$ que 
 Definimos $\tilde{f} = \tilde{g} \circ L$. Solo queda comprobar que $\tilde{f}$ cumple:
 \begin{itemize}
     \item (2) $p \circ \tilde{f} = p \circ (\tilde{g} \circ L) = (p \circ \tilde{g}) \circ L = g \circ L = (f \circ L^{-1}) \circ L = f$.
-    \item (1) $\tilde{f}(x_0) = (\tilde{g} \circ L)(x_0) = \tilde{g}(L(x_0)) = \tilde{g}(0) = t_0$. \qed
+    \item (1) $\tilde{f}(x_0) = (\tilde{g} \circ L)(x_0) = \tilde{g}(L(x_0)) = \tilde{g}(0) = t_0$. \qedhere
 \end{itemize}
+\end{proof}
 \begin{center}
     \textbf{14/10/2026 (Clase 9)}
 \end{center}
