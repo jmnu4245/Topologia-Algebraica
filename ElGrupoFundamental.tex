@@ -396,10 +396,22 @@ Esta aplicación es continua. Como ejercicio, probar que $[\alpha * \beta * \gam
 
 \begin{proof}[Solución de los ejercicios sobre la concatenación conjunta]
 \begin{enumerate}
-    \item \emph{$[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma]$.} Se tiene $\alpha * \beta * \gamma = ((\alpha * \beta) * \gamma) \circ g$, con
-    \[ g(s) = \begin{cases} \frac{3s}{4} & \text{si } s \in [0,\frac23], \\ \frac{3s-1}{2} & \text{si } s \in [\frac23,1]. \end{cases} \]
-    En efecto, $g$ es continua ($g(\frac23) = \frac12$ por ambos lados), $g(0) = 0$, $g(1) = 1$, y comparando con la expresión a trozos de $(\alpha * \beta) * \gamma$ (que usa $\alpha(4u)$ en $[0,\frac14]$, $\beta(4u-1)$ en $[\frac14,\frac12]$ y $\gamma(2u-1)$ en $[\frac12,1]$) se obtiene $\alpha(3s)$, $\beta(3s-1)$ y $\gamma(3s-2)$ en los tres tramos de $s$. Por la \cref{prop:prop_reparametrizacion} (reparametrización), $\alpha * \beta * \gamma \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
-    \item \emph{$[\alpha * \beta * \gamma] = [\alpha * (\beta * \gamma)]$.} Análogamente, $\alpha * \beta * \gamma = (\alpha * (\beta * \gamma)) \circ h$ con $h(s) = \frac{3s}{2}$ si $s \in [0,\frac13]$ y $h(s) = \frac{3s+1}{4}$ si $s \in [\frac13,1]$ (continua, $h(0)=0$, $h(1)=1$).
+    \item \emph{$[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma]$.} \textbf{Homotopía explícita.} La idea es mover linealmente los puntos de corte: $(\alpha * \beta) * \gamma$ corta en $\frac14$ y $\frac12$, y $\alpha * \beta * \gamma$ en $\frac13$ y $\frac23$. Sean $a(t) = \frac{3+t}{12}$ (de $\frac14$ a $\frac13$) y $b(t) = 2a(t) = \frac{3+t}{6}$ (de $\frac12$ a $\frac23$), y
+    \[ H(s,t) = \begin{cases} \alpha\left( \dfrac{12s}{3+t} \right) & \text{si } s \in [0, a(t)], \\[2ex] \beta\left( \dfrac{12s}{3+t} - 1 \right) & \text{si } s \in [a(t), b(t)], \\[2ex] \gamma\left( \dfrac{6s - 3 - t}{3 - t} \right) & \text{si } s \in [b(t), 1]. \end{cases} \]
+    \begin{itemize}
+        \item En $s = a(t)$ ambas expresiones valen $\alpha(1) = \beta(0)$, y en $s = b(t)$ valen $\beta(1) = \gamma(0)$; los denominadores no se anulan para $t \in I$. Por el lema de pegamiento, $H$ es continua.
+        \item $t = 0$: $\alpha(4s)$, $\beta(4s-1)$, $\gamma(2s-1)$, es decir, $H_0 = (\alpha * \beta) * \gamma$.
+        \item $t = 1$: $\alpha(3s)$, $\beta(3s-1)$, $\gamma(3s-2)$, es decir, $H_1 = \alpha * \beta * \gamma$.
+        \item $H(0,t) = \alpha(0)$ y $H(1,t) = \gamma(1)$ no dependen de $t$.
+    \end{itemize}
+    Luego $(\alpha * \beta) * \gamma \simeq_{\{0,1\}} \alpha * \beta * \gamma$.
+
+    \emph{Alternativa con la reparametrización (\cref{prop:prop_reparametrizacion}, Tema 4, cuya prueba no depende de esto):} $\alpha * \beta * \gamma = ((\alpha * \beta) * \gamma) \circ g$, con $g(s) = \frac{3s}{4}$ si $s \in [0,\frac23]$ y $g(s) = \frac{3s-1}{2}$ si $s \in [\frac23,1]$, continua con $g(0) = 0$ y $g(1) = 1$.
+    \item \emph{$[\alpha * \beta * \gamma] = [\alpha * (\beta * \gamma)]$.} \textbf{Homotopía explícita.} Ahora los cortes pasan de $\frac13, \frac23$ a $\frac12, \frac34$: sean $a(t) = \frac{2+t}{6}$, $b(t) = \frac{8+t}{12}$, y
+    \[ K(s,t) = \begin{cases} \alpha\left( \dfrac{6s}{2+t} \right) & \text{si } s \in [0, a(t)], \\[2ex] \beta\left( \dfrac{12s - 4 - 2t}{4 - t} \right) & \text{si } s \in [a(t), b(t)], \\[2ex] \gamma\left( \dfrac{12s - 8 - t}{4 - t} \right) & \text{si } s \in [b(t), 1]. \end{cases} \]
+    Como antes, coincide en los cortes, es continua, $K_0 = \alpha * \beta * \gamma$ (con $\alpha(3s)$, $\beta(3s-1)$, $\gamma(3s-2)$), $K_1 = \alpha * (\beta * \gamma)$ (con $\alpha(2s)$, $\beta(4s-2)$, $\gamma(4s-3)$) y deja fijos los extremos.
+
+    \emph{Alternativa con la reparametrización:} $\alpha * \beta * \gamma = (\alpha * (\beta * \gamma)) \circ h$ con $h(s) = \frac{3s}{2}$ si $s \in [0,\frac13]$ y $h(s) = \frac{3s+1}{4}$ si $s \in [\frac13,1]$.
     \item \emph{$(\alpha_1 * \alpha_2) * (\alpha_3 * \alpha_4) = \alpha_1 * \alpha_2 * \alpha_3 * \alpha_4$.} Esta es una igualdad de aplicaciones, no solo de clases: $(\alpha_1 * \alpha_2)(2s)$ vale $\alpha_1(4s)$ si $s \in [0,\frac14]$ y $\alpha_2(4s-1)$ si $s \in [\frac14,\frac12]$; y $(\alpha_3 * \alpha_4)(2s-1)$ vale $\alpha_3(4s-2)$ si $s \in [\frac12,\frac34]$ y $\alpha_4(4s-3)$ si $s \in [\frac34,1]$. Es exactamente la concatenación conjunta de cuatro caminos.
 \end{enumerate}
 \end{proof}
@@ -721,38 +733,23 @@ El cuadrado se \emph{enrolla} en el cilindro $\alpha \times I \subseteq X \times
 Sean $X, Y$ espacios arco-conexos. Si $X$ e $Y$ tienen el mismo tipo de homotopía ($X \simeq Y$), entonces $\pi_1(X) \cong \pi_1(Y)$.
 
 \textbf{Demostración:}
-Existen $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow X$ continuas tales que $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$. Sea $x_0 \in X$ e $y_0 = f(x_0)$.
-
-Sea $F \colon 1_X \simeq g \circ f$ (existe por simetría) y $\sigma(t) = F(x_0,t)$, un arco de $x_0$ a $g(f(x_0))$. Por el teorema anterior, el siguiente diagrama conmuta:
-
-\begin{center}
-\begin{tikzpicture}
-\node (A) at (0,2) {$\pi_1(X, x_0)$};
-\node (B) at (5,2) {$\pi_1(X, x_0)$};
-\node (C) at (5,0) {$\pi_1(X, g(f(x_0)))$};
-\draw[->] (A) -- (B) node[midway, above] {$(1_X)_{*,x_0}$};
-\draw[->] (B) -- (C) node[midway, right] {$P_\sigma$};
-\draw[->] (A) -- (C) node[midway, below left] {$(g \circ f)_{*,x_0}$};
-\end{tikzpicture}
-\end{center}
-es decir, $(g \circ f)_{*,x_0} = P_\sigma \circ (1_X)_{*,x_0} = P_\sigma$. Como $(g \circ f)_{*,x_0} = g_{*,y_0} \circ f_{*,x_0}$ y $P_\sigma$ es un isomorfismo, deducimos que $f_{*,x_0}$ es inyectiva y que $g_{*,y_0}$ es sobreyectiva.
-
-Análogamente, sea $G \colon 1_Y \simeq f \circ g$ y $\tau(t) = G(y_0,t)$. Por el teorema anterior, el siguiente diagrama conmuta:
-
-\begin{center}
-\begin{tikzpicture}
-\node (A) at (0,2) {$\pi_1(Y, y_0)$};
-\node (B) at (5,2) {$\pi_1(Y, y_0)$};
-\node (C) at (5,0) {$\pi_1(Y, f(g(y_0)))$};
-\draw[->] (A) -- (B) node[midway, above] {$(1_Y)_{*,y_0}$};
-\draw[->] (B) -- (C) node[midway, right] {$P_\tau$};
-\draw[->] (A) -- (C) node[midway, below left] {$(f \circ g)_{*,y_0}$};
-\end{tikzpicture}
-\end{center}
-es decir, $(f \circ g)_{*,y_0} = P_\tau \circ (1_Y)_{*,y_0} = P_\tau$, y como $(f \circ g)_{*,y_0} = f_{*,g(y_0)} \circ g_{*,y_0}$ con $P_\tau$ isomorfismo, deducimos que $g_{*,y_0}$ es inyectiva (y $f_{*,g(y_0)}$ sobreyectiva).
-
-Por tanto $g_{*,y_0} \colon \pi_1(Y,y_0) \to \pi_1(X,g(y_0))$ es inyectiva y sobreyectiva, es decir, un isomorfismo de grupos. Como $X$ e $Y$ son arco-conexos, $\pi_1(Y) \cong \pi_1(Y,y_0) \cong \pi_1(X,g(y_0)) \cong \pi_1(X)$. \qed
+Sean $f \colon X \to Y$ y $g \colon Y \to X$ continuas con $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$. Sea $x_0 \in X$ e $y_0 = f(x_0)$.
+\begin{align*}
+    &1.\; F \colon 1_X \simeq g \circ f, \quad \sigma(t) = F(x_0,t) \\
+    &\qquad \Longrightarrow (g \circ f)_{*,x_0} = P_\sigma \circ (1_X)_{*,x_0} = P_\sigma, \text{ isomorfismo (\cref{thm:aplicaciones_homotopicas}).} \\
+    &2.\; (g \circ f)_{*,x_0} = g_{*,y_0} \circ f_{*,x_0} \text{ biyectiva} \\
+    &\qquad \Longrightarrow f_{*,x_0} \text{ inyectiva y } g_{*,y_0} \textbf{ sobreyectiva}. \\
+    &3.\; G \colon 1_Y \simeq f \circ g, \quad \tau(t) = G(y_0,t) \\
+    &\qquad \Longrightarrow (f \circ g)_{*,y_0} = P_\tau, \text{ isomorfismo}. \\
+    &4.\; (f \circ g)_{*,y_0} = f_{*,g(y_0)} \circ g_{*,y_0} \text{ biyectiva} \\
+    &\qquad \Longrightarrow g_{*,y_0} \textbf{ inyectiva} \text{ (y } f_{*,g(y_0)} \text{ sobreyectiva)}. \\
+    &\text{De 2 y 4:} \\
+    &\qquad \Longrightarrow g_{*,y_0} \colon \pi_1(Y,y_0) \to \pi_1(X,g(y_0)) \text{ es isomorfismo} \\
+    &\qquad \Longrightarrow \pi_1(Y) \cong \pi_1(X), \text{ por ser arco-conexos.}
+\end{align*}
+\qed
 \end{proposicion}
+
 
 \begin{observacion}{Invariancia homotópica vs. invariancia topológica [C6.8]}{obs_invariancia_homotopica}
 La proposición anterior es más general que la invariancia topológica del grupo fundamental (homeomorfismo induce isomorfismo): como $X \cong Y \implies X \simeq Y$, esta última es un caso particular. La inclusión es estricta: por ejemplo $D(0,1) \simeq \{\text{punto}\}$ sin ser homeomorfos, y la invariancia homotópica da $\pi_1(D(0,1)) \cong \pi_1(\{\text{punto}\}) = 1$, algo que la invariancia topológica no permite deducir. Igualmente, $S^1 \times [-1,1] \simeq S^1$ y por tanto ambos tienen el mismo grupo fundamental aunque no sean homeomorfos.

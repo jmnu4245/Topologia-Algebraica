@@ -2,6 +2,11 @@
 \title{\Huge \textbf{Apuntes de Topología Algebraica}}
 \author{\Large Juan Manuel Flores de la Cruz}
 \date{Curso 2026/27}
+% Compilar solo un tema mientras editas (mantiene numeración y referencias de los demás).
+% Descomenta la línea y pon el tema; GitHub Actions siempre compila el documento entero.
+\ifdefined\versionfinal\else
+%\includeonly{EspaciosSimplementeConexosyGrupoFundamental}
+\fi
 \begin{document}
 \maketitle
 \thispagestyle{empty}
@@ -9,10 +14,10 @@
 \tableofcontents
 \newpage
 \input{intro.tex}
-\input{ResultadosPreliminares.tex}
-\input{EquivalenciaHomotopica.tex}
-\input{ElGrupoFundamental.tex}
-\input{EspaciosSimplementeConexosyGrupoFundamental.tex}
-\input{AplicacionesTeoriaHomotopia.tex}
+\include{ResultadosPreliminares}
+\include{EquivalenciaHomotopica}
+\include{ElGrupoFundamental}
+\include{EspaciosSimplementeConexosyGrupoFundamental}
+\include{AplicacionesTeoriaHomotopia}
 
 \end{document}

@@ -93,13 +93,24 @@
     }
 }
  
+% --- Modo borrador: sin sombras difusas (son lo más lento de compilar) ---
+% En local compila en borrador; GitHub Actions define \versionfinal y compila con sombras.
+% Para la versión final en local, pon \def\versionfinal{} en la primera línea de main.tex.
+\newif\ifborrador
+\ifdefined\versionfinal \borradorfalse \else \borradortrue \fi
+\ifborrador
+  \tcbset{sombra/.style={}}
+\else
+  \tcbset{sombra/.style={fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{#1}}}
+\fi
+
 % --- Cuadros personalizados numerados por sección (Paleta Azul y Lila) ---
  
 \newtcbtheorem[number within=section]{teorema}{Teorema}{
     futuristicbase,
     colback=blue!3!white,
     colframe=blue!80!black,
-    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{blue!50!black,opacity=0.5},
+    sombra={blue!50!black,opacity=0.5},
     title style={left color=blue!90!black, right color=blue!60!black}
 }{thm}
 
@@ -107,7 +118,7 @@
     futuristicbase,
     colback=violet!4!white,
     colframe=violet!80!black,
-    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{violet!50!black,opacity=0.5},
+    sombra={violet!50!black,opacity=0.5},
     title style={left color=violet!80!black, right color=violet!50!black}
 }{def}
 
@@ -115,7 +126,7 @@
     futuristicbase,
     colback=blue!2!violet!3!white,
     colframe=blue!50!violet!50!black,
-    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{blue!40!violet!40!black,opacity=0.5},
+    sombra={blue!40!violet!40!black,opacity=0.5},
     title style={left color=blue!60!violet!60!black, right color=blue!40!violet!40!black}
 }{prop}
 
@@ -125,7 +136,7 @@
     colframe=purple!50!black,
     boxrule=0.4pt,
     coltitle=black,
-    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{purple!30!black,opacity=0.5},
+    sombra={purple!30!black,opacity=0.5},
     title style={left color=purple!20!white, right color=purple!5!white}
 }{obs}
 
@@ -135,7 +146,7 @@
     colframe=magenta!60!blue!60!black,
     boxrule=0.4pt,
     coltitle=white,
-    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{magenta!40!blue!40!black,opacity=0.5},
+    sombra={magenta!40!blue!40!black,opacity=0.5},
     title style={left color=magenta!80!blue!80!black, right color=magenta!60!blue!60!black}
 }{not}
 
@@ -147,7 +158,7 @@
     colframe=teal!60!black,
     boxrule=0.4pt,
     coltitle=white,
-    fuzzy shadow={1.2mm}{-1.2mm}{0mm}{0.3mm}{teal!40!black,opacity=0.5},
+    sombra={teal!40!black,opacity=0.5},
     title style={left color=teal!70!black, right color=teal!50!black},
     title={Ejercicio: #1}
 }
