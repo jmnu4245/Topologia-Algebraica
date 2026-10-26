@@ -64,9 +64,9 @@ Sean $I, J$ ideales de un anillo $A$.
 \begin{itemize}
     \item \textbf{Suma de ideales:}
     $$ I+J = \{a+b \mid a \in I, b \in J\} $$
-    Si $I = \langle g_1, \dots, g_r \rangle$ y $J = \langle h_1, \dots, h_s \rangle \implies I+J = \langle g_1, \dots, g_r, h_1, \dots, h_s \rangle$.
+    Si $I = \langle g_1, \dots, g_r \rangle$ y $J = \langle h_1, \dots, h_s \rangle$, entonces $I+J = \langle g_1, \dots, g_r, h_1, \dots, h_s \rangle$.
     \item \textbf{Producto de ideales:}
-    $$ I \cdot J = \left\{ \sum_{j=1}^l \alpha_j \beta_j \;\middle|\; \alpha_j \in I, \beta_j \in J, \forall j \right\} = \langle g_i h_j \mid i=1,\dots,r; j=1,\dots,s \rangle $$
+    \begin{multline*} I \cdot J = \left\{ \sum_{j=1}^l \alpha_j \beta_j \;\middle|\; \alpha_j \in I, \beta_j \in J, \forall j \right\} \\ = \langle g_i h_j \mid i=1,\dots,r; j=1,\dots,s \rangle \end{multline*}
     \item \textbf{Intersección de ideales:}
     $$ I \cap J = \{a \mid a \in I, a \in J\} $$
 \end{itemize}
@@ -88,7 +88,64 @@ Y $F$ se extiende de manera lineal. Por ejemplo, si tenemos el polinomio $p(a,b,
 $$ F(p(a,b,c)) = F(a)^3 - F(b)^2 F(c) $$
 \end{observacion}
 
+\subsection*{Cálculo con Singular}
+
+Singular calcula con rapidez todo lo anterior usando \textbf{bases de Gröbner}. Primero se define el anillo: \texttt{0} es la característica del cuerpo (aquí $\mathbb{Q}$), seguida de las variables y del orden. El orden \texttt{dp} es global (anillo de polinomios) y \texttt{ds} es local (el anillo local $\mathcal{O}_n$ de gérmenes, que usaremos desde la práctica 2). Los exponentes se escriben sin \texttt{\^{}}: \texttt{z2} es $z^2$.
+
+\begin{singular}
+ring R = 0,(x,y,z),dp;
+ideal I = x3y-xy4z, x+y-z;
+ideal J = 3x+5y, 7y-z2;
+ideal S = I+J;              // suma de ideales
+ideal P = I*J;              // producto de ideales
+ideal U = intersect(I,J);   // interseccion de ideales
+I;  J;  S;  P;  U;          // al escribir un objeto se imprime
+\end{singular}
+
+\paragraph{Pertenencia a un ideal.} $f \in I \iff$ el resto de dividir $f$ entre una base estándar de $I$ es $0$. Se calcula con \texttt{reduce(f, std(I))}. Un resultado distinto de $0$ indica que $f \notin I$.
+
+\begin{singular}
+ideal I  = xy-x5, x+y, x7-y3;
+poly f = z5+x2y;
+reduce(f, std(I));          // z5 : distinto de 0, luego f no esta en I
+\end{singular}
+
+\paragraph{Inclusión de ideales.} $I \subseteq J \iff$ \texttt{reduce(I, std(J))} es $0$ (se reduce cada generador de $I$). Con el ideal monomial del ejemplo:
+
+\begin{singular}
+ring R = 0,(x,y,z,t),dp;
+ideal I = xyt-x4, y3t-z2x2+t5, xyzt;
+ideal J = xyt, x4, y3t, z2x2, t5, xyzt;
+reduce(J, std(I));          // resto no nulo: J no esta contenido en I
+reduce(I, std(J));          // 0, 0, 0: I esta contenido en J
+quotient(I, J);             // ideal cociente (I : J)
+\end{singular}
+
+\paragraph{Homomorfismos de anillos.} Se define el homomorfismo $F\colon \mathbb{C}[a,b,c] \to \mathbb{C}[x,y,z]$ dando la imagen de los generadores (\texttt{map}). Para decidir si es inyectivo o sobreyectivo se usa la librería \texttt{algebra.lib}. El núcleo es un ideal del anillo de \emph{partida} (\texttt{S}), no del de llegada.
+
+\begin{singular}
+ring S = 0,(a,b,c),dp;      // anillo de partida
+ring R = 0,(x,y,z),dp;      // anillo de llegada (es el activo)
+ideal I = x2, y3, x4-2y5;   // imagenes de a, b, c
+map F = S, I;               // F(a)=x2, F(b)=y3, F(c)=x4-2y5
+F;
+LIB"algebra.lib";
+is_injective(F, S);         // 0: no es inyectivo
+alg_kernel(F, S);           // generador del nucleo: a6-8b5-3a4c+3a2c2-c3
+is_surjective(F, S);        // 0
+is_bijective(F, S);         // 0
+\end{singular}
+
+\paragraph{Sistema generador minimal.} \texttt{mstd(I)} devuelve una lista cuya segunda componente es un sistema de generadores minimal de $I$.
+
+\begin{singular}
+ring R = 0,(x,y,z),dp;
+ideal I = x2y, x5y7, xyz, x*(x2y)-7x5y7+5xyz;
+mstd(I)[2];                 // xyz, x2y
+\end{singular}
+
 \section{Práctica TOPAL 2: Gérmenes y Singularidades Aisladas}
+\label{sec:p2}
 
 \begin{definicion}{Gérmenes de Funciones Holomorfas}{germen}
 Sea $R = \mathbb{C}[x_1, \dots, x_n]$ y consideremos el anillo $\mathcal{O}_n = \mathcal{H}/\sim$. Sea $\mathcal{H}$ el conjunto de funciones holomorfas definidas en un entorno del origen:
@@ -132,30 +189,372 @@ En $\mathcal{O}_n$ definimos el conjunto $\mathfrak{m}_n = \{ f \in \mathcal{O}_
 \end{nota}
 
 \begin{teorema}{Ideal Maximal de $\mathcal{O}_n$}{thm_ideal_max}
-$\mathfrak{m}_n$ es un ideal maximal de $\mathcal{O}_n$ y además cumple que $\mathfrak{m}_n \subseteq I \subsetneq \mathcal{O}_n$. Está generado por las coordenadas, $\mathfrak{m}_n = \langle x_1, x_2, \dots, x_n \rangle$, y no hay ningún otro ideal maximal en $\mathcal{O}_n$. Por lo tanto, nos referimos a $\mathfrak{m}_n$ unívocamente como el ideal maximal de $\mathcal{O}_n$.
+$\mathfrak{m}_n$ es un ideal maximal de $\mathcal{O}_n$ (si $\mathfrak{m}_n \subseteq I \subsetneq \mathcal{O}_n$, entonces $I = \mathfrak{m}_n$). Está generado por las coordenadas, $\mathfrak{m}_n = \langle x_1, x_2, \dots, x_n \rangle$, y no hay ningún otro ideal maximal en $\mathcal{O}_n$. Por lo tanto, nos referimos a $\mathfrak{m}_n$ unívocamente como el ideal maximal de $\mathcal{O}_n$.
 \end{teorema}
 
-\begin{teorema}{Teorema de los ceros de Hilbert (Nullstellensatz)}{nullstellensatz}
-Sea $I$ un ideal de $\mathcal{O}_n$.
-$$ \dim(I) = 0 \iff \exists r \ge 1 \mid \mathfrak{m}_n^r \subseteq I $$
-\end{teorema}
+\subsection*{Cálculo con Singular}
 
-\begin{definicion}{Anillo cociente y codimensión finita}{codim_finita}
-Diremos que dos funciones coinciden $g \sim h \pmod I$ cuando $g-h \in I$. El anillo cociente $\mathcal{O}_n/I$ tiene estructura de $\mathbb{C}$-espacio vectorial. Diremos que un ideal $I$ tiene codimensión finita cuando cumple:
-$$ \dim(I) = 0 \iff \dim_{\mathbb{C}}(\mathcal{O}_n/I) < \infty $$
+Para trabajar con gérmenes en el origen se usa el orden local \texttt{ds}.
+
+\begin{singular}
+ring R = 0,(x,y,z),ds;
+\end{singular}
+
+\paragraph{Dimensión de un ideal.} \texttt{dim} solo es fiable sobre una base estándar, por lo que se usa \texttt{dim(std(I))}. Dimensión $0$ significa que el germen de $V(I)$ es el punto $0$ (solución única del sistema); un resultado $-1$ solo aparece para el ideal total.
+
+\begin{singular}
+ideal I = xyz+x5;
+dim(I);                     // 2 (I todavia no es base estandar)
+ideal I = xyz+x5, x6+y7;
+std(I);                     // base estandar: xyz+x5, x6+y7, y8z-x10
+dim(std(I));                // 1
+ideal I = xyz+x5, x6+y7, z5+xz;
+dim(std(I));                // 0: singularidad aislada en el origen
+\end{singular}
+
+\paragraph{Número de Milnor.} Se carga \texttt{sing.lib}; \texttt{jacob(f)} es el ideal jacobiano $J(f)$.
+
+\begin{singular}
+LIB"sing.lib";
+poly f = xyz+x5+y6+z9;
+ideal I = jacob(f);         // yz+5x4, xz+6y5, xy+9z8
+dim(std(I));                // 0
+milnor(f);                  // 19
+poly g = xy2z+x5+y6+z9;
+milnor(g);                  // 64
+\end{singular}
+
+\paragraph{Codimensión, exponente de Noether y generadores minimales.} \texttt{vdim(std(I))} es $\dim_{\mathbb{C}} \mathcal{O}_n/I$ (da $-1$ si es infinita). \texttt{minbase(I)} calcula un sistema de generadores minimal. Para el exponente de Noether se busca el menor $r$ con \texttt{reduce(maxideal(r), std(I))} igual a $0$ (es decir, $\mathfrak{m}^r \subseteq I$).
+
+\begin{singular}
+ideal I = xyz, x5, y6, z7;
+ideal J = x+3y+2z, 5x-7y;
+ideal K = I*J;              // producto de ideales
+poly f = xyz+x5+y6+z7;
+ideal J = I,f;              // I + <f>
+minbase(J);                 // z7, y6, x5, xyz
+reduce(maxideal(12), std(I));   // 0,...,0: m^12 esta contenido en I
+vdim(std(I));               // 90
+milnor(f);                  // 17
+vdim(std(jacob(f)));        // 17: otra forma de calcular mu
+\end{singular}
+
+\paragraph{Potencias y multiplicidad de Samuel.} Para calcular $\dim \mathcal{O}_n/I^r$ se itera \texttt{vdim(std(I\^{}r))}. Restando términos consecutivos (diferencias iteradas) se llega a una constante, que es la multiplicidad $e(I)$ de Samuel. En dos variables, para $I = \langle x^5+x^2y^2+y^5,\ x^3-y^7,\ x^4-y^5\rangle$ (que en $(x,y,z)$ tiene codimensión infinita, \texttt{vdim} $=-1$):
+
+\begin{singular}
+ring R = 0,(x,y),ds;
+ideal I = x5+x2y2+y5, x3-y7, x4-y5;
+int r;
+for (r=1; r<=5; r++) { vdim(std(I^r)); }
+// 12, 38, 79, 135, 206 -> diferencias 26,41,56,71 -> 15,15,15
+\end{singular}
+
+Para $I = \langle xyz, x^5, y^6, z^8 \rangle \subseteq \mathcal{O}_3$ se obtiene (sucesión $\dim \mathcal{O}_3/I^r$ y diferencias iteradas):
+\begin{center}
+\begin{tabular}{l|ccccccc}
+$r$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ \hline
+$\dim \mathcal{O}_3/I^r$ & 100 & 414 & 1060 & 2156 & 3820 & 6170 & 9324 \\
+1.ª diferencia & 314 & 646 & 1096 & 1664 & 2350 & 3154 & \\
+2.ª diferencia & 332 & 450 & 568 & 686 & 804 & & \\
+3.ª diferencia & 118 & 118 & 118 & & & &
+\end{tabular}
+\end{center}
+Es decir, $e(I) = 118$.
+
+\paragraph{Reducciones genéricas.} Con \texttt{random.lib}, \texttt{randomid(I,k)} da $k$ combinaciones lineales aleatorias de los generadores de $I$. Una reducción genérica de $I$ tiene la misma multiplicidad:
+
+\begin{singular}
+LIB"random.lib";
+ring R = 0,(x,y,z),ds;
+ideal I = xyz, x5, y6, z8;
+ideal J = randomid(I,3);
+vdim(std(J));               // 118 = e(I)
+\end{singular}
+
+\section{Práctica TOPAL 3: Radical, ceros de Hilbert e ideales de codimensión finita}
+\label{sec:p3}
+
+\subsection*{Radical de un ideal}
+
+\begin{definicion}{Radical de un ideal}{radical}
+Sea $R$ un anillo conmutativo e $I$ un ideal de $R$. El \textbf{radical} de $I$ es
+$$ \sqrt{I} = \{ a \in R \mid \exists r \ge 1,\ a^r \in I \} \supseteq I. $$
 \end{definicion}
 
-\begin{teorema}{Número de Milnor}{milnor}
-La función $f$ tiene una singularidad aislada en el origen si y solo si el ideal jacobiano $J(f) = \langle \frac{\partial f}{\partial z_1}, \dots, \frac{\partial f}{\partial z_n} \rangle$ tiene codimensión finita. En tal caso, el Número de Milnor $\mu$ se calcula como:
-$$ \mu = \dim_{\mathbb{C}} \frac{\mathcal{O}_n}{J(f)} $$
+\begin{proposicion}{El radical es un ideal}{rad_ideal}
+$\sqrt{I}$ es un ideal de $R$, es decir:
+\begin{itemize}
+    \item[a)] Es subgrupo respecto de $+$: si $a, b \in \sqrt{I}$, entonces $a \pm b \in \sqrt{I}$.
+    \item[b)] $\forall a \in R,\ \forall b \in \sqrt{I}$ se cumple $ab \in \sqrt{I}$.
+\end{itemize}
+\end{proposicion}
+\begin{proof}
+Sean $a^r, b^s \in I$. Para a), en el desarrollo del binomio de $(a \pm b)^{r+s-1}$ cada sumando contiene $a^i b^j$ con $i+j = r+s-1$, luego $i \ge r$ o $j \ge s$, y por tanto está en $I$. Para b), $(ab)^s = a^s b^s \in I$.
+\end{proof}
+
+\subsection*{El anillo $\mathcal{O}_n$ es local}
+
+Identificamos $\mathcal{O}_n = \mathcal{H}/{\sim} \;\cong\; \mathbb{C}\{x_1, \dots, x_n\}$, donde
+\begin{multline*} \mathbb{C}\{x_1,\dots,x_n\} = \Big\{ \sum_{k \in \mathbb{Z}_{\ge 0}^n} a_k x^k \;\Big|\; \\ \text{la serie converge } \forall x \text{ en algún entorno de } 0 \in \mathbb{C}^n \Big\} \subsetneq \mathbb{C}[[x_1,\dots,x_n]], \end{multline*}
+con $x^k = x_1^{k_1} \cdots x_n^{k_n}$ y $k = (k_1, \dots, k_n)$.
+
+\begin{definicion}{Anillo local}{anillo_local}
+Un ideal $I$ de $R$ es \textbf{maximal} cuando $I \subseteq J \subsetneq R \implies I = J$. Un anillo es \textbf{local} cuando tiene un único ideal maximal.
+\end{definicion}
+
+\begin{observacion}{$\mathcal{O}_n$ local, $\mathbb{C}[x_1,\dots,x_n]$ no}{local}
+$\mathcal{O}_n$ es un anillo local con ideal maximal $\mathfrak{m}_n = \{ f \in \mathcal{O}_n \mid f(0) = 0 \} = \langle x_1, \dots, x_n \rangle$ (\cref{thm:thm_ideal_max}). En consecuencia, todo ideal propio $I \neq \mathcal{O}_n$ cumple $I \subseteq \langle x_1, \dots, x_n \rangle$.
+
+En cambio, $\mathbb{C}[x_1,\dots,x_n]$ \emph{no} es local: se prueba que sus ideales maximales son exactamente los de la forma $\langle x_1 - p_1, \dots, x_n - p_n \rangle$ con $(p_1, \dots, p_n) \in \mathbb{C}^n$.
+\end{observacion}
+
+\subsection*{Variedad de un ideal y teorema de los ceros de Hilbert}
+
+Sea $I$ un ideal de $\mathcal{O}_n$. Recordamos que $V(I)$ es el \emph{germen en $0$} del conjunto de ceros
+$$ \{ z \in \mathbb{C}^n \mid g(z) = 0,\ \forall g \in I \}. $$
+Si $I = \langle g_1, \dots, g_r \rangle$, basta pedir $g_j(z) = 0$ para $j = 1, \dots, r$ (\cref{def:ideal_var}).
+
+\begin{proposicion}{Propiedades de $V$}{prop_V}
+Sean $J \subseteq I \subseteq \mathcal{O}_n$ ideales. Entonces:
+\begin{itemize}
+    \item[a)] $V(I) \subseteq V(J)$ (más ecuaciones, menos soluciones).
+    \item[b)] $V(I) = V(\sqrt{I})$.
+\end{itemize}
+\end{proposicion}
+\begin{proof}
+a) Si $z$ anula todo elemento de $I$, anula todo elemento de $J \subseteq I$.
+
+b) Como $I \subseteq \sqrt{I}$, por a) $V(\sqrt{I}) \subseteq V(I)$. Recíprocamente, sea $z \in V(I)$ y sea $f \in \sqrt{I}$. Existe $r \ge 1$ con $f^r \in I$, luego $f(z)^r = 0$ y por tanto $f(z) = 0$. Así $z \in V(\sqrt{I})$.
+\end{proof}
+
+\begin{definicion}{Ideal definido por un subconjunto}{ideal_X}
+Sea $X \subseteq \mathbb{C}^n$. El ideal de $\mathcal{O}_n$ definido por $X$ es
+$$ \mathbb{I}(X) = \{ f \in \mathcal{O}_n \mid f(z) = 0,\ \forall z \in X \}. $$
+Es fácil ver que $\mathbb{I}(X)$ es un ideal y que $V(\mathbb{I}(X)) = X$ (la igualdad se entiende como gérmenes en $0$, es decir, tras restringir a un entorno).
+\end{definicion}
+
+\begin{teorema}{Teorema de los ceros de Hilbert (Nullstellensatz)}{hilbert}
+Sea $I$ un ideal de $\mathcal{O}_n$. Entonces
+$$ \mathbb{I}(V(I)) = \sqrt{I}. $$
 \end{teorema}
 
+\subsection*{Ideales de codimensión finita}
+
+\begin{teorema}{Consecuencia del teorema de los ceros de Hilbert}{conseq_hilbert}
+Sea $I \subsetneq \mathcal{O}_n$ un ideal propio. Son equivalentes:
+\begin{enumerate}
+    \item[1)] $\sqrt{I} = \mathfrak{m}_n$.
+    \item[2)] $V(I) = \{0\}$, es decir, $0$ es un punto aislado del conjunto de ceros de $I$.
+    \item[3)] $\exists r \ge 1$ tal que $\mathfrak{m}_n^r \subseteq I$.
+    \item[4)] $\dim_{\mathbb{C}} \mathcal{O}_n / I < \infty$.
+\end{enumerate}
+\end{teorema}
+
+\begin{nota}{Sobre la demostración}{dem_conseq}
+En clase se enuncia sin demostrar. Las implicaciones $1 \iff 3$ son directas: si $\sqrt{I} = \mathfrak{m}_n$, cada $x_i$ tiene una potencia en $I$ y, como $\mathfrak{m}_n = \langle x_1, \dots, x_n \rangle$, una potencia suficientemente alta de $\mathfrak{m}_n$ está en $I$; y si $\mathfrak{m}_n^r \subseteq I$, entonces $\mathfrak{m}_n \subseteq \sqrt{I} \subsetneq \mathcal{O}_n$ y se concluye por maximalidad. $1 \iff 2$ es Hilbert: $V(I) = \{0\} \implies \sqrt{I} = \mathbb{I}(V(I)) = \mathbb{I}(\{0\}) = \mathfrak{m}_n$.
+\end{nota}
+
+\begin{definicion}{Ideal de codimensión finita}{codim_finita_p3}
+Dos funciones coinciden módulo $I$, $g \equiv h \pmod I$, cuando $g - h \in I$. El cociente $\mathcal{O}_n / I$ es un anillo y un $\mathbb{C}$-espacio vectorial. Los ideales $I$ de $\mathcal{O}_n$ con $\sqrt{I} = \mathfrak{m}_n$ se conocen indistintamente como \textbf{ideales de definición}, \textbf{ideales de codimensión finita} o \textbf{ideales $\mathfrak{m}_n$-primarios}; su codimensión es $\dim_{\mathbb{C}} \mathcal{O}_n/I$.
+\end{definicion}
+
 \begin{definicion}{Exponente de Noether}{noether}
-Sea $I$ un ideal de $\mathcal{O}_n$ con $\dim(I) = 0$ (lo que es equivalente a $\dim_{\mathbb{C}}(\mathcal{O}_n/I) < \infty$). Definimos el exponente de Noether de $I$, denotado por $e(I)$, como el mínimo entero $r \ge 1$ tal que $\mathfrak{m}_n^r \subseteq I$.
+Sea $I$ un ideal de $\mathcal{O}_n$ de codimensión finita. El \textbf{exponente de Noether} de $I$, $\nu(I)$, es el mínimo entero $r \ge 1$ tal que $\mathfrak{m}_n^r \subseteq I$.
 \end{definicion}
 
 \begin{observacion}{Ejemplo de exponente de Noether}{obs_singular}
-Calculando computacionalmente para el ideal $I = \langle xyz, x^3 y^6, z^6 \rangle$, el exponente de Noether resulta ser $e(I) = 11$.
+Para $I = \langle xyz, x^3, y^6, z^6 \rangle \subseteq \mathcal{O}_3$, el cálculo en Singular da $\dim_{\mathbb{C}} \mathcal{O}_3/I = 58$ y $\nu(I) = 11$.
 \end{observacion}
+
+\begin{nota}{Notación $e(I)$}{notacion_e}
+En esta práctica $e(I)$ denota la \emph{multiplicidad de Samuel} de $I$, no el exponente de Noether, que se escribe $\nu(I)$.
+\end{nota}
+
+\subsection*{Singularidades aisladas y número de Milnor}
+
+\begin{definicion}{Número de Milnor}{milnor_p3}
+Sea $f \in \mathcal{O}_n$ y $J(f) = \Big\langle \dfrac{\partial f}{\partial x_1}, \dots, \dfrac{\partial f}{\partial x_n} \Big\rangle$ su \textbf{ideal jacobiano}. Diremos que $f$ tiene una \textbf{singularidad aislada en $0$} cuando $J(f)$ tiene codimensión finita; equivalentemente, cuando $0$ es un punto aislado del conjunto de soluciones del sistema $\frac{\partial f}{\partial x_1} = \dots = \frac{\partial f}{\partial x_n} = 0$ (por \cref{thm:conseq_hilbert}, $1 \iff 2 \iff 4$). En tal caso, el \textbf{número de Milnor} de $f$ es
+$$ \mu(f) := \dim_{\mathbb{C}} \frac{\mathcal{O}_n}{J(f)}. $$
+\end{definicion}
+
+\begin{teorema}{Teorema de Milnor}{milnor_top}
+$\mu(f)$ es un \textbf{invariante topológico} de $f$: si $f, g \in \mathcal{O}_n$ tienen singularidad aislada en el origen y existe un homeomorfismo $\varphi$ entre entornos abiertos de $0 \in \mathbb{C}^n$ con $f = g \circ \varphi$, entonces $\mu(f) = \mu(g)$.
+\end{teorema}
+
+\begin{definicion}{Número de Tjurina}{tjurina}
+El \textbf{número de Tjurina} de $f$ es
+$$ \tau(f) = \dim_{\mathbb{C}} \frac{\mathcal{O}_n}{J(f) + \langle f \rangle} \le \mu(f). $$
+Es un invariante analítico (no topológico en general).
+\end{definicion}
+
+\begin{observacion}{Cálculo con Singular}{ej_milnor_singular}
+Para $f = xyz^2 + x^5 + y^6 + z^7$ (en el anillo local \texttt{ring R=0,(x,y,z),ds;}) se obtiene con \texttt{milnor(f)} y \texttt{tjurina(f)}:
+$$ \mu(f) = 47, \qquad \tau(f) = 44. $$
+\end{observacion}
+
+\subsection*{Potencias de un ideal y multiplicidad de Samuel}
+
+\begin{observacion}{Crecimiento de $\dim \mathcal{O}_3/I^r$}{ej_potencias}
+Sea $I = \langle g_1, g_2, g_3, g_4 \rangle = \langle xy^2z,\ x^4 + yz,\ y^5,\ z^6 + y^2x^3 \rangle \subseteq \mathcal{O}_3$ (cuatro generadores, que es el ideal de la libreta de Singular). Las dimensiones $\dim_{\mathbb{C}} \mathcal{O}_3 / I^r$, con sus diferencias sucesivas, son:
+\begin{center}
+\begin{tabular}{c|ccccccc}
+$r$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ \hline
+$\dim \mathcal{O}_3/I^r$ & 67 & 275 & 699 & 1415 & 2499 & 4027 & 6075 \\
+1.ª diferencia & \multicolumn{1}{c}{208} & 424 & 716 & 1084 & 1528 & 2048 & \\
+2.ª diferencia & 216 & 292 & 368 & 444 & 520 & & \\
+3.ª diferencia & 76 & 76 & 76 & 76 & & &
+\end{tabular}
+\end{center}
+La función $r \mapsto \dim_{\mathbb{C}} \mathcal{O}_3/I^r$ es un polinomio de grado $n = 3$ (polinomio de Hilbert--Samuel) y su tercera diferencia es constante: $76 =: e(I)$.
+\end{observacion}
+
+\begin{nota}{Dimensión de Krull}{krull}
+La \textbf{dimensión de Krull} $\dim(R)$ de un anillo se estudia en Matsumura y Eisenbud. Se tiene $\dim(\mathcal{O}_n) = n$, y es el grado del polinomio de Hilbert--Samuel anterior.
+\end{nota}
+
+\subsection*{Número de generadores e intersecciones completas}
+
+Denotamos por $\mu(I)$ el número mínimo de elementos necesarios para obtener un sistema de generadores de $I$ (en Singular, \texttt{size(minbase(I))}).
+
+\begin{teorema}{Teorema del ideal principal de Krull (Hauptidealsatz)}{hauptidealsatz}
+Si $I$ es un ideal de $\mathcal{O}_n$ de codimensión finita, entonces $\mu(I) \ge n$.
+\end{teorema}
+
+\begin{observacion}{Ejemplo: $\mu(I) < n$ implica codimensión infinita}{ej_haupt}
+El ideal $I = \langle x^5 + xyz,\ t^4 + x^2,\ y^3 + z^4 \rangle \subseteq \mathcal{O}_4$ cumple $\mu(I) \le 3 < 4$, luego $I$ \textbf{no} tiene codimensión finita (en Singular, $\dim(\mathrm{std}(I)) = 1$).
+\end{observacion}
+
+\begin{definicion}{Intersección completa}{inter_completa}
+Un ideal $I$ de $\mathcal{O}_n$ es de \textbf{intersección completa} cuando tiene codimensión finita y $\mu(I) = n$.
+\end{definicion}
+
+\begin{teorema}{Multiplicidad de Samuel}{mult_samuel}
+Sea $I$ un ideal de $\mathcal{O}_n$ de codimensión finita. Entonces
+$$ \mu(I) = n \iff e(I) = \dim_{\mathbb{C}} \mathcal{O}_n/I, $$
+donde $e(I)$ es la \textbf{multiplicidad} (o multiplicidad de Hilbert--Samuel) de $I$. Interpretación geométrica en: Herrmann--Ikeda--Orbanz, \emph{Equimultiplicity and blowing-up}.
+\end{teorema}
+
+\begin{observacion}{Ejemplo de intersección completa}{ej_ci}
+Sea $I = \langle g_1, g_2, g_3 \rangle = \langle x^2y + x^7,\ y^6,\ y^2z^2 - z^9 \rangle \subseteq \mathcal{O}_3$. Entonces $\dim_{\mathbb{C}} \mathcal{O}_3/I = 378 < \infty$, luego $\mu(I) \ge 3$, y como tiene 3 generadores, $\mu(I) = 3$. Por el teorema anterior $e(I) = \dim_{\mathbb{C}} \mathcal{O}_3/I = 378$:
+\begin{center}
+\begin{tabular}{c|cccccc}
+$r$ & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+$\dim \mathcal{O}_3/I^r$ & 378 & 1512 & 3780 & 7560 & 13230 & 21168 \\
+1.ª diferencia & 1134 & 2268 & 3780 & 5670 & 7938 & \\
+2.ª diferencia & 1134 & 1512 & 1890 & 2268 & & \\
+3.ª diferencia & 378 & 378 & 378 & & &
+\end{tabular}
+\end{center}
+\end{observacion}
+
+\subsection*{Reducciones de un ideal y teorema de Rees}
+
+\begin{definicion}{Reducción}{reduccion}
+Sean $J \subseteq I$ ideales de $\mathcal{O}_n$. Diremos que $J$ es una \textbf{reducción} de $I$ cuando existe $r \ge 0$ tal que $I^{r+1} = J \cdot I^r$. El menor tal $r$ es el \textbf{número de reducción} de $J$ respecto de $I$.
+\end{definicion}
+
+\begin{teorema}{Teorema de Rees}{rees}
+Sean $J \subseteq I$ ideales de $\mathcal{O}_n$ de codimensión finita. Entonces $e(J) \ge e(I)$, y
+$$ e(J) = e(I) \iff J \text{ es reducción de } I \iff \exists r \ge 0 \ \text{ con } \ I^{r+1} = J \cdot I^r. $$
+\end{teorema}
+
+\begin{observacion}{Reducciones del ideal $I = \langle g_1,g_2,g_3,g_4\rangle$}{ej_reducciones}
+Con el ideal de cuatro generadores de \cref{obs:ej_potencias}, tomamos tres combinaciones lineales \emph{genéricas} de los $g_i$:
+$$ J = \Big\langle \sum_{i=1}^4 a^1_i g_i,\ \sum_{i=1}^4 a^2_i g_i,\ \sum_{i=1}^4 a^3_i g_i \Big\rangle, \qquad (a^j_i) \in \mathbb{C}^{12}. $$
+Entonces $e(J) = 76 = \dim_{\mathbb{C}} \mathcal{O}_3 / J$, por lo que $J$ es de intersección completa con $e(J) = e(I)$ y, por Rees, es reducción de $I$. Dos elecciones concretas:
+\begin{itemize}
+    \item $J = \langle g_1 + g_2,\ g_3,\ g_4 \rangle$: es de intersección completa pero $\dim_{\mathbb{C}} \mathcal{O}_3/J = 120 > 76$, luego \emph{no} es reducción de $I$.
+    \item $J = \langle g_2,\ g_3 + g_1,\ g_4 \rangle$: $\dim_{\mathbb{C}} \mathcal{O}_3/J = 76 = e(I)$, luego sí es reducción de $I$. Comprobando en Singular (ver más abajo) se tiene $I^2 \not\subseteq J I$, $I^3 \not\subseteq J I^2$ e $I^4 = J I^3$: el número de reducción es $3$.
+\end{itemize}
+\end{observacion}
+
+\subsection*{Cálculo con Singular}
+
+\paragraph{Número de Milnor y de Tjurina.}
+
+\begin{singular}
+ring R = 0,(x,y,z),ds;
+poly f = xyz2+x5+y6+z7;
+LIB"sing.lib";
+milnor(f);                  // 47
+ideal Jf = jacob(f);        // ideal jacobiano: derivadas parciales de orden 1
+Jf;
+vdim(std(Jf));              // 47: otra forma de calcular mu(f)
+tjurina(f);                 // 44 = dim O_n / (J(f)+<f>) <= mu(f)
+\end{singular}
+
+\paragraph{Codimensión, dimensión y generadores minimales.} \texttt{dim(std(I))} es la dimensión de Krull del cociente (si es $0$, $I$ tiene codimensión finita); \texttt{minbase(I)} da $\mu(I)$ como \texttt{size(minbase(I))}.
+
+\begin{singular}
+ideal I = xy2z, x4+yz, y5, z6+y2x3;
+vdim(std(I));               // 67
+dim(std(I));                // 0
+minbase(I);                 // 4 generadores
+size(minbase(I));           // 4
+int r;
+for (r=1; r<=7; r++) { vdim(std(I^r)); }
+// 67, 275, 699, 1415, 2499, 4027, 6075
+\end{singular}
+
+\paragraph{Ideales con $\mu(I) < n$.} En $\mathcal{O}_4$, el ideal con tres generadores no puede tener codimensión finita:
+
+\begin{singular}
+ring R = 0,(x,y,z,t),ds;
+ideal I = x5+xyz, t4+x2, y3+z4;
+dim(std(I));                // 1
+vdim(std(I));               // -1: codimension infinita
+\end{singular}
+
+\paragraph{Intersecciones completas.} Con $\mu(I) = n = 3$ la multiplicidad coincide con \texttt{vdim}:
+
+\begin{singular}
+ring R = 0,(x,y,z),ds;
+ideal I = x2y+x7, y6, y2z2-z9;
+vdim(std(I));               // 378
+for (r=1; r<=6; r++) { vdim(std(I^r)); }
+// 378, 1512, 3780, 7560, 13230, 21168 -> 3.a diferencia constante 378
+\end{singular}
+
+\paragraph{Reducciones.} Una reducción genérica se obtiene con \texttt{randomid}; también se pueden probar reducciones concretas indexando los generadores (\texttt{I[2]} es el segundo). Para $J \subseteq I$, \texttt{reduce(J, std(I))} comprueba $J \subseteq I$, y \texttt{reduce(I\^{}(r+1), std(J*I\^{}r))} $=0$ comprueba que $I^{r+1} \subseteq J I^r$ (la otra inclusión es automática).
+
+\begin{singular}
+LIB"random.lib";
+ideal I = xy2z, x4+yz, y5, z6+y2x3;
+ideal J = randomid(I,3);    // combinaciones lineales aleatorias de los g_i
+vdim(std(J));               // 76 = e(I): reduccion
+ideal J = xy2z+x4+yz, y5, z6+y2x3;   // <g1+g2, g3, g4>
+vdim(std(J));               // 120: no es reduccion
+ideal J = I[2], I[3]+I[1], I[4];     // <g2, g3+g1, g4>
+vdim(std(J));               // 76: reduccion
+reduce(J, std(I));          // 0: J contenido en I
+reduce(I, std(J));          // no nulo: I no esta contenido en J
+reduce(I^2, std(J*I));      // no nulo: I^2 no esta en J*I
+reduce(I^3, std(J*I^2));    // no nulo: I^3 no esta en J*I^2
+reduce(I^4, std(J*I^3));    // 0: I^4 = J*I^3, numero de reduccion 3
+\end{singular}
+
+\subsection*{Resumen de comandos}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.43\textwidth}p{0.5\textwidth}@{}}
+\hline
+\texttt{ring R = 0,(x,y,z),ds;} & anillo local de gérmenes (\texttt{dp}: polinomios) \\
+\texttt{I+J,\ I*J,\ intersect(I,J)} & suma, producto e intersección \\
+\texttt{quotient(I,J)} & ideal cociente $(I : J)$ \\
+\texttt{std(I),\ mstd(I)[2],\ minbase(I)} & base estándar; generadores minimales \\
+\texttt{reduce(f,std(I))} & $0 \iff f \in I$ \\
+\texttt{reduce(J,std(I))} & $0 \iff J \subseteq I$ \\
+\texttt{dim(std(I))} & dimensión ($0 \iff V(I)=\{0\}$) \\
+\texttt{vdim(std(I))} & $\dim_{\mathbb{C}} \mathcal{O}_n/I$ ($-1$ si infinita) \\
+\texttt{jacob(f)} & ideal jacobiano $J(f)$ \\
+\texttt{milnor(f),\ tjurina(f)} & $\mu(f)$, $\tau(f)$ (\texttt{LIB\textquotedbl{}sing.lib\textquotedbl{}}) \\
+\texttt{maxideal(r)} & $\mathfrak{m}^r$ (exponente de Noether) \\
+\texttt{randomid(I,k)} & $k$ combinaciones lineales aleatorias (\texttt{LIB\textquotedbl{}random.lib\textquotedbl{}}) \\
+\texttt{map F = S,I;} & homomorfismo $S \to R$ \\
+\texttt{is\_injective,\ is\_surjective,\ alg\_kernel} & inyectividad, sobreyectividad, núcleo (\texttt{LIB\textquotedbl{}algebra.lib\textquotedbl{}}) \\
+\hline
+\end{tabular}
+\end{center}
 
 \end{document}

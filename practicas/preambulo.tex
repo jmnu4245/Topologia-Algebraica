@@ -14,8 +14,20 @@
 \pgfplotsset{compat=1.18, colormap/viridis}
  
 % Cuadros personalizados, sombras y entornos numerados
+\setlength{\emergencystretch}{3em}
 \usepackage[many]{tcolorbox}
-\tcbuselibrary{skins, breakable, theorems}
+\tcbuselibrary{skins, breakable, theorems, listings}
+
+% --- Bloques de código Singular ---
+\lstdefinelanguage{Singular}{morecomment=[l]{//}}
+\newtcblisting{singular}[1][]{
+    listing only, breakable,
+    colback=black!4!white, colframe=black!40, boxrule=0.4pt, arc=2pt,
+    left=4pt, right=4pt, top=2pt, bottom=2pt,
+    listing options={basicstyle=\ttfamily\small, breaklines=true, columns=fullflexible,
+        keepspaces=true, language=Singular, commentstyle=\color{green!40!black}\itshape},
+    #1
+}
 
 \usetikzlibrary{babel}
 \usepackage{etoc} 
