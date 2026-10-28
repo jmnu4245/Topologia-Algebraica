@@ -12,7 +12,7 @@ Por la \cref{prop:equiv_homotopica}, si $X$ es contráctil (es decir, $X \simeq 
 Sea $X$ un espacio topológico. Diremos que $X$ es simplemente conexo cuando es arco-conexo y $\pi_1(X) = 1$.
 \end{definicion}
 
-\begin{proposicion}{ [C7.2]}{prop_arco_conexo}
+\begin{proposicion}{ [C7.2] \marcaP}{prop_arco_conexo}
 Sea $X$ un espacio arco-conexo. Entonces:
 
 $$\pi_1(X) = 1 \iff \forall x_0, x_1 \in X, \forall \alpha, \beta \in C_{x_0, x_1}(X) : \alpha \simeq_{\{0,1\}} \beta$$
@@ -87,7 +87,7 @@ $$d(y, x_j) \le d(y,x) + d(x,x_j) < \delta + \frac{r(x_j)}{2} \le \frac{r(x_j)}{
 Hemos llegado a la conclusión de que $B(x,\delta) \subseteq B(x_j, r(x_j)) \subseteq U_{i(x_j)}$.
 \end{proof}
 
-\begin{proposicion}{Lebesgue para recubrimientos de $[0,1]$ [C7.5]}{cor_lebesgue_I}
+\begin{proposicion}{Lebesgue para recubrimientos de $[0,1]$ [C7.5] \marcaC}{cor_lebesgue_I}
 Sea $\mathcal{U} = \{U_i\}_{i \in \Lambda}$ un recubrimiento abierto de $I = [0,1]$. Entonces existe $n \geq 1$ tal que, para todo $j \in \{1,\dots,n\}$, existe $i(j) \in \Lambda$ con $\left[\frac{j-1}{n}, \frac{j}{n}\right] \subseteq U_{i(j)}$. Es decir, la partición $t_j = \frac{j}{n}$ (con distancia constante $\frac1n$ entre puntos consecutivos) subordinada a $\mathcal{U}$ puede tomarse \textbf{regular}.
 \end{proposicion}
 
@@ -98,7 +98,7 @@ Por el lema de Lebesgue existe $\delta > 0$ tal que, para todo $x \in I$, existe
 
 \subsection{Condición suficiente para ser simplemente conexo}
 
-\begin{teorema}{Condición suficiente para que un espacio sea simplemente conexo [C7.6]}{cond_simp_conexo}
+\begin{teorema}{Condición suficiente para que un espacio sea simplemente conexo [C7.6] \marcaT}{cond_simp_conexo}
 Sea $X$ un espacio topológico y sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$. Supongamos que:
 \begin{itemize}
 \item[a)] $V_i$ es simplemente conexo para todo $i \in \Lambda$.
@@ -211,7 +211,7 @@ La imagen de $\beta_j$ está en $V_j$: $\alpha_j$ por construcción, $\rho_{j-1}
 
 \subsection{La esfera $S^n$ es simplemente conexa}
 
-\begin{proposicion}{ [C7.7]}{corolario_sn}
+\begin{proposicion}{ [C7.7] \marcaC}{corolario_sn}
 Para $n \ge 2$, $S^n$ es simplemente conexo.
 \end{proposicion}
 
@@ -275,17 +275,25 @@ La afirmación análoga en dimensión $n$ ($X$ localmente homeomorfo a $\mathbb{
 
 \textbf{Objetivo [C8.2]:} ver que $\pi_1(S^1) \cong (\mathbb{Z},+)$.
 
-\begin{definicion}{Aplicación exponencial [C8.4]}{}
-$p: \mathbb{R} \to S^1$, $p(t) = e^{2\pi i t}$, $\forall t \in \mathbb{R}$ ($S^1 \subseteq \mathbb{R}^2, S^1 \subseteq \mathbb{C}$).
-\end{definicion}
-
-\begin{definicion}{Aplicación recubridora (Covering map) [C8.3]}{}
+\begin{definicion}{Aplicación recubridora (Covering map) [C8.3]}{def_recubridora}
 Sea $f: X \to Y$. Diremos que es una aplicación recubridora cuando $\forall y \in Y$ existe un entorno abierto $U$ de $y$ tal que:
 \begin{enumerate}
     \item $f^{-1}(U)$ es unión disjunta de abiertos: $f^{-1}(U) = \bigcup_{j \in \Lambda} V_j$.
     \item $f|_{V_j} : V_j \to U$ es un homeomorfismo $\forall j \in \Lambda$.
 \end{enumerate}
 \end{definicion}
+
+\begin{definicion}{Aplicación exponencial [C8.4]}{def_exponencial}
+$p: \mathbb{R} \to S^1$, $p(t) = e^{2\pi i t}$, $\forall t \in \mathbb{R}$ ($S^1 \subseteq \mathbb{R}^2, S^1 \subseteq \mathbb{C}$).
+
+Se cumple que $p$ es una aplicación recubridora. Para $U = S^1 \setminus \{(-1,0)\}$,
+\[ p^{-1}(U) = \bigsqcup_{k \in \mathbb{Z}} \left] k - \tfrac12,\, k + \tfrac12 \right[, \]
+y $p$ aplica cada uno de esos intervalos homeomórficamente sobre $U$ (por el lema siguiente y las traslaciones $t \mapsto t + k$). Para $y = (-1,0)$ se toma $U = S^1 \setminus \{(1,0)\}$, con los intervalos $]k, k+1[$.
+\end{definicion}
+
+\begin{observacion}{$p$ es homomorfismo [C8.5]}{obs_p_homomorfismo}
+$p$ es un homomorfismo sobreyectivo de $(\mathbb{R},+)$ en $(S^1,\cdot)$, pues $p(t_1+t_2) = e^{2\pi i t_1} e^{2\pi i t_2} = p(t_1)p(t_2)$, y $p^{-1}(1) = \ker p = \mathbb{Z}$. En particular, $\mathbb{R}/\mathbb{Z} \cong S^1$ como grupos. Todas las fibras $p^{-1}(z) = t + \mathbb{Z}$ son discretas: los ``pisos'' de la hélice están separados.
+\end{observacion}
 
 \begin{proposicion}{Lema (restricción de $p$) [C8.6]}{lema_restriccion_p}
 $p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[} : \left]-\frac{1}{2}, \frac{1}{2}\right[ \to S^1 \setminus \{(-1,0)\}$ es un homeomorfismo.
@@ -295,11 +303,11 @@ Denotaremos por $\Psi$ la inversa de esta aplicación, i.e. $\Psi = \left(p|_{\l
 Es sencillo comprobar que $\Psi(z) = \frac{\arg_0(z)}{2\pi}$.
 Recordemos que $\arg_0(z)$ es el único argumento de $z$ que pertenece a $]-\pi, \pi[$ (suponiendo que $z \notin ]-\infty, 0]$).
 
-\begin{definicion}{Elevación o levantamiento [C8.7]}{}
-Sea $f: X \to S^1$ continua (con $X$ cualquier espacio topológico). Una elevación (o levantamiento) de $f$ es una aplicación $\tilde{f}: X \to \mathbb{R}$ tal que $p \circ \tilde{f} = f$.
+\begin{definicion}{Elevación o levantamiento [C8.7]}{def_elevacion}
+Sea $f: X \to S^1$ continua (con $X$ cualquier espacio topológico). Una elevación (o levantamiento) de $f$ es una aplicación \textbf{continua} $\tilde{f}: X \to \mathbb{R}$ tal que $p \circ \tilde{f} = f$.
 \end{definicion}
 
-\begin{proposicion}{Unicidad de levantamientos [C8.8]}{}
+\begin{proposicion}{Unicidad de levantamientos [C8.8] \marcaT}{prop_unicidad_elev}
 Sea $X$ conexo. Sea $f: X \to S^1$ continua. Sean $f_1, f_2 : X \to \mathbb{R}$ levantamientos de $f$ tales que $f_1(x_0) = f_2(x_0)$ para algún $x_0 \in X$. Entonces $f_1 = f_2$.
 \end{proposicion}
 
@@ -328,7 +336,7 @@ Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$. Diremos que $f$ es uniformem
 
 Es obvio que $f$ uniformemente continua $\implies f$ continua (en todos los puntos de $X$). El recíproco es falso en general, pero es cierto si $X$ es compacto.
 
-\begin{proposicion}{Lema (compacto $\Rightarrow$ uniformemente continua) [C8.10]}{lema_unif_continua}
+\begin{proposicion}{Lema (compacto $\Rightarrow$ uniformemente continua) [C8.10] \marcaL}{lema_unif_continua}
 Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$ continua, con $X$ compacto $\implies f$ uniformemente continua.
 \end{proposicion}
 
@@ -347,7 +355,7 @@ Finalmente:
 \[ \|f(x)-f(x')\| \leq \|f(x)-f(x_j)\| + \|f(x_j)-f(x')\| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon. \]
 \end{proof}
 
-\begin{teorema}{Existencia de elevaciones [C8.11]}{teo_existencia_elevaciones}
+\begin{teorema}{Existencia de elevaciones [C8.11] \marcaT}{teo_existencia_elevaciones}
 Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es convexo y compacto. Sea $f: X \to S^1$ continua. Sea $x_0 \in X$. Sea $t_0 \in \mathbb{R}$ tal que $p(t_0) = f(x_0)$. Entonces existe una única elevación $\tilde{f} : X \to \mathbb{R}$ de $f$ tal que $\tilde{f}(x_0) = t_0$.
 \end{teorema}
 
@@ -402,11 +410,54 @@ Definimos $\tilde{f} = \tilde{g} \circ L$. Solo queda comprobar que $\tilde{f}$ 
 
 El objetivo es probar que $\pi_1(S^1) \cong (\mathbb{Z},+)$ (\cref{thm:teo_pi1_s1}).
 
-\begin{proposicion}{Elevación de arcos [C9.1]}{cor_elev_arcos}
+\begin{nota}{Recapitulación: elevaciones}{nota_recap_elevaciones}
+\begin{center}
+\begin{tikzpicture}[scale=0.9, every node/.style={font=\small}]
+\colorlet{cL}{blue!75!black}
+\draw[gray!55, thin] plot coordinates {(1.38,1.44) (1.43,1.46) (1.48,1.49) (1.53,1.52) (1.57,1.55) (1.61,1.58) (1.64,1.61) (1.66,1.64) (1.68,1.67) (1.69,1.70) (1.70,1.73) (1.70,1.76)};
+\draw[gray!35, thin, dashed] plot coordinates {(1.70,1.76) (1.69,1.79) (1.68,1.82) (1.67,1.85) (1.64,1.88) (1.62,1.91) (1.58,1.94) (1.54,1.97) (1.50,2.00) (1.45,2.03) (1.39,2.05) (1.34,2.08) (1.27,2.11) (1.20,2.13) (1.13,2.16) (1.05,2.18) (0.97,2.20) (0.89,2.23) (0.80,2.25) (0.71,2.27) (0.62,2.29) (0.53,2.30) (0.43,2.32) (0.33,2.34) (0.23,2.35) (0.13,2.37) (0.03,2.38) (-0.07,2.39) (-0.17,2.40) (-0.27,2.41) (-0.36,2.42) (-0.46,2.43) (-0.56,2.43) (-0.65,2.44) (-0.74,2.44) (-0.83,2.44) (-0.92,2.45) (-1.00,2.45) (-1.08,2.45) (-1.15,2.45) (-1.23,2.44) (-1.29,2.44) (-1.36,2.44) (-1.41,2.44) (-1.47,2.43) (-1.51,2.43) (-1.56,2.42) (-1.59,2.42) (-1.63,2.41) (-1.65,2.40) (-1.67,2.40) (-1.69,2.39) (-1.70,2.38) (-1.70,2.38) (-1.70,2.37)};
+\draw[gray!55, thin] plot coordinates {(-1.70,2.37) (-1.69,2.36) (-1.67,2.35) (-1.65,2.35) (-1.63,2.34) (-1.59,2.33) (-1.56,2.33) (-1.51,2.32) (-1.47,2.32) (-1.41,2.31) (-1.36,2.31) (-1.29,2.31) (-1.23,2.31) (-1.15,2.30) (-1.08,2.30) (-1.00,2.30) (-0.92,2.30) (-0.83,2.31) (-0.74,2.31) (-0.65,2.31) (-0.56,2.32) (-0.46,2.32) (-0.36,2.33) (-0.27,2.34) (-0.17,2.35) (-0.07,2.36) (0.03,2.37) (0.13,2.38) (0.23,2.40) (0.33,2.41) (0.43,2.43) (0.53,2.45) (0.62,2.46) (0.71,2.48) (0.80,2.50) (0.89,2.52) (0.97,2.55) (1.05,2.57) (1.13,2.59) (1.20,2.62) (1.27,2.64) (1.34,2.67) (1.39,2.70) (1.45,2.72) (1.50,2.75) (1.54,2.78) (1.58,2.81) (1.62,2.84) (1.64,2.87) (1.67,2.90) (1.68,2.93) (1.69,2.96) (1.70,2.99) (1.70,3.02)};
+\draw[gray!35, thin, dashed] plot coordinates {(1.70,3.02) (1.69,3.05) (1.68,3.08) (1.66,3.11) (1.64,3.14) (1.61,3.17) (1.57,3.20) (1.53,3.23) (1.48,3.26) (1.43,3.29) (1.38,3.31) (1.31,3.34) (1.25,3.37) (1.18,3.39) (1.10,3.42) (1.03,3.44) (0.94,3.46) (0.86,3.48) (0.77,3.50) (0.68,3.52) (0.59,3.54) (0.49,3.56) (0.40,3.58) (0.30,3.59) (0.20,3.61) (0.10,3.62) (0.00,3.63) (-0.10,3.64) (-0.20,3.65) (-0.30,3.66) (-0.40,3.67) (-0.49,3.68) (-0.59,3.68) (-0.68,3.69) (-0.77,3.69) (-0.86,3.69) (-0.94,3.70) (-1.03,3.70) (-1.10,3.70) (-1.18,3.70) (-1.25,3.69) (-1.31,3.69) (-1.38,3.69) (-1.43,3.68) (-1.48,3.68) (-1.53,3.67) (-1.57,3.67) (-1.61,3.66) (-1.64,3.66) (-1.66,3.65) (-1.68,3.64) (-1.69,3.64) (-1.70,3.63) (-1.70,3.62)};
+\draw[gray!55, thin] plot coordinates {(-1.70,3.62) (-1.69,3.62) (-1.68,3.61) (-1.67,3.60) (-1.64,3.59) (-1.62,3.59) (-1.58,3.58) (-1.54,3.58) (-1.50,3.57) (-1.45,3.57) (-1.39,3.56) (-1.34,3.56) (-1.27,3.56) (-1.20,3.55) (-1.13,3.55) (-1.05,3.55) (-0.97,3.55) (-0.89,3.56) (-0.80,3.56) (-0.71,3.56) (-0.62,3.57) (-0.53,3.57) (-0.43,3.58) (-0.33,3.58) (-0.23,3.59) (-0.13,3.60) (-0.03,3.61) (0.07,3.63) (0.17,3.64) (0.27,3.65) (0.36,3.67) (0.46,3.68) (0.56,3.70) (0.65,3.72) (0.74,3.74) (0.83,3.76) (0.92,3.78) (1.00,3.80) (1.08,3.83) (1.15,3.85) (1.23,3.88) (1.29,3.90) (1.36,3.93) (1.41,3.96) (1.47,3.98) (1.51,4.01) (1.56,4.04) (1.59,4.07) (1.63,4.10) (1.65,4.13) (1.67,4.16) (1.69,4.19) (1.70,4.22) (1.70,4.25) (1.70,4.28)};
+\draw[gray!35, thin, dashed] plot coordinates {(1.70,4.28) (1.69,4.31) (1.67,4.34) (1.65,4.37) (1.63,4.40) (1.59,4.43) (1.56,4.46) (1.51,4.49) (1.47,4.52) (1.41,4.54) (1.36,4.57) (1.29,4.60) (1.23,4.62) (1.15,4.65) (1.08,4.67) (1.00,4.70)};
+\draw[black, thick] plot coordinates {(1.70,0.00) (1.70,0.01)};
+\draw[black!45, thick, dashed] plot coordinates {(1.70,0.01) (1.70,0.02) (1.69,0.03) (1.69,0.03) (1.69,0.04) (1.68,0.05) (1.67,0.06) (1.66,0.07) (1.65,0.07) (1.64,0.08) (1.63,0.09) (1.62,0.10) (1.60,0.11) (1.59,0.11) (1.57,0.12) (1.55,0.13) (1.53,0.14) (1.51,0.15) (1.49,0.15) (1.47,0.16) (1.45,0.17) (1.43,0.17) (1.40,0.18) (1.38,0.19) (1.35,0.19) (1.32,0.20) (1.29,0.21) (1.26,0.21) (1.23,0.22) (1.20,0.23) (1.17,0.23) (1.14,0.24) (1.10,0.24) (1.07,0.25) (1.03,0.25) (1.00,0.26) (0.96,0.26) (0.93,0.27) (0.89,0.27) (0.85,0.28) (0.81,0.28) (0.77,0.29) (0.73,0.29) (0.69,0.29) (0.65,0.30) (0.61,0.30) (0.57,0.30) (0.53,0.30) (0.48,0.31) (0.44,0.31) (0.40,0.31) (0.35,0.31) (0.31,0.31) (0.27,0.32) (0.22,0.32) (0.18,0.32) (0.13,0.32) (0.09,0.32) (0.04,0.32) (0.00,0.32) (-0.04,0.32) (-0.09,0.32) (-0.13,0.32) (-0.18,0.32) (-0.22,0.32) (-0.27,0.32) (-0.31,0.31) (-0.35,0.31) (-0.40,0.31) (-0.44,0.31) (-0.48,0.31) (-0.53,0.30) (-0.57,0.30) (-0.61,0.30) (-0.65,0.30) (-0.69,0.29) (-0.73,0.29) (-0.77,0.29) (-0.81,0.28) (-0.85,0.28) (-0.89,0.27) (-0.93,0.27) (-0.96,0.26) (-1.00,0.26) (-1.03,0.25) (-1.07,0.25) (-1.10,0.24) (-1.14,0.24) (-1.17,0.23) (-1.20,0.23) (-1.23,0.22) (-1.26,0.21) (-1.29,0.21) (-1.32,0.20) (-1.35,0.19) (-1.38,0.19) (-1.40,0.18) (-1.43,0.17) (-1.45,0.17) (-1.47,0.16) (-1.49,0.15) (-1.51,0.15) (-1.53,0.14) (-1.55,0.13) (-1.57,0.12) (-1.59,0.11) (-1.60,0.11) (-1.62,0.10) (-1.63,0.09) (-1.64,0.08) (-1.65,0.07) (-1.66,0.07) (-1.67,0.06) (-1.68,0.05) (-1.69,0.04) (-1.69,0.03) (-1.69,0.03) (-1.70,0.02) (-1.70,0.01) (-1.70,0.00) (-1.70,-0.01)};
+\draw[black, thick] plot coordinates {(-1.70,-0.01) (-1.70,-0.02) (-1.69,-0.03) (-1.69,-0.03) (-1.69,-0.04) (-1.68,-0.05) (-1.67,-0.06) (-1.66,-0.07) (-1.65,-0.07) (-1.64,-0.08) (-1.63,-0.09) (-1.62,-0.10) (-1.60,-0.11) (-1.59,-0.11) (-1.57,-0.12) (-1.55,-0.13) (-1.53,-0.14) (-1.51,-0.15) (-1.49,-0.15) (-1.47,-0.16) (-1.45,-0.17) (-1.43,-0.17) (-1.40,-0.18) (-1.38,-0.19) (-1.35,-0.19) (-1.32,-0.20) (-1.29,-0.21) (-1.26,-0.21) (-1.23,-0.22) (-1.20,-0.23) (-1.17,-0.23) (-1.14,-0.24) (-1.10,-0.24) (-1.07,-0.25) (-1.03,-0.25) (-1.00,-0.26) (-0.96,-0.26) (-0.93,-0.27) (-0.89,-0.27) (-0.85,-0.28) (-0.81,-0.28) (-0.77,-0.29) (-0.73,-0.29) (-0.69,-0.29) (-0.65,-0.30) (-0.61,-0.30) (-0.57,-0.30) (-0.53,-0.30) (-0.48,-0.31) (-0.44,-0.31) (-0.40,-0.31) (-0.35,-0.31) (-0.31,-0.31) (-0.27,-0.32) (-0.22,-0.32) (-0.18,-0.32) (-0.13,-0.32) (-0.09,-0.32) (-0.04,-0.32) (-0.00,-0.32) (0.04,-0.32) (0.09,-0.32) (0.13,-0.32) (0.18,-0.32) (0.22,-0.32) (0.27,-0.32) (0.31,-0.31) (0.35,-0.31) (0.40,-0.31) (0.44,-0.31) (0.48,-0.31) (0.53,-0.30) (0.57,-0.30) (0.61,-0.30) (0.65,-0.30) (0.69,-0.29) (0.73,-0.29) (0.77,-0.29) (0.81,-0.28) (0.85,-0.28) (0.89,-0.27) (0.93,-0.27) (0.96,-0.26) (1.00,-0.26) (1.03,-0.25) (1.07,-0.25) (1.10,-0.24) (1.14,-0.24) (1.17,-0.23) (1.20,-0.23) (1.23,-0.22) (1.26,-0.21) (1.29,-0.21) (1.32,-0.20) (1.35,-0.19) (1.38,-0.19) (1.40,-0.18) (1.43,-0.17) (1.45,-0.17) (1.47,-0.16) (1.49,-0.15) (1.51,-0.15) (1.53,-0.14) (1.55,-0.13) (1.57,-0.12) (1.59,-0.11) (1.60,-0.11) (1.62,-0.10) (1.63,-0.09) (1.64,-0.08) (1.65,-0.07) (1.66,-0.07) (1.67,-0.06) (1.68,-0.05) (1.69,-0.04) (1.69,-0.03) (1.69,-0.03) (1.70,-0.02) (1.70,-0.01) (1.70,-0.00)};
+\draw[cL, line width=1.6pt] plot coordinates {(1.70,1.75) (1.70,1.77)};
+\draw[cL!55, line width=1.4pt, dashed] plot coordinates {(1.70,1.77) (1.70,1.79) (1.69,1.81) (1.68,1.83) (1.67,1.84) (1.66,1.86) (1.64,1.88) (1.63,1.90) (1.61,1.92) (1.59,1.94) (1.56,1.96) (1.54,1.97) (1.51,1.99) (1.48,2.01) (1.45,2.03) (1.42,2.04) (1.38,2.06) (1.34,2.08) (1.30,2.09) (1.26,2.11) (1.22,2.13) (1.18,2.14) (1.13,2.16) (1.08,2.17) (1.03,2.19) (0.98,2.20) (0.93,2.21) (0.88,2.23) (0.83,2.24) (0.77,2.25) (0.72,2.27) (0.66,2.28) (0.60,2.29) (0.54,2.30) (0.48,2.31) (0.42,2.32) (0.36,2.33) (0.30,2.34) (0.24,2.35) (0.18,2.36) (0.12,2.37) (0.05,2.38) (-0.01,2.38) (-0.07,2.39) (-0.13,2.40) (-0.20,2.40) (-0.26,2.41) (-0.32,2.41) (-0.38,2.42) (-0.44,2.42) (-0.50,2.43) (-0.56,2.43) (-0.62,2.43) (-0.68,2.44) (-0.73,2.44) (-0.79,2.44) (-0.84,2.44) (-0.90,2.44) (-0.95,2.45) (-1.00,2.45) (-1.05,2.45) (-1.10,2.45) (-1.14,2.45) (-1.19,2.45) (-1.23,2.44) (-1.28,2.44) (-1.32,2.44) (-1.35,2.44) (-1.39,2.44) (-1.43,2.43) (-1.46,2.43) (-1.49,2.43) (-1.52,2.43) (-1.55,2.42) (-1.57,2.42) (-1.59,2.42) (-1.61,2.41) (-1.63,2.41) (-1.65,2.40) (-1.66,2.40) (-1.67,2.40) (-1.68,2.39) (-1.69,2.39) (-1.70,2.38) (-1.70,2.38) (-1.70,2.37)};
+\draw[cL, line width=1.6pt] plot coordinates {(-1.70,2.37) (-1.70,2.37) (-1.69,2.36) (-1.69,2.36) (-1.68,2.36) (-1.67,2.35) (-1.66,2.35) (-1.64,2.34) (-1.62,2.34) (-1.60,2.34) (-1.58,2.33) (-1.56,2.33) (-1.53,2.33) (-1.50,2.32) (-1.47,2.32) (-1.44,2.32) (-1.41,2.31) (-1.37,2.31) (-1.33,2.31) (-1.29,2.31) (-1.25,2.31) (-1.21,2.31) (-1.16,2.30) (-1.12,2.30) (-1.07,2.30) (-1.02,2.30) (-0.97,2.30) (-0.92,2.30) (-0.87,2.31) (-0.81,2.31) (-0.76,2.31) (-0.70,2.31) (-0.64,2.31) (-0.58,2.32) (-0.53,2.32) (-0.47,2.32) (-0.41,2.33) (-0.34,2.33) (-0.28,2.34) (-0.22,2.34) (-0.16,2.35) (-0.10,2.36) (-0.04,2.36) (0.03,2.37) (0.09,2.38) (0.15,2.39) (0.21,2.40) (0.27,2.40) (0.34,2.41) (0.40,2.42) (0.46,2.43) (0.52,2.44) (0.58,2.46) (0.63,2.47) (0.69,2.48) (0.75,2.49) (0.80,2.50) (0.86,2.52) (0.91,2.53) (0.96,2.54) (1.01,2.56) (1.06,2.57) (1.11,2.59) (1.16,2.60) (1.20,2.62) (1.25,2.63) (1.29,2.65) (1.33,2.67) (1.36,2.68) (1.40,2.70) (1.44,2.72) (1.47,2.73) (1.50,2.75) (1.53,2.77) (1.55,2.79) (1.58,2.80) (1.60,2.82) (1.62,2.84) (1.64,2.86) (1.65,2.88) (1.67,2.90) (1.68,2.92) (1.69,2.93) (1.69,2.95) (1.70,2.97) (1.70,2.99) (1.70,3.01)};
+\draw[cL!55, line width=1.4pt, dashed] plot coordinates {(1.70,3.01) (1.70,3.03) (1.69,3.05) (1.69,3.07) (1.68,3.09) (1.66,3.11) (1.65,3.12) (1.63,3.14) (1.62,3.16) (1.60,3.18) (1.57,3.20) (1.55,3.22) (1.52,3.23) (1.49,3.25) (1.46,3.27) (1.43,3.29) (1.40,3.30) (1.36,3.32) (1.32,3.34) (1.28,3.35) (1.24,3.37) (1.20,3.38) (1.15,3.40) (1.10,3.42) (1.06,3.43) (1.01,3.44) (0.96,3.46) (0.90,3.47) (0.85,3.49) (0.80,3.50) (0.74,3.51) (0.68,3.52) (0.63,3.54) (0.57,3.55) (0.51,3.56) (0.45,3.57) (0.39,3.58) (0.33,3.59) (0.27,3.60) (0.20,3.61) (0.14,3.61) (0.08,3.62) (0.02,3.63) (-0.04,3.64) (-0.11,3.64) (-0.17,3.65) (-0.23,3.66) (-0.29,3.66) (-0.35,3.67) (-0.41,3.67) (-0.47,3.68) (-0.53,3.68) (-0.59,3.68) (-0.65,3.69) (-0.71,3.69) (-0.76,3.69) (-0.82,3.69) (-0.87,3.69) (-0.93,3.70) (-0.98,3.70) (-1.03,3.70) (-1.08,3.70) (-1.12,3.70) (-1.17,3.70) (-1.21,3.69) (-1.26,3.69) (-1.30,3.69) (-1.34,3.69) (-1.38,3.69)};
+\draw[cL, line width=1.6pt] plot coordinates {(1.70,0.00) (1.70,0.01)};
+\draw[cL!55, line width=1.4pt, dashed] plot coordinates {(1.70,0.01) (1.69,0.02) (1.69,0.04) (1.68,0.05) (1.67,0.06) (1.65,0.07) (1.64,0.08) (1.62,0.09) (1.60,0.10) (1.58,0.11) (1.56,0.12) (1.53,0.14) (1.50,0.15) (1.47,0.16) (1.44,0.17) (1.41,0.18) (1.37,0.19) (1.33,0.19) (1.29,0.20) (1.25,0.21) (1.21,0.22) (1.17,0.23) (1.12,0.24) (1.07,0.24) (1.02,0.25) (0.97,0.26) (0.92,0.26) (0.87,0.27) (0.82,0.28) (0.76,0.28) (0.71,0.29) (0.65,0.29) (0.59,0.30) (0.53,0.30) (0.48,0.30) (0.42,0.31) (0.36,0.31) (0.30,0.31) (0.24,0.31) (0.17,0.31) (0.11,0.31) (0.05,0.31) (-0.01,0.31) (-0.07,0.31) (-0.13,0.31) (-0.19,0.31) (-0.25,0.31) (-0.31,0.31) (-0.37,0.31) (-0.43,0.30) (-0.49,0.30) (-0.55,0.30) (-0.60,0.29) (-0.66,0.29) (-0.72,0.28) (-0.77,0.28) (-0.82,0.27) (-0.87,0.27) (-0.93,0.26) (-0.97,0.25) (-1.02,0.25) (-1.07,0.24) (-1.11,0.23) (-1.16,0.22) (-1.20,0.21) (-1.24,0.21) (-1.28,0.20) (-1.32,0.19) (-1.35,0.18) (-1.38,0.17) (-1.42,0.16) (-1.45,0.15) (-1.47,0.14) (-1.50,0.13) (-1.52,0.12) (-1.54,0.11) (-1.56,0.10) (-1.58,0.09) (-1.60,0.08) (-1.61,0.06) (-1.62,0.05) (-1.63,0.04) (-1.63,0.03) (-1.64,0.02) (-1.64,0.01) (-1.64,-0.00)};
+\draw[cL, line width=1.6pt] plot coordinates {(-1.64,-0.00) (-1.64,-0.01) (-1.63,-0.03) (-1.63,-0.04) (-1.62,-0.05) (-1.61,-0.06) (-1.59,-0.07) (-1.58,-0.08) (-1.56,-0.09) (-1.54,-0.10) (-1.52,-0.11) (-1.49,-0.12) (-1.47,-0.13) (-1.44,-0.14) (-1.41,-0.15) (-1.38,-0.16) (-1.35,-0.17) (-1.31,-0.18) (-1.28,-0.19) (-1.24,-0.20) (-1.20,-0.21) (-1.16,-0.22) (-1.11,-0.22) (-1.07,-0.23) (-1.02,-0.24) (-0.97,-0.24) (-0.93,-0.25) (-0.88,-0.26) (-0.83,-0.26) (-0.77,-0.27) (-0.72,-0.27) (-0.67,-0.28) (-0.61,-0.28) (-0.56,-0.29) (-0.50,-0.29) (-0.44,-0.29) (-0.39,-0.30) (-0.33,-0.30) (-0.27,-0.30) (-0.21,-0.30) (-0.15,-0.30) (-0.09,-0.30) (-0.03,-0.30) (0.03,-0.30) (0.08,-0.30) (0.14,-0.30) (0.20,-0.30) (0.26,-0.30) (0.32,-0.30) (0.37,-0.29) (0.43,-0.29) (0.49,-0.29) (0.54,-0.28) (0.60,-0.28) (0.65,-0.28) (0.70,-0.27) (0.76,-0.27) (0.81,-0.26) (0.86,-0.25) (0.91,-0.25) (0.95,-0.24) (1.00,-0.23) (1.04,-0.23) (1.09,-0.22) (1.13,-0.21) (1.17,-0.20) (1.21,-0.20) (1.24,-0.19) (1.28,-0.18) (1.31,-0.17) (1.34,-0.16) (1.37,-0.15) (1.40,-0.14) (1.43,-0.13) (1.45,-0.12) (1.47,-0.11) (1.49,-0.10) (1.51,-0.09) (1.53,-0.08) (1.54,-0.07) (1.55,-0.06) (1.56,-0.05) (1.57,-0.04) (1.58,-0.03) (1.58,-0.02) (1.58,-0.00) (1.58,0.01)};
+\draw[cL!55, line width=1.4pt, dashed] plot coordinates {(1.58,0.01) (1.58,0.02) (1.57,0.03) (1.57,0.04) (1.56,0.05) (1.54,0.06) (1.53,0.07) (1.52,0.08) (1.50,0.09) (1.48,0.10) (1.46,0.11) (1.43,0.12) (1.41,0.13) (1.38,0.14) (1.35,0.15) (1.32,0.16) (1.29,0.17) (1.25,0.18) (1.22,0.19) (1.18,0.19) (1.14,0.20) (1.10,0.21) (1.06,0.22) (1.02,0.22) (0.97,0.23) (0.93,0.24) (0.88,0.24) (0.83,0.25) (0.78,0.25) (0.73,0.26) (0.68,0.26) (0.63,0.27) (0.57,0.27) (0.52,0.28) (0.47,0.28) (0.41,0.28) (0.36,0.29) (0.30,0.29) (0.24,0.29) (0.19,0.29) (0.13,0.29) (0.07,0.29) (0.02,0.29) (-0.04,0.29) (-0.10,0.29) (-0.15,0.29) (-0.21,0.29) (-0.27,0.29) (-0.32,0.28) (-0.38,0.28) (-0.43,0.28) (-0.49,0.28) (-0.54,0.27) (-0.59,0.27) (-0.64,0.26) (-0.69,0.26) (-0.74,0.25) (-0.79,0.25) (-0.84,0.24) (-0.89,0.24) (-0.93,0.23) (-0.97,0.22) (-1.02,0.22) (-1.06,0.21) (-1.10,0.20) (-1.14,0.19) (-1.17,0.19) (-1.21,0.18) (-1.24,0.17)};
+\fill[cL] (-1.38,3.69) circle (2pt); \fill[cL] (-1.24,0.17) circle (2pt);
+\draw[dashed, gray] (1.70,4.25) -- (1.70,0.00);
+\fill (1.70,1.75) circle (1.7pt) node[right] {$0$};
+\fill (1.70,3.00) circle (1.7pt) node[right] {$1$};
+\fill (1.70,4.25) circle (1.7pt) node[right] {$2$};
+\fill (1.70,0.00) circle (1.8pt) node[below right] {$(1,0)$};
+\node[gray!70!black] at (-2.15,4.25) {$\mathbb{R}$};
+\node at (-2.15,0.00) {$S^1$};
+\draw[-{Stealth[length=6pt]}, thick] (2.70,2.55) -- node[right] {$p(t)=e^{2\pi i t}$} (2.70,0.25);
+\node[cL, anchor=south east] at (-1.43,3.74) {$\tilde\alpha$};
+\node[cL, anchor=north] at (0.00,-0.40) {$\alpha=p\circ\tilde\alpha$};
+\end{tikzpicture}
+\end{center}
+La recta $\mathbb{R}$ se enrolla sobre $S^1$ como una hélice; $p$ la ``mira desde arriba'' y olvida en qué vuelta estamos (todos los enteros caen en $(1,0)$). En la figura, un camino $\alpha$ que da $1{,}4$ vueltas y su elevación $\tilde\alpha$, que sube de $0$ a $1{,}4$.
+\begin{itemize}
+    \item \textbf{Elevación} (\cref{def:def_elevacion}): $\tilde f \colon X \to \mathbb{R}$ con $p \circ \tilde f = f$. Es elegir, de forma continua, en qué vuelta de la hélice está cada $f(x)$: el ángulo de $f(x)$ sin reducir módulo $1$.
+    \item \textbf{Unicidad} (\cref{prop:prop_unicidad_elev}): si $X$ es conexo, dos elevaciones que coinciden en un punto son iguales. En general, dos elevaciones difieren en una constante entera (cambiar de vuelta).
+    \item \textbf{Existencia} (\cref{thm:teo_existencia_elevaciones}): si $X$ es convexo y compacto, para cada $t_0$ con $p(t_0) = f(x_0)$ hay una única elevación con $\tilde f(x_0) = t_0$.
+    \item \textbf{Lo que usaremos:} $I$ e $I \times I$ son convexos y compactos, así que se elevan los arcos y las homotopías. Si $\alpha$ es un lazo en $(1,0)$ y $\tilde\alpha(0) = 0$, entonces $\tilde\alpha(1) \in p^{-1}(1,0) = \mathbb{Z}$: el número de vueltas, que será el grado.
+\end{itemize}
+\end{nota}
+
+\begin{proposicion}{Elevación de arcos [C9.1] \marcaC}{cor_elev_arcos}
 Sea $\alpha \colon I \to S^1$ continua tal que $\alpha(0) = (1,0)$. Entonces existe una única elevación $\tilde{\alpha} \colon I \to \mathbb{R}$ de $\alpha$ tal que $\tilde{\alpha}(0) = 0$.
 \end{proposicion}
 
-\begin{proposicion}{Elevación de homotopías [C9.2]}{cor_elev_homotopias}
+\begin{proposicion}{Elevación de homotopías [C9.2] \marcaC}{cor_elev_homotopias}
 Sea $F \colon I \times I \to S^1$ continua tal que $F(0,0) = (1,0)$. Entonces existe una única elevación $\tilde{F} \colon I \times I \to \mathbb{R}$ de $F$ tal que $\tilde{F}(0,0) = 0$.
 \end{proposicion}
 
@@ -420,7 +471,7 @@ Geométricamente, $\deg(\alpha)$ es el número de vueltas completas de $\alpha$ 
 
 \textbf{Ejemplo.} Para $n \in \mathbb{Z}$, sea $\omega_n \colon I \to S^1$, $\omega_n(t) = e^{2\pi i n t}$. Su elevación con $\tilde{\omega}_n(0)=0$ es $\tilde{\omega}_n(t) = nt$, luego $\deg(\omega_n) = n$.
 
-\begin{teorema}{$\pi_1(S^1)\cong \mathbb{Z}$ [C9.5]}{teo_pi1_s1}
+\begin{teorema}{$\pi_1(S^1)\cong \mathbb{Z}$ [C9.5] \marcaT}{teo_pi1_s1}
 La aplicación $\deg \colon \pi_1(S^1,(1,0)) \to \mathbb{Z}$, $[\alpha] \mapsto \deg(\alpha)$, es un isomorfismo de grupos.
 \end{teorema}
 
@@ -444,7 +495,7 @@ La aplicación $\deg \colon \pi_1(S^1,(1,0)) \to \mathbb{Z}$, $[\alpha] \mapsto 
 \end{enumerate}
 \end{proof}
 
-\begin{proposicion}{$S^1$ no es contráctil [C9.6]}{cor_s1_no_contractil}
+\begin{proposicion}{$S^1$ no es contráctil [C9.6] \marcaC}{cor_s1_no_contractil}
 $S^1$ no es contráctil, ya que $\pi_1(S^1) \cong \mathbb{Z} \neq 1$.
 \end{proposicion}
 
@@ -452,7 +503,7 @@ $S^1$ no es contráctil, ya que $\pi_1(S^1) \cong \mathbb{Z} \neq 1$.
 Supongamos que $S^1$ es contráctil. Por la caracterización de contráctiles (\cref{thm:teo_contractil}), $S^1$ tiene el mismo tipo de homotopía que un espacio $\{p\}$ formado por un único punto. Como $S^1$ y $\{p\}$ son arco-conexos y el grupo fundamental es un invariante homotópico (\cref{prop:equiv_homotopica}), se tiene $\pi_1(S^1) \cong \pi_1(\{p\}) = 1$, es decir, $\mathbb{Z} \cong 1$, lo cual es absurdo. Luego $S^1$ no es contráctil.
 \end{proof}
 
-\begin{proposicion}{$S^2$ y $T^2$ no son homeomorfos [C9.7]}{cor_s2_t2}
+\begin{proposicion}{$S^2$ y $T^2$ no son homeomorfos [C9.7] \marcaC}{cor_s2_t2}
 $S^2$ y $T^2$ no son homeomorfos.
 \end{proposicion}
 
@@ -464,7 +515,7 @@ $S^2$ es simplemente conexo, así que $\pi_1(S^2) = 1$, mientras que $\pi_1(T^2)
 \[ \pi_1(X \times Y, (x_0,y_0)) \cong \pi_1(X,x_0) \times \pi_1(Y,y_0). \]
 En particular, si $X$ e $Y$ son arco-conexos, $\pi_1(X \times Y) \cong \pi_1(X) \times \pi_1(Y)$.
 
-\begin{observacion}{Grupo fundamental del cilindro [C9.9]}{obs_cilindro}
+\begin{observacion}{Grupo fundamental del cilindro [C9.9] \marcaC}{obs_cilindro}
 El grupo fundamental del cilindro $S^1 \times I$ es $\mathbb{Z}$, ya que $S^1$ y $S^1 \times I$ son del mismo tipo de homotopía.
 \end{observacion}
 

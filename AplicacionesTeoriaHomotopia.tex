@@ -7,7 +7,7 @@
 Sea $A \subseteq X$, con $X$ espacio topológico. Diremos que $A$ es un \textbf{retracto} de $X$ cuando existe una aplicación continua $r \colon X \to A$ tal que $r|_A = 1_A$, es decir, $r(a) = a$ para todo $a \in A$.
 \end{definicion}
 
-\begin{teorema}{No retracción en dimensión 2 [C10.2]}{teo_no_retracto}
+\begin{teorema}{No retracción en dimensión 2 [C10.2] \marcaT}{teo_no_retracto}
 No existe ninguna aplicación continua $D^2 \to S^1$ cuya restricción a $S^1$ coincida con la identidad de $S^1$. Equivalentemente, $S^1$ no es un retracto de $D^2$.
 \end{teorema}
 
@@ -27,7 +27,7 @@ Pero $i_{*,x_0} \colon \pi_1(S^1,x_0) \cong \mathbb{Z} \to \pi_1(D^2,x_0) = 1$, 
 \end{center}
 \end{proof}
 
-\begin{teorema}{Punto fijo de Brouwer [C10.3]}{teo_brouwer}
+\begin{teorema}{Punto fijo de Brouwer [C10.3] \marcaT}{teo_brouwer}
 Sea $f \colon D^2 \to D^2$ continua. Entonces existe $x_0 \in D^2$ tal que $f(x_0) = x_0$.
 \end{teorema}
 
@@ -41,11 +41,11 @@ Esta expresión analítica muestra que $\lambda$, y por tanto $\varphi$, es cont
 
 \subsection{Teorema fundamental del álgebra}
 
-\begin{teorema}{Teorema fundamental del álgebra [C10.5]}{teo_fund_algebra}
+\begin{teorema}{Teorema fundamental del álgebra [C10.5] \marcaT}{teo_fund_algebra}
 Todo polinomio no constante de $\mathbb{C}[z]$ tiene al menos una raíz en $\mathbb{C}$.
 \end{teorema}
 
-\begin{proposicion}{Lema (cota de las raíces) [C10.4]}{lema_cota_raices}
+\begin{proposicion}{Lema (cota de las raíces) [C10.4] \marcaL}{lema_cota_raices}
 Sea $P(z) \in \mathbb{C}[z]$ mónico y no constante, de grado $k \geq 1$:
 \[ P(z) = z^k + a_1 z^{k-1} + \dots + a_{k-1} z + a_k. \]
 Si $z_0 \in \mathbb{C}$ cumple $P(z_0) = 0$, entonces $|z_0| < 1 + |a_1| + |a_2| + \dots + |a_k|$.
@@ -91,7 +91,7 @@ Luego $F \colon c_1 \simeq_{\{0,1\}} \sigma$ y, por tanto, $\deg(c_1) = \deg(\si
 
 En la \cref{def:def_grado} el grado solo se define para lazos basados en $(1,0)$, usando la elevación que empieza en $0$. Lo extendemos a cualquier punto base.
 
-\begin{proposicion}{Lema (dos elevaciones) [C10.6]}{lema_dos_elevaciones}
+\begin{proposicion}{Lema (dos elevaciones) [C10.6] \marcaP}{lema_dos_elevaciones}
 Sea $\omega \colon I \to S^1$ continua y sean $\tilde{\omega}_1, \tilde{\omega}_2$ dos elevaciones de $\omega$. Entonces existe $k \in \mathbb{Z}$ tal que $\tilde{\omega}_1 = \tilde{\omega}_2 + k$. En particular, $\tilde{\omega}_1(1) - \tilde{\omega}_1(0) = \tilde{\omega}_2(1) - \tilde{\omega}_2(0)$.
 \end{proposicion}
 
@@ -153,7 +153,7 @@ Por el teorema anterior, $\deg_{x_0}(\alpha) = \deg(\omega^{-1} * \alpha * \omeg
 Sea $A \subseteq \mathbb{R}^n$. Diremos que $A$ es \textbf{simétrico} cuando $x \in A \implies -x \in A$. Sea $f \colon A \to \mathbb{R}^m$ con $A$ simétrico. Diremos que $f$ es \textbf{par} cuando $f(x) = f(-x)$ para todo $x \in A$, e \textbf{impar} cuando $f(x) = -f(-x)$ para todo $x \in A$.
 \end{definicion}
 
-\begin{teorema}{De paridad de Borsuk--Hirsch [C10.11]}{teo_paridad}
+\begin{teorema}{De paridad de Borsuk--Hirsch [C10.11] \marcaT}{teo_paridad}
 Sea $\sigma \colon I \to S^1$, $\sigma(s) = e^{2\pi i s}$ para todo $s \in I$, y sea $f \colon S^1 \to S^1$ continua. Entonces:
 \begin{enumerate}
     \item[a)] Si $f$ es par, entonces $\deg(f \circ \sigma)$ es par.
@@ -182,7 +182,7 @@ que es impar.
 
 \subsection{Consecuencias del teorema de paridad}
 
-\begin{proposicion}{No existen aplicaciones impares $S^2 \to S^1$ [C11]}{cor_no_impar}
+\begin{proposicion}{No existen aplicaciones impares $S^2 \to S^1$ [C11] \marcaC}{cor_no_impar}
 No existe ninguna aplicación continua impar $S^2 \to S^1$.
 \end{proposicion}
 
@@ -196,7 +196,7 @@ Por otro lado, $j \circ \sigma$ es un lazo en $S^2$ basado en $(1,0,0)$, pues $j
 Por la \cref{obs:obs_grado_clase}, $\deg(f \circ \sigma) = \deg(c_{g(1,0,0)}) = 0$, que es par. Contradicción.
 \end{proof}
 
-\begin{proposicion}{Ceros de aplicaciones impares [C11]}{cor_cero_impar}
+\begin{proposicion}{Ceros de aplicaciones impares [C11] \marcaC}{cor_cero_impar}
 Sea $f \colon S^2 \to \mathbb{R}^2$ continua e impar. Entonces existe $x_0 \in S^2$ con $f(x_0) = 0$.
 \end{proposicion}
 
@@ -206,7 +206,7 @@ Supongamos que $f(x) \neq 0$ para todo $x \in S^2$. Entonces $g \colon S^2 \to S
 es decir, $g$ es impar, lo que contradice la \cref{prop:cor_no_impar}.
 \end{proof}
 
-\begin{teorema}{de Borsuk [C11]}{teo_borsuk}
+\begin{teorema}{de Borsuk [C11] \marcaC}{teo_borsuk}
 Sea $f \colon S^2 \to \mathbb{R}^2$ continua. Entonces existe $x \in S^2$ tal que $f(x) = f(-x)$.
 \end{teorema}
 
@@ -216,7 +216,7 @@ Supongamos que $f(x) \neq f(-x)$ para todo $x \in S^2$. Entonces $g \colon S^2 \
 luego $g$ es impar, lo que contradice la \cref{prop:cor_no_impar}.
 \end{proof}
 
-\begin{proposicion}{No hay inyectivas $S^2 \to \mathbb{R}^2$ [C11]}{cor_no_inyectiva}
+\begin{proposicion}{No hay inyectivas $S^2 \to \mathbb{R}^2$ [C11] \marcaC}{cor_no_inyectiva}
 No existe ninguna aplicación continua e inyectiva $f \colon S^2 \to \mathbb{R}^2$. En particular, no existe ninguna aplicación continua e inyectiva $S^2 \to S^1$.
 \end{proposicion}
 
@@ -228,7 +228,7 @@ Por el teorema de Borsuk existe $x \in S^2$ con $f(x) = f(-x)$, y $x \neq -x$, l
 Como consecuencia del teorema de Borsuk, si la Tierra fuera una esfera perfecta, en todo momento existirían dos puntos antipodales con exactamente la misma temperatura y la misma presión (basta tomar $f$ = (temperatura, presión), continua de $S^2$ en $\mathbb{R}^2$).
 \end{observacion}
 
-\begin{proposicion}{Continuidad de la distancia a un conjunto [C11]}{lema_dist_continua}
+\begin{proposicion}{Continuidad de la distancia a un conjunto [C11] \marcaL}{lema_dist_continua}
 Sea $\emptyset \neq C \subseteq \mathbb{R}^n$ y sea $f \colon \mathbb{R}^n \to \mathbb{R}_{\geq 0}$, $f(x) = d(x,C) = \inf_{y \in C} \|x - y\|$. Entonces $f$ es continua (de hecho, uniformemente continua).
 \end{proposicion}
 
@@ -236,7 +236,7 @@ Sea $\emptyset \neq C \subseteq \mathbb{R}^n$ y sea $f \colon \mathbb{R}^n \to \
 Sean $x_0, x \in \mathbb{R}^n$. Para todo $y \in C$, $\|x_0 - y\| \leq \|x_0 - x\| + \|x - y\|$. Tomando ínfimos en $y \in C$, $d(x_0,C) \leq \|x_0 - x\| + d(x,C)$. Análogamente, $d(x,C) \leq \|x - x_0\| + d(x_0,C)$. Luego $|f(x) - f(x_0)| \leq \|x - x_0\|$, y dado $\varepsilon > 0$ basta tomar $\delta = \varepsilon$.
 \end{proof}
 
-\begin{teorema}{de Lyusternik--Schnirelmann [C11]}{teo_lyusternik}
+\begin{teorema}{de Lyusternik--Schnirelmann [C11] \marcaC}{teo_lyusternik}
 Si $A_1, A_2, A_3$ son cerrados de $S^2$ con $S^2 = A_1 \cup A_2 \cup A_3$, entonces existen $i \in \{1,2,3\}$ y $p \in S^2$ tales que $\{p,-p\} \subseteq A_i$ (alguno de los tres cerrados contiene dos puntos antipodales).
 \end{teorema}
 

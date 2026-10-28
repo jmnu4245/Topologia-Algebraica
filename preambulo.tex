@@ -174,3 +174,12 @@
 \fancyhead[R]{\small\textcolor{gray}{Apuntes}}
 \fancyfoot[C]{\small\textcolor{gray}{\thepage}}
  
+
+% --- Marcas de los resultados demostrados en clase (⊙ en "Contenidos de las clases") ---
+% T y C destacadas; P y L discretas.
+\newcommand{\marcadestacada}[1]{\texorpdfstring{\hspace{0.4em}\fcolorbox{white}{red!80!black}{\textcolor{white}{\textbf{$\odot$\,#1}}}}{}}
+\newcommand{\marcasuave}[1]{\texorpdfstring{\hspace{0.4em}\fcolorbox{white}{white}{\textcolor{black}{$\odot$\,#1}}}{}}
+\newcommand{\marcaT}{\marcadestacada{T}}
+\newcommand{\marcaC}{\marcadestacada{C}}
+\newcommand{\marcaP}{\marcasuave{P}}
+\newcommand{\marcaL}{\marcasuave{L}}

@@ -30,7 +30,7 @@ Si $x_0 = x_1$, notaremos $C_{x_0}(X)$ al conjunto de \textbf{lazos} con base en
 \end{enumerate}
 \end{observacion}
 
-\begin{teorema}{Relación de equivalencia relativa (Se dejó como ejercicio) [C3.9]}{teo_rbe_relativa}
+\begin{teorema}{Relación de equivalencia relativa (Se dejó como ejercicio) [C3.9] \marcaT}{teo_rbe_relativa}
 La relación $\simeq_A$ es una R.B.E. en $C(X,Y)$. 
 \end{teorema}
 
@@ -59,7 +59,7 @@ Definimos la \textbf{concatenación} $\gamma = \alpha * \beta \colon I \to X$ da
 \[ \gamma(t) = \begin{cases} \alpha(2t), & \forall t \in [0, 1/2] \\ \beta(2t-1), & \forall t \in [1/2, 1] \end{cases} \]
 Definimos el \textbf{camino inverso} $\alpha^{-1} \colon I \to X$ como $\alpha^{-1}(t) = \alpha(1-t)$, el cual va de $x_1$ a $x_0$.
 
-\begin{teorema}{Conexión por caminos [C3.6]}{teo_contractil_arcoconexo}
+\begin{teorema}{Conexión por caminos [C3.6] \marcaT}{teo_contractil_arcoconexo}
 Sea $X$ contractil. Entonces $X$ es arco-conexo.
 \end{teorema}
 \begin{proof}
@@ -79,7 +79,7 @@ Definimos entonces el producto de clases como:
 \[ [\alpha] \cdot [\beta] = [\alpha * \beta] \]
 \end{nota}
 
-\begin{teorema}{de Poincaré [C3.16]}{poincare}
+\begin{teorema}{de Poincaré [C3.16] \marcaT}{poincare}
 Sea $X$ un espacio topológico y sea $x_0 \in X$. Entonces 
 \[
 (\pi_1(X, x_0), \cdot)
@@ -429,7 +429,7 @@ Definimos la aplicación $P_\omega : \pi_1(X, x_0) \to \pi_1(X, x_1)$ dada por:
 \]
 \end{definicion}
 
-\begin{teorema}{Isomorfismo de cambio de base [C5.9]}{teo_cambio_base}
+\begin{teorema}{Isomorfismo de cambio de base [C5.9] \marcaT}{teo_cambio_base}
 $P_\omega$ es un isomorfismo de grupos.
 \end{teorema}
 
@@ -461,7 +461,7 @@ P_{\omega^{-1}}(P_\omega([\alpha])) = P_{\omega^{-1}}([\omega^{-1} * \alpha * \o
 \]
 \end{proof}
 
-\begin{proposicion}{ [C5.10]}{cor_arco}
+\begin{proposicion}{ [C5.10] \marcaC}{cor_arco}
 Si $X$ es arcoconexo y $x_0, x_1 \in X$, entonces $\pi_1(X, x_0) \cong \pi_1(X, x_1)$.
 \end{proposicion}
 
@@ -488,7 +488,7 @@ f_* : \pi_1(X, x_0) &\to \pi_1(Y, f(x_0)) \\
 También se puede denotar como $\pi_1(f)$ o $\pi_{1,x_0}(f)$.
 \end{definicion}
 
-\begin{teorema}{Propiedades del homomorfismo inducido [C5.14–5.15]}{teo_hom_ind}
+\begin{teorema}{Propiedades del homomorfismo inducido [C5.14–5.15] \marcaT}{teo_hom_ind}
 $f_*$ es un homomorfismo de grupos.
 \end{teorema}
 
@@ -527,7 +527,7 @@ que está bien definida por el apartado a) del ejercicio anterior. Cumple asocia
 
 \subsection{Funtorialidad e invariancia topológica}
 
-\begin{teorema}{Funtorialidad de $\pi_1$ [C6.2]}{funtorialidad_pi1}
+\begin{teorema}{Funtorialidad de $\pi_1$ [C6.2] \marcaT}{funtorialidad_pi1}
 Sea $X$ un espacio topológico y $x_0 \in X$.
 \begin{enumerate}
 \item $(1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$
@@ -547,7 +547,7 @@ $$(g_{*, f(x_0)} \circ f_{*, x_0})([\alpha]) = g_{*, f(x_0)}([f \circ \alpha]) =
 
 \end{teorema}
 
-\begin{proposicion}{Homeomorfismo induce isomorfismo de grupos fundamentales [C6.3]}{homeomorfismo_pi1}
+\begin{proposicion}{Homeomorfismo induce isomorfismo de grupos fundamentales [C6.3] \marcaC}{homeomorfismo_pi1}
 Sean $X$ e $Y$ espacios topológicos arco-conexos. Si $X \cong Y$, entonces $\pi_1(X) \cong \pi_1(Y)$.
 
 \begin{proof}
@@ -601,7 +601,7 @@ Los espacios estrellados son, por tanto, simplemente conexos (\cref{def:def_simp
 
 \subsection{Invariancia homotópica}
 
-\begin{teorema}{Homomorfismos inducidos por aplicaciones homotópicas [C6.7]}{aplicaciones_homotopicas}
+\begin{teorema}{Homomorfismos inducidos por aplicaciones homotópicas [C6.7] \marcaT}{aplicaciones_homotopicas}
 Sean $f, g \colon X \longrightarrow Y$ aplicaciones continuas y homotópicas ($f \simeq g$). Existe $F \colon X \times I \longrightarrow Y$ continua tal que $F_0 = f, F_1 = g$.
 Fijando $x_0 \in X$, definimos el camino $\sigma \colon I \longrightarrow Y$ dado por $t \longmapsto F(x_0, t)$, donde $\sigma(0) = f(x_0)$ y $\sigma(1) = g(x_0)$.
 Entonces el siguiente diagrama conmuta, cumpliéndose que $g_* = P_\sigma \circ f_*$:
@@ -733,7 +733,7 @@ El cuadrado se \emph{enrolla} en el cilindro $\alpha \times I \subseteq X \times
 \end{nota}
 
 
-\begin{proposicion}{Equivalencia Homotópica [C6.8]}{equiv_homotopica}
+\begin{proposicion}{Equivalencia Homotópica [C6.8] \marcaC}{equiv_homotopica}
 Sean $X, Y$ espacios arco-conexos. Si $X$ e $Y$ tienen el mismo tipo de homotopía ($X \simeq Y$), entonces $\pi_1(X) \cong \pi_1(Y)$.
 
 \begin{proof}
