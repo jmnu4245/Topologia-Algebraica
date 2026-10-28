@@ -18,23 +18,38 @@ Sea $X$ un espacio arco-conexo. Entonces:
 $$\pi_1(X) = 1 \iff \forall x_0, x_1 \in X, \forall \alpha, \beta \in C_{x_0, x_1}(X) : \alpha \simeq_{\{0,1\}} \beta$$
 \end{proposicion}
 
-//Nota para cuando tenga creditos de hacer grafico de espacio con agujero y ver como ahi no se pueden deformar las cosas
+\begin{center}
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\small}]
+  % --- izquierda: sin agujero ---
+  \draw[thick, fill=orange!8] plot[smooth cycle, tension=0.8] coordinates {(-2.1,0) (-1.4,-1.25) (0,-1.45) (1.4,-1.2) (2.1,0) (1.4,1.25) (0,1.45) (-1.4,1.2)};
+  \coordinate (A0) at (-1.5,0); \coordinate (A1) at (1.5,0);
+  \draw[blue!75!black, very thick, -{Stealth[length=5pt]}] (A0) to[out=60,in=120] node[above] {$\alpha$} (A1);
+  \draw[red!75!black, very thick, -{Stealth[length=5pt]}] (A0) to[out=-60,in=-120] node[below] {$\beta$} (A1);
+  \foreach \a in {35,10,-15,-40} \draw[violet!50, dashed] (A0) to[out=\a,in=180-\a] (A1);
+  \fill (A0) circle (1.6pt) node[left] {$x_0$}; \fill (A1) circle (1.6pt) node[right] {$x_1$};
+  \node at (0,-1.9) {$\pi_1 = 1$: $\alpha \simeq_{\{0,1\}} \beta$};
+  % --- derecha: con agujero ---
+  \begin{scope}[xshift=6cm]
+  \draw[thick, fill=orange!8] plot[smooth cycle, tension=0.8] coordinates {(-2.1,0) (-1.4,-1.25) (0,-1.45) (1.4,-1.2) (2.1,0) (1.4,1.25) (0,1.45) (-1.4,1.2)};
+  \draw[thick, fill=white] (0,0) circle (0.5);
+  \node[gray, font=\tiny] at (0,0) {agujero};
+  \coordinate (B0) at (-1.5,0); \coordinate (B1) at (1.5,0);
+  \draw[blue!75!black, very thick, -{Stealth[length=5pt]}] (B0) to[out=60,in=120] node[above] {$\alpha$} (B1);
+  \draw[red!75!black, very thick, -{Stealth[length=5pt]}] (B0) to[out=-60,in=-120] node[below] {$\beta$} (B1);
+  \draw[violet!50, dashed] (B0) to[out=38,in=142] (B1);
+  \draw[violet!50, dashed] (B0) to[out=22,in=158] (B1);
+  \node[red!80!black, font=\small] at (0,0.62) {$\times$};
+  \fill (B0) circle (1.6pt) node[left] {$x_0$}; \fill (B1) circle (1.6pt) node[right] {$x_1$};
+  \node at (0,-1.9) {arco-conexo, pero $\alpha \not\simeq_{\{0,1\}} \beta$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+A la izquierda, $\alpha$ se deforma en $\beta$ (líneas discontinuas) sin mover los extremos. A la derecha, el espacio también es arco-conexo, pero el agujero impide la deformación: los caminos intermedios bajan hasta tocar el agujero ($\times$) y no pueden pasar al otro lado sin atravesarlo. Por eso la arco-conexión no basta y hace falta $\pi_1 = 1$: el lazo $\alpha * \beta^{-1}$ rodea el agujero y no es trivial.
+
 
 \begin{proof}
 $\Rightarrow)$ Sean $x_0, x_1 \in X$ y sean $\alpha, \beta \in C_{x_0, x_1}(X)$. 
 
-\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}
-  \coordinate (X0) at (0,0);
-  \coordinate (X1) at (3,0);
-  \filldraw (X0) circle (1pt) node[below] {$x_0$};
-  \filldraw (X1) circle (1pt) node[below] {$x_1$};
-  \draw[thick, ->] (X0) to[out=60,in=120] node[above] {$\alpha$} (X1);
-  \draw[thick, ->] (X0) to[out=-60,in=-120] node[below] {$\beta$} (X1);
-\end{tikzpicture}
-\caption{Lazos homotópicos $\alpha$ y $\beta$ entre $x_0$ y $x_1$.}
-\end{figure}
 
 Como $X$ es arco-conexo y $\pi_1(X) \cong \pi_1(X, x_0) = 1 = [c_{x_0}]$, consideramos el lazo $f := \alpha * \overline{\beta} \in C_{x_0, x_0}(X)$.
 Dado que $\pi_1(X) = 1$, se cumple que $[\alpha * \overline{\beta}] = 1$. Esto implica que $[\alpha] \cdot [\beta^{-1}] = 1$, y por tanto $[\alpha] = [c_{x_0} * \beta] = [\beta]$ y por consiguiente $\alpha \simeq_{\{0,1\}} \beta$.
@@ -88,12 +103,11 @@ Hemos llegado a la conclusión de que $B(x,\delta) \subseteq B(x_j, r(x_j)) \sub
 \end{proof}
 
 \begin{proposicion}{Lebesgue para recubrimientos de $[0,1]$ [C7.5] \marcaC}{cor_lebesgue_I}
-Sea $\mathcal{U} = \{U_i\}_{i \in \Lambda}$ un recubrimiento abierto de $I = [0,1]$. Entonces existe $n \geq 1$ tal que, para todo $j \in \{1,\dots,n\}$, existe $i(j) \in \Lambda$ con $\left[\frac{j-1}{n}, \frac{j}{n}\right] \subseteq U_{i(j)}$. Es decir, la partición $t_j = \frac{j}{n}$ (con distancia constante $\frac1n$ entre puntos consecutivos) subordinada a $\mathcal{U}$ puede tomarse \textbf{regular}.
+Sea $\mathcal{U}$ un recubrimiento abierto de $I = [0,1]$. Existe $n \geq 1$ tal que cada $\left[\frac{j-1}{n}, \frac{j}{n}\right]$ ($j = 1,\dots,n$) está contenido en algún elemento de $\mathcal{U}$: la partición subordinada a $\mathcal{U}$ puede tomarse \textbf{regular}.
 \end{proposicion}
 
 \begin{proof}
-Por el lema de Lebesgue existe $\delta > 0$ tal que, para todo $x \in I$, existe $i(x) \in \Lambda$ con $\left]x-\delta, x+\delta\right[ \cap I \subseteq U_{i(x)}$. Sea $n \in \mathbb{Z}_{\geq 1}$ con $\frac1n < \delta$ y sea $t_j = \frac jn$, para $j = 0,\dots,n$. Fijado $j \in \{1,\dots,n\}$, sea $x_j$ el punto medio de $[t_{j-1},t_j]$ y escribamos $i(j) := i(x_j)$. Entonces
-\[ [t_{j-1},t_j] \subseteq \left]x_j - \tfrac1n, x_j + \tfrac1n\right[ \cap I \subseteq \left]x_j - \delta, x_j + \delta\right[ \cap I \subseteq U_{i(j)}. \]
+Sea $\delta > 0$ el dado por el lema de Lebesgue (\cref{thm:lema_lebesgue}) y sea $n$ con $\frac1n < \delta$. Si $x_j$ es el punto medio de $[t_{j-1},t_j]$, con $t_j = \frac jn$, entonces $[t_{j-1},t_j] \subseteq \left]x_j - \delta, x_j + \delta\right[ \cap I$, que está contenido en algún $U \in \mathcal{U}$.
 \end{proof}
 
 \subsection{Condición suficiente para ser simplemente conexo}
@@ -131,29 +145,13 @@ Entonces, $X$ es simplemente conexo.
 \end{figure}
 
 \begin{proof}
-$X$ es arco-conexo: está recubierto por los $V_i$, que son arco-conexos por ser simplemente conexos (hipótesis a), y su intersección no es vacía (hipótesis c), así que dos puntos cualesquiera se unen pasando por un punto común.
+$X$ es arco-conexo: los $V_i$ lo son (por a) y tienen un punto común (por c). Sea $x_0 \in \bigcap_i V_i$ y sea $\alpha \in C_{x_0}(X)$; veamos que $\alpha \simeq_{\{0,1\}} c_{x_0}$.
 
-Sea $x_0 \in \bigcap_{i} V_i$. Basta ver que $\pi_1(X,x_0) = 1$. Sea $\alpha \in C_{x_0}(X)$; hay que probar que $\alpha \simeq_{\{0,1\}} c_{x_0}$.
+Los conjuntos $\alpha^{-1}(V_i)$ son abiertos que recubren $I$, así que, por la \cref{prop:cor_lebesgue_I}, existe $n$ tal que, con $t_j = \frac jn$, $\alpha([t_{j-1},t_j]) \subseteq V_j$ para cierto $V_j$ del recubrimiento. En particular, $x_0, \alpha(t_j) \in V_j \cap V_{j+1}$ para $j = 1,\dots,n-1$.
 
-Pasamos el recubrimiento de $X$ a $I$ (tomando antiimágenes por $\alpha$), de forma que $\alpha$ lleve cada trozo de $I$ dentro de un único $V_j$.
-\begin{itemize}
-    \item[] $\mathcal{U} = \{\alpha^{-1}(V_i)\}_{i \in \Lambda}$ son abiertos de $I$ (pues $\alpha$ es continua y los $V_i$ abiertos) y recubren $I$ (pues los $V_i$ recubren $X$), luego es recubrimiento abierto y podemos aplicar Lebesgue.
-    \item[] Por Lebesgue en $[0,1]$ (\cref{prop:cor_lebesgue_I}) existe $n \geq 1$ tal que, con $t_j = \frac{j}{n}$, cada $[t_{j-1},t_j] \subseteq \alpha^{-1}(V_i)$ para algún $i$. Llamando $V_j$ a ese $V_i$, para cada $j = 1,\dots,n$ se tiene $\alpha([t_{j-1},t_j]) \subseteq V_j$.
-    \item[] $t_j$ está en $[t_{j-1},t_j]$ y en $[t_j,t_{j+1}]$, luego $\alpha(t_j) \in V_j \cap V_{j+1}$ ($j = 1,\dots,n-1$). Además $x_0 \in V_j \cap V_{j+1}$ para cada $j = 1,\dots,n-1$, por elección de $x_0$.
-\end{itemize}
+Llamamos $\alpha_j \colon I \to V_j$, $\alpha_j(s) = \alpha(t_{j-1} + \frac sn)$, al tramo $j$-ésimo de $\alpha$ reparametrizado a $I$. Como la partición es regular, $\alpha = \alpha_1 * \dots * \alpha_n$: en el tramo $j$ la concatenación conjunta (\cref{def:concat_conjunta}) vale $\alpha_j(nu - (j-1)) = \alpha(u)$.
 
-Ahora parametrizamos $\alpha$ según los trozos que caben en cada $V_j$. Para $j = 1,\dots,n$ definimos
-\[ \alpha_j \colon I \to V_j, \qquad \alpha_j(s) = \alpha\left(t_{j-1} + \tfrac{s}{n}\right). \]
-Cuando $s$ va de $0$ a $1$, el punto $t_{j-1} + \frac{s}{n}$ recorre linealmente $[t_{j-1},t_j]$, así que $\alpha_j$ es el tramo $j$-ésimo de $\alpha$ reparametrizado a $I$, y su imagen está en $V_j$ por la elección de $V_j$. Va de $\alpha(t_{j-1})$ a $\alpha(t_j)$. Además $\alpha = \alpha_1 * \dots * \alpha_n$ como aplicaciones. En efecto, por definición de concatenación conjunta (\cref{def:concat_conjunta}), en el $j$-ésimo tramo se recorre $\alpha_j$:
-\[ (\alpha_1 * \dots * \alpha_n)(u) = \alpha_j\big(nu - (j-1)\big) \qquad \text{si } u \in [t_{j-1},t_j]. \]
-Sustituyendo la definición de $\alpha_j$ con $s = nu - (j-1) \in [0,1]$:
-\[ \alpha_j\big(nu - (j-1)\big) = \alpha\Big(\tfrac{j-1}{n} + \tfrac{nu - (j-1)}{n}\Big) = \alpha(u). \]
-Es decir, la concatenación comprime cada tramo en el mismo factor $n$ en que $\alpha_j$ lo había estirado, y se recupera $\alpha$.
-
-Unimos cada punto de corte $\alpha(t_j)$ con $x_0$ mediante un camino $\rho_j$ dentro de $V_j \cap V_{j+1}$: así cada trozo se completa a un lazo en $x_0$ contenido en un único $V_j$ y, como $V_j$ es simplemente conexo, ese lazo tiene la clase del lazo constante $[c_{x_0}]$.
-Sea $j \in \{1,\dots,n-1\}$. Como vimos al trocear $I$, $x_0$ y $\alpha(t_j)$ están en $V_j \cap V_{j+1}$, que es arco-conexo (hipótesis b; si $V_j = V_{j+1}$, es $V_j$, arco-conexo por a). Luego existe
-\[ \rho_j \colon I \to V_j \cap V_{j+1}, \qquad \rho_j(0) = x_0, \quad \rho_j(1) = \alpha(t_j). \]
-
+Para cerrar cada tramo en $x_0$ usamos que $V_j \cap V_{j+1}$ es arco-conexo (por b; si $V_j = V_{j+1}$, por a): existe $\rho_j \colon I \to V_j \cap V_{j+1}$ de $x_0$ a $\alpha(t_j)$. Ponemos además $\rho_0 = \rho_n = c_{x_0}$.
 
 \begin{figure}[htbp]
 \centering
@@ -196,17 +194,9 @@ Sea $j \in \{1,\dots,n-1\}$. Como vimos al trocear $I$, $x_0$ y $\alpha(t_j)$ es
 \caption{Descomposición del lazo $\alpha$ en $\alpha_j$ y caminos $\rho_j$. Cada $V_j$ contiene a $x_0$ y al arco $\alpha_j$.}
 \end{figure}
 
-Como $\rho_j^{-1} * \rho_j \simeq_{\{0,1\}} c_{\alpha(t_j)}$, insertarlo entre $\alpha_j$ y $\alpha_{j+1}$ no cambia la clase:
-\begin{align*}
-[\alpha] &= [\alpha_1 * \alpha_2 * \dots * \alpha_n] \\
-&= [\alpha_1 * \rho_1^{-1} * \rho_1 * \alpha_2 * \rho_2^{-1} * \rho_2 * \dots * \rho_{n-1}^{-1} * \rho_{n-1} * \alpha_n] \\
-&= [\beta_1] \cdot [\beta_2] \cdots [\beta_n],
-\end{align*}
-con $\beta_1 = \alpha_1 * \rho_1^{-1}$, $\beta_j = \rho_{j-1} * \alpha_j * \rho_j^{-1}$ ($2 \leq j \leq n-1$) y $\beta_n = \rho_{n-1} * \alpha_n$. Cada $\beta_j$ es un lazo basado en $x_0$.
-
-La imagen de $\beta_j$ está en $V_j$: $\alpha_j$ por construcción, $\rho_{j-1}$ en $V_{j-1} \cap V_j \subseteq V_j$ y $\rho_j$ en $V_j \cap V_{j+1} \subseteq V_j$. Así $\beta_j \in C_{x_0}(V_j)$ y, como $V_j$ es simplemente conexo, $\beta_j \simeq_{\{0,1\}} c_{x_0}$ mediante una homotopía en $V_j$; componiéndola con la inclusión $V_j \hookrightarrow X$, también en $X$. Por tanto
-\[ [\alpha] = [c_{x_0}] \cdots [c_{x_0}] = [c_{x_0}]. \]
-(Si $n = 1$, $\alpha$ ya es un lazo en $V_1$ y se aplica directamente el argumento anterior.)
+Insertando entonces $\rho_j^{-1} * \rho_j \simeq_{\{0,1\}} c_{\alpha(t_j)}$ entre $\alpha_j$ y $\alpha_{j+1}$, la clase no cambia y se reagrupa como
+\[ [\alpha] = [\alpha_1 * \rho_1^{-1} * \rho_1 * \alpha_2 * \dots * \rho_{n-1}^{-1} * \rho_{n-1} * \alpha_n] = [\beta_1] \cdots [\beta_n], \qquad \beta_j = \rho_{j-1} * \alpha_j * \rho_j^{-1}. \]
+Pero cada $\beta_j$ es un lazo en $x_0$ contenido en $V_j$, pues $\rho_{j-1}$, $\alpha_j$ y $\rho_j$ lo están, y como $V_j$ es simplemente conexo, $\beta_j \simeq_{\{0,1\}} c_{x_0}$ en $V_j$ y, por tanto, en $X$. Así $[\alpha] = [c_{x_0}]$.
 \end{proof}
 
 \subsection{La esfera $S^n$ es simplemente conexa}
@@ -360,47 +350,21 @@ Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es convexo y compacto. Sea $f
 \end{teorema}
 
 \begin{proof}
-En virtud del teorema anterior se deduce automáticamente la unicidad (ya que $X$ es conexo).
-Veamos la existencia de $\tilde{f}$:
-\begin{enumerate}
-    \item $f$ es uniformemente continua (ya que $X$ es compacto). Como consecuencia: $\exists \delta > 0$ tal que $\forall x,x' \in X$ si $\|x-x'\| < \delta \implies \|f(x)-f(x')\| < 2$.
-    \item $X$ está acotado (por ser compacto): $\exists k > 0$ tal que $\|x\| < k, \forall x \in X \implies \frac{\|x\|}{\delta} < \frac{k}{\delta}, \forall x \in X$. Sea $m \in \mathbb{Z}_{\geq 1}$ tal que $\frac{k}{\delta} < m$. Por consiguiente $\frac{\|x\|}{\delta} < \frac{k}{\delta} < m, \forall x \in X$, para algún $m \in \mathbb{Z}_{\geq 1}$.
-    \item Sea $j \in \{0,1,\dots,m-1\}$. Definimos $g_j: X \to S^1 \setminus \{(-1,0)\}$ como:
-    \[ g_j(x) = \frac{f\left(\frac{j+1}{m}x\right)}{f\left(\frac{j}{m}x\right)}, \quad \forall x \in X \]
-    ¿Puede valer $0$ la función $f(\frac{j}{m}x)$? $\implies$ No ($S^1 \not\ni 0$).
-    ¿Puede valer $-1$? $\implies$ Sí, si son antipodales, pero su diferencia es $<2$ luego no lo son.
-    \item Sea $j \in \{0,\dots,m-1\}$. Sea $x$ cualquier punto de $X$. Observamos que:
-    \[ \left\|\frac{j+1}{m}x - \frac{j}{m}x\right\| = \frac{\|x\|}{m} < \delta \implies \left\|f\left(\frac{j+1}{m}x\right) - f\left(\frac{j}{m}x\right)\right\| < 2 \]
-    Sabemos que $\Psi = \left(p|_{\left]-\frac{1}{2}, \frac{1}{2}\right[}\right)^{-1} : S^1 \setminus \{(-1,0)\} \to \left]-\frac{1}{2}, \frac{1}{2}\right[$.
-    \item Defino $\tilde{f}: X \to \mathbb{R}$ como:
-    \[ \tilde{f}(x) = t_0 + \Psi(g_0(x)) + \Psi(g_1(x)) + \dots + \Psi(g_{m-1}(x)) = t_0 + \sum_{j=0}^{m-1} \Psi(g_j(x)) \]
-    \item $\tilde{f}$ cumple 1 y 2:
-    \begin{itemize}
-        \item (1) $\tilde{f}(x_0) = t_0 + \sum_{j=0}^{m-1} \Psi(g_j(x_0)) = t_0 + \sum_{j=0}^{m-1} \Psi(1) = t_0$. (A partir de ahora suponemos $x_0 = 0$. Veremos luego el caso general (*)).
-        \item (2) 
-        \begin{align*}
-        (p \circ \tilde{f})(x) &= p(t_0) \cdot p(\Psi(g_0(x))) \cdot p(\Psi(g_1(x))) \dots p(\Psi(g_{m-1}(x))) \\
-        &= f(0) \cdot g_0(x) \cdot g_1(x) \dots g_{m-1}(x) \\
-        &= f(0) \cdot \frac{f(\frac{1}{m}x)}{f(0)} \cdot \frac{f(\frac{2}{m}x)}{f(\frac{1}{m}x)} \dots \frac{f(\frac{m}{m}x)}{f(\frac{m-1}{m}x)} = f(x)
-        \end{align*}
-    \end{itemize}
-\end{enumerate}
+\textbf{Unicidad:} por la \cref{prop:prop_unicidad_elev}, ya que $X$ es convexo y, por tanto, conexo.
 
-(*) Veamos el caso general. Veamos que, suponiendo que hemos encontrado $\tilde{g}: X \to \mathbb{R}$ que cumple las condiciones requeridas para $x_0 = 0$, automáticamente se cumple la existencia de una aplicación verificando 1 y 2 partiendo de un $x_0$ cualquiera no necesariamente igual a 0.
-
-Por tanto, supongamos que $x_0$ es ahora cualquier punto de $X$.
-Sea $L: \mathbb{R}^n \to \mathbb{R}^n$ dada por $x \mapsto x - x_0$ (traslación).
-Como $X$ es convexo y compacto $\implies L(X)$ también es convexo y compacto.
-Además $x_0 \in X \implies L(x_0) = 0 \in L(X)$.
-
-Sea $g = f \circ L^{-1} : L(X) \to S^1$.
-De acuerdo con la prueba anterior: $\exists \tilde{g}: L(X) \to \mathbb{R}$ que cumple $\tilde{g}(0) = t_0$ y $p \circ \tilde{g} = g$.
-
-Definimos $\tilde{f} = \tilde{g} \circ L$. Solo queda comprobar que $\tilde{f}$ cumple:
+\textbf{Existencia con $x_0 = 0$.}
 \begin{itemize}
-    \item (2) $p \circ \tilde{f} = p \circ (\tilde{g} \circ L) = (p \circ \tilde{g}) \circ L = g \circ L = (f \circ L^{-1}) \circ L = f$.
-    \item (1) $\tilde{f}(x_0) = (\tilde{g} \circ L)(x_0) = \tilde{g}(L(x_0)) = \tilde{g}(0) = t_0$. \qedhere
+    \item $X$ es compacto, luego $f$ es uniformemente continua (\cref{prop:lema_unif_continua}): existe $\delta > 0$ con $\|x - x'\| < \delta \Rightarrow \|f(x) - f(x')\| < 2$. Además $X$ está acotado, $\|x\| \leq K$, y tomamos $m \in \mathbb{Z}_{\geq 1}$ con $\frac{K}{\delta} < m$.
+    \item Dados $j \in \{0,\dots,m-1\}$ y $x \in X$, los puntos $\frac jm x$ y $\frac{j+1}{m}x$ están en $X$ ($X$ es convexo y $0 \in X$) y distan $\frac{\|x\|}{m} < \delta$. Luego sus imágenes por $f$ no son opuestas y
+    \[ g_j \colon X \to S^1 \setminus \{(-1,0)\}, \qquad g_j(x) = \frac{f\left(\frac{j+1}{m}x\right)}{f\left(\frac jm x\right)} \]
+    está bien definida y es continua.
+    \item Con $\Psi$ la inversa del \cref{prop:lema_restriccion_p}, definimos la aplicación continua
+    \[ \tilde f(x) = t_0 + \sum_{j=0}^{m-1} \Psi\big(g_j(x)\big). \]
+    Como $g_j(0) = 1$, $\tilde f(0) = t_0$. Como $p$ es homomorfismo (\cref{obs:obs_p_homomorfismo}) y $p(t_0) = f(x_0) = f(0)$, el producto es telescópico:
+    \[ p(\tilde f(x)) = f(0) \cdot \frac{f(\frac1m x)}{f(0)} \cdot \frac{f(\frac2m x)}{f(\frac1m x)} \cdots \frac{f(x)}{f(\frac{m-1}{m}x)} = f(x). \]
 \end{itemize}
+
+\textbf{Caso general.} Sea $L(x) = x - x_0$. $L(X)$ es convexo, compacto y contiene a $0$. Aplicando lo anterior a $g = f \circ L^{-1}$ se obtiene $\tilde g$ con $\tilde g(0) = t_0$ y $p \circ \tilde g = g$, y $\tilde f = \tilde g \circ L$ cumple $p \circ \tilde f = g \circ L = f$ y $\tilde f(x_0) = \tilde g(0) = t_0$.
 \end{proof}
 \begin{center}
     \textbf{14/10/2026 (Clase 9)}
