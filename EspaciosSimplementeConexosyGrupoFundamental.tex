@@ -1,4 +1,3 @@
-% Nota: Asegúrate de incluir \usepackage{tikz} en el preámbulo de tu documento.
 \textbf{02/10/2026}
 \section{Espacios simplemente conexos, deformación de aplicaciones y grupo fundamental de $S^n$}
 
@@ -48,13 +47,11 @@ A la izquierda, $\alpha$ se deforma en $\beta$ (líneas discontinuas) sin mover 
 
 
 \begin{proof}
-$\Rightarrow)$ Sean $x_0, x_1 \in X$ y sean $\alpha, \beta \in C_{x_0, x_1}(X)$. 
+$\Rightarrow)$ Sean $x_0, x_1 \in X$ y $\alpha, \beta \in C_{x_0, x_1}(X)$. El lazo $\alpha * \beta^{-1}$ está en $C_{x_0}(X)$ y, como $\pi_1(X, x_0) \cong \pi_1(X) = 1$, se tiene $[\alpha * \beta^{-1}] = [c_{x_0}]$. Usando el producto de clases de arcos (\cref{obs:obs_producto_arcos}):
+\[ [\alpha] = [\alpha] \cdot [\beta^{-1}] \cdot [\beta] = [\alpha * \beta^{-1}] \cdot [\beta] = [c_{x_0}] \cdot [\beta] = [\beta], \]
+es decir, $\alpha \simeq_{\{0,1\}} \beta$.
 
-
-Como $X$ es arco-conexo y $\pi_1(X) \cong \pi_1(X, x_0) = 1 = [c_{x_0}]$, consideramos el lazo $f := \alpha * \overline{\beta} \in C_{x_0, x_0}(X)$.
-Dado que $\pi_1(X) = 1$, se cumple que $[\alpha * \overline{\beta}] = 1$. Esto implica que $[\alpha] \cdot [\beta^{-1}] = 1$, y por tanto $[\alpha] = [c_{x_0} * \beta] = [\beta]$ y por consiguiente $\alpha \simeq_{\{0,1\}} \beta$.
-
-$\Leftarrow)$ Trivial tomando $x_0 = x_1$.
+$\Leftarrow)$ Sea $\alpha \in C_{x_0}(X)$. Aplicando la hipótesis con $x_1 = x_0$ y $\beta = c_{x_0}$, se obtiene $\alpha \simeq_{\{0,1\}} c_{x_0}$, luego $\pi_1(X,x_0) = 1$.
 \end{proof}
 
 \subsection{Reparametrización de arcos y lema de Lebesgue}
@@ -90,14 +87,12 @@ Sea $(X,d)$ un espacio métrico compacto y sea $\mathcal{U} = \{U_i\}_{i \in \La
 Dado que $\bigcup_{i \in \Lambda} U_i = X$, se tiene que $\forall x \in X, \exists r(x) > 0$ tal que $B(x, r(x)) \subseteq U_{i(x)}$ para algún $i(x) \in \Lambda$.
 Definimos la familia $\mathcal{F} = \{B(x, \frac{r(x)}{2})\}_{x \in X}$. Claramente $\mathcal{F}$ es un recubrimiento abierto de $X$. Como $X$ es compacto, admite un subrecubrimiento finito de la forma:
 
-$$X = B\left(x_1, \frac{r(x_1)}{2}\right) \cup \dots \cup B\left(x_n, \frac{r(x_n)}{2}\right)$$
-.
+$$X = B\left(x_1, \frac{r(x_1)}{2}\right) \cup \dots \cup B\left(x_n, \frac{r(x_n)}{2}\right).$$
 Sea $\delta = \min \left\{ \frac{r(x_1)}{2}, \dots, \frac{r(x_n)}{2} \right\}$.
 Sea $x \in X$. Existe un índice $j \in \{1, \dots, n\}$ tal que $x \in B(x_j, \frac{r(x_j)}{2})$. Veamos que $B(x,\delta) \subseteq U_{i(x_j)}$:
 Si $y \in B(x,\delta)$, entonces
 
-$$d(y, x_j) \le d(y,x) + d(x,x_j) < \delta + \frac{r(x_j)}{2} \le \frac{r(x_j)}{2} + \frac{r(x_j)}{2} = r(x_j)$$
-.
+$$d(y, x_j) \le d(y,x) + d(x,x_j) < \delta + \frac{r(x_j)}{2} \le \frac{r(x_j)}{2} + \frac{r(x_j)}{2} = r(x_j).$$
 Hemos llegado a la conclusión de que $B(x,\delta) \subseteq B(x_j, r(x_j)) \subseteq U_{i(x_j)}$.
 \end{proof}
 
@@ -121,26 +116,6 @@ Sea $X$ un espacio topológico y sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento 
 Entonces, $X$ es simplemente conexo. 
 \end{teorema}
 
-\begin{center}
-\begin{tikzpicture}
-  \coordinate (X0) at (0,1.5);
-  \node[above] at (X0) {$x_0$};
-  \draw[thick] (-2, 0.5) -- (2, 2.5);
-  \draw[thick] (-2, 1.5) -- (2, 1.5);
-  \draw[thick] (-2, 2.5) -- (2, 0.5);
-  \draw[thick] (-1.5, 0) -- (1.5, 3);
-  
-  \begin{scope}[yshift=-1.5cm]
-    \draw[thick] (0,0) circle (0.8);
-    \draw[dashed] (0.8,0) arc (0:180:0.8 and 0.25);
-    \draw[thick] (-0.8,0) arc (180:360:0.8 and 0.25);
-    \node[right] at (1, 0) {$S^2 \subseteq \mathbb{R}^3$};
-    \filldraw (0,0.8) circle (0.5pt); 
-    \filldraw (0,-0.8) circle (0.5pt); 
-  \end{scope}
-\end{tikzpicture}
-\captionof{figure}{Representación gráfica de la intersección en $x_0$ y la esfera $S^2$.}
-\end{center}
 
 \begin{proof}
 $X$ es arco-conexo: los $V_i$ lo son (por a) y tienen un punto común (por c). Sea $x_0 \in \bigcap_i V_i$ y sea $\alpha \in C_{x_0}(X)$; veamos que $\alpha \simeq_{\{0,1\}} c_{x_0}$.
@@ -298,11 +273,7 @@ Sea $X$ conexo. Sea $f: X \to S^1$ continua. Sean $f_1, f_2 : X \to \mathbb{R}$ 
 \end{proposicion}
 
 \begin{proof}
-$p: \mathbb{R} \to S^1$ es un homomorfismo de grupos:
-$p: (\mathbb{R},+) \to (S^1, \cdot)$, ya que $p(t_1+t_2) = e^{2\pi i (t_1+t_2)} = e^{2\pi i t_1} \cdot e^{2\pi i t_2} = p(t_1)p(t_2)$.
-$\ker(p) = \{t \in \mathbb{R} \mid e^{2\pi i t} = 1\} = \mathbb{Z}$ (y por tanto $\mathbb{R}/\mathbb{Z} \cong S^1$).
-
-Consideremos $g = f_1 - f_2$.
+Usamos que $p$ es un homomorfismo de $(\mathbb{R},+)$ en $(S^1,\cdot)$ con $p^{-1}(1) = \ker p = \mathbb{Z}$ (\cref{obs:obs_p_homomorfismo}). Consideremos $g = f_1 - f_2$, que es continua.
 \[ (p \circ g)(x) = p(f_1(x) - f_2(x)) = e^{2\pi i (f_1(x)-f_2(x))} = \frac{e^{2\pi i f_1(x)}}{e^{2\pi i f_2(x)}} = \frac{p(f_1(x))}{p(f_2(x))} = \frac{f(x)}{f(x)} = 1 \]
 Por tanto, $\text{Img}(g) \subseteq p^{-1}(1) = \mathbb{Z}$.
 
@@ -313,8 +284,6 @@ Luego $\exists k \in \mathbb{Z}$ tal que $g(x) = k \ \forall x \in X$. Como $g(x
 
 \vspace{0.5cm}
 \subsection{Existencia de elevaciones}
-
-\textbf{Teorema existencia de elevaciones:}
 
 \begin{definicion}{Continuidad uniforme [C8.9]}{}
 Sea $f: X \subseteq \mathbb{R}^n \to \mathbb{R}^m$. Diremos que $f$ es uniformemente continua cuando $\forall \varepsilon > 0$, $\exists \delta > 0$ tal que $\forall x, x' \in X$ que cumplan $\|x-x'\| < \delta$, se verifica que $\|f(x)-f(x')\| < \varepsilon$.
@@ -508,6 +477,7 @@ En cada apartado se busca un espacio $Y$ del mismo tipo de homotopía que $X$ cu
 \begin{enumerate}
     \item[a)] $X = \{(x,y) \in \mathbb{R}^2 : 1 \leq x^2 + y^2 \leq 4\}$ (corona). Se tiene $X \simeq S^1$ y, por la invariancia homotópica, $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$. La equivalencia homotópica es
     \[ f \colon S^1 \to X, \ (x,y) \mapsto (x,y), \qquad g \colon X \to S^1, \ (x,y) \mapsto \frac{(x,y)}{\|(x,y)\|}. \]
+    Se tiene $g \circ f = 1_{S^1}$, y $F \colon X \times I \to X$, $F(v,t) = (1-t)\,v + t\,\frac{v}{\|v\|} = \big((1-t)\|v\| + t\big)\frac{v}{\|v\|}$, es continua, cumple $F_0 = 1_X$ y $F_1 = f \circ g$, y no sale de $X$, pues el radio $(1-t)\|v\| + t$ está entre $1$ y $\|v\| \le 2$. En polares es ``radio $r \mapsto (1-t)r + t$ con el ángulo fijo''; escrito así no hace falta que el ángulo sea continuo, porque $(\cos\theta,\sin\theta) = v/\|v\|$.
     \item[b)] $X = \mathbb{R}^2 \setminus \{(0,0)\}$. $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$.
     \item[c)] $X = \{(x,f(x)) : x \in [a,b]\}$, con $f$ continua. Es \textbf{contráctil} (homeomorfo a $[a,b]$), luego simplemente conexo.
     \item[d)] $X = S^1 \cup \{y^2 = 1\}$ (la circunferencia y las dos rectas horizontales $y = \pm 1$, tangentes a ella). $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$.
