@@ -125,13 +125,13 @@ conmuta, es decir, $P_\omega([\alpha]) = [\omega^{-1} * \alpha * \omega] \in \pi
 \textbf{23/10/2026 (Clase 12)} \quad \textit{(el ejercicio propuesto el 16/10 y planteado el 21/10)}
 
 \begin{proof}
-Basta probar que $\deg(\omega^{-1} * \alpha * \omega) = \deg_{x_0}(\alpha)$ para todo $\alpha \in C_{x_0}(S^1)$, pues $P_\omega([\alpha]) = [\omega^{-1} * \alpha * \omega]$. Consideramos tres elevaciones:
+Basta probar que $\deg(\omega^{-1} * \alpha * \omega) = \deg_{x_0}(\alpha)$ para todo $\alpha \in C_{x_0}(S^1)$, pues $P_\omega([\alpha]) = [\omega^{-1} * \alpha * \omega]$. Elevamos los tres trozos de forma que cada uno empiece donde acaba el anterior; en cada caso, el valor inicial está encima del punto donde empieza el arco, que es la hipótesis del teorema de existencia (\cref{thm:teo_existencia_elevaciones}, con $X = I$):
 \begin{itemize}
-    \item $\widetilde{\omega^{-1}} \colon I \to \mathbb{R}$, la elevación de $\omega^{-1}$ con $\widetilde{\omega^{-1}}(0) = 0$ (existe porque $\omega^{-1}(0) = (1,0)$, por la elevación de arcos);
-    \item $\tilde{\alpha}$, la elevación de $\alpha$ con $\tilde{\alpha}(0) = \widetilde{\omega^{-1}}(1)$ (es posible porque $\widetilde{\omega^{-1}}(1) \in p^{-1}(\omega^{-1}(1)) = p^{-1}(x_0)$);
-    \item $\tilde{\omega}$, la elevación de $\omega$ con $\tilde{\omega}(0) = \tilde{\alpha}(1)$.
+    \item Como $p(0) = (1,0) = \omega^{-1}(0)$, sea $\widetilde{\omega^{-1}}$ la elevación de $\omega^{-1}$ con $\widetilde{\omega^{-1}}(0) = 0$ (elevación de arcos, \cref{prop:cor_elev_arcos}).
+    \item Como $p\big(\widetilde{\omega^{-1}}(1)\big) = \omega^{-1}(1) = x_0 = \alpha(0)$, sea $\tilde{\alpha}$ la elevación de $\alpha$ con $\tilde{\alpha}(0) = \widetilde{\omega^{-1}}(1)$.
+    \item Como $p\big(\tilde{\alpha}(1)\big) = \alpha(1) = x_0 = \omega(0)$, sea $\tilde{\omega}$ la elevación de $\omega$ con $\tilde{\omega}(0) = \tilde{\alpha}(1)$.
 \end{itemize}
-Con estas condiciones, $\widetilde{\omega^{-1}} * \tilde{\alpha} * \tilde{\omega}$ está definida y es continua, y es una elevación de $\omega^{-1} * \alpha * \omega$, pues
+Por construcción las tres elevaciones están encadenadas, así que $\widetilde{\omega^{-1}} * \tilde{\alpha} * \tilde{\omega}$ está definida y es continua, y es una elevación de $\omega^{-1} * \alpha * \omega$, pues
 \[ p \circ (\widetilde{\omega^{-1}} * \tilde{\alpha} * \tilde{\omega}) = (p \circ \widetilde{\omega^{-1}}) * (p \circ \tilde{\alpha}) * (p \circ \tilde{\omega}) = \omega^{-1} * \alpha * \omega. \]
 Como empieza en $0$, el grado se obtiene evaluando en $1$:
 \[ \deg(\omega^{-1} * \alpha * \omega) = (\widetilde{\omega^{-1}} * \tilde{\alpha} * \tilde{\omega})(1) - (\widetilde{\omega^{-1}} * \tilde{\alpha} * \tilde{\omega})(0) = \tilde{\omega}(1) - \widetilde{\omega^{-1}}(0) = \tilde{\omega}(1). \]
