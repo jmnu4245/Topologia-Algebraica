@@ -1,0 +1,13 @@
+LIB"random.lib";
+ideal I = xy2z, x4+yz, y5, z6+y2x3;
+ideal J = randomid(I,3);    // combinaciones lineales aleatorias de los g_i
+vdim(std(J));               // 76 = e(I): reduccion
+ideal J = xy2z+x4+yz, y5, z6+y2x3;   // <g1+g2, g3, g4>
+vdim(std(J));               // 120: no es reduccion
+ideal J = I[2], I[3]+I[1], I[4];     // <g2, g3+g1, g4>
+vdim(std(J));               // 76: reduccion
+reduce(J, std(I));          // 0: J contenido en I
+reduce(I, std(J));          // no nulo: I no esta contenido en J
+reduce(I^2, std(J*I));      // no nulo: I^2 no esta en J*I
+reduce(I^3, std(J*I^2));    // no nulo: I^3 no esta en J*I^2
+reduce(I^4, std(J*I^3));    // 0: I^4 = J*I^3, numero de reduccion 3

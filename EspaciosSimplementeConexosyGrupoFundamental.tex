@@ -62,8 +62,7 @@ $\Leftarrow)$ Trivial tomando $x_0 = x_1$.
 \begin{proposicion}{ [C7.3]}{prop_reparametrizacion}
 Sea $g: I \longrightarrow I$ una aplicación continua tal que $g(0)=0$ y $g(1)=1$. Sea $\alpha: I \longrightarrow X$ una aplicación continua, siendo $X$ un espacio topológico cualquiera. Entonces se cumple que $\alpha \simeq_{\{0,1\}} \alpha \circ g$.
 \end{proposicion}
-\begin{figure}[htbp]
-\centering
+\begin{center}
 \begin{tikzpicture}[scale=1.5]
   \draw[->] (-0.2,0) -- (1.5,0);
   \draw[->] (0,-0.2) -- (0,1.5);
@@ -71,8 +70,8 @@ Sea $g: I \longrightarrow I$ una aplicación continua tal que $g(0)=0$ y $g(1)=1
   \draw (0.05,1) -- (-0.05,1) node[left] {$1$};
   \draw[blue, thick] (0,0) .. controls (0.2,0.8) and (0.6,0.3) .. (1,1);
 \end{tikzpicture}
-\caption{Gráfica de la reparametrización continua $g: I \longrightarrow I$.}
-\end{figure}
+\captionof{figure}{Gráfica de la reparametrización continua $g: I \longrightarrow I$.}
+\end{center}
 \begin{proof}
 Sea $F: I \times I \longrightarrow X$ la aplicación continua definida por $F(s,t) = \alpha((1-t)s + t g(s))$. Comprobamos sus valores:
 \begin{itemize}
@@ -122,8 +121,7 @@ Sea $X$ un espacio topológico y sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento 
 Entonces, $X$ es simplemente conexo. 
 \end{teorema}
 
-\begin{figure}[htbp]
-\centering
+\begin{center}
 \begin{tikzpicture}
   \coordinate (X0) at (0,1.5);
   \node[above] at (X0) {$x_0$};
@@ -141,8 +139,8 @@ Entonces, $X$ es simplemente conexo.
     \filldraw (0,-0.8) circle (0.5pt); 
   \end{scope}
 \end{tikzpicture}
-\caption{Representación gráfica de la intersección en $x_0$ y la esfera $S^2$.}
-\end{figure}
+\captionof{figure}{Representación gráfica de la intersección en $x_0$ y la esfera $S^2$.}
+\end{center}
 
 \begin{proof}
 $X$ es arco-conexo: los $V_i$ lo son (por a) y tienen un punto común (por c). Sea $x_0 \in \bigcap_i V_i$ y sea $\alpha \in C_{x_0}(X)$; veamos que $\alpha \simeq_{\{0,1\}} c_{x_0}$.
@@ -153,9 +151,8 @@ Llamamos $\alpha_j \colon I \to V_j$, $\alpha_j(s) = \alpha(t_{j-1} + \frac sn)$
 
 Para cerrar cada tramo en $x_0$ usamos que $V_j \cap V_{j+1}$ es arco-conexo (por b; si $V_j = V_{j+1}$, por a): existe $\rho_j \colon I \to V_j \cap V_{j+1}$ de $x_0$ a $\alpha(t_j)$. Ponemos además $\rho_0 = \rho_n = c_{x_0}$.
 
-\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[scale=1.4]
+\begin{center}
+\begin{tikzpicture}[scale=1.05]
   % Los abiertos V_j: todos contienen a x_0 y cada uno contiene al arco alpha_j
   \draw[gray, thick, rotate around={20:(1.128,0.41)}] (1.128,0.41) ellipse (2 and 1.15);
   \node[gray] at (3.25,1.2) {$V_1$};
@@ -191,8 +188,8 @@ Para cerrar cada tramo en $x_0$ usamos que $V_j \cap V_{j+1}$ es arco-conexo (po
   \filldraw[red] (T3) circle (1pt) node[left] {$\alpha(t_3)$};
   \filldraw[red] (TN) circle (1pt) node[left] {$\alpha(t_{n-1})$};
 \end{tikzpicture}
-\caption{Descomposición del lazo $\alpha$ en $\alpha_j$ y caminos $\rho_j$. Cada $V_j$ contiene a $x_0$ y al arco $\alpha_j$.}
-\end{figure}
+\captionof{figure}{Descomposición del lazo $\alpha$ en $\alpha_j$ y caminos $\rho_j$. Cada $V_j$ contiene a $x_0$ y al arco $\alpha_j$.}
+\end{center}
 
 Insertando entonces $\rho_j^{-1} * \rho_j \simeq_{\{0,1\}} c_{\alpha(t_j)}$ entre $\alpha_j$ y $\alpha_{j+1}$, la clase no cambia y se reagrupa como
 \[ [\alpha] = [\alpha_1 * \rho_1^{-1} * \rho_1 * \alpha_2 * \dots * \rho_{n-1}^{-1} * \rho_{n-1} * \alpha_n] = [\beta_1] \cdots [\beta_n], \qquad \beta_j = \rho_{j-1} * \alpha_j * \rho_j^{-1}. \]
@@ -214,8 +211,7 @@ Tomamos $V_1 := S^n \setminus \{(0, \dots, 0, 1)\} = S^n \setminus \{N\}$ y $V_2
 \end{itemize}
 Por aplicación directa del teorema anterior concluimos que $S^n$ es simplemente conexo.
 
-\begin{figure}[htbp]
-\centering
+\begin{center}
 \begin{tikzpicture}
   \draw[red, thick] (0,0) circle (0.8);
   \filldraw[white] (0,0.8) circle (1.5pt);
@@ -233,8 +229,8 @@ Por aplicación directa del teorema anterior concluimos que $S^n$ es simplemente
   \filldraw[white] (5,-0.8) circle (1.5pt);
   \draw[red, thick] (5,-0.8) circle (1.5pt);
 \end{tikzpicture}
-\caption{Visualización de $V_1$, $V_2$ y su intersección para el caso de $S^1$.}
-\end{figure}
+\captionof{figure}{Visualización de $V_1$, $V_2$ y su intersección para el caso de $S^1$.}
+\end{center}
 
 La prueba del corolario no funciona cuando $n=1$, ya que $V_1 \cap V_2$ no es arco-conexo. Veremos que $\pi_1(S^1) \cong (\mathbb{Z}, +)$.
 \end{proof}
@@ -364,7 +360,7 @@ Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es convexo y compacto. Sea $f
     \[ p(\tilde f(x)) = f(0) \cdot \frac{f(\frac1m x)}{f(0)} \cdot \frac{f(\frac2m x)}{f(\frac1m x)} \cdots \frac{f(x)}{f(\frac{m-1}{m}x)} = f(x). \]
 \end{itemize}
 
-\textbf{Caso general.} Sea $L(x) = x - x_0$. $L(X)$ es convexo, compacto y contiene a $0$. Aplicando lo anterior a $g = f \circ L^{-1}$ se obtiene $\tilde g$ con $\tilde g(0) = t_0$ y $p \circ \tilde g = g$, y $\tilde f = \tilde g \circ L$ cumple $p \circ \tilde f = g \circ L = f$ y $\tilde f(x_0) = \tilde g(0) = t_0$.
+\textbf{Caso general.} Sea $L(x) = x - x_0$, una traslación, luego un homeomorfismo de $\mathbb{R}^n$ con inversa $L^{-1}(y) = y + x_0$. $L(X)$ es convexo, compacto y contiene a $0 = L(x_0)$. Aplicando lo anterior a $g = f \circ L^{-1}$ se obtiene $\tilde g$ con $\tilde g(0) = t_0$ y $p \circ \tilde g = g$, y $\tilde f = \tilde g \circ L$ cumple $p \circ \tilde f = g \circ L = f$ y $\tilde f(x_0) = \tilde g(0) = t_0$.
 \end{proof}
 \begin{center}
     \textbf{14/10/2026 (Clase 9)}

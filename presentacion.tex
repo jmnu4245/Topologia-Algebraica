@@ -1,0 +1,79 @@
+% Página tras la portada: colaboradores, estructura del repositorio y notación.
+\section*{Sobre estos apuntes}
+
+Estos apuntes se mantienen en el repositorio
+\href{https://github.com/jmnu4245/Topologia-Algebraica}{\texttt{github.com/jmnu4245/Topologia-Algebraica}}.
+Cada vez que se actualiza la rama \texttt{main} se compila el PDF y se publica en la sección
+\href{https://github.com/jmnu4245/Topologia-Algebraica/releases}{\emph{Releases}}. Las erratas y sugerencias se recogen como \emph{issues} del repositorio.
+
+\subsection*{Coautores}
+Personas que han contribuido abriendo \emph{issues}:
+\begin{itemize}
+    \item \textbf{DavidP2004}
+    \begin{itemize}
+        \item Corrección de la definición de conjunto convexo (\#1).
+        \item Sugerencia de demostración del inverso homotópico de caminos (\#3).
+        \item Error en el enunciado de la unicidad de levantamientos (\#4).
+        \item Demostración de que $S^1$ no es contráctil (\#5).
+        \item Error en un ejercicio (\#6).
+    \end{itemize}
+    \item \textbf{T1N8T}
+    \begin{itemize}
+        \item Errata $[\gamma] \in C_{x_1}(X)$ en la demostración del isomorfismo de cambio de base (\#7).
+        \item Errata $C_{x_0}$ por $c_{x_0}$ en la demostración de que un estrellado tiene $\pi_1$ trivial (\#8).
+        \item Propuesta de marcar los resultados demostrados en clase con $\odot$ (\#10).
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Contenido del repositorio}
+\begin{itemize}
+    \item \textbf{Raíz:} el código de este documento.
+    \begin{itemize}
+        \item \texttt{main.tex} es el archivo principal.
+        \item \texttt{preambulo.tex} contiene los paquetes, los estilos de las cajas y las macros.
+        \item \texttt{intro.tex} contiene la información de la asignatura.
+        \item Hay un archivo por tema:
+        \begin{enumerate}
+            \item \texttt{ResultadosPreliminares.tex}
+            \item \texttt{EquivalenciaHomotopica.tex}
+            \item \texttt{ElGrupoFundamental.tex}
+            \item \texttt{EspaciosSimplementeConexosyGrupoFundamental.tex}
+            \item \texttt{AplicacionesTeoriaHomotopia.tex}
+        \end{enumerate}
+    \end{itemize}
+    \item \textbf{\texttt{Apuntes papel/}}: fotografías de los apuntes manuscritos de clase, a partir de los cuales se ha redactado este documento. Hay una carpeta por clase, con nombre \texttt{aaaa-mm-dd\_claseN}.
+    \item \textbf{\texttt{mapa\_teoremas/}}: mapa de dependencias entre los resultados, con una columna y un color por tema.
+    \begin{itemize}
+        \item \texttt{mapa.tex} es el diagrama; se compila por separado.
+        \item \texttt{generar.py} es el script que lo genera.
+    \end{itemize}
+    \item \textbf{\texttt{practicas/}}: apuntes de la parte de prácticas.
+    \begin{itemize}
+        \item \texttt{main.tex} es el documento de los apuntes.
+        \item \texttt{pract1.ipynb}, \texttt{pract2.ipynb} y \texttt{pract3.ipynb} son los cuadernos de cada práctica, con Singular.
+        \item \texttt{Apuntes papel/} contiene las fotografías de las prácticas.
+    \end{itemize}
+    \item \textbf{\texttt{installsingular.sh}}: script para instalar Singular, el programa usado en las prácticas.
+    \item \textbf{\texttt{.github/workflows/}}: compilación automática del PDF.
+\end{itemize}
+
+\subsection*{Notación}
+\begin{itemize}
+    \item \textbf{Fechas.} Un encabezado \textbf{dd/mm/aaaa (Clase $n$)} indica que el contenido que sigue se vio en la clase $n$, impartida en esa fecha.
+    \item \textbf{Referencias a las clases.} Los títulos de las cajas terminan con una referencia entre corchetes:
+    \begin{itemize}
+        \item \textbf{[C$n$.$m$]} es el punto $m$ de la clase $n$. Por ejemplo, [C8.11] es el punto 11 de la clase 8.
+        \item \textbf{[C$n$.$m$–$n$.$m'$]} abarca varios puntos de esa clase.
+        \item \textbf{[C$n$]} indica que el resultado es de la clase $n$, sin un punto concreto.
+    \end{itemize}
+    No hay que confundir esta referencia con la numeración propia del documento: el \emph{Teorema 4.3} es el tercer teorema de la sección 4.
+    \item \textbf{Resultados demostrados en clase.} Los resultados cuya demostración se hizo en clase llevan en el título una marca $\odot$ con una letra:
+    \begin{itemize}
+        \item \fcolorbox{white}{red!80!black}{\textcolor{white}{\textbf{$\odot$\,T}}} para un teorema;
+        \item \fcolorbox{white}{red!80!black}{\textcolor{white}{\textbf{$\odot$\,C}}} para un corolario;
+        \item $\odot$\,P para una proposición;
+        \item $\odot$\,L para un lema.
+    \end{itemize}
+    Los teoremas y corolarios van destacados en rojo.
+    \item \textbf{Ejercicios.} Los ejercicios resueltos en clase aparecen al final de cada tema, en cajas verdes. El título indica su número en la hoja de ejercicios del tema (por ejemplo, \emph{Tema 4, ej.~2}) y la fecha de la clase en que se hicieron.
+\end{itemize}
