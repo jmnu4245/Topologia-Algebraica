@@ -40,10 +40,7 @@ En este tema relajaremos las condiciones de la definición de homeomorfismo para
 \subsection{Homotopía entre aplicaciones}
 
 \begin{definicion}{Homotopía entre aplicaciones [C2.2]}{def_homotopia}
-Sea $f \colon X \to Y$ aplicación continua. \\
-Sea $g \colon X \to Y$ aplicación continua.
-
-Diremos que $f, g$ son homotópicas cuando $\exists F \colon X \times I = [0,1] \to Y$ continua tal que $F_0 = f, F_1 = g$.
+Sean $f, g \colon X \to Y$ aplicaciones continuas y sea $I = [0,1]$. Diremos que $f, g$ son homotópicas ($f \simeq g$) cuando $\exists F \colon X \times I \to Y$ continua tal que $F_0 = f$ y $F_1 = g$. Escribimos $F \colon f \simeq g$ para indicar la homotopía.
 \end{definicion}
 
 \begin{nota}{Notación [C2.1]}{nota_homotopia}
@@ -103,14 +100,14 @@ La homotopía $\simeq$ es una Relación de Equivalencia (R.B.E.) en $C(X,Y)$.
     Buscamos una $G \colon X \times I \to Y$ continua con $G_0 = g, G_1 = f$.
     Definimos $G(x,t) = F(x, 1-t)$. Es continua por ser composición de funciones continuas y cumple $G_0 = F_1 = g$ y $G_1 = F_0 = f$.
     \item \textbf{Transitiva:} $\forall f,g,h \in C(X,Y) \colon f \simeq g, g \simeq h \implies f \simeq h$.
-    Suponemos que $f \simeq^{(1)} g$ y $g \simeq^{(2)} h$. Esto implica que existen $F^{(1)} \colon X \times [0,1] \to Y$ y $F^{(2)} \colon X \times [0,1] \to Y$.
-    Necesitamos construir $F \colon X \times I \to Y$ continua con $F_0 = f$ y $F_1 = h$. Definimos:
-    \[ F(x,t) = \begin{cases} F^{(1)}(x, 2t) & \forall t \in \left[0, \frac{1}{2}\right] \\ F^{(2)}(x, 2t-1) & \forall t \in \left[\frac{1}{2}, 1\right] \end{cases} \]
-    Como $\left(X \times \left[0,\frac{1}{2}\right]\right)$ y $\left(X \times \left[\frac{1}{2}, 1\right]\right)$ son cerrados con restricción continua en la intersección, entonces $F$ es continua. Comprobamos la frontera:
-    $F\left(x, \frac{1}{2}\right) = F^{(1)}(x,1) = g(x)$ y $F\left(x, \frac{1}{2}\right) = F^{(2)}(x,0) = g(x)$. Tenemos $F$ bien definida.
-    $F_0(x) = F(x,0) = F^{(1)}(x,0) = f(x), \forall x \in X$.
-    $F_1(x) = F(x,1) = F^{(2)}(x,1) = h(x), \forall x \in X$.
-    Como consecuencia de todo lo anterior, $f \simeq h$.
+    Sean $F^{(1)} \colon f \simeq g$ y $F^{(2)} \colon g \simeq h$. Definimos $F \colon X \times I \to Y$ por
+    \[ F(x,t) = \begin{cases} F^{(1)}(x, 2t) & \text{si } t \in \left[0, \frac{1}{2}\right], \\ F^{(2)}(x, 2t-1) & \text{si } t \in \left[\frac{1}{2}, 1\right]. \end{cases} \]
+    \begin{itemize}
+        \item \emph{Bien definida:} en $t = \frac12$, $F^{(1)}(x,1) = g(x) = F^{(2)}(x,0)$ para todo $x \in X$.
+        \item \emph{Continua:} $B_1 = X \times [0,\frac12]$ y $B_2 = X \times [\frac12,1]$ son cerrados en $X \times I$ con $B_1 \cup B_2 = X \times I$, y $F|_{B_1}$, $F|_{B_2}$ son continuas por ser composición de continuas. Por el lema de continuidad (\cref{thm:teo_lema_continuidad}), $F$ es continua.
+        \item \emph{Extremos:} $F_0 = F^{(1)}_0 = f$ y $F_1 = F^{(2)}_1 = h$.
+    \end{itemize}
+    Luego $F \colon f \simeq h$.
 \end{enumerate}
 \end{proof}
 
@@ -141,11 +138,9 @@ En este caso también diremos que $f$ es una \textbf{equivalencia homotópica} y
 \end{definicion}
 
 \begin{observacion}{Relación con el homeomorfismo [C2.8]}{obs_iso}
-$X \cong Y \implies X \simeq Y$ (y $g$ es inversa de $f$).
-Tomando $f \colon X \to Y, g \colon Y \to X$ biyecciones donde $g \circ f = 1_X$ y $f \circ g = 1_Y$, se sigue que son trivialmente homotópicas a las identidades ($g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$).
+$X \cong Y \implies X \simeq Y$: si $f \colon X \to Y$ es un homeomorfismo y $g = f^{-1}$, entonces $g \circ f = 1_X$ y $f \circ g = 1_Y$, y en particular $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$ (reflexividad).
 
-Sin embargo, $f \colon X \to Y$ continua y biyectiva $\not\implies f^{-1}$ continua (y no necesariamente $f$ es equivalencia homotópica si falla el homeomorfismo). Como contraejemplo:
-$f \colon [0, 1) \to S^1, \quad t \mapsto (\cos(2\pi t), \sin(2\pi t))$.
+En cambio, una biyección continua no tiene por qué ser homeomorfismo, ni siquiera equivalencia homotópica. Por ejemplo, $f \colon [0, 1[ \to S^1$, $t \mapsto (\cos(2\pi t), \sin(2\pi t))$, es continua y biyectiva, pero $[0,1[$ es contráctil (convexo) y $S^1$ no lo es (\cref{prop:cor_s1_no_contractil}), luego $[0,1[ \not\simeq S^1$.
 \end{observacion}
 
 \textbf{Ejemplo ($[0,1] \simeq \{0\}$ pero $[0,1] \not\cong \{0\}$).}

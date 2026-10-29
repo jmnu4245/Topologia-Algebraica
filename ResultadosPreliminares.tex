@@ -1,5 +1,4 @@
-%fecha
-(1) \textbf{09/09/2026}
+\textbf{09/09/2026}
 
 \section{Resultados preliminares de topología general}
 
@@ -219,12 +218,7 @@ Sea $f \colon X \to Y$ una aplicación. Sean $B_1, B_2$ cerrados en $X$, con $X 
 \end{teorema}
 
 \begin{proof}
-En virtud del lema anterior, veamos que $f^{-1}(C)$ es cerrado en $X$, $\forall C$ cerrado en $Y$.
-\[ f^{-1}(C) = (f^{-1}(C) \cap B_1) \cup (f^{-1}(C) \cap B_2) \]
-Considerando las restricciones, obtenemos:
-\begin{itemize}
-    \item $(f|_{B_1})^{-1}(C) = D_1 \cap B_1$, que es cerrado en $X$ al ser la preimagen de un cerrado por una función continua, intersecada con el cerrado $B_1$.
-    \item $(f|_{B_2})^{-1}(C) = D_2 \cap B_2$, que es cerrado en $X$ de manera análoga.
-\end{itemize}
-Dado que $f^{-1}(C)$ es la unión finita de dos cerrados, es cerrado en $X$, demostrando la continuidad de $f$.
+En virtud del lema anterior, basta ver que $f^{-1}(C)$ es cerrado en $X$ para todo cerrado $C$ de $Y$. Como $X = B_1 \cup B_2$,
+\[ f^{-1}(C) = \big(f^{-1}(C) \cap B_1\big) \cup \big(f^{-1}(C) \cap B_2\big) = (f|_{B_1})^{-1}(C) \cup (f|_{B_2})^{-1}(C). \]
+Como $f|_{B_1}$ es continua, $(f|_{B_1})^{-1}(C)$ es cerrado en $B_1$ (con la topología relativa). Por la \cref{not:nota_relativa}, existe $D_1$ cerrado en $X$ con $(f|_{B_1})^{-1}(C) = D_1 \cap B_1$, que es cerrado en $X$ por ser intersección de dos cerrados de $X$. Análogamente, $(f|_{B_2})^{-1}(C) = D_2 \cap B_2$ es cerrado en $X$. Luego $f^{-1}(C)$ es unión de dos cerrados de $X$, es cerrado, y $f$ es continua.
 \end{proof}
