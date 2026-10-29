@@ -397,6 +397,7 @@ Sea $\alpha \in C_{(1,0)}(S^1)$. Se define el \textbf{grado} de $\alpha$ como $\
 \end{definicion}
 
 Geométricamente, $\deg(\alpha)$ es el número de vueltas completas de $\alpha$ en sentido antihorario. Como $p(\tilde{\alpha}(1)) = \alpha(1) = (1,0)$, se tiene $\tilde{\alpha}(1) \in p^{-1}(1,0) = \mathbb{Z}$, luego $\deg(\alpha) \in \mathbb{Z}$.
+Solo esta definido si $\alpha$ empieza y acaba en $(1,0)$, lo que significa que $\alpha$ solo da vueltas completas, por lo que las podemos contar.
 
 \textbf{Ejemplo.} Para $n \in \mathbb{Z}$, sea $\omega_n \colon I \to S^1$, $\omega_n(t) = e^{2\pi i n t}$. Su elevación con $\tilde{\omega}_n(0)=0$ es $\tilde{\omega}_n(t) = nt$, luego $\deg(\omega_n) = n$.
 
@@ -410,6 +411,60 @@ La aplicación $\deg \colon \pi_1(S^1,(1,0)) \to \mathbb{Z}$, $[\alpha] \mapsto 
     \[ F(s,0) = \alpha(s), \quad F(s,1) = \beta(s), \quad F(0,t) = F(1,t) = (1,0) \quad \forall s,t \in I. \]
     Sea $\tilde{F}$ la elevación de $F$ con $\tilde{F}(0,0) = 0$. Entonces $s \mapsto \tilde{F}(s,0)$ es la elevación de $\alpha$ que vale $0$ en $0$, es decir $\tilde{\alpha}$, y $s \mapsto \tilde{F}(s,1)$ es la elevación de $\beta$ que vale $0$ en $0$ (pues $\tilde{F}(0,t)\in p^{-1}(1,0)=\mathbb{Z}$ es constante por conexión y vale $\tilde{F}(0,0)=0$). Por otro lado, $\tilde{F}(\{1\} \times I) \subseteq p^{-1}(1,0) = \mathbb{Z}$ es conexo, luego $\tilde{F}(1,t) = k$ para cierto $k \in \mathbb{Z}$ y todo $t$. Así
     \[ \deg(\alpha) = \tilde{\alpha}(1) = \tilde{F}(1,0) = k = \tilde{F}(1,1) = \tilde{\beta}(1) = \deg(\beta). \]
+    \begin{center}
+    \begin{tikzpicture}[scale=0.95, every node/.style={font=\small},
+      marca/.style={postaction={decorate}, decoration={markings, mark=at position #1 with {\arrow{Stealth[length=5pt]}}}}]
+    \colorlet{cA}{blue!75!black}\colorlet{cB}{red!75!black}\colorlet{cS}{green!50!black}
+    % --- dominio I x I ---
+    \fill[gray!8] (0,-1.5) rectangle (2,0.5);
+    \draw[cA, very thick, marca=0.6] (0,-1.5) -- node[below] {$\alpha$} (2,-1.5);
+    \draw[cB, very thick, marca=0.6] (0,0.5) -- node[above] {$\beta$} (2,0.5);
+    \draw[cS, very thick] (0,-1.5) -- (0,0.5); \draw[cS, very thick] (2,-1.5) -- (2,0.5);
+    \node[cS, left, align=right, font=\scriptsize] at (0,-0.5) {$\{0\}\times I$};
+    \node[cS, right, align=left, font=\scriptsize] at (2,-0.5) {$\{1\}\times I$};
+    \node at (1,-0.5) {$I\times I$};
+    % --- elevación en R: el cuadrado desenrollado ---
+    \foreach \y/\l in {0.4/0, 1.7/1, 3.0/{k=2}} {
+      \draw[gray!50, dashed] (4.7,\y) -- (9.3,\y);
+      \node[gray!60!black, font=\scriptsize, anchor=east] at (4.7,\y) {$\l$};
+    }
+    \node[gray!60!black, font=\scriptsize] at (9.6,1.7) {$\mathbb{Z}$};
+    \draw[violet!50, dashed] (5,0.4) .. controls (6,0.9) and (8,2.6) .. (9,3.0);
+    \draw[violet!50, dashed] (5,0.4) .. controls (5.6,1.8) and (8.1,1.9) .. (9,3.0);
+    \draw[cA, very thick, marca=0.55] (5,0.4) .. controls (6.3,0.0) and (7.8,3.5) .. (9,3.0);
+    \draw[cB, very thick, marca=0.45] (5,0.4) .. controls (5.4,2.7) and (8.3,0.8) .. (9,3.0);
+    \node[cA, font=\scriptsize, anchor=north] at (6.4,0.3) {$\tilde\alpha=\tilde F(\cdot,0)$};
+    \node[cB, font=\scriptsize, anchor=south] at (5.7,2.15) {$\tilde\beta=\tilde F(\cdot,1)$};
+    \fill[cS] (5,0.4) circle (2.2pt); \fill[cS] (9,3.0) circle (2.2pt);
+    \node[cS, font=\scriptsize, anchor=north east] at (5.0,0.3) {$\tilde F(0,t)=0$};
+    \node[cS, font=\scriptsize, anchor=south] at (9,3.15) {$\tilde F(1,t)=k$};
+    \node at (7,3.75) {$\mathbb{R}$};
+    % --- imagen en S^1 vista de lado: el cuadrado enrollado ---
+    % S^1 como elipse; alpha (arriba) y beta (abajo) separados en altura para verlos. Tramos de atrás más claros.
+    \draw[gray!45, thick, dashed] (8.6,-3.5) arc (0:180:1.6 and 0.45);
+    \draw[gray!60, thick] (5.4,-3.5) arc (180:360:1.6 and 0.45);
+    \foreach \c/\sg in {cA/1, cB/-1} {
+      \foreach \ini/\fin in {0/180, 360/540} {
+        \draw[\c!45, thick, dashed] plot[domain=\ini:\fin, samples=40] ({7+1.6*cos(\x)}, {-3.5+0.45*sin(\x)+\sg*0.6*sin(\x/4)});
+      }
+      \foreach \ini/\fin in {180/360, 540/720} {
+        \draw[\c, very thick] plot[domain=\ini:\fin, samples=40] ({7+1.6*cos(\x)}, {-3.5+0.45*sin(\x)+\sg*0.6*sin(\x/4)});
+      }
+    }
+    \draw[cA, very thick, -{Stealth[length=5pt]}] ({7+1.6*cos(268)}, {-3.5+0.45*sin(268)+0.6*sin(67)}) -- ({7+1.6*cos(272)}, {-3.5+0.45*sin(272)+0.6*sin(68)});
+    \draw[cB, very thick, -{Stealth[length=5pt]}] ({7+1.6*cos(268)}, {-3.5+0.45*sin(268)-0.6*sin(67)}) -- ({7+1.6*cos(272)}, {-3.5+0.45*sin(272)-0.6*sin(68)});
+    \fill[cS] (8.6,-3.5) circle (2.2pt);
+    \node[cS, font=\scriptsize, anchor=west, align=left] at (8.75,-3.5) {$F(0,t)=F(1,t)$\\$=(1,0)$};
+    \node[cA, font=\scriptsize, anchor=south] at (7,-2.4) {$\alpha=F(\cdot,0)$};
+    \node[cB, font=\scriptsize, anchor=north] at (7,-4.6) {$\beta=F(\cdot,1)$};
+    \node[anchor=east] at (5.3,-3.5) {$S^1$};
+    % --- flechas del diagrama ---
+    \draw[-{Stealth[length=6pt]}, thick, gray!60!black] (2.4,0.3) to[bend left=15] node[above, font=\small] {$\tilde F$} (4.2,1.3);
+    \draw[-{Stealth[length=6pt]}, thick, gray!60!black] (2.4,-1.4) to[bend right=15] node[below left, font=\small] {$F$} (5.4,-2.85);
+    \draw[-{Stealth[length=6pt]}, thick, gray!60!black] (9.9,1.0) to[bend left=20] node[right, font=\small] {$p$} (9.2,-2.6);
+    \end{tikzpicture}
+    \end{center}
+    Como $F(0,t) = F(1,t) = (1,0)$, al elevar cada lado cae en $p^{-1}(1,0) = \mathbb{Z}$ y, por conexión, es constante: el izquierdo vale $0$ y el derecho $k$. Ese $\tilde F(1,t) = k$ es el número de vueltas, y como no depende de $t$, es el mismo para $\alpha$ ($t=0$) y para $\beta$ ($t=1$).
 
     \item \textbf{Es homomorfismo.} Sean $\alpha, \beta \in C_{(1,0)}(S^1)$ con elevaciones $\tilde{\alpha}, \tilde{\beta}$ que valen $0$ en $0$. Definimos $w \colon I \to \mathbb{R}$ por
     \[ w(s) = \begin{cases} \tilde{\alpha}(2s), & s \in [0,\tfrac12], \\ \tilde{\alpha}(1) + \tilde{\beta}(2s-1), & s \in [\tfrac12,1]. \end{cases} \]
