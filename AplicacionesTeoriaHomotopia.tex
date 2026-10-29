@@ -107,7 +107,7 @@ Luego existe $k(t) \in \mathbb{Z}$ con $2\pi i\,\tilde{\omega}_1(t) = 2\pi i\,\t
 Sean $x_0 \in S^1$ y $\alpha \in C_{x_0}(S^1)$. Definimos $\deg_{x_0}(\alpha) := \tilde{\alpha}(1) - \tilde{\alpha}(0)$, siendo $\tilde{\alpha}$ \emph{cualquier} elevación de $\alpha$ (está bien definido por el lema anterior).
 \end{definicion}
 
-\begin{teorema}{Cambio de punto base y grado [C10.9]}{teo_cambio_base_grado}
+\begin{teorema}{Cambio de punto base y grado [C10.9] \marcaE}{teo_cambio_base_grado}
 Sea $x_0 \in S^1$ y sea $\omega \colon I \to S^1$ una aplicación continua con $\omega(0) = x_0$ y $\omega(1) = (1,0)$. El diagrama
 \begin{center}
 \begin{tikzpicture}
@@ -144,7 +144,7 @@ Por el \cref{prop:lema_dos_elevaciones}, $\tilde{\omega}$ y $(\widetilde{\omega^
 Como $\tilde{\omega}(0) = \tilde{\alpha}(1)$, queda $\tilde{\omega}(1) = \tilde{\alpha}(1) - \tilde{\alpha}(0) = \deg_{x_0}(\alpha)$.
 \end{proof}
 
-\begin{observacion}{$\deg_{x_0}$ solo depende de la clase}{obs_grado_clase}
+\begin{observacion}{$\deg_{x_0}$ solo depende de la clase [C10.8] \marcaE}{obs_grado_clase}
 Por el teorema anterior, $\deg_{x_0}(\alpha) = \deg(\omega^{-1} * \alpha * \omega)$ y la clase $[\omega^{-1} * \alpha * \omega] = P_\omega([\alpha])$ solo depende de $[\alpha]$. Por tanto, si $\alpha \simeq_{\{0,1\}} \beta$ en $C_{x_0}(S^1)$, entonces $\deg_{x_0}(\alpha) = \deg_{x_0}(\beta)$. Se usa en el corolario de la no existencia de aplicaciones impares.
 \end{observacion}
 
@@ -275,63 +275,20 @@ Si $X \simeq Y$, entonces $\#\pi_0(X) = \#\pi_0(Y)$. (Referencia: Kosniowski, \e
 \end{proposicion}
 
 \begin{proof}
-Sean $\varphi \colon X \to Y$ y $\psi \colon Y \to X$ continuas con $\psi \circ \varphi \simeq 1_X$ y $\varphi \circ \psi \simeq 1_Y$. Para cada aplicación continua $f \colon X \to Y$ definimos
-\[ \pi_0(f) \colon \pi_0(X) \to \pi_0(Y), \qquad C \mapsto D_C, \]
-donde $D_C$ es la única arco-componente de $Y$ con $f(C) \subseteq D_C$ (existe porque $f(C)$ es arco-conexo, por ser imagen continua de un arco-conexo, y está contenido en una única arco-componente). Basta probar, para aplicaciones continuas cualesquiera $X \xrightarrow{f} Y \xrightarrow{g} Z$ y $f, f' \colon X \to Y$:
+Para $f \colon X \to Y$ continua y $C \in \pi_0(X)$: $C$ arco-conexo $\implies$ $f(C)$ arco-conexo $\implies$ $f(C)$ está en una única arco-componente de $Y$. Así queda definida
+\[ \pi_0(f) \colon \pi_0(X) \to \pi_0(Y), \qquad f(C) \subseteq \pi_0(f)(C). \]
+Para $X \xrightarrow{f} Y \xrightarrow{g} Z$ y $f' \colon X \to Y$ continuas se cumple:
 \begin{enumerate}
-    \item[\textcircled{1}] $\pi_0(g \circ f) = \pi_0(g) \circ \pi_0(f)$.
-    \item[\textcircled{2}] $\pi_0(1_X) = 1_{\pi_0(X)}$.
-    \item[\textcircled{3}] $f \simeq f' \implies \pi_0(f) = \pi_0(f')$.
+    \item $\pi_0(g \circ f) = \pi_0(g) \circ \pi_0(f)$. Hay que ver que ambos lados mandan $C$ a la misma arco-componente de $Z$. Por definición, el lado derecho es
+    \[ D := \pi_0(f)(C), \quad\text{con } f(C) \subseteq D, \qquad E := \pi_0(g)(D), \quad\text{con } g(D) \subseteq E, \]
+    es decir, $\big(\pi_0(g) \circ \pi_0(f)\big)(C) = E$. Aplicando $g$ a $f(C) \subseteq D$:
+    \[ (g \circ f)(C) = g\big(f(C)\big) \subseteq g(D) \subseteq E. \]
+    Así $E$ es una arco-componente de $Z$ que contiene a $(g \circ f)(C)$, y como solo hay una, $\pi_0(g \circ f)(C) = E$.
+    \item $\pi_0(1_X) = 1_{\pi_0(X)}$, pues $1_X(C) = C$.
+    \item $f \simeq f' \implies \pi_0(f) = \pi_0(f')$. Si $F \colon f \simeq f'$, entonces $F(C \times I)$ es arco-conexo, luego está en una única arco-componente $D$, y esta contiene a $f(C) = F(C \times \{0\})$ y a $f'(C) = F(C \times \{1\})$. Así $\pi_0(f)(C) = D = \pi_0(f')(C)$.
 \end{enumerate}
 
-\textcircled{1} Sea $C$ una arco-componente de $X$. Sea $D_C = \pi_0(f)(C)$, de modo que $f(C) \subseteq D_C$, y sea $E = \pi_0(g)(D_C)$, de modo que $g(D_C) \subseteq E$. Entonces $(g \circ f)(C) \subseteq g(D_C) \subseteq E$, y como $E$ es una arco-componente, es la única que contiene a $(g \circ f)(C)$, es decir, $\pi_0(g \circ f)(C) = E = \pi_0(g)(\pi_0(f)(C))$.
-
-\textcircled{2} Para $C \in \pi_0(X)$, se tiene $1_X(C) = C \subseteq C$, luego $\pi_0(1_X)(C) = C$.
-
-\textcircled{3} Sea $F \colon X \times I \to Y$ con $F_0 = f$ y $F_1 = f'$, y sea $C \in \pi_0(X)$. Como $C \times I$ es arco-conexo, $F(C \times I)$ es arco-conexo, y está contenido en una única arco-componente $D$ de $Y$. Como $f(C) = F(C \times \{0\}) \subseteq D$ y $f'(C) = F(C \times \{1\}) \subseteq D$, se tiene $\pi_0(f)(C) = D = \pi_0(f')(C)$.
-
-Con \textcircled{1}--\textcircled{3}: de $\psi \circ \varphi \simeq 1_X$ se obtiene $\pi_0(\psi) \circ \pi_0(\varphi) = \pi_0(\psi \circ \varphi) = \pi_0(1_X) = 1_{\pi_0(X)}$, y de $\varphi \circ \psi \simeq 1_Y$, $\pi_0(\varphi) \circ \pi_0(\psi) = 1_{\pi_0(Y)}$. Luego $\pi_0(\varphi)$ es biyectiva con inversa $\pi_0(\psi)$, y $\#\pi_0(X) = \#\pi_0(Y)$.
+Sean ahora $\varphi \colon X \to Y$ y $\psi \colon Y \to X$ con $\psi \circ \varphi \simeq 1_X$ y $\varphi \circ \psi \simeq 1_Y$. Por 1, 3 y 2,
+\[ \pi_0(\psi) \circ \pi_0(\varphi) = \pi_0(\psi \circ \varphi) = \pi_0(1_X) = 1_{\pi_0(X)}, \qquad \pi_0(\varphi) \circ \pi_0(\psi) = 1_{\pi_0(Y)}, \]
+luego $\pi_0(\varphi)$ es biyectiva y $\#\pi_0(X) = \#\pi_0(Y)$.
 \end{proof}
-
-\subsection{Ejercicios resueltos en clase}
-
-\begin{center}
-\textbf{21/10/2026 (Clase 11)}
-\end{center}
-
-\begin{ejercicio}{Tema 5, ej. 3, apartado 1 (Borsuk en el toro)}
-¿Se cumple el teorema de Borsuk en el toro $\mathbb{T}^2 \subseteq \mathbb{R}^3$? Es decir, ¿es cierto que para toda $f \colon \mathbb{T}^2 \to \mathbb{R}^2$ continua existe $x \in \mathbb{T}^2$ con $f(x) = f(-x)$?
-
-\textbf{Respuesta: no.} Sea $g \colon \mathbb{R}^3 \to \mathbb{R}^2$, $g(x,y,z) = (x,y)$ y $f = g|_{\mathbb{T}^2}$. Si existiera $p = (p_1,p_2,p_3) \in \mathbb{T}^2$ con $g(p) = g(-p)$, entonces $(p_1,p_2) = (-p_1,-p_2)$, es decir, $p_1 = p_2 = 0$. Pero el toro no tiene ningún punto cuyas dos primeras coordenadas sean $0$. Luego esa $f$ no cumple la conclusión.
-\end{ejercicio}
-
-\begin{ejercicio}{Tema 5, ej. 3, apartado 2 ($f \colon S^1 \to \mathbb{R}$)}
-Sea $f \colon S^1 \to \mathbb{R}$ continua. Probar que existe $x_0 \in S^1$ con $f(x_0) = f(-x_0)$.
-
-\textbf{Solución.} Supongamos que $f(x) \neq f(-x)$ para todo $x \in S^1$. Definimos la aplicación continua
-\[ g \colon S^1 \to \mathbb{R}, \qquad g(x) = \frac{f(x) - f(-x)}{|f(x) - f(-x)|}, \]
-cuya imagen está contenida en $\{-1,1\}$. Como $S^1$ es conexo y $g$ es continua, $g(S^1)$ es conexo y está contenido en $\{-1,1\}$, luego $g$ es constante: $g(x) = k \in \{-1,1\}$ para todo $x$. Pero
-\[ g(-x) = \frac{f(-x) - f(x)}{|f(-x) - f(x)|} = -g(x), \]
-es decir, $k = -k$, luego $k = 0$, lo cual es absurdo.
-\end{ejercicio}
-
-\begin{center}
-\textbf{23/10/2026 (Clase 12)}
-\end{center}
-
-\begin{ejercicio}{Tema 5, ej. 6 ($\#\pi_0$ es invariante homotópico)}
-Probar que el cardinal del conjunto de arco-componentes de un espacio es un invariante homotópico. Es la \cref{prop:prop_pi0_invariante}.
-\end{ejercicio}
-
-\begin{ejercicio}{Tema 5, ej. 7 (conexo no arco-conexo)}
-Sea $X = \{(x,\sin\frac1x) : x \in\, ]0,1]\} \cup (\{0\} \times [-1,1])$, la adherencia $\overline{A}$ de la gráfica $A$. Es un ejemplo clásico de espacio conexo que no es arco-conexo.
-
-$X$ tiene $2$ arco-componentes (la gráfica y el segmento $\{0\} \times [-1,1]$). Por tanto $\#\pi_0(X) = 2 \neq 1 = \#\pi_0(\{p\})$, donde $\{p\}$ es un punto. Si $X$ fuese contráctil, tendría el mismo tipo de homotopía que un punto y, por la \cref{prop:prop_pi0_invariante}, $\#\pi_0(X) = 1$. Luego $X$ \textbf{no es contráctil}. (Los hechos sobre las arco-componentes de $X$ se enunciaron en clase sin demostración.)
-\end{ejercicio}
-
-\begin{ejercicio}{ejercicios propuestos el 16/10 sobre el grado}
-\begin{itemize}
-    \item $\deg_{x_0}(\alpha) = \deg_{x_0}(\beta)$ si $\alpha \simeq_{\{0,1\}} \beta$: es la \cref{obs:obs_grado_clase}.
-    \item $\deg_{(1,0)} \circ P_\omega = \deg_{x_0}$: demostrado en el \cref{thm:teo_cambio_base_grado} (completado el 23/10).
-\end{itemize}
-\end{ejercicio}

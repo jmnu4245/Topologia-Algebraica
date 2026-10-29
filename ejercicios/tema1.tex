@@ -1,0 +1,147 @@
+\subsection{Tema 1. Resultados preliminares de topología general}
+
+\begin{ejercicio}{T1.1 (continuidad y cerrados)}
+Prueba que, si $f \colon X \to Y$ es una aplicación entre espacios topológicos, entonces $f$ es continua si y solo si $f^{-1}(C)$ es cerrado en $X$, para todo cerrado $C \subseteq Y$.
+
+\enapuntes{\cref{prop:prop_lema_previo} (ejercicio de clase [C1.16]).}
+\end{ejercicio}
+
+\begin{ejercicio}{T1.2 (proyección estereográfica)}
+Prueba que la proyección estereográfica es un homeomorfismo entre $\mathbb{R}^2$ y $S^2 \setminus \{(0,0,1)\}$, siendo $S^2 \subseteq \mathbb{R}^3$ la esfera de centro el origen y radio $1$.
+
+\enapuntes{\cref{prop:proy_estereografica} (ejercicio de clase [C1.7]; se prueba para $S^n$).}
+\end{ejercicio}
+
+\begin{ejercicio}{T1.3 (topología inducida en dos pasos)}
+Sea $(X,\tau)$ un espacio topológico y $Z \subseteq Y \subseteq X$. Sean $\tau_Y$ y $\tau_Z$ las topologías inducidas por $\tau$ en $Y$ y $Z$. Prueba que $\tau_Z$ es idéntica a la topología en $Z$ inducida por $\tau_Y$.
+
+\sol \fuentepropia
+
+Denotemos por $(\tau_Y)_Z = \{V \cap Z : V \in \tau_Y\}$ la topología inducida por $\tau_Y$ en $Z$.
+
+$(\tau_Y)_Z \subseteq \tau_Z$: si $W = V \cap Z$ con $V \in \tau_Y$, existe $U \in \tau$ con $V = U \cap Y$. Como $Z \subseteq Y$, se tiene $W = U \cap Y \cap Z = U \cap Z \in \tau_Z$.
+
+$\tau_Z \subseteq (\tau_Y)_Z$: si $W = U \cap Z$ con $U \in \tau$, entonces $W = (U \cap Y) \cap Z$ (de nuevo porque $Z \subseteq Y$), y $U \cap Y \in \tau_Y$. Luego $W \in (\tau_Y)_Z$.
+\end{ejercicio}
+
+\begin{ejercicio}{T1.4 (caracterizaciones de la conexión)}
+Denotemos por $I_2$ el conjunto $\{0,1\}$ con la topología discreta. Sea $X$ un espacio topológico. Prueba que son equivalentes:
+\begin{enumerate}
+    \item[a)] $X$ es conexo.
+    \item[b)] Los únicos subconjuntos abiertos y cerrados de $X$ son $\emptyset$ y $X$.
+    \item[c)] Ninguna aplicación continua $f \colon X \to I_2$ es sobreyectiva.
+\end{enumerate}
+
+\sol \fuentepropia
+
+\emph{a) $\Leftrightarrow$ b).} $X$ es disconexo si y solo si existe una desconexión $(A,B)$: $A,B$ abiertos, no vacíos, disjuntos y con $A \cup B = X$. Eso equivale a que $A$ sea abierto y cerrado (su complementario $B$ es abierto) con $A \neq \emptyset$ y $A \neq X$. Es decir, $X$ es disconexo si y solo si existe un abierto y cerrado distinto de $\emptyset$ y de $X$.
+
+\emph{b) $\Rightarrow$ c).} Sea $f \colon X \to I_2$ continua. Como $\{0\}$ es abierto y cerrado en $I_2$ (topología discreta), $A = f^{-1}(0)$ es abierto y cerrado en $X$ (\textbf{T1.1}). Por b), $A = \emptyset$ o $A = X$, es decir, $f$ no toma el valor $0$ o no toma el valor $1$. Luego $f$ no es sobreyectiva.
+
+\emph{c) $\Rightarrow$ b).} Si existiera $A$ abierto y cerrado con $A \neq \emptyset, X$, la aplicación $f(x) = 0$ si $x \in A$ y $f(x) = 1$ si $x \notin A$ sería continua (las antiimágenes de los cuatro subconjuntos de $I_2$ son $\emptyset$, $A$, $X \setminus A$ y $X$, todos abiertos) y sobreyectiva, en contra de c).
+\end{ejercicio}
+
+\begin{ejercicio}{T1.5 (unión de conexos con un punto común)}
+Aplica el Ejercicio 4 para probar que, si $\{A_\alpha\}_{\alpha \in \Lambda}$ es una familia de subespacios conexos de $X$ con $\bigcap_{\alpha} A_\alpha \neq \emptyset$, entonces $\bigcup_{\alpha} A_\alpha$ es conexo.
+
+\sol \fuentepropia
+
+Sean $A = \bigcup_\alpha A_\alpha$, $p \in \bigcap_\alpha A_\alpha$ y $f \colon A \to I_2$ continua. Para cada $\alpha$, la restricción $f|_{A_\alpha}$ es continua (por \textbf{T1.3}, la topología de $A_\alpha$ como subespacio de $A$ es la misma que como subespacio de $X$). Como $A_\alpha$ es conexo, por T1.4 c) $f|_{A_\alpha}$ no es sobreyectiva, es decir, es constante, y vale $f(p)$ porque $p \in A_\alpha$. Luego $f \equiv f(p)$ en todo $A$, no es sobreyectiva y, por T1.4, $A$ es conexo.
+\end{ejercicio}
+
+\begin{ejercicio}{T1.6 (unión de conexos que cortan a uno fijo)}
+Sea $\{A_\alpha\}_{\alpha \in \Lambda}$ una familia de subespacios conexos de $X$. Prueba que, si existe $\alpha_0 \in \Lambda$ tal que $A_\alpha \cap A_{\alpha_0} \neq \emptyset$ para todo $\alpha$, entonces $\bigcup_\alpha A_\alpha$ es conexo.
+
+\sol \fuentepropia
+
+Para cada $\alpha$, sea $B_\alpha = A_\alpha \cup A_{\alpha_0}$. Es conexo por \textbf{T1.5}, aplicado a la familia $\{A_\alpha, A_{\alpha_0}\}$, cuya intersección es no vacía. Además $\bigcap_\alpha B_\alpha \supseteq A_{\alpha_0} \neq \emptyset$, luego, por T1.5 otra vez, $\bigcup_\alpha B_\alpha = \bigcup_\alpha A_\alpha$ es conexo.
+\end{ejercicio}
+
+\begin{ejercicio}{T1.7 (unión de conexos que se cortan dos a dos)}
+Sea $\{A_\alpha\}_{\alpha \in \Lambda}$ una familia de subespacios conexos de $X$. Prueba que, si $A_\alpha \cap A_\beta \neq \emptyset$ para todo $\alpha, \beta \in \Lambda$, entonces $\bigcup_\alpha A_\alpha$ es conexo (aplica el Ejercicio 4).
+
+\sol \fuentepropia
+
+Sea $f \colon \bigcup_\alpha A_\alpha \to I_2$ continua. Como en T1.5, cada $f|_{A_\alpha}$ es constante, igual a cierto $c_\alpha$. Dados $\alpha, \beta$, tomamos $x \in A_\alpha \cap A_\beta$, y así $c_\alpha = f(x) = c_\beta$. Luego $f$ es constante, no es sobreyectiva y, por T1.4, la unión es conexa.
+\end{ejercicio}
+
+\begin{ejercicio}{T1.8 (arco-conexo, no localmente arco-conexo)}
+Sea $S = \{\frac1n\}_{n \geq 1} \cup \{0\}$ y $X = (S \times [0,1]) \cup ([0,1] \times \{0\}) \subseteq \mathbb{R}^2$. Representa $X$, comprueba que es arco-conexo y que no es localmente arco-conexo (observa la intersección de $X$ con $B((0,\frac12),\frac14)$).
+
+\sol \fuentepropia
+
+$X$ es un ``peine'': la base $[0,1] \times \{0\}$ con dientes verticales $\{s\} \times [0,1]$ en cada $s \in S$.
+
+\emph{Arco-conexo.} Todo punto $(s,y) \in X$ se une con $(s,0)$ por el segmento vertical $\{s\} \times [0,y] \subseteq X$, y $(s,0)$ se une con $(0,0)$ por la base. Por tanto todo punto se une con $(0,0)$ y, concatenando, dos puntos cualesquiera se unen por un arco.
+
+\emph{No localmente arco-conexo en $p = (0,\frac12)$.} Sea $U = B(p,\frac14) \cap X$, entorno de $p$ en $X$. Los puntos de la base distan $\frac12$ de $p$, luego $U \subseteq S \times \left]\frac14,\frac34\right[$. Sea $V \subseteq U$ cualquier entorno de $p$. Como $(\frac1n,\frac12) \to p$, existe $n$ con $q = (\frac1n,\frac12) \in V$. Si $\gamma \colon I \to V$ fuera un arco de $p$ a $q$, su primera coordenada $\gamma_1 \colon I \to S$ sería continua; $\gamma_1(I)$ sería conexo, y los únicos conexos de $S$ son los puntos (entre dos puntos de $S$ siempre hay un real que no está en $S$), luego $\gamma_1$ sería constante. Pero $\gamma_1(0) = 0 \neq \frac1n = \gamma_1(1)$. Así, ningún entorno $V \subseteq U$ de $p$ es arco-conexo.
+\end{ejercicio}
+
+\begin{ejercicio}{T1.9 (compacto en Hausdorff es cerrado)}
+Prueba que, si $K \subseteq X$ es compacto y $X$ es Hausdorff, entonces $K$ es cerrado.
+
+\sol \fuentepropia
+
+Sea $x \in X \setminus K$. Para cada $y \in K$ existen abiertos disjuntos $U_y \ni y$ y $V_y \ni x$ (dentro de los entornos disjuntos que da la propiedad de Hausdorff). Los $U_y$ recubren $K$; por compacidad, $K \subseteq U_{y_1} \cup \dots \cup U_{y_n}$. Entonces $V = V_{y_1} \cap \dots \cap V_{y_n}$ es un abierto que contiene a $x$ y no corta a $U_{y_1} \cup \dots \cup U_{y_n} \supseteq K$. Luego $X \setminus K$ es entorno de cada uno de sus puntos, es abierto, y $K$ es cerrado.
+\end{ejercicio}
+
+\begin{ejercicio}{T1.10 (caracterizaciones de Hausdorff)}
+Sea $X$ un espacio topológico. Prueba que son equivalentes:
+\begin{enumerate}
+    \item[a)] $X$ es Hausdorff.
+    \item[b)] Para todo $x \in X$ y todo $y \neq x$, existe $U \in E(x)$ tal que $y \notin \overline{U}$.
+    \item[c)] Para todo $x \in X$, $\bigcap_{U \in E(x)} \overline{U} = \{x\}$.
+    \item[d)] $\Delta = \{(x,x) : x \in X\}$ es cerrado en $X \times X$.
+\end{enumerate}
+
+\sol \fuentepropia
+
+\emph{a) $\Rightarrow$ b).} Sean $U \in E(x)$ y $V \in E(y)$ disjuntos. Entonces $V$ contiene un abierto $W \ni y$ con $W \cap U = \emptyset$, luego $y \notin \overline{U}$.
+
+\emph{b) $\Rightarrow$ a).} Dados $x \neq y$, sea $U \in E(x)$ con $y \notin \overline{U}$. Entonces $V = X \setminus \overline{U}$ es un abierto que contiene a $y$ y $U \cap V = \emptyset$, pues $U \subseteq \overline{U}$.
+
+\emph{b) $\Leftrightarrow$ c).} Siempre $x \in \bigcap_{U \in E(x)} \overline{U}$. La igualdad c) dice que todo $y \neq x$ queda fuera de algún $\overline{U}$, que es exactamente b).
+
+\emph{a) $\Rightarrow$ d).} Sea $(x,y) \notin \Delta$, es decir, $x \neq y$. Tomamos $U \in E(x)$ y $V \in E(y)$ disjuntos. Entonces $U \times V$ es entorno de $(x,y)$ y no corta a $\Delta$: si $(z,z) \in U \times V$, sería $z \in U \cap V$. Luego $(X \times X) \setminus \Delta$ es abierto.
+
+\emph{d) $\Rightarrow$ a).} Si $x \neq y$, $(x,y)$ está en el abierto $(X \times X) \setminus \Delta$. Por la definición de la topología producto, existen $U \in E(x)$ y $V \in E(y)$ con $U \times V \subseteq (X \times X) \setminus \Delta$, y eso significa $U \cap V = \emptyset$.
+\end{ejercicio}
+
+\begin{ejercicio}{T1.11 (aplicaciones con llegada Hausdorff)}
+Sean $f, g \colon X \to Y$ continuas, con $Y$ Hausdorff. Prueba:
+\begin{enumerate}
+    \item[a)] $\{x \in X : f(x) = g(x)\}$ es cerrado en $X$.
+    \item[b)] Si $D$ es denso en $X$ y $f|_D = g|_D$, entonces $f = g$.
+    \item[c)] La gráfica de $f$ es un cerrado de $X \times Y$.
+    \item[d)] Si $f$ es inyectiva, entonces $X$ es Hausdorff.
+\end{enumerate}
+
+\sol \fuentepropia
+
+\textbf{a)} La aplicación $h = (f,g) \colon X \to Y \times Y$ es continua y $\{f = g\} = h^{-1}(\Delta_Y)$, que es cerrado porque $\Delta_Y$ lo es (\textbf{T1.10} d) y por T1.1.
+
+\textbf{b)} $\{f = g\}$ es un cerrado que contiene a $D$, luego contiene a $\overline{D} = X$.
+
+\textbf{c)} La aplicación $k \colon X \times Y \to Y \times Y$, $k(x,y) = (f(x),y)$, es continua, y la gráfica $\{(x,y) : y = f(x)\}$ es $k^{-1}(\Delta_Y)$, que es cerrado.
+
+\textbf{d)} Si $x \neq x'$, entonces $f(x) \neq f(x')$, y existen abiertos disjuntos $U \ni f(x)$ y $V \ni f(x')$. Así, $f^{-1}(U)$ y $f^{-1}(V)$ son abiertos disjuntos que contienen a $x$ y a $x'$.
+\end{ejercicio}
+
+\begin{ejercicio}{T1.12 (biyección continua de compacto en Hausdorff)}
+Prueba que si $f \colon X \to Y$ es una biyección continua, $X$ es compacto e $Y$ es Hausdorff, entonces $f$ es un homeomorfismo.
+
+\sol \fuentepropia
+
+Basta ver que $f^{-1}$ es continua, es decir (por \textbf{T1.1}), que $(f^{-1})^{-1}(C) = f(C)$ es cerrado para todo cerrado $C \subseteq X$.
+\begin{itemize}
+    \item $C$ es compacto: si $\{U_i\}$ es un recubrimiento abierto de $C$, entonces $\{U_i\} \cup \{X \setminus C\}$ recubre $X$, y un subrecubrimiento finito de este da uno finito de $C$.
+    \item $f(C)$ es compacto, por ser imagen continua de un compacto [C1.14].
+    \item $f(C)$ es cerrado en $Y$, por ser compacto en un Hausdorff (\textbf{T1.9}).
+\end{itemize}
+\end{ejercicio}
+
+\begin{ejercicio}{T1.13 (lema de Lebesgue)}
+Sea $(X,d)$ un espacio métrico compacto y $\mathcal{U} = \{U_\alpha\}_{\alpha \in \Lambda}$ un recubrimiento abierto de $X$. Entonces existe $\delta > 0$ tal que, para todo $x \in X$, existe $\alpha \in \Lambda$ con $B(x,\delta) \subseteq U_\alpha$.
+
+\enapuntes{\cref{thm:lema_lebesgue} [C7.4].}
+\end{ejercicio}

@@ -1,0 +1,179 @@
+\subsection{Tema 2. Equivalencia homotópica}
+
+\begin{ejercicio}{T2.1 (homotopías en un producto)}
+Sean $f, g \colon X \to Y \times Z$ continuas, con $f = (f_1,f_2)$ y $g = (g_1,g_2)$. Prueba que $f \simeq g$ si y solo si $f_1 \simeq g_1$ y $f_2 \simeq g_2$.
+
+\sol \fuentepropia
+
+$\Rightarrow$: Sea $F \colon f \simeq g$ y sean $p_Y, p_Z$ las proyecciones (continuas). Entonces $F_1 = p_Y \circ F$ es continua, con $(F_1)_0 = p_Y \circ f = f_1$ y $(F_1)_1 = g_1$, luego $F_1 \colon f_1 \simeq g_1$. Análogamente, $p_Z \circ F \colon f_2 \simeq g_2$.
+
+$\Leftarrow$: Sean $F_1 \colon f_1 \simeq g_1$ y $F_2 \colon f_2 \simeq g_2$. La aplicación $F = (F_1,F_2) \colon X \times I \to Y \times Z$ es continua (sus dos componentes lo son) y cumple $F_0 = (f_1,f_2) = f$ y $F_1 = (g_1,g_2) = g$.
+\end{ejercicio}
+
+\begin{ejercicio}{T2.2 (aplicaciones al hemisferio norte)}
+Sea $X$ un espacio topológico y sea $Y$ el hemisferio norte abierto de $S^2$ (sin el ecuador). Prueba que cualquier par de aplicaciones continuas $X \to Y$ son homotópicas.
+
+\sol \fuentepropia
+
+Sea $Y = \{(x,y,z) \in S^2 : z > 0\}$ y sean $f,g \colon X \to Y$ continuas. Definimos
+\[ F(x,t) = \frac{(1-t)f(x) + t\,g(x)}{\|(1-t)f(x) + t\,g(x)\|}. \]
+La tercera coordenada de $(1-t)f(x) + t\,g(x)$ es combinación convexa de dos números positivos, luego es positiva. En particular, el vector no es nulo, $F$ está bien definida y es continua, y $F(x,t)$ tiene norma $1$ y tercera coordenada positiva, así que $F(x,t) \in Y$. Además $F_0 = f$ y $F_1 = g$ (ya tienen norma $1$). Luego $f \simeq g$.
+
+\emph{Otra forma:} $Y \cong \{(x,y) : x^2 + y^2 < 1\}$ mediante $(x,y,z) \mapsto (x,y)$, con inversa $(x,y) \mapsto (x,y,\sqrt{1-x^2-y^2})$. El disco es convexo, luego contráctil; así que $Y$ es contráctil y se aplica \textbf{T2.6} c).
+\end{ejercicio}
+
+\begin{ejercicio}{T2.3 (arco-conexo si y solo si $[P,X]$ tiene un elemento)}
+Sea $P = \{p\}$ un espacio con un único punto y $X$ un espacio topológico. Prueba que $X$ es arco-conexo $\iff$ el conjunto cociente $[P,X]$ tiene un único elemento.
+
+\sol \fuentepropia
+
+La aplicación $C(P,X) \to X$, $f \mapsto f(p)$, es biyectiva. Veamos que, para $f,g \in C(P,X)$,
+\[ f \simeq g \iff \text{existe un arco en } X \text{ de } f(p) \text{ a } g(p). \]
+$\Rightarrow$: si $F \colon f \simeq g$, entonces $\alpha(t) = F(p,t)$ es un arco de $f(p)$ a $g(p)$.\\
+$\Leftarrow$: si $\alpha$ es un arco de $f(p)$ a $g(p)$, entonces $F(p,t) = \alpha(t)$ es continua (pues $P \times I \cong I$) y $F \colon f \simeq g$.
+
+Por tanto, las clases de $[P,X]$ se corresponden con las arco-componentes de $X$. Así, $[P,X]$ tiene un único elemento si y solo si dos puntos cualesquiera de $X$ se unen por un arco, es decir, si y solo si $X$ es arco-conexo (con $X \neq \emptyset$).
+\end{ejercicio}
+
+\begin{ejercicio}{T2.4 (homotópica a la identidad en un discreto)}
+Sea $X$ un espacio discreto y $f \colon X \to X$ continua. Prueba que si $f \simeq 1_X$, entonces $f = 1_X$.
+
+\sol \fuentepropia
+
+\emph{Previo: todo arco $\alpha \colon I \to X$ es constante.} $\alpha(I)$ es conexo. En un discreto cada $\{x\}$ es abierto y cerrado, así que un subconjunto con dos puntos o más es disconexo. Luego $\alpha(I)$ es un punto.
+
+Sea $F \colon f \simeq 1_X$. Para cada $x \in X$, $t \mapsto F(x,t)$ es un arco en $X$, luego constante: $f(x) = F(x,0) = F(x,1) = x$. Así $f = 1_X$.
+\end{ejercicio}
+
+\begin{ejercicio}{T2.5 (de conexo a discreto)}
+Sean $X$ conexo e $Y$ discreto. Prueba que si $f, g \colon X \to Y$ son continuas y homotópicas, entonces $f = g = \text{cte}$.
+
+\sol \fuentepropia
+
+$f(X)$ es un conexo del discreto $Y$, luego es un punto (como en T2.4): $f$ es constante, e igualmente $g$. Si $F \colon f \simeq g$, para cada $x$ el arco $t \mapsto F(x,t)$ es constante (T2.4), así que $f(x) = g(x)$. Luego $f = g$.
+\end{ejercicio}
+
+\begin{ejercicio}{T2.6 (caracterización de los contráctiles)}
+Prueba que son equivalentes para un espacio topológico $X$:
+\begin{enumerate}
+    \item[a)] $X$ es contráctil.
+    \item[b)] $1_X \simeq c_x$, para todo $x \in X$.
+    \item[c)] Para todo par de aplicaciones $f, g \colon T \to X$ se tiene $f \simeq g$.
+    \item[d)] $X$ es del mismo tipo de homotopía que un punto.
+\end{enumerate}
+
+\enapuntes{\cref{thm:teo_contractil} (ejercicio de clase [C2.12]).} \quad \enexamen{final 29/01/2026, ej.\ 1b (0,5 pts)}
+
+En el examen bastaba con una caracterización: el profesor probó solo a)$\Leftrightarrow$d) y citó c).
+\end{ejercicio}
+
+\begin{ejercicio}{T2.7 (contráctil $\Rightarrow$ arco-conexo)}
+Prueba que si $X$ es contráctil, entonces $X$ es arco-conexo. (El recíproco no es cierto: $S^1$ no es contráctil.)
+
+\enapuntes{\cref{thm:teo_contractil_arcoconexo} [C3.6]. El recíproco es falso: \cref{obs:obs_recip_contractil} ($S^1$ es arco-conexo y no contráctil, \cref{prop:cor_s1_no_contractil}).} \quad \enexamen{parcial 31/10/2025, ej.\ 1b (incluye el recíproco)}
+\end{ejercicio}
+
+\begin{ejercicio}{T2.8 (producto de contráctiles)}
+Prueba que $X_1 \times \dots \times X_r$ es contráctil si y solo si $X_i$ es contráctil para todo $i$.
+
+\sol \fuentepropia
+
+Escribimos $X = X_1 \times \dots \times X_r$ (todos no vacíos).
+
+$\Leftarrow$: sean $F_i \colon 1_{X_i} \simeq c_{a_i}$. Entonces
+\[ F\big((x_1,\dots,x_r),t\big) = \big(F_1(x_1,t),\dots,F_r(x_r,t)\big) \]
+es continua (por componentes), $F_0 = 1_X$ y $F_1 = c_{(a_1,\dots,a_r)}$.
+
+$\Rightarrow$: sea $F \colon 1_X \simeq c_{(a_1,\dots,a_r)}$. Fijado $i$, elegimos $b_j \in X_j$ para $j \neq i$ y sea $\iota_i \colon X_i \to X$ la aplicación que pone $x$ en el lugar $i$ y $b_j$ en los demás. Si $p_i$ es la proyección, $G(x,t) = p_i\big(F(\iota_i(x),t)\big)$ es continua, $G(x,0) = p_i(\iota_i(x)) = x$ y $G(x,1) = a_i$. Luego $1_{X_i} \simeq c_{a_i}$.
+\end{ejercicio}
+
+\begin{ejercicio}{T2.9 (el cono es contráctil)}
+Sea $C(X) = (X \times [0,1])/\!\sim$, donde se colapsa $X \times \{1\}$ a un punto, con la topología cociente. Prueba que $C(X)$ es contráctil. (Ayuda: $F([(x,s)],t) = [(x,(1-t)s+t)]$.)
+
+\sol \fuentepropia
+
+Sea $q \colon X \times I \to C(X)$ la proyección y $v = q(X \times \{1\})$ el vértice.
+
+\emph{Bien definida.} Si $[(x,s)] = [(y,s')]$ con $(x,s) \neq (y,s')$, entonces $s = s' = 1$, y $(1-t)\cdot 1 + t = 1$, así que ambas imágenes son $v$.
+
+\emph{Continua.} Sea $G \colon X \times I \times I \to X \times I$, $G(x,s,t) = (x,(1-t)s+t)$, que es continua (nótese que $(1-t)s + t \in [0,1]$). Se cumple $F \circ (q \times 1_I) = q \circ G$, que es continua. Como $I$ es compacto Hausdorff, $q \times 1_I$ es una identificación (lema de Whitehead), luego $F$ es continua.
+
+\emph{Extremos.} $F_0([(x,s)]) = [(x,s)]$, luego $F_0 = 1_{C(X)}$; y $F_1([(x,s)]) = [(x,1)] = v$, luego $F_1 = c_v$. Así $C(X)$ es contráctil.
+\end{ejercicio}
+
+\begin{ejercicio}{T2.10 (unión de contráctiles)}
+Sean $X$ e $Y$ contráctiles con $X \cap Y$ no vacío y arco-conexo. ¿Es $X \cup Y$ contráctil? (Usa que $S^1$ no es contráctil.)
+
+\sol \fuentepropia
+
+\textbf{No.} Dentro de $S^1$, sean
+\[ X = \{e^{i\theta} : \theta \in [0,\pi]\}, \qquad Y = \{e^{i\theta} : \theta \in \left]\pi, 2\pi\right]\}. \]
+$X \cong [0,\pi]$ e $Y \cong \left]\pi,2\pi\right]$ (mediante $\theta \mapsto e^{i\theta}$, que es inyectiva en cada intervalo; para $Y$ la inversa es continua porque $Y$ no llega a $e^{i\pi}$ y el ángulo se puede tomar en $\left]\pi,2\pi\right]$ de forma continua). Ambos intervalos son convexos, luego contráctiles. Además $X \cap Y = \{(1,0)\}$ es no vacío y arco-conexo. Pero $X \cup Y = S^1$, que no es contráctil [C9.6].
+
+\emph{Trampa:} el ejemplo de las dos semicircunferencias \emph{cerradas} no vale, porque su intersección son dos puntos, que no es arco-conexo. Tampoco sirven dos abiertos: por [C7.6] su unión sería simplemente conexa.
+\end{ejercicio}
+
+\begin{ejercicio}{T2.11 (aplicaciones de $S^{n-1}$ homotópicas a constantes)}
+Sea $f \colon S^{n-1} \to Y$ continua, $n \geq 1$, y $p \in S^{n-1}$. Prueba que son equivalentes:
+\begin{enumerate}
+    \item[a)] $f$ es homotópica a una aplicación constante.
+    \item[b)] $f$ se extiende a una aplicación continua $D^n \to Y$.
+    \item[c)] $f \simeq_{\{p\}} c_{f(p)}$.
+\end{enumerate}
+
+\sol \fuentepropia
+
+\emph{a)$\Rightarrow$b).} Por simetría de $\simeq$, sea $H \colon c_{y_0} \simeq f$, es decir, $H(x,0) = y_0$ y $H(x,1) = f(x)$. Definimos $\bar f \colon D^n \to Y$:
+\[ \bar f(x) = \begin{cases} y_0 & \text{si } 0 \leq \|x\| \leq \frac12, \\[0.5ex] H\left(\dfrac{x}{\|x\|},\, 2\|x\| - 1\right) & \text{si } \frac12 \leq \|x\| \leq 1. \end{cases} \]
+Si $\|x\| = \frac12$, la segunda expresión vale $H(\cdot,0) = y_0$, luego está bien definida. Cada trozo es continuo (en el segundo, $\|x\| \geq \frac12 > 0$) y los dos dominios son cerrados, así que $\bar f$ es continua por el lema de continuidad [C1.17]. Si $\|x\| = 1$, $\bar f(x) = H(x,1) = f(x)$: extiende a $f$.
+
+\emph{b)$\Rightarrow$c).} Sea $\bar f \colon D^n \to Y$ continua con $\bar f|_{S^{n-1}} = f$. Definimos
+\[ G(x,t) = \bar f\big((1-t)x + t\,p\big), \qquad x \in S^{n-1},\ t \in I. \]
+Está bien definida porque $D^n$ es convexo, y es continua. Además $G_0 = f$, $G_1 = c_{\bar f(p)} = c_{f(p)}$ y $G(p,t) = \bar f(p) = f(p)$ para todo $t$. Luego $G \colon f \simeq_{\{p\}} c_{f(p)}$.
+
+\emph{c)$\Rightarrow$a).} Una homotopía relativa a $\{p\}$ es, en particular, una homotopía.
+\end{ejercicio}
+
+\begin{ejercicio}{T2.12 (extensión a $D^n$ con llegada contráctil)}
+Como corolario, prueba que si $Y$ es contráctil, entonces toda aplicación continua $f \colon S^{n-1} \to Y$ es la restricción de una aplicación continua $D^n \to Y$.
+
+\sol \fuentepropia
+
+Como $Y$ es contráctil, por \textbf{T2.6} c) toda aplicación $S^{n-1} \to Y$ es homotópica a una constante. Por \textbf{T2.11} a)$\Rightarrow$b), $f$ se extiende a $D^n$.
+\end{ejercicio}
+
+\begin{ejercicio}{T2.13 (el peine)}
+Sea $S = \{\frac1n : n \geq 1\} \cup \{0\}$ y $X = (S \times [0,1]) \cup ([0,1] \times \{0\})$. Sean $Y = \{0\} \times \left]0,1\right]$, $L = [0,1] \times \{0\}$, $r_x = \{x\} \times \left]0,1\right]$ (así $r_0 = Y$), $\overline{r_x} = \{x\} \times [0,1]$ y $a_n = \frac1n$. Prueba:
+\begin{enumerate}
+    \item[a)] $\overline{r_{a_n}}$ es cerrado en $X$.
+    \item[b)] $X \setminus r_{a_n}$ y $\overline{r_{a_n}}$ son dos cerrados de $X$ cuya unión es $X$.
+    \item[c)] $X \setminus Y$ no es cerrado en $X$.
+    \item[d)] $X$ es contráctil. En particular, es arco-conexo y $1_X \simeq c_p$ para todo $p \in X$.
+    \item[e)] $1_X \simeq_{\{p\}} c_p \iff p \in X \setminus Y$.
+\end{enumerate}
+(Ayuda: si $1_X \simeq_{\{p\}} c_p$, para todo $U \in E(p)$ existe $V \in E(p)$ tal que todo $q \in V$ se une con $p$ por un arco contenido en $U$.)
+
+\sol \fuentepropia
+
+\textbf{a)} $\overline{r_{a_n}} = \{a_n\} \times [0,1]$ es cerrado en $\mathbb{R}^2$, luego $\overline{r_{a_n}} = \overline{r_{a_n}} \cap X$ es cerrado en $X$ (cerrados relativos [C1.5]).
+
+\textbf{b)} Como $a_n$ es un punto aislado de $S$, existe $\varepsilon > 0$ tal que $]a_n - \varepsilon, a_n + \varepsilon[$ no contiene otro punto de $S$. Entonces $r_{a_n} = X \cap \big(]a_n - \varepsilon, a_n + \varepsilon[ \times ]0,2[\big)$ es abierto en $X$, y su complementario $X \setminus r_{a_n}$ es cerrado. Junto con a): $X = (X \setminus r_{a_n}) \cup \overline{r_{a_n}}$, unión de dos cerrados (se cortan solo en $(a_n,0)$).
+
+\textbf{c)} Los puntos $(\frac1n,\frac12) \in X \setminus Y$ convergen a $(0,\frac12) \in Y$. Así, $X \setminus Y$ no contiene a todos sus puntos de acumulación en $X$ y no es cerrado.
+
+\textbf{d)} Definimos $F \colon X \times I \to X$:
+\[ F((x,y),t) = \begin{cases} (x,\,(1-2t)y) & \text{si } t \in [0,\frac12], \\ ((2-2t)x,\,0) & \text{si } t \in [\frac12,1]. \end{cases} \]
+Primero se bajan los dientes a la base y después se desliza la base hasta $(0,0)$. No sale de $X$: $(x,(1-2t)y)$ está en el mismo diente que $(x,y)$ (o en la base si $y = 0$), y $((2-2t)x,0) \in L$. En $t = \frac12$ ambas expresiones valen $(x,0)$, y por el lema de continuidad $F$ es continua. $F_0 = 1_X$ y $F_1 = c_{(0,0)}$. Así $X$ es contráctil y, por \textbf{T2.6} y \textbf{T2.7}, $1_X \simeq c_p$ para todo $p$ y $X$ es arco-conexo.
+
+\textbf{e)} \emph{Prueba de la ayuda.} Sea $F \colon 1_X \simeq_{\{p\}} c_p$ y $U \in E(p)$; podemos suponer $U$ abierto. Como $F(p,t) = p \in U$ para todo $t$, por continuidad cada $(p,t)$ tiene un entorno $W_t \times J_t$ con $F(W_t \times J_t) \subseteq U$. Por compacidad de $I$, bastan $J_{t_1},\dots,J_{t_k}$, y $V = W_{t_1} \cap \dots \cap W_{t_k}$ cumple $F(V \times I) \subseteq U$. Para $q \in V$, $t \mapsto F(q,t)$ es un arco en $U$ de $q$ a $p$.
+
+\emph{$\Rightarrow$} (contrarrecíproco). Sea $p = (0,y_0) \in Y$, con $y_0 > 0$, y sea $U = B(p,\frac{y_0}{2}) \cap X$. Como $U$ no corta a la base, $U \subseteq S \times \left]\frac{y_0}{2},\frac{3y_0}{2}\right[$. Todo entorno $V$ de $p$ contiene algún $q = (\frac1n,y_0)$. Un arco en $U$ de $q$ a $p$ tendría la primera coordenada continua con valores en $S$, luego constante (como en T1.8), pero pasa de $\frac1n$ a $0$. Por la ayuda, $1_X \not\simeq_{\{p\}} c_p$.
+
+\emph{$\Leftarrow$.} Caso $p = (x_0,0) \in L$: la homotopía de d), cambiando la segunda fase por $\big((2-2t)x + (2t-1)x_0,\,0\big)$, fija $p$ en todo momento y acaba en $c_p$.
+
+Caso $p = (a_n,y_0)$ en un diente $r_{a_n}$: lo hacemos en dos fases que fijan $p$ y concluimos por la transitividad de $\simeq_{\{p\}}$ [C3.9].
+\begin{itemize}
+    \item \emph{Fase 1.} En el cerrado $X \setminus r_{a_n}$ aplicamos la contracción del caso anterior hacia $(a_n,0)$, que no sale de $X \setminus r_{a_n}$ y fija $(a_n,0)$. En el cerrado $\overline{r_{a_n}}$ dejamos todo fijo. Coinciden en la intersección $\{(a_n,0)\}$, así que por b) y el lema de continuidad se obtiene $1_X \simeq_{\{p\}} g$, donde $g$ manda $X \setminus r_{a_n}$ a $(a_n,0)$ y es la identidad en $\overline{r_{a_n}}$.
+    \item \emph{Fase 2.} $K(q,t) = \big(a_n,\,(1-t)\,g_2(q) + t\,y_0\big)$, donde $g_2$ es la segunda coordenada de $g$. Es continua, se queda en $\overline{r_{a_n}}$, fija $p$ (pues $g(p) = p$), y va de $g$ a $c_p$.
+\end{itemize}
+\end{ejercicio}

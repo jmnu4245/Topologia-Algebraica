@@ -16,6 +16,7 @@
  
 % Cuadros personalizados, sombras y entornos numerados
 \usepackage[many]{tcolorbox}
+\usepackage{multirow}
 \usepackage{capt-of}  % \captionof: pies de figura sin flotantes
 \tcbuselibrary{skins, breakable, theorems}
 
@@ -184,3 +185,16 @@
 \newcommand{\marcaC}{\marcadestacada{C}}
 \newcommand{\marcaP}{\marcasuave{P}}
 \newcommand{\marcaL}{\marcasuave{L}}
+
+% --- Ejercicios propuestos en clase ("Ejercicio:" en "Contenidos de las clases"), demostrados en el texto ---
+\newcommand{\marcaE}{\texorpdfstring{\hspace{0.4em}\fcolorbox{white}{orange!85!black}{\textcolor{white}{\textbf{Ej.\ de clase}}}}{}}
+
+% --- Parte de ejercicios: procedencia de cada solución (prioridad: apuntes > clase > examen > propia) ---
+\newcommand{\etiqueta}[2]{\fcolorbox{white}{#1}{\textcolor{white}{\small\textbf{#2}}}}
+\newcommand{\fuenteclase}[1]{\etiqueta{teal!70!black}{Resuelto en clase (#1)}}
+\newcommand{\fuenteexamen}[1]{\etiqueta{blue!70!black}{Solución del profesor: examen #1}}
+\newcommand{\fuentepropia}{\etiqueta{gray!70!black}{Solución propia}}
+\newcommand{\enexamen}[1]{\etiqueta{red!80!black}{Cayó en examen: #1}}
+\newcommand{\sol}{\par\medskip\noindent\textbf{Solución.}\ }
+% Solución que ya está en los apuntes: solo se remite a ella
+\newcommand{\enapuntes}[1]{\par\medskip\noindent\textbf{Solución.}\ \etiqueta{teal!70!black}{En los apuntes} #1}

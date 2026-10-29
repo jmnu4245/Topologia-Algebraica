@@ -1,0 +1,68 @@
+\subsection{Tema 5. Aplicaciones de la teoría de homotopía}
+
+Todos los ejercicios de este boletín se resolvieron en clase: los ejercicios 1, 3 y 4 el 21/10 y los ejercicios 2, 5, 6 y 7 el 23/10. Notación: $p \colon \mathbb{R} \to S^1$, $p(t) = e^{2\pi i t}$, y $\deg_{x_0}(\alpha) = \tilde\alpha(1) - \tilde\alpha(0)$ para \emph{cualquier} elevación $\tilde\alpha$ del lazo $\alpha$ [C10.7]. No depende de la elevación porque dos elevaciones del mismo arco difieren en un entero constante [C10.6].
+
+\begin{ejercicio}{T5.1 (elevación de $w^{-1} * \alpha * w$)}
+Sea $x_0 \in S^1$, sea $w \colon I \to S^1$ un arco de $x_0$ a $(1,0)$ y sea $\alpha \in C_{x_0}(S^1)$. Escribe una elevación de $w^{-1} * \alpha * w$ como concatenación de elevaciones de $w^{-1}$, $\alpha$ y $w$. ¿Podemos escribir una elevación de $w$ como el recorrido inverso de una elevación de $w^{-1}$?
+
+\enapuntes{demostración del \cref{thm:teo_cambio_base_grado} (resuelto en clase el 21/10 y el 23/10).} La elevación es $\widetilde{w^{-1}} * \tilde\alpha * \tilde w$, con cada trozo empezando donde acaba el anterior (primer párrafo de la prueba). La respuesta a la pregunta es \textbf{sí}: $(\widetilde{w^{-1}})^{-1}$ eleva $w$, porque $p\big(\widetilde{w^{-1}}(1-t)\big) = w^{-1}(1-t) = w(t)$ (segundo párrafo de la prueba).
+\end{ejercicio}
+
+\begin{ejercicio}{T5.2 (el grado no depende del punto base)}
+Sea $x_0 \in S^1$ y $w$ un arco de $x_0$ a $(1,0)$. Prueba que $\deg(\alpha) = \deg(w^{-1} * \alpha * w)$ para todo $\alpha \in C_{x_0}(S^1)$. Deduce que, si $\alpha, \beta \in C_{x_0}(S^1)$ y $\alpha \simeq_{\{0,1\}} \beta$, entonces $\deg(\alpha) = \deg(\beta)$.
+
+\enapuntes{\cref{thm:teo_cambio_base_grado} (la igualdad de grados) y \cref{obs:obs_grado_clase} (la consecuencia). Ejercicios de clase [C10.8] y [C10.9], resueltos el 23/10.}
+\end{ejercicio}
+
+\begin{ejercicio}{T5.3 (¿Borsuk en el toro?)}
+Sea $T^2$ el toro de revolución obtenido al girar alrededor del eje $z$ la circunferencia del plano $x = 0$ de centro $(0,2,0)$ y radio $1$. Dada $f \colon T^2 \to \mathbb{R}^2$ continua, ¿existe siempre un par de puntos opuestos de $T^2$ con la misma imagen?
+
+\sol \fuenteclase{21/10}
+
+\textbf{No.} El toro está centrado en el origen, así que si $p \in T^2$ también $-p \in T^2$. Sea $g \colon \mathbb{R}^3 \to \mathbb{R}^2$, $g(x,y,z) = (x,y)$, y $f = g|_{T^2}$. Si existiera $p = (p_1,p_2,p_3) \in T^2$ con $f(p) = f(-p)$, sería $(p_1,p_2) = (-p_1,-p_2)$, es decir, $p_1 = p_2 = 0$. Pero el toro no tiene puntos con las dos primeras coordenadas nulas (en él, $1 \leq \sqrt{x^2+y^2} \leq 3$). Luego esta $f$ no cumple la conclusión.
+
+No contradice el teorema de Borsuk, que es para $S^2$, y $T^2 \not\cong S^2$ [C9.7].
+\end{ejercicio}
+
+\begin{ejercicio}{T5.4 (Borsuk en dimensión 1)}
+Sea $f \colon S^1 \to \mathbb{R}$ continua. Prueba que existe $x \in S^1$ con $f(x) = f(-x)$.
+
+\sol \fuenteclase{21/10}
+
+Supongamos que $f(x) \neq f(-x)$ para todo $x \in S^1$. Definimos la aplicación continua
+\[ g \colon S^1 \to \mathbb{R}, \qquad g(x) = \frac{f(x) - f(-x)}{|f(x) - f(-x)|}, \]
+cuya imagen está contenida en $\{-1,1\}$. Como $S^1$ es conexo, $g(S^1)$ es conexo y contenido en $\{-1,1\}$, luego $g$ es constante: $g \equiv k \in \{-1,1\}$. Pero
+\[ g(-x) = \frac{f(-x) - f(x)}{|f(-x) - f(x)|} = -g(x), \]
+es decir, $k = -k$, luego $k = 0$, lo cual es absurdo.
+
+\emph{Variante equivalente} \fuentepropia: $h(x) = f(x) - f(-x)$ cumple $h(-x) = -h(x)$; si $h(x_0) \neq 0$, toma un valor positivo y otro negativo, y como $h(S^1)$ es un intervalo, contiene el $0$.
+\end{ejercicio}
+
+\begin{ejercicio}{T5.5 ($\pi_0$ es funtorial)}
+Para $f \colon X \to Y$ continua, sea $\pi_0(f) \colon \pi_0(X) \to \pi_0(Y)$, $\pi_0(f)(C) = D_C$, la única arco-componente de $Y$ con $f(C) \subseteq D_C$. Prueba:
+\begin{enumerate}
+    \item[a)] $\pi_0(1_X) = 1_{\pi_0(X)}$.
+    \item[b)] $\pi_0(g \circ f) = \pi_0(g) \circ \pi_0(f)$, para $f \colon X \to Y$ y $g \colon Y \to Z$ continuas.
+\end{enumerate}
+
+\enapuntes{puntos 1 y 2 de la demostración de la \cref{prop:prop_pi0_invariante} (resuelto en clase el 23/10).}
+\end{ejercicio}
+
+\begin{ejercicio}{T5.6 ($\#\pi_0$ es invariante homotópico)}
+Prueba que si $X$ e $Y$ son del mismo tipo de homotopía, entonces $\#\pi_0(X) = \#\pi_0(Y)$.
+
+\enapuntes{\cref{prop:prop_pi0_invariante} (resuelto en clase el 23/10).}
+\end{ejercicio}
+
+\begin{ejercicio}{T5.7 (seno del topólogo)}
+Sea $X = \{(x,\sin\frac1x) : x \in \left]0,1\right]\} \cup (\{0\} \times [-1,1])$. ¿Es $X$ contráctil?
+
+\sol \fuenteclase{23/10}
+
+\textbf{No.} $X$ es la adherencia $\overline{A}$ de la gráfica $A$, el ejemplo clásico de espacio conexo que no es arco-conexo. Tiene $2$ arco-componentes: la gráfica y el segmento $\{0\} \times [-1,1]$. Por tanto $\#\pi_0(X) = 2 \neq 1 = \#\pi_0(\{p\})$. Si $X$ fuese contráctil, tendría el mismo tipo de homotopía que un punto y, por \textbf{T5.6}, $\#\pi_0(X) = 1$. Luego $X$ no es contráctil.
+
+(En clase, los hechos sobre las arco-componentes de $X$ se enunciaron sin demostración.)
+
+\medskip
+\emph{Complemento: por qué $X$ no es arco-conexo} \fuentepropia. Basta esto, porque contráctil $\Rightarrow$ arco-conexo (\textbf{T2.7}). Supongamos que existe un arco $\gamma = (\gamma_1,\gamma_2) \colon I \to X$ de $(0,0)$ a $(1,\sin 1)$. El conjunto $\{t : \gamma_1(t) = 0\}$ es cerrado y no vacío; sea $t_0$ su máximo, que cumple $t_0 < 1$. Para $t > t_0$ se tiene $\gamma_1(t) > 0$, luego $\gamma(t)$ está en la gráfica y $\gamma_2(t) = \sin\frac{1}{\gamma_1(t)}$. Como $\gamma_1$ es continua con $\gamma_1(t_0) = 0$, para cada $\delta > 0$ el conjunto $\gamma_1(]t_0,t_0+\delta[)$ es un intervalo de $]0,1]$ con ínfimo $0$, luego contiene algún $]0,\varepsilon[$, y por tanto contiene puntos $\frac{1}{\pi/2 + 2\pi n}$ y $\frac{1}{3\pi/2 + 2\pi n}$ para $n$ grande. Así, $\gamma_2$ toma los valores $1$ y $-1$ en instantes arbitrariamente cercanos a $t_0$, y no puede ser continua en $t_0$. Contradicción.
+\end{ejercicio}

@@ -56,7 +56,7 @@ $\Leftarrow)$ Sea $\alpha \in C_{x_0}(X)$. Aplicando la hipótesis con $x_1 = x_
 
 \subsection{Reparametrización de arcos y lema de Lebesgue}
 
-\begin{proposicion}{ [C7.3]}{prop_reparametrizacion}
+\begin{proposicion}{Reparametrización [C7.3] \marcaE}{prop_reparametrizacion}
 Sea $g: I \longrightarrow I$ una aplicación continua tal que $g(0)=0$ y $g(1)=1$. Sea $\alpha: I \longrightarrow X$ una aplicación continua, siendo $X$ un espacio topológico cualquiera. Entonces se cumple que $\alpha \simeq_{\{0,1\}} \alpha \circ g$.
 \end{proposicion}
 \begin{center}
@@ -492,49 +492,25 @@ $S^2$ y $T^2$ no son homeomorfos.
 \end{proposicion}
 
 \begin{proof}
-$S^2$ es simplemente conexo, así que $\pi_1(S^2) = 1$, mientras que $\pi_1(T^2) \cong \mathbb{Z} \times \mathbb{Z}$ (véase el ejercicio siguiente con $T^2 = S^1 \times S^1$). Como el grupo fundamental es un invariante topológico, $S^2 \not\cong T^2$.
+$S^2$ es simplemente conexo, así que $\pi_1(S^2) = 1$, mientras que $\pi_1(T^2) \cong \mathbb{Z} \times \mathbb{Z}$ (\cref{prop:ej_pi1_producto} con $T^2 = S^1 \times S^1$). Como el grupo fundamental es un invariante topológico, $S^2 \not\cong T^2$.
 \end{proof}
 
-\textbf{Ejercicio [C9.8].} Sean $X$ e $Y$ espacios topológicos y $(x_0,y_0) \in X \times Y$. Entonces
+\begin{proposicion}{Grupo fundamental de un producto [C9.8] \marcaE}{ej_pi1_producto}
+Sean $X$ e $Y$ espacios topológicos y $(x_0,y_0) \in X \times Y$. Entonces
 \[ \pi_1(X \times Y, (x_0,y_0)) \cong \pi_1(X,x_0) \times \pi_1(Y,y_0). \]
 En particular, si $X$ e $Y$ son arco-conexos, $\pi_1(X \times Y) \cong \pi_1(X) \times \pi_1(Y)$.
+\end{proposicion}
+
+\begin{proof}
+Sean $p_X \colon X \times Y \to X$ y $p_Y \colon X \times Y \to Y$ las proyecciones. Definimos
+\[ \varphi \colon \pi_1(X \times Y,(x_0,y_0)) \to \pi_1(X,x_0) \times \pi_1(Y,y_0), \qquad \varphi([\gamma]) = \big((p_X)_*[\gamma],\, (p_Y)_*[\gamma]\big) = \big([p_X \circ \gamma],\, [p_Y \circ \gamma]\big). \]
+Está bien definida y es un homomorfismo, porque sus dos componentes son homomorfismos inducidos (\cref{thm:teo_hom_ind}).
+
+Para la inversa, dados $\alpha \in C_{x_0}(X)$ y $\beta \in C_{y_0}(Y)$, sea $(\alpha,\beta)(s) = (\alpha(s),\beta(s))$, que es un lazo en $(x_0,y_0)$, y sea $\psi([\alpha],[\beta]) = [(\alpha,\beta)]$. Está bien definida: si $H_1 \colon \alpha \simeq_{\{0,1\}} \alpha'$ y $H_2 \colon \beta \simeq_{\{0,1\}} \beta'$, entonces $(H_1,H_2) \colon (\alpha,\beta) \simeq_{\{0,1\}} (\alpha',\beta')$, que es continua por serlo sus componentes y fija los extremos.
+
+Se tiene $\varphi \circ \psi = 1$, porque $p_X \circ (\alpha,\beta) = \alpha$ y $p_Y \circ (\alpha,\beta) = \beta$; y $\psi \circ \varphi = 1$, porque $\gamma = (p_X \circ \gamma,\, p_Y \circ \gamma)$. Luego $\varphi$ es un homomorfismo biyectivo, es decir, un isomorfismo. Si $X$ e $Y$ son arco-conexos, también lo es $X \times Y$, y no depende del punto base (\cref{prop:cor_arco}).
+\end{proof}
 
 \begin{observacion}{Grupo fundamental del cilindro [C9.9] \marcaC}{obs_cilindro}
 El grupo fundamental del cilindro $S^1 \times I$ es $\mathbb{Z}$, ya que $S^1$ y $S^1 \times I$ son del mismo tipo de homotopía.
 \end{observacion}
-
-\subsection{Ejercicios resueltos en clase}
-
-\begin{center}
-\textbf{23/10/2026 (Clase 12)}
-\end{center}
-
-\begin{ejercicio}{Tema 4, ej. 1 (esferas tangentes)}
-Sean $S, S' \subseteq \mathbb{R}^3$ dos esferas del mismo radio que se cortan en un único punto $x_0$ (son tangentes). Probar que $A = S \cup S'$ es simplemente conexo, y lo mismo para una cadena finita de esferas $S_1, \dots, S_r$ con $S_i$ y $S_{i+1}$ tangentes y $S_1 \cap S_r = \emptyset$.
-
-\textbf{Solución.} Se aplica la \cref{thm:cond_simp_conexo} con un recubrimiento abierto de $A$ por dos conjuntos. Hay que tener cuidado con la topología: una esfera sola \emph{no} es abierta en $A$. Recordemos que $Y \subseteq A$ es abierto en $A$ (topología relativa) cuando para todo $p \in Y$ existe $\varepsilon > 0$ con $B(p,\varepsilon) \cap A \subseteq Y$.
-
-Sean $q \in S \setminus \{x_0\}$ y $q' \in S' \setminus \{x_0\}$. Tomamos
-\[ V_1 = S \cup (S' \setminus \{q'\}), \qquad V_2 = (S \setminus \{q\}) \cup S'. \]
-Ambos son abiertos en $A$ (su complementario es un punto) y $V_1 \cup V_2 = A$.
-\begin{itemize}
-    \item $V_1$ es una esfera con un disco abierto (contráctil, pues $S' \setminus \{q'\} \cong \mathbb{R}^2$) pegado por un punto, luego $V_1 \simeq S^2$, que es simplemente conexo. Igual con $V_2$.
-    \item $V_1 \cap V_2 = (S \setminus \{q\}) \cup (S' \setminus \{q'\})$ son dos copias de $\mathbb{R}^2$ unidas por $x_0$, que es arco-conexo.
-    \item $x_0 \in V_1 \cap V_2$.
-\end{itemize}
-Por el teorema, $A$ es simplemente conexo.
-
-Para la cadena de $r$ esferas se razona por \textbf{inducción} sobre $r$, añadiendo una esfera tangente en cada paso. La hipótesis $S_1 \cap S_r = \emptyset$ es necesaria: si la cadena se cierra formando un anillo de esferas, el espacio \textbf{no} es simplemente conexo.
-\end{ejercicio}
-
-\begin{ejercicio}{Tema 4, ej. 2, apartados a)--d) (grupo fundamental de subespacios)}
-En cada apartado se busca un espacio $Y$ del mismo tipo de homotopía que $X$ cuyo grupo fundamental sea conocido o fácil de deducir. Aunque el enunciado no lo pide, conviene explicitar una equivalencia homotópica entre $X$ e $Y$.
-\begin{enumerate}
-    \item[a)] $X = \{(x,y) \in \mathbb{R}^2 : 1 \leq x^2 + y^2 \leq 4\}$ (corona). Se tiene $X \simeq S^1$ y, por la invariancia homotópica, $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$. La equivalencia homotópica es
-    \[ f \colon S^1 \to X, \ (x,y) \mapsto (x,y), \qquad g \colon X \to S^1, \ (x,y) \mapsto \frac{(x,y)}{\|(x,y)\|}. \]
-    Se tiene $g \circ f = 1_{S^1}$, y $F \colon X \times I \to X$, $F(v,t) = (1-t)\,v + t\,\frac{v}{\|v\|} = \big((1-t)\|v\| + t\big)\frac{v}{\|v\|}$, es continua, cumple $F_0 = 1_X$ y $F_1 = f \circ g$, y no sale de $X$, pues el radio $(1-t)\|v\| + t$ está entre $1$ y $\|v\| \le 2$. En polares es ``radio $r \mapsto (1-t)r + t$ con el ángulo fijo''; escrito así no hace falta que el ángulo sea continuo, porque $(\cos\theta,\sin\theta) = v/\|v\|$.
-    \item[b)] $X = \mathbb{R}^2 \setminus \{(0,0)\}$. $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$.
-    \item[c)] $X = \{(x,f(x)) : x \in [a,b]\}$, con $f$ continua. Es \textbf{contráctil} (homeomorfo a $[a,b]$), luego simplemente conexo.
-    \item[d)] $X = S^1 \cup \{y^2 = 1\}$ (la circunferencia y las dos rectas horizontales $y = \pm 1$, tangentes a ella). $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$.
-\end{enumerate}
-\end{ejercicio}

@@ -30,7 +30,7 @@ Si $x_0 = x_1$, notaremos $C_{x_0}(X)$ al conjunto de \textbf{lazos} con base en
 \end{enumerate}
 \end{observacion}
 
-\begin{teorema}{Relación de equivalencia relativa (Se dejó como ejercicio) [C3.9] \marcaT}{teo_rbe_relativa}
+\begin{teorema}{Relación de equivalencia relativa [C3.9] \marcaT \marcaE}{teo_rbe_relativa}
 La relación $\simeq_A$ es una R.B.E. en $C(X,Y)$. 
 \end{teorema}
 
@@ -297,13 +297,15 @@ Dividimos la demostración en la comprobación de la buena definición de la ope
 
 Si $X$ espacio topológico, $x_0 \in X$, consideremos la familia $\{\pi_1(X, x) : x \in X\}$. ¿Qué propiedades tienen y qué relación hay entre ellos?
 
-\textbf{Ejercicio:} Reproduce las pruebas del \cref{thm:poincare} para arcos cualesquiera. Es decir, probar las siguientes propiedades (para $\alpha, \alpha' \in C_{x_0,x_1}(X)$, $\beta, \beta' \in C_{x_1,x_2}(X)$ y $\gamma \in C_{x_2,x_3}(X)$):
+\begin{proposicion}{Poincaré para arcos [C5.3] \marcaE}{ej_poincare_arcos}
+Las pruebas del \cref{thm:poincare} valen para arcos cualesquiera. Para $\alpha, \alpha' \in C_{x_0,x_1}(X)$, $\beta, \beta' \in C_{x_1,x_2}(X)$ y $\gamma \in C_{x_2,x_3}(X)$:
 \begin{enumerate}
     \item[a)] Si $\alpha \simeq_{\{0,1\}} \alpha'$ y $\beta \simeq_{\{0,1\}} \beta' \implies \alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
     \item[b)] $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$.
     \item[c)] $c_{x_0} * \alpha \simeq_{\{0,1\}} \alpha$ y $\alpha * c_{x_1} \simeq_{\{0,1\}} \alpha$.
     \item[d)] $\alpha * \alpha^{-1} \simeq_{\{0,1\}} c_{x_0}$ y $\alpha^{-1} * \alpha \simeq_{\{0,1\}} c_{x_1}$.
 \end{enumerate}
+\end{proposicion}
 
 \begin{proof}[Solución]
 Sean $\alpha, \alpha' \in C_{x_0,x_1}(X)$, $\beta, \beta' \in C_{x_1,x_2}(X)$ y $\gamma \in C_{x_2,x_3}(X)$.
@@ -329,7 +331,9 @@ Sea $X$ espacio topológico, $x_0, x_1 \in X$. Sean $\alpha, \beta \in C_{x_0, x
 Sea $H \colon \alpha \simeq_{\{0,1\}} \beta$. Definimos $G(s,t) = H(1-s,t)$, continua. Entonces $G_0(s) = \alpha(1-s) = \alpha^{-1}(s)$, $G_1 = \beta^{-1}$, $G(0,t) = H(1,t) = x_1$ y $G(1,t) = H(0,t) = x_0$ no dependen de $t$. Luego $\alpha^{-1} \simeq_{\{0,1\}} \beta^{-1}$.
 \end{proof}
 
-\textbf{Ejercicio:} Sean $\alpha, \beta \in C_{x_0, x_1}(X)$, prueba que $(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$.
+\begin{proposicion}{Inverso de una concatenación [C5.7] \marcaE}{ej_inverso_concat}
+Si $\alpha \in C_{x_0, x_1}(X)$ y $\beta \in C_{x_1, x_2}(X)$, entonces $(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$.
+\end{proposicion}
 \begin{proof}
 Por definición de camino inverso y producto:
 \[
@@ -391,10 +395,19 @@ También se puede definir para el caso $n$-ésimo. Sean $\alpha_1, \dots, \alpha
 \alpha_n(ns-(n-1)), & s \in [\frac{n-1}{n}, 1] \to [0,1] 
 \end{cases}
 \]
-Esta aplicación es continua. Como ejercicio, probar que $[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma] = [\alpha * (\beta * \gamma)]$.
+Esta aplicación es continua.
 \end{definicion}
 
-\begin{proof}[Solución de los ejercicios sobre la concatenación conjunta]
+\begin{proposicion}{Concatenación conjunta y asociatividad [C5.5--5.6] \marcaE}{ej_concat_conjunta}
+Para arcos encadenados $\alpha, \beta, \gamma$ y $\alpha_1, \dots, \alpha_4$:
+\begin{enumerate}
+    \item $[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma]$.
+    \item $[\alpha * \beta * \gamma] = [\alpha * (\beta * \gamma)]$.
+    \item $(\alpha_1 * \alpha_2) * (\alpha_3 * \alpha_4) = \alpha_1 * \alpha_2 * \alpha_3 * \alpha_4$ (igualdad de aplicaciones).
+\end{enumerate}
+\end{proposicion}
+
+\begin{proof}
 \begin{enumerate}
     \item \emph{$[\alpha * \beta * \gamma] = [(\alpha * \beta) * \gamma]$.} \textbf{Homotopía explícita.} La idea es mover linealmente los puntos de corte: $(\alpha * \beta) * \gamma$ corta en $\frac14$ y $\frac12$, y $\alpha * \beta * \gamma$ en $\frac13$ y $\frac23$. Sean $a(t) = \frac{3+t}{12}$ (de $\frac14$ a $\frac13$) y $b(t) = 2a(t) = \frac{3+t}{6}$ (de $\frac12$ a $\frac23$), y
     \[ H(s,t) = \begin{cases} \alpha\left( \dfrac{12s}{3+t} \right) & \text{si } s \in [0, a(t)], \\[2ex] \beta\left( \dfrac{12s}{3+t} - 1 \right) & \text{si } s \in [a(t), b(t)], \\[2ex] \gamma\left( \dfrac{6s - 3 - t}{3 - t} \right) & \text{si } s \in [b(t), 1]. \end{cases} \]
@@ -434,7 +447,7 @@ $P_\omega$ es un isomorfismo de grupos.
 \end{teorema}
 
 \begin{proof}
-Usamos los siguientes resultados auxiliares, todos para arcos cualesquiera (apartados a), b) y d) del ejercicio de la extensión a arcos y \cref{obs:obs_inversos}):
+Usamos los siguientes resultados auxiliares, todos para arcos cualesquiera (apartados a), b) y d) de la \cref{prop:ej_poincare_arcos} y \cref{obs:obs_inversos}):
 \begin{itemize}
     \item[(i)] Si $\alpha \simeq_{\{0,1\}} \alpha'$ y $\beta \simeq_{\{0,1\}} \beta'$, entonces $\alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
     \item[(ii)] $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$; por eso escribimos $[\omega^{-1} * \alpha * \omega]$ sin paréntesis.
@@ -476,10 +489,12 @@ Por ser $X$ arco-conexo existe $\omega \in C_{x_0,x_1}(X)$, y $P_\omega$ es un i
 Este grupo se denota a partir de ahora $\pi_1(X) = \pi_1(X, x_0)$, siendo $x_0$ cualquier punto de $X$, y se denomina \textbf{grupo fundamental} de $X$.
 \end{nota}
 
-\textbf{Ejercicio:} Sea $X$ e.t., $x_0, x_1 \in X$ y sean $\omega_0, \omega_1 \in C_{x_0, x_1}(X)$. Prueba que si $\omega_0 \simeq_{\{0,1\}} \omega_1$ entonces $P_{\omega_0} = P_{\omega_1}$.
+\begin{proposicion}{Arcos homotópicos inducen el mismo cambio de base [C5.12] \marcaE}{ej_pw_homotopicos}
+Sean $x_0, x_1 \in X$ y $\omega_0, \omega_1 \in C_{x_0, x_1}(X)$. Si $\omega_0 \simeq_{\{0,1\}} \omega_1$, entonces $P_{\omega_0} = P_{\omega_1}$.
+\end{proposicion}
 
-\begin{proof}[Solución]
-Por la proposición del inverso homotópico, $\omega_0^{-1} \simeq_{\{0,1\}} \omega_1^{-1}$. Sea $[\alpha] \in \pi_1(X,x_0)$. Aplicando dos veces la propiedad a) de la extensión a arcos:
+\begin{proof}
+Por la proposición del inverso homotópico, $\omega_0^{-1} \simeq_{\{0,1\}} \omega_1^{-1}$. Sea $[\alpha] \in \pi_1(X,x_0)$. Aplicando dos veces el apartado a) de la \cref{prop:ej_poincare_arcos}:
 \[ \alpha * \omega_0 \simeq_{\{0,1\}} \alpha * \omega_1 \quad\text{y}\quad \omega_0^{-1} * (\alpha * \omega_0) \simeq_{\{0,1\}} \omega_1^{-1} * (\alpha * \omega_1). \]
 Por tanto $P_{\omega_0}([\alpha]) = [\omega_0^{-1} * \alpha * \omega_0] = [\omega_1^{-1} * \alpha * \omega_1] = P_{\omega_1}([\alpha])$.
 \end{proof}
@@ -528,7 +543,7 @@ Como coinciden para todo $s \in I$, se verifica la igualdad de las clases.
 \begin{observacion}{Producto de clases de arcos [C6.6]}{obs_producto_arcos}
 Dados $\alpha \in C_{x_0,x_1}(X)$ y $\beta \in C_{x_1,x_2}(X)$, definimos $[\alpha] \cdot [\beta] := [\alpha * \beta]$. Esta \emph{no} es una operación binaria interna, sino una aplicación
 \[ C_{x_0,x_1}(X)/{\simeq_{\{0,1\}}} \times C_{x_1,x_2}(X)/{\simeq_{\{0,1\}}} \longrightarrow C_{x_0,x_2}(X)/{\simeq_{\{0,1\}}}, \]
-que está bien definida por el apartado a) del ejercicio anterior. Cumple asociatividad, $[c_{x_0}] \cdot [\alpha] = [\alpha] = [\alpha] \cdot [c_{x_1}]$, y $[\alpha] \cdot [\alpha^{-1}] = [c_{x_0}]$, $[\alpha^{-1}] \cdot [\alpha] = [c_{x_1}]$.
+que está bien definida por el apartado a) de la \cref{prop:ej_poincare_arcos}. Cumple asociatividad, $[c_{x_0}] \cdot [\alpha] = [\alpha] = [\alpha] \cdot [c_{x_1}]$, y $[\alpha] \cdot [\alpha^{-1}] = [c_{x_0}]$, $[\alpha^{-1}] \cdot [\alpha] = [c_{x_1}]$.
 \end{observacion}
 
 \subsection{Funtorialidad e invariancia topológica}
@@ -579,7 +594,7 @@ Por consiguiente, $f_{*,x_0}$ es un isomorfismo, con inversa $g_{*,y_0}$. Como $
 \end{proof}
 \end{proposicion}
 
-\begin{proposicion}{Grupo fundamental de un espacio estrellado [C6.5]}{estrellado}
+\begin{proposicion}{Grupo fundamental de un espacio estrellado [C6.5] \marcaE}{estrellado}
 Sea $X \subseteq \mathbb{R}^n$, con $X$ estrellado. Entonces $\pi_1(X) = 1$.
 
 \begin{proof}

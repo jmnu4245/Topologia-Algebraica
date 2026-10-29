@@ -1,0 +1,160 @@
+\subsection{Tema 4. Espacios simplemente conexos, elevaciones y $\pi_1(S^n)$}
+
+\begin{ejercicio}{T4.1 (esferas tangentes)}
+Sean $S$ y $S'$ dos esferas del mismo radio en $\mathbb{R}^3$ que se cortan en un único punto (tangentes). Prueba que $S \cup S'$ es simplemente conexo. Obtén la misma conclusión para una familia finita de esferas del mismo radio $\{S_1,\dots,S_r\}$ con $S_i$ y $S_{i+1}$ tangentes para todo $i$ y $S_1 \cap S_r = \emptyset$. (Ayuda: aplica la condición suficiente para ser simplemente conexo.)
+
+\sol \fuenteclase{23/10}
+
+Sea $A = S \cup S'$ y $x_0$ el punto de tangencia. Se aplica [C7.6] con un recubrimiento abierto de $A$ por dos conjuntos. Hay que cuidar la topología: una esfera sola \emph{no} es abierta en $A$. Recordemos que $Y \subseteq A$ es abierto en $A$ cuando para todo $p \in Y$ existe $\varepsilon > 0$ con $B(p,\varepsilon) \cap A \subseteq Y$.
+
+Sean $q \in S \setminus \{x_0\}$ y $q' \in S' \setminus \{x_0\}$. Tomamos
+\[ V_1 = S \cup (S' \setminus \{q'\}), \qquad V_2 = (S \setminus \{q\}) \cup S'. \]
+Ambos son abiertos en $A$ (su complementario es un punto) y $V_1 \cup V_2 = A$.
+\begin{itemize}
+    \item $V_1$ es una esfera con un disco abierto pegado por un punto ($S' \setminus \{q'\} \cong \mathbb{R}^2$, contráctil). Encogiendo ese disco hasta $x_0$, $V_1 \simeq S^2$, que es simplemente conexo [C7.7]. Igual con $V_2$.
+    \item $V_1 \cap V_2 = (S \setminus \{q\}) \cup (S' \setminus \{q'\})$ son dos copias de $\mathbb{R}^2$ unidas por $x_0$, que es arco-conexo.
+    \item $x_0 \in V_1 \cap V_2$.
+\end{itemize}
+Por [C7.6], $A$ es simplemente conexo.
+
+Para la cadena de $r$ esferas se razona por \textbf{inducción} sobre $r$, añadiendo una esfera tangente en cada paso. La hipótesis $S_1 \cap S_r = \emptyset$ es necesaria: si la cadena se cierra formando un anillo de esferas, el espacio \textbf{no} es simplemente conexo.
+\end{ejercicio}
+
+\begin{ejercicio}{T4.2 (grupo fundamental de subespacios)}
+Determina el grupo fundamental de los siguientes subespacios (topología inducida):
+\begin{enumerate}
+    \item[a)] $X = \{(x,y) \in \mathbb{R}^2 : 1 \leq x^2+y^2 \leq 4\}$.
+    \item[b)] $X = \mathbb{R}^2 \setminus \{(0,0)\}$.
+    \item[c)] $X = \{(x,f(x)) : x \in [a,b]\}$, con $f \colon [a,b] \to \mathbb{R}$ continua.
+    \item[d)] $X = \{x^2+y^2 = 1\} \cup \{y^2 = 1\}$.
+    \item[e)] $X = S^1 \cup \{(x-2)^2+y^2 \leq 1\}$.
+    \item[f)] $X = \{(x,y,z) \in \mathbb{R}^3 : 1 \leq x^2+y^2 \leq 4\}$.
+    \item[g)] $X = \{x^2+y^2+z^2 = 9,\ 1 \leq z \leq 2\}$.
+    \item[h)] $X = \{(x,\cos x,\sin x) : x \in \mathbb{R}\}$.
+    \item[i)] $X = \{(x,\cos y,\sin y) : (x,y) \in \mathbb{R}^2\}$.
+    \item[j)] $X = \{x(x-1) = 0\} \cup [0,1] \times \{0\}$.
+    \item[k)] $X = \{x^2+y^2 > 1\}$.
+    \item[l)] $X = [-1,1] \times [-1,1] \times \{0\} \cup \{0\} \times \{0\} \times [-1,1]$.
+    \item[m)] $X = \{x \geq 0\} \setminus \{(1,0)\}$.
+    \item[n)] $X = \{y \geq 0\} \setminus \{(1,0)\}$.
+\end{enumerate}
+
+\textbf{Método.} En cada apartado se busca un $Y$ del mismo tipo de homotopía que $X$ con $\pi_1(Y)$ conocido, y se aplica la invariancia homotópica [C6.8]. Aunque el enunciado no lo pide, conviene dar la equivalencia homotópica explícita, escrita en cartesianas y comprobando que la homotopía \emph{no sale de $X$}.
+
+\medskip
+\fuenteclase{23/10, apartados a)--d)}
+
+\textbf{a)} $X \simeq S^1$, luego $\pi_1(X) \cong \mathbb{Z}$. Equivalencia: $f \colon S^1 \to X$ la inclusión y $g \colon X \to S^1$, $g(v) = \frac{v}{\|v\|}$. Se tiene $g \circ f = 1_{S^1}$, y
+\[ F(v,t) = (1-t)\,v + t\,\frac{v}{\|v\|} = \big((1-t)\|v\| + t\big)\frac{v}{\|v\|} \]
+es continua, con $F_0 = 1_X$ y $F_1 = f \circ g$. No sale de $X$, porque el radio $(1-t)\|v\| + t$ está entre $1$ y $\|v\| \leq 2$. En polares es ``radio $r \mapsto (1-t)r + t$ con el ángulo fijo''; escrito así no hace falta que el ángulo sea continuo, porque $(\cos\theta,\sin\theta) = v/\|v\|$.
+
+\textbf{b)} $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$. (Misma $F$ que en a); el coeficiente $(1-t) + \frac{t}{\|v\|}$ es positivo, así que $F(v,t) \neq 0$.)
+
+\textbf{c)} $X$ es \textbf{contráctil} (homeomorfo a $[a,b]$ mediante $x \mapsto (x,f(x))$, con inversa la primera proyección), luego simplemente conexo: $\pi_1(X) = 1$.
+
+\textbf{d)} $X$ es la circunferencia con las dos rectas horizontales $y = \pm 1$, tangentes a ella. $\pi_1(X) \cong \pi_1(S^1) \cong \mathbb{Z}$.
+
+\emph{Equivalencia explícita} \fuentepropia: $r \colon X \to S^1$ es la identidad en $S^1$ y lleva $(x,1) \mapsto (0,1)$ y $(x,-1) \mapsto (0,-1)$. Es continua por el lema de continuidad ($S^1$, $\{y = 1\}$ e $\{y = -1\}$ son tres cerrados que recubren $X$ y las definiciones coinciden en los puntos de tangencia). Con $i$ la inclusión, $r \circ i = 1_{S^1}$, y
+\[ H(v,t) = \begin{cases} v & \text{si } v \in S^1, \\ ((1-t)x,\, \pm 1) & \text{si } v = (x,\pm 1) \end{cases} \]
+cumple $H_0 = 1_X$ y $H_1 = i \circ r$: encoge cada recta hasta su punto de tangencia.
+
+\medskip
+\fuentepropia\ \ (apartados e)--n))
+
+\textbf{e)} Circunferencia más un disco cerrado tangente en $(1,0)$. Sea $D$ el disco. $r \colon X \to S^1$ es la identidad en $S^1$ y vale $(1,0)$ en $D$. $H(v,t) = v$ en $S^1$ y $H(v,t) = (1-t)v + t(1,0)$ en $D$ (convexo, contiene a $(1,0)$); en $(1,0)$ coinciden. Así $X \simeq S^1$ y $\pi_1(X) \cong \mathbb{Z}$.
+
+\textbf{f)} Corona $\times\,\mathbb{R}$. $g(x,y,z) = \frac{(x,y)}{\|(x,y)\|}$ y $f(x,y) = (x,y,0)$, con $g \circ f = 1_{S^1}$. Con $v = (x,y)$:
+\[ H((v,z),t) = \left( \big((1-t)\|v\| + t\big)\frac{v}{\|v\|},\ (1-t)z \right), \]
+que no sale de $X$ (radio entre $1$ y $2$). $H_0 = 1$ y $H_1 = f \circ g$. Así $\pi_1(X) \cong \mathbb{Z}$.
+
+\textbf{g)} Banda de la esfera de radio $3$ entre $z = 1$ y $z = 2$. En $X$, $x^2+y^2 = 9 - z^2 \in [5,8]$, que no se anula. Sean $g(x,y,z) = \frac{(x,y)}{\|(x,y)\|}$ y $f(x,y) = (\sqrt8\,x,\sqrt8\,y,1)$, con $g \circ f = 1_{S^1}$. Con $z_t = (1-t)z + t \in [1,2]$:
+\[ H((x,y,z),t) = \left( \sqrt{9 - z_t^2}\ \frac{(x,y)}{\|(x,y)\|},\ z_t \right) \in X. \]
+$H_0 = 1_X$ (porque $\|(x,y)\| = \sqrt{9-z^2}$) y $H_1 = f \circ g$. Así $\pi_1(X) \cong \mathbb{Z}$.
+
+\textbf{h)} Hélice. $\mathbb{R} \to X$, $x \mapsto (x,\cos x,\sin x)$, es continua y biyectiva, con inversa continua la primera proyección. Luego $X \cong \mathbb{R}$, contráctil: $\pi_1(X) = 1$.
+
+\textbf{i)} Cilindro $\mathbb{R} \times S^1$. $g(x,u,v) = (u,v)$ y $f(u,v) = (0,u,v)$, con $g \circ f = 1$. $H((x,u,v),t) = ((1-t)x,u,v)$ va de $1_X$ a $f \circ g$. Así $\pi_1(X) \cong \mathbb{Z}$ (o, por \textbf{T3.7}, $\pi_1(\mathbb{R}) \times \pi_1(S^1) \cong \mathbb{Z}$).
+
+\textbf{j)} Forma de ``H'': las rectas $x = 0$ y $x = 1$ unidas por el segmento $[0,1] \times \{0\}$. Contráctil:
+\[ F((x,y),t) = \begin{cases} (x,(1-2t)y) & \text{si } t \in [0,\frac12] \quad \text{(bajar las rectas al segmento)}, \\ ((2-2t)x,0) & \text{si } t \in [\frac12,1] \quad \text{(encoger el segmento)}. \end{cases} \]
+No sale de $X$ (las rectas son verticales y el segmento está en $y = 0$), y en $t = \frac12$ ambas valen $(x,0)$. $F_0 = 1$ y $F_1 = c_{(0,0)}$. Así $\pi_1(X) = 1$.
+
+\textbf{k)} Exterior abierto del disco unidad. $S^1 \not\subseteq X$, así que se usa la circunferencia $C_2$ de radio $2$: $g(v) = \frac{2v}{\|v\|}$ y
+\[ H(v,t) = \big((1-t)\|v\| + 2t\big)\frac{v}{\|v\|}, \]
+cuyo radio está entre $\|v\|$ y $2$, luego es $> 1$. Así $X \simeq C_2 \cong S^1$ y $\pi_1(X) \cong \mathbb{Z}$.
+
+\textbf{l)} Cuadrado más un segmento vertical por el centro. Es \textbf{estrellado} respecto del origen: el segmento de $0$ a un punto del cuadrado está en el cuadrado (convexo), y el de $0$ a un punto del segmento vertical está en ese segmento. Luego $\pi_1(X) = 1$ [C6.5].
+
+\textbf{m)} Semiplano $x \geq 0$ sin $c = (1,0)$. La circunferencia $C$ de centro $c$ y radio $\frac12$ está en $X$ (pues $x \geq \frac12$). Sean $g(v) = c + \frac12 \frac{v-c}{\|v-c\|}$ y, con $\rho = \|v - c\|$ y $u = \frac{v-c}{\rho}$,
+\[ H(v,t) = c + \big((1-t)\rho + \tfrac t2\big)\,u. \]
+El radio es positivo, así que $H(v,t) \neq c$. La primera coordenada es $1 + \rho_t u_1$, con $\rho_t$ entre $\rho$ y $\frac12$. Si $u_1 \geq 0$ es $\geq 1$; si $u_1 < 0$ es $\geq \min(1 + \rho u_1,\ 1 + \frac{u_1}{2}) \geq \min(x_v, \frac12) \geq 0$, donde $x_v = 1 + \rho u_1 \geq 0$ es la abscisa de $v$. Luego $H$ no sale de $X$, $X \simeq C \cong S^1$ y $\pi_1(X) \cong \mathbb{Z}$.
+
+\textbf{n)} Semiplano $y \geq 0$ sin $(1,0)$. Es \textbf{estrellado} respecto de $(1,1)$: el punto $(1-t)(1,1) + t(x,y)$ tiene ordenada $(1-t) + ty \geq 0$, y vale $(1,0)$ solo si $(1-t) + ty = 0$, lo que obliga a $t = 1$ e $y = 0$, es decir, $(x,y) = (1,0) \notin X$. Luego $\pi_1(X) = 1$.
+\end{ejercicio}
+
+\begin{ejercicio}{T4.3 (verdadero o falso)}
+\begin{enumerate}
+    \item[a)] Existe un recubrimiento abierto $\{U,V\}$ del toro $S^1 \times S^1$ con $U \cap V$ arco-conexo y $U, V$ simplemente conexos.
+    \item[b)] Si $\{U,V\}$ es un recubrimiento abierto del cilindro $S^1 \times [0,1]$ con $U$ y $V$ simplemente conexos, entonces $U \cap V$ tiene al menos dos componentes arco-conexas.
+    \item[c)] Todo subespacio convexo $X \subseteq \mathbb{R}^n$ es simplemente conexo.
+\end{enumerate}
+
+\sol \fuentepropia\ \ (b) coincide con \textbf{T4.4} a), cuya solución es la del profesor)
+
+\textbf{a) Falso.} Si existiera, $U \cap V$ sería no vacío (es arco-conexo, y además el toro es conexo) y arco-conexo, y $U$, $V$ serían simplemente conexos. Por [C7.6], el toro sería simplemente conexo. Pero $\pi_1(S^1 \times S^1) \cong \mathbb{Z} \times \mathbb{Z} \neq 1$ (\textbf{T3.7}).
+
+\textbf{b) Verdadero.} Es \textbf{T4.4} a).
+
+\textbf{c) Verdadero} (para $X \neq \emptyset$). Convexo $\Rightarrow$ estrellado, luego arco-conexo y con $\pi_1(X) = 1$ [C6.5].
+\end{ejercicio}
+
+\begin{ejercicio}{T4.4 (verdadero o falso)}
+\begin{enumerate}
+    \item[a)] Sea $X = S^1 \times [0,1]$ y $\{U,V\}$ un recubrimiento abierto con $U$ y $V$ simplemente conexos. Entonces $U \cap V$ tiene al menos dos componentes arco-conexas.
+    \item[b)] Sea $\{V_i\}_{i \in \Lambda}$ un recubrimiento abierto de $X$ con $V_i$ simplemente conexo, $V_i \cap V_j$ arco-conexo para $i \neq j$, y la intersección de todos vacía. Entonces $X$ es simplemente conexo.
+    \item[c)] $S^2 \setminus \{(1,0,0),(0,0,1)\}$ es simplemente conexo.
+\end{enumerate}
+
+\sol \fuenteexamen{final 29/01/2026, ej.\ 7} \quad \enexamen{final 29/01/2026, ej.\ 7, literal (1,5 pts)}
+
+\textbf{a) Verdadera.} La prueba se basa en [C7.6]: \emph{sea $\{V_i\}$ un recubrimiento abierto de $X$ con $\bigcap_i V_i \neq \emptyset$, $V_i \cap V_j$ arco-conexo para $i \neq j$ y cada $V_i$ simplemente conexo; entonces $X$ es simplemente conexo.}
+
+Supongamos que $U \cap V$ tiene una sola componente arco-conexa. Obviamente $U \cap V \neq \emptyset$, ya que $X$ es conexo. Por el teorema, $X$ sería simplemente conexo. Pero
+\[ \pi_1(S^1 \times [0,1]) \cong \pi_1(S^1) \times \pi_1([0,1]) \cong \mathbb{Z}. \]
+Contradicción; luego $U \cap V$ tiene al menos dos componentes.
+
+\textbf{b) Falsa.} Que falle la hipótesis $\bigcap V_i \neq \emptyset$ no basta para justificarlo: hace falta un contraejemplo. Sea $X = S^1$, $\epsilon \in \left]0,\frac{1}{100}\right[$ y
+\[ V_1 = \{e^{2\pi i\theta} : \theta \in \left]-\epsilon,\tfrac13+\epsilon\right[\},\quad V_2 = \{e^{2\pi i\theta} : \theta \in \left]\tfrac13-\epsilon,\tfrac23+\epsilon\right[\},\quad V_3 = \{e^{2\pi i\theta} : \theta \in \left]\tfrac23-\epsilon,1+\epsilon\right[\}. \]
+Cada $V_i$ es abierto en $S^1$ y homeomorfo a un intervalo abierto, luego simplemente conexo. Las intersecciones $V_1 \cap V_2$, $V_1 \cap V_3$ y $V_2 \cap V_3$ son arcos (arco-conexas) y $V_1 \cap V_2 \cap V_3 = \emptyset$. Sin embargo, $\pi_1(S^1) \cong \mathbb{Z}$.
+
+\emph{Observación del profesor:} con las mismas hipótesis también hay ejemplos simplemente conexos (por ejemplo $S^2$ con un recubrimiento análogo), así que sin la hipótesis no se puede concluir nada.
+
+\textbf{c) Falsa.} Sea $X = S^2 \setminus \{(1,0,0),(0,0,1)\}$. Veamos que $X \simeq S^1$, de modo que $\pi_1(X) \cong \mathbb{Z}$. Sea $Y = S^2 \setminus \{(0,0,-1),(0,0,1)\}$; como $X$ e $Y$ son homeomorfos, basta probar $Y \simeq S^1$. Sean
+\[ f \colon Y \to S^1,\ f(x,y,z) = \frac{(x,y)}{\|(x,y)\|}, \qquad g \colon S^1 \to Y,\ g(x,y) = (x,y,0). \]
+Se tiene $f \circ g = 1_{S^1}$. La aplicación
+\[ H((x,y,z),t) = \frac{(x,y,tz)}{\|(x,y,tz)\|} \]
+es continua, con $H_0 = g \circ f$ y $H_1 = 1_Y$. Luego $Y \simeq S^1$.
+
+\emph{Complemento} \fuentepropia: la proyección estereográfica desde $(0,0,1)$ da directamente $X \cong \mathbb{R}^2 \setminus \{\text{un punto}\} \simeq S^1$, sin pasar por $Y$.
+\end{ejercicio}
+
+\begin{ejercicio}{T4.5 (esfera sin los polos y el ecuador)}
+Sea $X = S^2 \setminus \{N,S\}$, con $N = (0,0,1)$ y $S = (0,0,-1)$, y sea $E$ el ecuador. Decide si es cierto o falso:
+\begin{enumerate}
+    \item[a)] Si $\{U,V\}$ es un recubrimiento abierto de $X$ con $U$ y $V$ simplemente conexos, entonces $U \cap V$ tiene al menos dos componentes conexas.
+    \item[b)] Si $f \colon S^2 \to E$ es continua, entonces $f|_E$ no puede ser igual a $1_E$.
+    \item[c)] Si $f \colon X \to E$ es continua, entonces $f|_E$ no puede ser igual a $1_E$.
+\end{enumerate}
+
+\sol \fuenteexamen{parcial 31/10/2025, ej.\ 5} \quad \enexamen{parcial 31/10/2025, ej.\ 5, literal (2 pts)}
+
+\textbf{a) Verdadera.} $U$ y $V$ son simplemente conexos, luego arco-conexos y no vacíos. Además $U \cap V \neq \emptyset$: si no, $\{U,V\}$ sería una desconexión de $X$, que es conexo. Si $U \cap V$ fuera arco-conexo, [C7.6] daría que $X$ es simplemente conexo. Pero $X \simeq S^1$ (se prueba abajo), que no es simplemente conexo. Luego $U \cap V$ no es arco-conexo: tiene al menos dos componentes arco-conexas. Como $U \cap V$ es abierto y $X$ es localmente arco-conexo, sus componentes conexas coinciden con sus componentes arco-conexas, y $U \cap V$ tiene al menos dos componentes conexas.
+
+\emph{$X \simeq S^1$:} $f(x,y,z) = \frac{(x,y)}{\|(x,y)\|}$ y $g(x,y) = (x,y,0)$ cumplen $f \circ g = 1_{S^1}$, y $H((x,y,z),t) = \frac{(x,y,tz)}{\|(x,y,tz)\|}$ es continua, con $H_0 = g \circ f$ y $H_1 = 1_X$.
+
+\textbf{b) Verdadera.} Supongamos que $f \colon S^2 \to E$ es continua con $f|_E = 1_E$, y sea $j \colon E \to S^2$ la inclusión, de modo que $f \circ j = 1_E$. Para $p_0 \in E$, por funtorialidad,
+\[ f_{*,p_0} \circ j_{*,p_0} = (f \circ j)_{*,p_0} = (1_E)_{*,p_0} = 1_{\pi_1(E,p_0)}. \]
+Como $\pi_1(S^2,p_0)$ es trivial, la imagen de $f_{*,p_0}$ es el subgrupo trivial; pero $1_{\pi_1(E,p_0)}$ es sobreyectiva sobre $\pi_1(E,p_0) \cong \mathbb{Z}$ ($E \cong S^1$). Contradicción.
+
+\textbf{c) Falsa.} $f(x,y,z) = \frac{(x,y,0)}{\|(x,y,0)\|}$ es continua en $X$ (allí $(x,y) \neq 0$) y su restricción a $E$ es $1_E$.
+\end{ejercicio}
