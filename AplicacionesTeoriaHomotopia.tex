@@ -14,7 +14,7 @@ No existe ninguna aplicación continua $D^2 \to S^1$ cuya restricción a $S^1$ c
 \begin{proof}
 Supongamos que existe $r \colon D^2 \to S^1$ continua con $r|_{S^1} = 1_{S^1}$. Sea $i \colon S^1 \to D^2$ la inclusión, de modo que $r \circ i = 1_{S^1}$. Fijado $x_0 \in S^1$, por funtorialidad
 \[ r_{*,x_0} \circ i_{*,x_0} = (r \circ i)_{*,x_0} = (1_{S^1})_{*,x_0} = 1_{\pi_1(S^1,x_0)}. \]
-Pero $i_{*,x_0} \colon \pi_1(S^1,x_0) \cong \mathbb{Z} \to \pi_1(D^2,x_0) = 1$, de modo que la identidad de $\mathbb{Z}$ factoriza a través del grupo trivial, lo cual es absurdo.
+Pero $i_{*,x_0} \colon \pi_1(S^1,x_0) \cong \mathbb{Z} \to \pi_1(D^2,x_0) = 1$, de modo que la identidad de $\pi_1(S^1,x_0) \cong \mathbb{Z}$ se escribe como composición $r_* \circ i_*$ pasando por el grupo trivial (diagrama). Eso es absurdo: si $\sigma$ es un lazo de grado $1$ en $x_0$, entonces $i_*([\sigma])$ es el neutro de $\pi_1(D^2,x_0)$ ($D^2$ es convexo) y $r_*$ lleva el neutro al neutro, luego $(r_* \circ i_*)([\sigma]) = [c_{x_0}]$, de grado $0$; pero $1_*([\sigma]) = [\sigma]$ tiene grado $1$.
 \begin{center}
 \begin{tikzpicture}
 \node (A) at (0,2) {$\pi_1(S^1,x_0)$};
@@ -55,7 +55,8 @@ Si $z_0 \in \mathbb{C}$ cumple $P(z_0) = 0$, entonces $|z_0| < 1 + |a_1| + |a_2|
 Si $a_1 = \dots = a_k = 0$, la desigualdad es trivial ($0 < 1$). Supongamos que no todos los coeficientes son nulos y distingamos casos. Si $|z_0| \leq 1$, entonces $|z_0| \leq 1 < 1 + |a_1| + \dots + |a_k|$. Si $|z_0| > 1$:
 \[ |z_0^k| = |-a_1 z_0^{k-1} - a_2 z_0^{k-2} - \dots - a_k| \leq |a_1||z_0|^{k-1} + \dots + |a_k|. \]
 Dividiendo por $|z_0|^{k-1}$:
-\[ |z_0| \leq |a_1| + |a_2|\frac{1}{|z_0|} + \dots + |a_k| \frac{1}{|z_0|^{k-1}} < |a_1| + |a_2| + \dots + |a_k| < 1 + |a_1| + \dots + |a_k|. \]
+\[ |z_0| \leq |a_1| + |a_2|\frac{1}{|z_0|} + \dots + |a_k| \frac{1}{|z_0|^{k-1}} \leq |a_1| + |a_2| + \dots + |a_k| < 1 + |a_1| + \dots + |a_k|, \]
+pues $\frac{1}{|z_0|^j} < 1$ para $j \geq 1$.
 \end{proof}
 
 \begin{proof}[Demostración del teorema fundamental del álgebra]
@@ -274,22 +275,22 @@ Si $X \simeq Y$, entonces $\#\pi_0(X) = \#\pi_0(Y)$. (Referencia: Kosniowski, \e
 \end{proposicion}
 
 \begin{proof}
-Sean $f \colon X \to Y$ y $g \colon Y \to X$ continuas con $g \circ f \simeq 1_X$ y $f \circ g \simeq 1_Y$. Dada una aplicación continua $f \colon X \to Y$, definimos
+Sean $\varphi \colon X \to Y$ y $\psi \colon Y \to X$ continuas con $\psi \circ \varphi \simeq 1_X$ y $\varphi \circ \psi \simeq 1_Y$. Para cada aplicación continua $f \colon X \to Y$ definimos
 \[ \pi_0(f) \colon \pi_0(X) \to \pi_0(Y), \qquad C \mapsto D_C, \]
-donde $D_C$ es la única arco-componente de $Y$ con $f(C) \subseteq D_C$ (existe porque $f(C)$ es arco-conexo, por ser imagen continua de un arco-conexo, y está contenido en una única arco-componente). Basta probar, para $X \xrightarrow{f} Y \xrightarrow{g} Z$ aplicaciones cualesquiera:
+donde $D_C$ es la única arco-componente de $Y$ con $f(C) \subseteq D_C$ (existe porque $f(C)$ es arco-conexo, por ser imagen continua de un arco-conexo, y está contenido en una única arco-componente). Basta probar, para aplicaciones continuas cualesquiera $X \xrightarrow{f} Y \xrightarrow{g} Z$ y $f, f' \colon X \to Y$:
 \begin{enumerate}
     \item[\textcircled{1}] $\pi_0(g \circ f) = \pi_0(g) \circ \pi_0(f)$.
     \item[\textcircled{2}] $\pi_0(1_X) = 1_{\pi_0(X)}$.
-    \item[\textcircled{3}] $f \simeq g \implies \pi_0(f) = \pi_0(g)$.
+    \item[\textcircled{3}] $f \simeq f' \implies \pi_0(f) = \pi_0(f')$.
 \end{enumerate}
 
 \textcircled{1} Sea $C$ una arco-componente de $X$. Sea $D_C = \pi_0(f)(C)$, de modo que $f(C) \subseteq D_C$, y sea $E = \pi_0(g)(D_C)$, de modo que $g(D_C) \subseteq E$. Entonces $(g \circ f)(C) \subseteq g(D_C) \subseteq E$, y como $E$ es una arco-componente, es la única que contiene a $(g \circ f)(C)$, es decir, $\pi_0(g \circ f)(C) = E = \pi_0(g)(\pi_0(f)(C))$.
 
 \textcircled{2} Para $C \in \pi_0(X)$, se tiene $1_X(C) = C \subseteq C$, luego $\pi_0(1_X)(C) = C$.
 
-\textcircled{3} Sea $F \colon X \times I \to Y$ con $F_0 = f$ y $F_1 = g$, y sea $C \in \pi_0(X)$. Como $C \times I$ es arco-conexo, $F(C \times I)$ es arco-conexo, y está contenido en una única arco-componente $D$ de $Y$. Como $f(C) = F(C \times \{0\}) \subseteq D$ y $g(C) = F(C \times \{1\}) \subseteq D$, se tiene $\pi_0(f)(C) = D = \pi_0(g)(C)$.
+\textcircled{3} Sea $F \colon X \times I \to Y$ con $F_0 = f$ y $F_1 = f'$, y sea $C \in \pi_0(X)$. Como $C \times I$ es arco-conexo, $F(C \times I)$ es arco-conexo, y está contenido en una única arco-componente $D$ de $Y$. Como $f(C) = F(C \times \{0\}) \subseteq D$ y $f'(C) = F(C \times \{1\}) \subseteq D$, se tiene $\pi_0(f)(C) = D = \pi_0(f')(C)$.
 
-Con \textcircled{1}--\textcircled{3}: de $g \circ f \simeq 1_X$ se obtiene $\pi_0(g) \circ \pi_0(f) = \pi_0(g \circ f) = \pi_0(1_X) = 1_{\pi_0(X)}$, y de $f \circ g \simeq 1_Y$, $\pi_0(f) \circ \pi_0(g) = 1_{\pi_0(Y)}$. Luego $\pi_0(f)$ es biyectiva con inversa $\pi_0(g)$, y $\#\pi_0(X) = \#\pi_0(Y)$.
+Con \textcircled{1}--\textcircled{3}: de $\psi \circ \varphi \simeq 1_X$ se obtiene $\pi_0(\psi) \circ \pi_0(\varphi) = \pi_0(\psi \circ \varphi) = \pi_0(1_X) = 1_{\pi_0(X)}$, y de $\varphi \circ \psi \simeq 1_Y$, $\pi_0(\varphi) \circ \pi_0(\psi) = 1_{\pi_0(Y)}$. Luego $\pi_0(\varphi)$ es biyectiva con inversa $\pi_0(\psi)$, y $\#\pi_0(X) = \#\pi_0(Y)$.
 \end{proof}
 
 \subsection{Ejercicios resueltos en clase}
