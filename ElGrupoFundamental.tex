@@ -434,23 +434,26 @@ $P_\omega$ es un isomorfismo de grupos.
 \end{teorema}
 
 \begin{proof}
-1) $P_\omega$ está bien definido. Necesitamos probar que si $[\alpha]=[\alpha']$, entonces $[\omega^{-1} * \alpha * \omega] = [\omega^{-1} * \alpha' * \omega]$.
-Si $\alpha \simeq_{\{0,1\}} \alpha'$, entonces $\alpha * \omega \simeq_{\{0,1\}} \alpha' * \omega$. Aplicando lo anterior se tiene:
-\[
-\omega^{-1} * (\alpha * \omega) \simeq_{\{0,1\}} \omega^{-1} * (\alpha' * \omega) \implies \omega^{-1} * \alpha * \omega \simeq_{\{0,1\}} \omega^{-1} * \alpha' * \omega
-\]
+Usamos los siguientes resultados auxiliares, todos para arcos cualesquiera (apartados a), b) y d) del ejercicio de la extensión a arcos y \cref{obs:obs_inversos}):
+\begin{itemize}
+    \item[(i)] Si $\alpha \simeq_{\{0,1\}} \alpha'$ y $\beta \simeq_{\{0,1\}} \beta'$, entonces $\alpha * \beta \simeq_{\{0,1\}} \alpha' * \beta'$.
+    \item[(ii)] $\alpha * (\beta * \gamma) \simeq_{\{0,1\}} (\alpha * \beta) * \gamma$; por eso escribimos $[\omega^{-1} * \alpha * \omega]$ sin paréntesis.
+    \item[(iii)] Si $\omega \in C_{x_0,x_1}(X)$, entonces $\omega * \omega^{-1} \simeq_{\{0,1\}} c_{x_0}$ y $\omega^{-1} * \omega \simeq_{\{0,1\}} c_{x_1}$; y $c * \alpha \simeq_{\{0,1\}} \alpha \simeq_{\{0,1\}} \alpha * c$.
+\end{itemize}
+
+1) $P_\omega$ está bien definido. Si $\alpha \simeq_{\{0,1\}} \alpha'$, aplicando (i) dos veces (con $\omega \simeq_{\{0,1\}} \omega$ y $\omega^{-1} \simeq_{\{0,1\}} \omega^{-1}$):
+\[ \alpha * \omega \simeq_{\{0,1\}} \alpha' * \omega \implies \omega^{-1} * (\alpha * \omega) \simeq_{\{0,1\}} \omega^{-1} * (\alpha' * \omega). \]
 Por tanto, $[\omega^{-1} * \alpha * \omega] = [\omega^{-1} * \alpha' * \omega]$.
 
 2) $P_\omega$ es homomorfismo de grupos. Para cualesquiera $[\alpha], [\beta] \in \pi_1(X, x_0)$:
 \begin{align*}
-P_\omega([\alpha] \cdot [\beta]) &= P_\omega([\alpha * \beta]) = [\omega^{-1} * (\alpha * \beta) * \omega] \\
-&= [(\omega^{-1} * \alpha) * (\beta * \omega)] \\
-&= [(\omega^{-1} * \alpha) * (\omega * \omega^{-1}) * (\beta * \omega)] \quad (\text{pues } \omega * \omega^{-1} \simeq_{\{0,1\}} c_{x_0}) \\
-&= [(\omega^{-1} * \alpha * \omega) * (\omega^{-1} * \beta * \omega)] \\
-&= [\omega^{-1} * \alpha * \omega] \cdot [\omega^{-1} * \beta * \omega] = P_\omega([\alpha]) \cdot P_\omega([\beta])
+P_\omega([\alpha] \cdot [\beta]) &= P_\omega([\alpha * \beta]) = [\omega^{-1} * \alpha * \beta * \omega] \\
+&= [\omega^{-1} * \alpha * (\omega * \omega^{-1}) * \beta * \omega] && \text{por (iii): } \omega * \omega^{-1} \simeq_{\{0,1\}} c_{x_0} \\
+&= [\omega^{-1} * \alpha * \omega] \cdot [\omega^{-1} * \beta * \omega] && \text{por (ii)} \\
+&= P_\omega([\alpha]) \cdot P_\omega([\beta]).
 \end{align*}
 
-3) $P_\omega$ es biyectiva. Comprobaremos que $P_\omega^{-1} = P_{\omega^{-1}}$.
+3) $P_\omega$ es biyectiva. Comprobaremos que $P_\omega^{-1} = P_{\omega^{-1}}$, usando (ii) y (iii).
 Para todo $[\gamma] \in \pi_1(X, x_1)$:
 \[
 P_\omega(P_{\omega^{-1}}([\gamma])) = P_\omega([(\omega^{-1})^{-1} * \gamma * \omega^{-1}]) = [\omega^{-1} * (\omega * \gamma * \omega^{-1}) * \omega] = [c_{x_1} * \gamma * c_{x_1}] = [\gamma]
@@ -465,11 +468,15 @@ P_{\omega^{-1}}(P_\omega([\alpha])) = P_{\omega^{-1}}([\omega^{-1} * \alpha * \o
 Si $X$ es arcoconexo y $x_0, x_1 \in X$, entonces $\pi_1(X, x_0) \cong \pi_1(X, x_1)$.
 \end{proposicion}
 
+\begin{proof}
+Por ser $X$ arco-conexo existe $\omega \in C_{x_0,x_1}(X)$, y $P_\omega$ es un isomorfismo por el \cref{thm:teo_cambio_base}.
+\end{proof}
+
 \begin{nota}{Grupo fundamental [C5.11]}{nota_grupo_fund}
 Este grupo se denota a partir de ahora $\pi_1(X) = \pi_1(X, x_0)$, siendo $x_0$ cualquier punto de $X$, y se denomina \textbf{grupo fundamental} de $X$.
 \end{nota}
 
-Consideremos ahora una aplicación continua. Ejercicio: Sea $X$ e.t., $x_0, x_1 \in X$ y sean $\omega_0, \omega_1 \in C_{x_0, x_1}(X)$. Prueba que si $\omega_0 \simeq_{\{0,1\}} \omega_1$ entonces $P_{\omega_0} = P_{\omega_1}$.
+\textbf{Ejercicio:} Sea $X$ e.t., $x_0, x_1 \in X$ y sean $\omega_0, \omega_1 \in C_{x_0, x_1}(X)$. Prueba que si $\omega_0 \simeq_{\{0,1\}} \omega_1$ entonces $P_{\omega_0} = P_{\omega_1}$.
 
 \begin{proof}[Solución]
 Por la proposición del inverso homotópico, $\omega_0^{-1} \simeq_{\{0,1\}} \omega_1^{-1}$. Sea $[\alpha] \in \pi_1(X,x_0)$. Aplicando dos veces la propiedad a) de la extensión a arcos:
@@ -493,8 +500,7 @@ $f_*$ es un homomorfismo de grupos.
 \end{teorema}
 
 \begin{proof}
-1) Bien definido. ¿$f \circ \alpha$ es un lazo?
-Si $[\alpha] = [\alpha'] \implies \alpha \simeq_{\{0,1\}} \alpha' \implies f \circ \alpha \simeq_{\{0,1\}} f \circ \alpha'$, lo que significa que $[f \circ \alpha] = [f \circ \alpha']$.
+1) Bien definido. $f \circ \alpha$ es un lazo en $f(x_0)$, pues $f(\alpha(0)) = f(\alpha(1)) = f(x_0)$. Además, si $[\alpha] = [\alpha'] \implies \alpha \simeq_{\{0,1\}} \alpha' \implies f \circ \alpha \simeq_{\{0,1\}} f \circ \alpha'$, lo que significa que $[f \circ \alpha] = [f \circ \alpha']$.
 (Si existe una homotopía $F: I \times I \to X$, entonces $f \circ F : I \times I \to Y$ es la homotopía en $Y$).
 
 2) $f_*$ es homomorfismo de grupos. Debemos probar que $f_*([\alpha][\beta]) = f_*([\alpha]) f_*([\beta])$ para todo $\alpha, \beta \in C_{x_0}(X)$.
@@ -530,8 +536,8 @@ que está bien definida por el apartado a) del ejercicio anterior. Cumple asocia
 \begin{teorema}{Funtorialidad de $\pi_1$ [C6.2] \marcaT}{funtorialidad_pi1}
 Sea $X$ un espacio topológico y $x_0 \in X$.
 \begin{enumerate}
-\item $(1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$
-\item Dadas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow Z$ continuas, se cumple que $(g \circ f)_* = g_* \circ f_*$.
+\item[a)] $(1_X)_{*, x_0} = 1_{\pi_1(X, x_0)}$
+\item[b)] Dadas $f \colon X \longrightarrow Y$ y $g \colon Y \longrightarrow Z$ continuas, se cumple que $(g \circ f)_* = g_* \circ f_*$.
 \end{enumerate}
 \begin{proof}
 a) Directamente, $(1_X)_{*, x_0}([\alpha]) = [1_X \circ \alpha] = [\alpha]$.
@@ -602,9 +608,12 @@ Los espacios estrellados son, por tanto, simplemente conexos (\cref{def:def_simp
 \subsection{Invariancia homotópica}
 
 \begin{teorema}{Homomorfismos inducidos por aplicaciones homotópicas [C6.7] \marcaT}{aplicaciones_homotopicas}
-Sean $f, g \colon X \longrightarrow Y$ aplicaciones continuas y homotópicas ($f \simeq g$). Existe $F \colon X \times I \longrightarrow Y$ continua tal que $F_0 = f, F_1 = g$.
-Fijando $x_0 \in X$, definimos el camino $\sigma \colon I \longrightarrow Y$ dado por $t \longmapsto F(x_0, t)$, donde $\sigma(0) = f(x_0)$ y $\sigma(1) = g(x_0)$.
-Entonces el siguiente diagrama conmuta, cumpliéndose que $g_* = P_\sigma \circ f_*$:
+Sean $f, g \colon X \to Y$ continuas, sea $F \colon f \simeq g$ una homotopía y sea $x_0 \in X$. Sea $\sigma \colon I \to Y$, $\sigma(t) = F(x_0, t)$, el arco que recorre el punto $x_0$ durante la homotopía, de $\sigma(0) = f(x_0)$ a $\sigma(1) = g(x_0)$. Consideramos:
+\begin{itemize}
+    \item $f_* \colon \pi_1(X,x_0) \to \pi_1(Y,f(x_0))$, $[\alpha] \mapsto [f \circ \alpha]$, y análogamente $g_*$;
+    \item $P_\sigma \colon \pi_1(Y,f(x_0)) \to \pi_1(Y,g(x_0))$, $[\beta] \mapsto [\sigma^{-1} * \beta * \sigma]$, que es un isomorfismo (\cref{thm:teo_cambio_base}).
+\end{itemize}
+Entonces $g_* = P_\sigma \circ f_*$, es decir, el siguiente diagrama conmuta:
 \begin{center}
 \begin{tikzpicture}
 \node (A) at (0,2) {$\pi_1(X, x_0)$};
