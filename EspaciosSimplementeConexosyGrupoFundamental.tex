@@ -317,7 +317,13 @@ Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es convexo y compacto. Sea $f
 \begin{proof}
 \textbf{Unicidad:} por la \cref{prop:prop_unicidad_elev}, ya que $X$ es convexo y, por tanto, conexo.
 
-\textbf{Existencia con $x_0 = 0$.}
+\textbf{Existencia cuando $x_0 = 0$.} Las hipótesis en este caso son:
+\begin{enumerate}
+    \item[(H1)] $X$ es convexo y compacto, y $0 \in X$;
+    \item[(H2)] $f \colon X \to S^1$ es continua;
+    \item[(H3)] $t_0 \in \mathbb{R}$ cumple $p(t_0) = f(0)$.
+\end{enumerate}
+Hay que construir $\tilde f \colon X \to \mathbb{R}$ continua con $p \circ \tilde f = f$ y $\tilde f(0) = t_0$.
 \begin{itemize}
     \item $X$ es compacto, luego $f$ es uniformemente continua (\cref{prop:lema_unif_continua}): existe $\delta > 0$ con $\|x - x'\| < \delta \Rightarrow \|f(x) - f(x')\| < 2$. Además $X$ está acotado, $\|x\| \leq K$, y tomamos $m \in \mathbb{Z}_{\geq 1}$ con $\frac{K}{\delta} < m$.
     \item Dados $j \in \{0,\dots,m-1\}$ y $x \in X$, los puntos $\frac jm x$ y $\frac{j+1}{m}x$ están en $X$ ($X$ es convexo y $0 \in X$) y distan $\frac{\|x\|}{m} < \delta$. Luego sus imágenes por $f$ no son opuestas y
@@ -325,11 +331,33 @@ Sea $X \subseteq \mathbb{R}^n$. Supongamos que $X$ es convexo y compacto. Sea $f
     está bien definida y es continua.
     \item Con $\Psi$ la inversa del \cref{prop:lema_restriccion_p}, definimos la aplicación continua
     \[ \tilde f(x) = t_0 + \sum_{j=0}^{m-1} \Psi\big(g_j(x)\big). \]
-    Como $g_j(0) = 1$, $\tilde f(0) = t_0$. Como $p$ es homomorfismo (\cref{obs:obs_p_homomorfismo}) y $p(t_0) = f(x_0) = f(0)$, el producto es telescópico:
+    Como $g_j(0) = 1$ y $\Psi(1) = 0$, $\tilde f(0) = t_0$. Como $p$ es homomorfismo (\cref{obs:obs_p_homomorfismo}) y $p(t_0) = f(0)$ por (H3), el producto es telescópico:
     \[ p(\tilde f(x)) = f(0) \cdot \frac{f(\frac1m x)}{f(0)} \cdot \frac{f(\frac2m x)}{f(\frac1m x)} \cdots \frac{f(x)}{f(\frac{m-1}{m}x)} = f(x). \]
 \end{itemize}
 
-\textbf{Caso general.} Sea $L(x) = x - x_0$, una traslación, luego un homeomorfismo de $\mathbb{R}^n$ con inversa $L^{-1}(y) = y + x_0$. $L(X)$ es convexo, compacto y contiene a $0 = L(x_0)$. Aplicando lo anterior a $g = f \circ L^{-1}$ se obtiene $\tilde g$ con $\tilde g(0) = t_0$ y $p \circ \tilde g = g$, y $\tilde f = \tilde g \circ L$ cumple $p \circ \tilde f = g \circ L = f$ y $\tilde f(x_0) = \tilde g(0) = t_0$.
+\textbf{Caso general.} Ahora $x_0 \in X$ es cualquiera y $p(t_0) = f(x_0)$. Sea $L(x) = x - x_0$, una traslación, luego un homeomorfismo de $\mathbb{R}^n$ con inversa $L^{-1}(y) = y + x_0$. Aplicamos el caso anterior a
+\[ g = f \circ L^{-1} \colon L(X) \to S^1, \]
+con el mismo $t_0$. Comprobamos sus hipótesis:
+\begin{enumerate}
+    \item[(H1)] $L(X)$ es convexo (trasladado de un convexo), compacto (imagen continua de un compacto) y $0 = L(x_0) \in L(X)$.
+    \item[(H2)] $g$ es continua, por ser composición de continuas.
+    \item[(H3)] $p(t_0) = f(x_0) = f(L^{-1}(0)) = g(0)$. \emph{Esta es la condición clave}: el valor inicial $t_0$ tiene que estar encima de $g(0)$, y lo está porque $L^{-1}(0) = x_0$.
+\end{enumerate}
+Por el caso anterior existe $\tilde g \colon L(X) \to \mathbb{R}$ continua con $p \circ \tilde g = g$ y $\tilde g(0) = t_0$. Entonces $\tilde f = \tilde g \circ L \colon X \to \mathbb{R}$ es continua y
+\[ p \circ \tilde f = p \circ \tilde g \circ L = g \circ L = f \circ L^{-1} \circ L = f, \qquad \tilde f(x_0) = \tilde g(L(x_0)) = \tilde g(0) = t_0. \]
+\begin{center}
+\begin{tikzpicture}
+\node (X) at (0,0) {$X$};
+\node (L) at (2.5,0) {$L(X)$};
+\node (S) at (5,0) {$S^1$};
+\node (R) at (2.5,1.6) {$\mathbb{R}$};
+\draw[->] (X) -- node[below] {$L$} (L);
+\draw[->] (L) -- node[below] {$g$} (S);
+\draw[->] (L) -- node[right] {$\tilde g$} (R);
+\draw[->] (X) -- node[above left] {$\tilde f$} (R);
+\draw[->] (R) -- node[above right] {$p$} (S);
+\end{tikzpicture}
+\end{center}
 \end{proof}
 \begin{center}
     \textbf{14/10/2026 (Clase 9)}

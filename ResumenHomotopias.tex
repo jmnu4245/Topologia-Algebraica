@@ -1,0 +1,88 @@
+\section{Resumen: homotopías, lazos y grado}
+
+Hoja de repaso con las propiedades que se usan una y otra vez en las demostraciones. Cada una enlaza a donde está demostrada.
+
+\subsection{Homotopías libres}
+
+$f \simeq g$ si existe $F \colon X \times I \to Y$ continua con $F_0 = f$ y $F_1 = g$. Durante la deformación, \emph{todos} los puntos se pueden mover.
+\begin{itemize}
+    \item Es una relación de equivalencia en $C(X,Y)$ (\cref{thm:teo_rel_eq}). Simétrica: $F(x,1-t)$. Transitiva: pegar en $t = \frac12$ con el lema de continuidad.
+    \item Composición: $f_1 \simeq f_2$ y $g_1 \simeq g_2 \Rightarrow g_1 \circ f_1 \simeq g_2 \circ f_2$, con $H(x,t) = G(F(x,t),t)$ (\cref{thm:teo_comp_homo}).
+    \item Contráctil ($1_X \simeq c_{x_0}$) $\iff$ $X \simeq \{\text{pt}\}$ $\iff$ dos aplicaciones cualesquiera $T \to X$ son homotópicas (\cref{thm:teo_contractil}). Contráctil $\Rightarrow$ arco-conexo, pero no al revés (\cref{thm:teo_contractil_arcoconexo}). Convexo $\Rightarrow$ estrellado $\Rightarrow$ contráctil.
+\end{itemize}
+
+\subsection{Homotopías relativas}
+
+$f \simeq_A g$ si además $F(a,t) = f(a)$ para todo $a \in A$ y todo $t$: los puntos de $A$ \emph{no se mueven}. Para arcos y lazos se usa $A = \{0,1\}$ (extremos fijos).
+\begin{itemize}
+    \item Es una relación de equivalencia (\cref{thm:teo_rbe_relativa}).
+    \item $f \simeq_A g \Rightarrow f|_A = g|_A$ y $f \simeq g$, pero no al revés (\cref{obs:obs_relativa}).
+    \item \textbf{Por qué relativa:} en un arco-conexo, \emph{dos arcos cualesquiera son libremente homotópicos} (\cref{obs:obs_relativa}), así que la homotopía libre de lazos no detecta agujeros. Toda la teoría de $\pi_1$ y del grado usa $\simeq_{\{0,1\}}$.
+\end{itemize}
+
+\begin{proposicion}{Componer una homotopía con una aplicación continua}{resumen_composicion}
+Sea $h \colon Y \to Z$ continua.
+\begin{enumerate}
+    \item[a)] Si $F \colon f \simeq g$ (en $Y$), entonces $h \circ F \colon h \circ f \simeq h \circ g$ (en $Z$).
+    \item[b)] Si además $F$ es relativa a $A$, también lo es $h \circ F$.
+    \item[c)] En particular, si $H \colon \alpha \simeq_{\{0,1\}} \beta$ son arcos en $Y$, entonces $h \circ H \colon h \circ \alpha \simeq_{\{0,1\}} h \circ \beta$ en $Z$.
+\end{enumerate}
+\end{proposicion}
+
+\begin{proof}
+$h \circ F$ es continua (composición de continuas), $(h \circ F)_0 = h \circ F_0 = h \circ f$ y $(h \circ F)_1 = h \circ g$. Si $F(a,t) = f(a)$ para todo $t$, entonces $h(F(a,t)) = h(f(a))$ tampoco depende de $t$. Es el caso $g_1 = g_2 = h$ del \cref{thm:teo_comp_homo}; la versión c) es exactamente la buena definición de $h_*$ en el \cref{thm:teo_hom_ind}.
+\end{proof}
+
+\textbf{La idea:} una homotopía es una aplicación continua más, $F \colon X \times I \to Y$, así que se puede componer como cualquier otra. Componer con $h$ ``fotografía'' cada instante de la deformación con $h$. No hace falta que la imagen sea simplemente conexa ni nada parecido: la homotopía se \emph{construye} donde es fácil y se \emph{transporta} con $h$ adonde hace falta.
+
+\subsection{Operaciones con arcos (todas módulo $\simeq_{\{0,1\}}$)}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{6.2cm}|p{6.2cm}|}
+\hline
+\textbf{Propiedad} & \textbf{Dónde} \\ \hline
+$\alpha \simeq \alpha',\ \beta \simeq \beta' \Rightarrow \alpha * \beta \simeq \alpha' * \beta'$ & \cref{prop:ej_poincare_arcos} a) (pegar en $s = \frac12$) \\ \hline
+$\alpha * (\beta * \gamma) \simeq (\alpha * \beta) * \gamma \simeq \alpha * \beta * \gamma$ & \cref{prop:ej_poincare_arcos} b), \cref{prop:ej_concat_conjunta} \\ \hline
+$c_{x_0} * \alpha \simeq \alpha \simeq \alpha * c_{x_1}$ & \cref{prop:ej_poincare_arcos} c) \\ \hline
+$\alpha * \alpha^{-1} \simeq c_{x_0}$, $\alpha^{-1} * \alpha \simeq c_{x_1}$ & \cref{prop:ej_poincare_arcos} d) \\ \hline
+$\alpha \simeq \beta \Rightarrow \alpha^{-1} \simeq \beta^{-1}$, con $H(1-s,t)$ & \cref{prop:inverso_homotopico} \\ \hline
+$(\alpha * \beta)^{-1} = \beta^{-1} * \alpha^{-1}$ (igualdad) & \cref{prop:ej_inverso_concat} \\ \hline
+$\alpha \circ g \simeq \alpha$ si $g \colon I \to I$, $g(0) = 0$, $g(1) = 1$ & \cref{prop:prop_reparametrizacion} \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{El grupo fundamental y las aplicaciones}
+
+\begin{itemize}
+    \item $f_*[\alpha] = [f \circ \alpha]$ está bien definido (por la \cref{prop:resumen_composicion}) y es homomorfismo (\cref{thm:teo_hom_ind}). Funtorialidad: $(g \circ f)_* = g_* \circ f_*$ y $(1_X)_* = 1$ (\cref{thm:funtorialidad_pi1}). Homeomorfismo $\Rightarrow$ isomorfismo (\cref{prop:homeomorfismo_pi1}).
+    \item Cambio de base: $P_w[\alpha] = [w^{-1} * \alpha * w]$ es un isomorfismo (\cref{thm:teo_cambio_base}) y solo depende de $[w]$ (\cref{prop:ej_pw_homotopicos}). Arco-conexo $\Rightarrow$ $\pi_1$ no depende del punto base (\cref{prop:cor_arco}).
+    \item \textbf{Homotopía libre entre aplicaciones:} si $F \colon f \simeq g$ y $\sigma(t) = F(x_0,t)$, entonces $g_* = P_\sigma \circ f_*$ (\cref{thm:aplicaciones_homotopicas}). El punto base se mueve a lo largo de $\sigma$, y $P_\sigma$ corrige ese movimiento. Consecuencias: $X \simeq Y$ arco-conexos $\Rightarrow$ $\pi_1(X) \cong \pi_1(Y)$ (\cref{prop:equiv_homotopica}), y $f \simeq$ constante $\Rightarrow$ $f_*$ trivial (ejercicio T3.10).
+    \item Estrellado $\Rightarrow$ $\pi_1 = 1$ (\cref{prop:estrellado}); $S^n$ simplemente conexo para $n \geq 2$ (\cref{prop:corolario_sn}); $\pi_1(S^1) \cong \mathbb{Z}$ (\cref{thm:teo_pi1_s1}).
+\end{itemize}
+
+\begin{nota}{El truco de factorizar por un simplemente conexo}{resumen_factorizar}
+Si una aplicación factoriza como $f = g \circ j$ con $j \colon A \to Z$ y $Z$ simplemente conexo, entonces $f_*$ es trivial:
+\[ f_* = g_* \circ j_* \quad\text{y}\quad j_* \text{ cae en } \pi_1(Z) = 1. \]
+Con homotopías: cada lazo $j \circ \alpha$ se contrae en $Z$ mediante $H \colon j \circ \alpha \simeq_{\{0,1\}} c$, y $g \circ H$ contrae $f \circ \alpha$ (\cref{prop:resumen_composicion}). La contracción se hace en $Z$, donde existe, y $g$ la transporta.
+
+\emph{Se usa en:} la no retracción $D^2 \to S^1$ (\cref{thm:teo_no_retracto}, con $Z = D^2$), T4.5 b) ($Z = S^2$) y la no existencia de impares $S^2 \to S^1$ (\cref{prop:cor_no_impar}, con $Z = S^2$). Si se intenta contraer $f \circ \alpha$ directamente en la llegada ($S^1$), no hay por qué poder: la identidad de $S^1$ es impar y tiene grado $1$.
+\end{nota}
+
+\subsection{El grado}
+
+\begin{itemize}
+    \item $\deg(\alpha) = \tilde\alpha(1)$ con $\tilde\alpha(0) = 0$, para lazos en $(1,0)$ (\cref{def:def_grado}). En un punto base $x_0$ cualquiera, $\deg_{x_0}(\alpha) = \tilde\alpha(1) - \tilde\alpha(0)$ con \emph{cualquier} elevación (\cref{def:def_grado_x0}), porque dos elevaciones difieren en un entero constante (\cref{prop:lema_dos_elevaciones}).
+    \item $\alpha \simeq_{\{0,1\}} \beta \Rightarrow \deg \alpha = \deg \beta$ (\cref{thm:teo_pi1_s1} y \cref{obs:obs_grado_clase}). \textbf{Necesita la homotopía relativa:} con una libre, cualquier lazo de $S^1$ es homotópico a una constante.
+    \item $\deg(\alpha * \beta) = \deg \alpha + \deg \beta$, $\deg(c) = 0$, $\deg(\omega_n) = n$, y $\deg$ es un isomorfismo $\pi_1(S^1) \to \mathbb{Z}$ (\cref{thm:teo_pi1_s1}).
+    \item Para probar que un grado vale $0$: encontrar una homotopía \emph{relativa} del lazo a una constante, normalmente construyéndola en otro espacio y transportándola (\cref{not:resumen_factorizar}).
+\end{itemize}
+
+\subsection{Errores típicos}
+
+\begin{itemize}
+    \item Decir ``$f \circ \alpha \simeq c \circ \alpha$'' para concluir que $f_*[\alpha]$ es trivial: esa homotopía es \emph{libre} (el punto base recorre $\sigma$) y $c \circ \alpha$ vive en otro grupo. Hay que usar $g_* = P_\sigma \circ f_*$ (ejercicio T3.10).
+    \item Usar una homotopía libre para comparar grados o clases en $\pi_1$: hace falta $\simeq_{\{0,1\}}$.
+    \item Olvidar comprobar que una homotopía \emph{no sale del espacio} (dividir por algo que no se anula, radios dentro de la corona, etc.).
+    \item Al pegar homotopías, no comprobar que coinciden en la frontera y no citar el lema de continuidad.
+\end{itemize}

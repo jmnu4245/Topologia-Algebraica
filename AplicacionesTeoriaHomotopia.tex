@@ -192,7 +192,7 @@ Supongamos que existe $g \colon S^2 \to S^1$ continua con $g(-x) = -g(x)$ para t
 \[ f(-p) = g(j(-p)) = g(-p,0) = g(-(p,0)) = -g(p,0) = -f(p). \]
 Por el \cref{thm:teo_paridad}, $\deg(f \circ \sigma)$ es impar.
 
-Por otro lado, $j \circ \sigma$ es un lazo en $S^2$ basado en $(1,0,0)$, pues $j(\sigma(0)) = j(\sigma(1)) = (1,0,0)$. Como $S^2$ es simplemente conexo (\cref{prop:corolario_sn}), $\pi_1(S^2,(1,0,0)) = 1$, así que existe una homotopía $H \colon I \times I \to S^2$ con $H \colon j \circ \sigma \simeq_{\{0,1\}} c_{(1,0,0)}$. Componiendo con $g$, la aplicación $g \circ H$ es una homotopía relativa entre
+Por otro lado, $j \circ \sigma$ es un lazo en $S^2$ basado en $(1,0,0)$, pues $j(\sigma(0)) = j(\sigma(1)) = (1,0,0)$. Como $S^2$ es simplemente conexo (\cref{prop:corolario_sn}), $\pi_1(S^2,(1,0,0)) = 1$, así que existe una homotopía $H \colon I \times I \to S^2$ con $H \colon j \circ \sigma \simeq_{\{0,1\}} c_{(1,0,0)}$. Componiendo con $g$, la aplicación $g \circ H$ es una homotopía relativa (componer una homotopía relativa con una aplicación continua da otra homotopía relativa: es lo que se prueba al ver que $g_*$ está bien definido en el \cref{thm:teo_hom_ind}; véase también la \cref{prop:resumen_composicion}) entre
 \[ g \circ j \circ \sigma = f \circ \sigma \qquad\text{y}\qquad g \circ c_{(1,0,0)} = c_{g(1,0,0)}. \]
 Por la \cref{obs:obs_grado_clase}, $\deg(f \circ \sigma) = \deg(c_{g(1,0,0)}) = 0$, que es par. Contradicción.
 \end{proof}
