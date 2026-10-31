@@ -18,3 +18,4 @@ exportados/
 !exportar.sh
 !web/construir.sh
 .web/
+__pycache__/
