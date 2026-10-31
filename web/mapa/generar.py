@@ -268,7 +268,7 @@ def numeros(carpeta_aux):
 def urls(carpeta_html):
     """(entorno, número) -> 'pagina.html#id' buscando las cajas en las páginas HTML."""
     destino = {}
-    patron = re.compile(r'<div class=["\']tcolorbox (\w+)["\'] id=["\']([^"\']+)["\']>\s*<div class=["\']tcolorbox-title["\']>'
+    patron = re.compile(r'<div class=["\']tcolorbox (\w+)["\'] id=["\']([^"\']+)["\']>\s*(?:<a [^>]*></a>\s*)?<div class=["\']tcolorbox-title["\']>'
                         r'\s*(?:<!--[^>]*-->)?\s*<p[^>]*>\s*[^\s<]+\s+([\d.]+):')
     for pagina in sorted(Path(carpeta_html).glob("*.html")):
         for env, ident, num in patron.findall(pagina.read_text(encoding="utf-8")):
