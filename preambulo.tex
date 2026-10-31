@@ -23,6 +23,11 @@
 \usetikzlibrary{babel, decorations.markings, decorations.pathreplacing, arrows.meta}
 \usepackage{etoc} 
 
+% --- Modo exportación (para subir cada tema por separado) ---
+% Solo se activa con ./exportar.sh, que compila con \def\exportar{}. En una compilación normal no cambia nada.
+\newif\ifexportar
+\ifdefined\exportar \exportartrue \else \exportarfalse \fi
+
 \newcommand{\portadaseccion}[1]{
     \clearpage
     \thispagestyle{empty}
@@ -162,7 +167,8 @@
     coltitle=white,
     sombra={teal!40!black,opacity=0.5},
     title style={left color=teal!70!black, right color=teal!50!black},
-    title={Ejercicio: #1}
+    title={Ejercicio: #1},
+    before upper={\ifexportar\phantomsection\addcontentsline{toc}{subsubsection}{#1}\fi}
 }
 
 % --- Cabecera/pie de página ---
@@ -198,3 +204,39 @@
 \newcommand{\sol}{\par\medskip\noindent\textbf{Solución.}\ }
 % Solución que ya está en los apuntes: solo se remite a ella
 \newcommand{\enapuntes}[1]{\par\medskip\noindent\textbf{Solución.}\ \etiqueta{teal!70!black}{En los apuntes} #1}
+
+% --- Partes exportables ---
+% \inicioparte{id}{encabezado}{título}{profundidad del índice}: en modo exportación empieza una parte nueva
+% con portadilla y hoja de índice (si la profundidad está vacía, no hay índice) y anota su página inicial
+% en \jobname.partes para que exportar.sh corte el PDF. \fronteraparte{id} solo anota dónde acaba lo anterior.
+% \indicetema{id} va justo después del \section o \subsection de la parte y guarda su índice local.
+\ifexportar
+  \newwrite\exportpartes
+  \immediate\openout\exportpartes=\jobname.partes
+\fi
+\newcommand{\inicioparte}[4]{%
+  \ifexportar
+    \clearpage
+    \thispagestyle{empty}%
+    \write\exportpartes{#1 \thepage}%
+    \vspace*{5cm}
+    \begin{center}
+      {\Large\bfseries Topología Algebraica\par}
+      \vspace{0.6em}
+      {\normalsize Grado en Matemáticas \textperiodcentered\ Curso 2026/27\par}
+      \vspace{3cm}
+      {\Huge\bfseries #2\par}
+      \vspace{1em}
+      {\LARGE #3\par}
+    \end{center}
+    \clearpage
+    \if\relax\detokenize{#4}\relax\else
+      \thispagestyle{empty}%
+      {\Large\bfseries Índice\par}
+      \vspace{1em}
+      {\etocsettocstyle{}{}\etocsetnexttocdepth{#4}\tableofcontents \ref{toc:#1}}
+      \clearpage
+    \fi
+  \fi}
+\newcommand{\fronteraparte}[1]{\ifexportar\write\exportpartes{#1 \thepage}\fi}
+\newcommand{\indicetema}[1]{\ifexportar\invisiblelocaltableofcontents\label{toc:#1}\fi}

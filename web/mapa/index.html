@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa de resultados · Topología Algebraica</title>
+<meta name="description" content="Mapa interactivo de teoremas, proposiciones y definiciones de Topología Algebraica: pulsa un resultado para ver su enunciado, su demostración y de qué depende.">
+<style>
+  :root {
+    --fondo: #f6f6fa; --panel: #ffffff; --texto: #1d1d24; --suave: #6b6b78; --borde: #e2e2ea;
+    --barra: #24203a; --usa: #2b5bd7; --lleva: #d9730d;
+    --t1: #2f7d6d; --t2: #c0662c; --t3: #4a5bc4; --t4: #9c3f8c; --t5: #b3182b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { display: flex; flex-direction: column; background: var(--fondo); color: var(--texto);
+         font: 15px/1.5 "Source Sans 3", "Segoe UI", system-ui, sans-serif; }
+  nav.barra { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; align-items: center; padding: .55rem 1rem; background: var(--barra); }
+  nav.barra a { color: #fff; text-decoration: none; font-weight: 600; }
+  nav.barra a:hover { text-decoration: underline; }
+  nav.barra .titulo { margin-right: auto; color: #fff; font-weight: 700; }
+  #principal { flex: 1; display: flex; min-height: 0; }
+  #lienzo-cont { position: relative; flex: 1; min-width: 0; }
+  #lienzo { position: absolute; inset: 0; }
+  #controles { position: absolute; top: .7rem; left: .7rem; right: .7rem; z-index: 5; display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; pointer-events: none; }
+  #controles > * { pointer-events: auto; }
+  #buscar-cont { position: relative; }
+  #buscar { width: 15rem; padding: .45rem .7rem; border: 1px solid var(--borde); border-radius: 8px; font: inherit; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  #sugerencias { position: absolute; top: 100%; left: 0; width: 22rem; max-height: 50vh; overflow: auto; margin: .2rem 0 0; padding: 0; list-style: none; background: #fff; border: 1px solid var(--borde); border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,.12); display: none; }
+  #sugerencias li { padding: .35rem .7rem; cursor: pointer; }
+  #sugerencias li:hover, #sugerencias li.activa { background: #eef0fb; }
+  .chip { display: inline-flex; align-items: center; gap: .3rem; padding: .25rem .6rem; border: 1px solid var(--borde); border-radius: 999px; background: #fff; font-size: .85rem; cursor: pointer; user-select: none; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .chip.apagado { opacity: .4; }
+  .chip .punto { width: .7rem; height: .7rem; border-radius: 50%; }
+  button.chip { font: inherit; font-size: .85rem; }
+  #leyenda { position: absolute; bottom: .7rem; left: .7rem; z-index: 5; padding: .5rem .7rem; background: rgba(255,255,255,.92); border: 1px solid var(--borde); border-radius: 8px; font-size: .8rem; color: var(--suave); }
+  #leyenda b { color: var(--texto); }
+  .flecha-usa { color: var(--usa); font-weight: 700; }
+  .flecha-lleva { color: var(--lleva); font-weight: 700; }
+
+  #panel { width: 27rem; max-width: 45vw; overflow: auto; background: var(--panel); border-left: 1px solid var(--borde); padding: 1.2rem 1.3rem 2rem; }
+  #panel .vacio { color: var(--suave); }
+  #panel h2 { margin: .3rem 0 .6rem; font-size: 1.3rem; line-height: 1.3; }
+  #panel .cabecera { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; font-size: .85rem; }
+  .tipo { padding: .1rem .5rem; border-radius: 4px; color: #fff; font-weight: 700; }
+  .marca { padding: .05rem .45rem; border-radius: 4px; font-weight: 700; font-size: .8rem; }
+  .marca.fuerte { background: #b3182b; color: #fff; }
+  .marca.suave { border: 1px solid #999; }
+  .marca.ej { background: #c75b00; color: #fff; }
+  .clase { color: var(--suave); }
+  #panel section { margin-top: 1rem; }
+  #panel h3 { margin: 0 0 .4rem; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--suave); }
+  .enunciado { padding: .6rem .8rem; background: #f7f7fb; border-left: 4px solid var(--color, #888); border-radius: 4px; overflow-x: auto; }
+  details { margin-top: .6rem; }
+  details summary { cursor: pointer; font-weight: 600; color: var(--usa); }
+  .demo { padding: .4rem 0 .2rem .8rem; border-left: 2px solid var(--borde); overflow-x: auto; }
+  .lista { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .lista .chip { border-left: 4px solid var(--c); }
+  .acciones { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+  .boton { display: inline-block; padding: .4rem .8rem; border-radius: 6px; border: 1px solid var(--borde); background: #fff; color: var(--texto); text-decoration: none; font: inherit; font-size: .88rem; cursor: pointer; }
+  .boton.principal { background: var(--barra); color: #fff; border-color: var(--barra); }
+  a.ref { color: var(--usa); cursor: pointer; text-decoration: underline; }
+  .fig { color: var(--suave); font-style: italic; }
+  .enunciado ul, .enunciado ol, .demo ul, .demo ol { padding-left: 1.3rem; margin: .3rem 0; }
+
+  @media (max-width: 760px) {
+    #principal { flex-direction: column; }
+    #lienzo-cont { flex: 1 1 55%; }
+    #panel { width: auto; max-width: none; flex: 1 1 45%; border-left: 0; border-top: 1px solid var(--borde); }
+    #buscar { width: 11rem; }
+    #leyenda { display: none; }
+  }
+</style>
+<script>
+  window.MathJax = { tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]] }, startup: { typeset: false } };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+</head>
+<body>
+<nav class="barra">
+  <span class="titulo">Topología Algebraica · Mapa de resultados</span>
+  <a href="../apuntes/">Apuntes</a>
+  <a href="https://github.com/jmnu4245/Topologia-Algebraica/releases/latest">PDF</a>
+  <a href="https://github.com/jmnu4245/Topologia-Algebraica">GitHub</a>
+</nav>
+<div id="principal">
+  <div id="lienzo-cont">
+    <div id="lienzo"></div>
+    <div id="controles">
+      <div id="buscar-cont">
+        <input id="buscar" type="search" placeholder="Buscar resultado…" autocomplete="off">
+        <ul id="sugerencias"></ul>
+      </div>
+      <span id="filtro-temas"></span>
+      <span id="filtro-tipos"></span>
+      <button class="chip" id="solo-clase" title="Solo los demostrados en clase (⊙ T y ⊙ C) y los ejercicios de clase">⊙ Solo lo de examen</button>
+      <button class="chip" id="reajustar">Ver todo</button>
+    </div>
+    <div id="leyenda">
+      <b>Cómo leerlo:</b> la flecha A → B significa que B usa A.<br>
+      Al pulsar un resultado: <span class="flecha-usa">azul</span> = lo que usa, <span class="flecha-lleva">naranja</span> = a lo que lleva.<br>
+      Contorno rojo = teorema o corolario demostrado en clase (⊙ T, ⊙ C).
+    </div>
+  </div>
+  <aside id="panel"><p class="vacio">Pulsa un resultado del mapa para ver su enunciado, su demostración y de qué depende. También puedes buscarlo arriba.</p></aside>
+</div>
+
+<script>
+const COLOR_TEMA = { 1: "var(--t1)", 2: "var(--t2)", 3: "var(--t3)", 4: "var(--t4)", 5: "var(--t5)" };
+const HEX_TEMA = { 1: "#2f7d6d", 2: "#c0662c", 3: "#4a5bc4", 4: "#9c3f8c", 5: "#b3182b" };
+const ABREV = { teorema: "T", proposicion: "P", definicion: "D", observacion: "O", nota: "N" };
+const NOMBRES_TIPO = { teorema: "Teoremas", proposicion: "Proposiciones", definicion: "Definiciones", observacion: "Observaciones", nota: "Notas" };
+const TIPOS_INICIALES = new Set(["teorema", "proposicion", "definicion"]);
+
+let datos, cy, porId = {};
+const temasActivos = new Set([1, 2, 3, 4, 5]);
+const tiposActivos = new Set(TIPOS_INICIALES);
+let soloClase = false;
+
+function etiqueta(n) {
+  const titulo = n.titulo || (n.clase.length ? n.clase.join(", ") : "");
+  const corto = titulo.length > 46 ? titulo.slice(0, 44) + "…" : titulo;
+  return `${ABREV[n.tipo]} ${n.numero}${corto ? "\n" + corto : ""}`;
+}
+
+function marcasHtml(n) {
+  return n.marcas.map(m => m === "E" ? '<span class="marca ej">Ej. de clase</span>'
+    : `<span class="marca ${"TC".includes(m) ? "fuerte" : "suave"}">⊙ ${m}</span>`).join(" ");
+}
+
+async function iniciar() {
+  datos = await (await fetch("datos.json")).json();
+  datos.nodos.forEach(n => porId[n.id] = n);
+  const elementos = [
+    ...datos.nodos.map(n => {
+      const label = etiqueta(n), lineas = label.split("\n");
+      const ancho = Math.min(170, Math.max(...lineas.map(l => l.length)) * 6.4) + 18;
+      const filas = lineas.reduce((t, l) => t + Math.max(1, Math.ceil(l.length * 6.4 / 152)), 0);
+      return { data: { id: n.id, label, tema: n.tema, tipo: n.tipo, w: ancho, h: filas * 14 + 14,
+        clase: n.marcas.some(m => "TC".includes(m)) ? 1 : 0, color: HEX_TEMA[n.tema] } };
+    }),
+    ...datos.aristas.map(a => ({ data: { id: a.de + "→" + a.a, source: a.de, target: a.a } })),
+  ];
+  cy = cytoscape({
+    container: document.getElementById("lienzo"),
+    elements: elementos,
+    minZoom: 0.1, maxZoom: 3,
+    style: [
+      { selector: "node", style: {
+        "shape": "round-rectangle", "background-color": "#fff", "border-width": 2, "border-color": "data(color)",
+        "label": "data(label)", "text-wrap": "wrap", "text-max-width": 150, "font-size": 11,
+        "font-family": "Source Sans 3, Segoe UI, system-ui, sans-serif", "color": "#1d1d24",
+        "text-valign": "center", "text-halign": "center", "width": "data(w)", "height": "data(h)" } },
+      { selector: "node[tipo = 'teorema']", style: { "background-color": "data(color)", "color": "#fff", "font-weight": 700 } },
+      { selector: "node[tipo = 'definicion']", style: { "shape": "cut-rectangle", "border-style": "dashed" } },
+      { selector: "node[tipo = 'observacion'], node[tipo = 'nota']", style: { "shape": "ellipse", "font-size": 9, "border-width": 1 } },
+      { selector: "node[clase = 1]", style: { "outline-width": 2, "outline-color": "#b3182b", "outline-offset": 2 } },
+      { selector: "edge", style: { "width": 1.3, "line-color": "#c4c4d0", "target-arrow-color": "#c4c4d0",
+        "target-arrow-shape": "triangle", "arrow-scale": 0.8, "curve-style": "bezier" } },
+      { selector: ".atenuado", style: { "opacity": 0.12 } },
+      { selector: "node.elegido", style: { "font-size": 15, "border-width": 4, "text-max-width": 230, "width": 250, "height": 70, "z-index": 10 } },
+      { selector: "edge.usa", style: { "line-color": "#2b5bd7", "target-arrow-color": "#2b5bd7", "width": 2.5, "z-index": 9 } },
+      { selector: "edge.lleva", style: { "line-color": "#d9730d", "target-arrow-color": "#d9730d", "width": 2.5, "z-index": 9 } },
+      { selector: "node.usa", style: { "border-color": "#2b5bd7", "border-width": 3 } },
+      { selector: "node.lleva", style: { "border-color": "#d9730d", "border-width": 3 } },
+      { selector: ".oculto", style: { "display": "none" } },
+    ],
+  });
+  construirFiltros();
+  aplicarFiltros();
+  cy.on("tap", "node", e => elegir(e.target.id()));
+  cy.on("tap", e => { if (e.target === cy) limpiar(); });
+  window.addEventListener("hashchange", desdeHash);
+  desdeHash();
+}
+
+function disponer(animar = false) {
+  cy.elements(":visible").layout({ name: "dagre", rankDir: "LR", nodeSep: 14, rankSep: 80, edgeSep: 6, ranker: "network-simplex",
+    animate: animar, animationDuration: 400, fit: true, padding: 40 }).run();
+}
+
+function construirFiltros() {
+  const ft = document.getElementById("filtro-temas");
+  datos.temas.forEach(t => {
+    const c = document.createElement("span");
+    c.className = "chip"; c.title = t.nombre;
+    c.innerHTML = `<span class="punto" style="background:${HEX_TEMA[t.n]}"></span>Tema ${t.n}`;
+    c.onclick = () => { temasActivos.has(t.n) ? temasActivos.delete(t.n) : temasActivos.add(t.n);
+      c.classList.toggle("apagado"); aplicarFiltros(); };
+    ft.appendChild(c);
+  });
+  const fp = document.getElementById("filtro-tipos");
+  Object.keys(NOMBRES_TIPO).forEach(tipo => {
+    const c = document.createElement("span");
+    c.className = "chip" + (tiposActivos.has(tipo) ? "" : " apagado");
+    c.textContent = NOMBRES_TIPO[tipo];
+    c.onclick = () => { tiposActivos.has(tipo) ? tiposActivos.delete(tipo) : tiposActivos.add(tipo);
+      c.classList.toggle("apagado"); aplicarFiltros(); };
+    fp.appendChild(c);
+  });
+  const sc = document.getElementById("solo-clase");
+  sc.classList.add("apagado");
+  sc.onclick = () => { soloClase = !soloClase; sc.classList.toggle("apagado"); aplicarFiltros(); };
+  document.getElementById("reajustar").onclick = () => { limpiar(); cy.animate({ fit: { eles: cy.elements(":visible"), padding: 40 } }, { duration: 400 }); };
+  const buscar = document.getElementById("buscar"), sug = document.getElementById("sugerencias");
+  const normal = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  buscar.addEventListener("input", () => {
+    const q = normal(buscar.value.trim());
+    sug.innerHTML = "";
+    if (!q) { sug.style.display = "none"; return; }
+    const res = datos.nodos.filter(n => normal(`${n.nombreTipo} ${n.numero} ${n.titulo} ${n.clase.join(" ")}`).includes(q)).slice(0, 12);
+    res.forEach((n, i) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<b>${n.nombreTipo} ${n.numero}</b> ${n.titulo}`;
+      if (i === 0) li.className = "activa";
+      li.onmousedown = () => { elegir(n.id, true); sug.style.display = "none"; buscar.blur(); };
+      sug.appendChild(li);
+    });
+    sug.style.display = res.length ? "block" : "none";
+  });
+  buscar.addEventListener("keydown", e => {
+    if (e.key === "Enter") { const li = sug.querySelector("li"); if (li) li.onmousedown(); }
+    if (e.key === "Escape") { sug.style.display = "none"; buscar.blur(); }
+  });
+  buscar.addEventListener("blur", () => setTimeout(() => sug.style.display = "none", 150));
+}
+
+function visible(n) {
+  return temasActivos.has(n.tema) && tiposActivos.has(n.tipo) && (!soloClase || n.marcas.some(m => "TCE".includes(m)));
+}
+
+function aplicarFiltros(forzar) {
+  cy.batch(() => cy.nodes().forEach(nd => nd.toggleClass("oculto", !visible(porId[nd.id()]) && nd.id() !== forzar)));
+  disponer();
+}
+
+function limpiar() {
+  cy.elements().removeClass("atenuado elegido usa lleva");
+  if (location.hash) history.replaceState(null, "", location.pathname);
+}
+
+function elegir(id, desdeBusqueda = false) {
+  const n = porId[id];
+  if (!n) return;
+  const nodo = cy.getElementById(id);
+  if (nodo.hasClass("oculto")) aplicarFiltros(id);  // si estaba filtrado, se muestra
+  cy.batch(() => {
+    cy.elements().removeClass("atenuado elegido usa lleva");
+    const entrantes = nodo.incomers(), salientes = nodo.outgoers();
+    cy.elements().not(nodo).not(entrantes).not(salientes).addClass("atenuado");
+    nodo.addClass("elegido");
+    entrantes.addClass("usa"); salientes.addClass("lleva");
+  });
+  // Encuadra el resultado y sus vecinos, pero sin alejarse tanto que no se pueda leer.
+  const vecindad = nodo.closedNeighborhood().filter(":visible");
+  const bb = vecindad.boundingBox(), w = cy.width(), h = cy.height();
+  const zoom = Math.min(1.6, Math.max(0.95, Math.min((w - 160) / bb.w, (h - 160) / bb.h)));
+  cy.animate({ zoom, center: { eles: zoom > 0.95 ? vecindad : nodo } }, { duration: 450 });
+  if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+  mostrarPanel(n, nodo);
+}
+
+function cadena(id, direccion) {
+  const nodo = cy.getElementById(id);
+  const todo = direccion === "antes" ? nodo.predecessors() : nodo.successors();
+  cy.batch(() => {
+    cy.elements().removeClass("atenuado usa lleva").addClass("atenuado");
+    nodo.removeClass("atenuado");
+    todo.removeClass("atenuado").addClass(direccion === "antes" ? "usa" : "lleva");
+  });
+  cy.animate({ fit: { eles: todo.union(nodo).filter(":visible"), padding: 50 } }, { duration: 450 });
+}
+
+function chips(ids) {
+  if (!ids.length) return '<span class="vacio">—</span>';
+  return ids.map(i => porId[i]).sort((a, b) => a.numero.localeCompare(b.numero, undefined, { numeric: true }))
+    .map(m => `<span class="chip" style="--c:${HEX_TEMA[m.tema]}" data-ir="${m.id}"><b>${ABREV[m.tipo]} ${m.numero}</b> ${m.titulo.slice(0, 38)}</span>`).join("");
+}
+
+function mostrarPanel(n, nodo) {
+  const usa = nodo.incomers("node").map(x => x.id());
+  const lleva = nodo.outgoers("node").map(x => x.id());
+  const panel = document.getElementById("panel");
+  const tema = datos.temas.find(t => t.n === n.tema);
+  panel.innerHTML = `
+    <div class="cabecera">
+      <span class="tipo" style="background:${HEX_TEMA[n.tema]}">${n.nombreTipo} ${n.numero}</span>
+      ${marcasHtml(n)}
+      ${n.clase.length ? `<span class="clase">[${n.clase.join(", ")}]</span>` : ""}
+    </div>
+    <h2>${n.tituloHtml || n.nombreTipo + " " + n.numero}</h2>
+    <div class="clase">Tema ${n.tema} · ${tema ? tema.nombre : ""}</div>
+    <section><h3>Enunciado</h3><div class="enunciado" style="--color:${HEX_TEMA[n.tema]}">${n.enunciado || '<span class="vacio">—</span>'}</div>
+      ${n.demostracion ? `<details><summary>Demostración</summary><div class="demo">${n.demostracion}</div></details>` : ""}
+    </section>
+    <section><h3><span class="flecha-usa">←</span> Usa (${usa.length})</h3><div class="lista">${chips(usa)}</div></section>
+    <section><h3><span class="flecha-lleva">→</span> Lleva a (${lleva.length})</h3><div class="lista">${chips(lleva)}</div></section>
+    <div class="acciones">
+      ${n.url ? `<a class="boton principal" href="../apuntes/${n.url}" target="_blank" rel="noopener">Ver en los apuntes ↗</a>` : ""}
+      <button class="boton" data-cadena="antes">Todo lo que necesita</button>
+      <button class="boton" data-cadena="despues">Todo lo que se deriva</button>
+    </div>`;
+  panel.scrollTop = 0;
+  panel.querySelectorAll("[data-ir]").forEach(c => c.onclick = () => elegir(c.dataset.ir));
+  panel.querySelectorAll("a.ref").forEach(a => { if (porId[a.dataset.id]) a.onclick = () => elegir(a.dataset.id); });
+  panel.querySelectorAll("[data-cadena]").forEach(b => b.onclick = () => cadena(n.id, b.dataset.cadena));
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([panel]).catch(() => {});
+  else window.addEventListener("load", () => MathJax.typesetPromise && MathJax.typesetPromise([panel]));
+}
+
+function desdeHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (id && porId[id]) elegir(id);
+}
+
+iniciar();
+</script>
+</body>
+</html>

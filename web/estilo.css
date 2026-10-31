@@ -1,0 +1,128 @@
+/* Estilo de la versión HTML de los apuntes. Colores por tipo de caja, como en el PDF. */
+:root {
+  --texto: #1d1d24;
+  --fondo: #fbfbfd;
+  --suave: #6b6b78;
+  --enlace: #2b4c9c;
+  --teorema: #1f3c99;
+  --definicion: #6a2c91;
+  --proposicion: #3e3f8f;
+  --observacion: #7a2e55;
+  --nota: #8a2d7a;
+  --ejercicio: #1e6b66;
+}
+
+html { background: var(--fondo); overflow-x: hidden; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+body {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 0 1rem 4rem;
+  color: var(--texto);
+  font: 17px/1.6 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+}
+body * { font-family: inherit; }
+code, tt, .ec-lmtt-10x-x-109 { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.92em; }
+a { color: var(--enlace); }
+img, svg, object { max-width: 100%; height: auto; }
+.center, div.center { text-align: center; }
+p { margin: 0.6em 0; }
+
+/* Barra superior y navegación entre páginas */
+nav.barra {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem;
+  margin: 0 -1rem 1rem; padding: 0.6rem 1rem;
+  background: #24203a; font-size: 0.95rem;
+}
+nav.barra a { color: #fff; text-decoration: none; font-weight: 600; }
+nav.barra a:hover { text-decoration: underline; }
+.crosslinks { font-size: 0.9rem; color: var(--suave); margin: 0.4rem 0; }
+.crosslinks a { margin-right: 0.6rem; }
+
+/* Títulos */
+h2, .sectionHead { font-size: 1.7rem; margin: 2.2rem 0 1rem; padding-bottom: 0.3rem; border-bottom: 3px solid #6a2c91; }
+h3, .subsectionHead { font-size: 1.3rem; margin: 2rem 0 0.8rem; color: #2a2550; }
+h4, .subsubsectionHead { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
+.titlemark { color: var(--suave); margin-right: 0.4rem; }
+
+/* Cajas (tcolorbox) */
+.tcolorbox {
+  margin: 1.2rem 0;
+  border: 1px solid var(--color, #888);
+  border-left-width: 5px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+}
+.tcolorbox-title {
+  padding: 0.35rem 0.8rem;
+  background: var(--color, #888);
+  color: #fff;
+  font-weight: 700;
+}
+.tcolorbox-title p { margin: 0; }
+.tcolorbox-content { padding: 0.4rem 0.9rem; }
+.tcolorbox.teorema { --color: var(--teorema); }
+.tcolorbox.definicion { --color: var(--definicion); }
+.tcolorbox.proposicion { --color: var(--proposicion); }
+.tcolorbox.observacion { --color: var(--observacion); }
+.tcolorbox.observacion .tcolorbox-title { background: #f6e9f0; color: #4a1a33; }
+.tcolorbox.nota { --color: var(--nota); }
+.tcolorbox.ejercicio { --color: var(--ejercicio); }
+
+/* Demostraciones */
+.proof {
+  margin: 0.6rem 0 1.4rem;
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-left: 2px solid #d7d7e0;
+}
+.proof .head { font-style: italic; font-weight: 600; }
+
+/* Marcas de "demostrado en clase" y etiquetas de procedencia */
+.marca, .etiqueta {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0 0.45rem;
+  border-radius: 4px;
+  font-size: 0.82em;
+  font-weight: 700;
+  line-height: 1.5;
+  vertical-align: 0.05em;
+  white-space: nowrap;
+}
+.marca-fuerte { background: #b3182b; color: #fff; }
+.marca-suave { background: #fff; color: #333; border: 1px solid #999; }
+.marca-ej { background: #c75b00; color: #fff; }
+.tcolorbox-title .marca-suave { background: rgba(255, 255, 255, 0.9); }
+.etiqueta { margin-left: 0; background: #1e6b66; color: #fff; }
+.et-examen { background: #2448a8; }
+.et-propia { background: #666; }
+.et-cayo { background: #b3182b; }
+
+/* Tablas */
+table { border-collapse: collapse; margin: 0.8rem auto; }
+td { padding: 0.2rem 0.5rem; vertical-align: top; }
+.hline td, td.hline { border-top: 1px solid #bbb; }
+div.tabular { overflow-x: auto; }
+
+/* Índices */
+.tableofcontents span { display: block; }
+.tableofcontents .sectionToc { margin-top: 0.5rem; font-weight: 700; }
+.tableofcontents .subsectionToc { margin-left: 1.5rem; }
+.tableofcontents .subsubsectionToc { margin-left: 3rem; }
+
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .tcolorbox-content { padding: 0.3rem 0.6rem; }
+}
+
+/* Navegación anterior / índice / siguiente (la añade partir_html.py) */
+nav.paginas {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem;
+  margin: 1rem 0; padding: 0.6rem 0; font-size: 0.92rem;
+  border-top: 1px solid #e2e2ea; border-bottom: 1px solid #e2e2ea;
+}
+nav.paginas a { text-decoration: none; font-weight: 600; }
+nav.paginas a:hover { text-decoration: underline; }

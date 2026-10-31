@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topología Algebraica · Apuntes</title>
+<meta name="description" content="Apuntes de Topología Algebraica (Grado en Matemáticas, UPV): grupo fundamental, homotopía, elevaciones, π₁(S¹), Brouwer y Borsuk. Versión web, mapa interactivo de resultados y PDF.">
+<style>
+  :root { --barra: #24203a; --texto: #1d1d24; --suave: #6b6b78; --borde: #e2e2ea; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f6f6fa; color: var(--texto); font: 17px/1.6 "Source Sans 3", "Segoe UI", system-ui, sans-serif; }
+  header { padding: 3rem 1rem 2.5rem; background: var(--barra); color: #fff; text-align: center; }
+  header h1 { margin: 0 0 .4rem; font-size: 2.2rem; }
+  header p { margin: 0; opacity: .85; }
+  main { max-width: 56rem; margin: -1.5rem auto 3rem; padding: 0 1rem; }
+  .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+  .tarjeta { display: block; padding: 1.3rem 1.4rem; background: #fff; border: 1px solid var(--borde); border-radius: 10px; color: inherit; text-decoration: none; box-shadow: 0 2px 6px rgba(0,0,0,.06); transition: transform .15s, box-shadow .15s; }
+  .tarjeta:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.1); }
+  .tarjeta h2 { margin: 0 0 .3rem; font-size: 1.2rem; }
+  .tarjeta p { margin: 0; color: var(--suave); font-size: .95rem; }
+  h3 { margin: 2.2rem 0 .7rem; }
+  .temas { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .5rem; padding: 0; list-style: none; }
+  .temas a { display: block; padding: .55rem .8rem; background: #fff; border: 1px solid var(--borde); border-left: 4px solid var(--c); border-radius: 6px; color: inherit; text-decoration: none; }
+  .temas a:hover { background: #f0f0f8; }
+  footer { text-align: center; color: var(--suave); font-size: .9rem; padding-bottom: 2rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Topología Algebraica</h1>
+  <p>Apuntes del Grado en Matemáticas · Curso 2026/27</p>
+</header>
+<main>
+  <div class="tarjetas">
+    <a class="tarjeta" href="apuntes/"><h2>Apuntes en la web</h2><p>Los cinco temas, el resumen y los ejercicios resueltos, para leer en el navegador o el móvil.</p></a>
+    <a class="tarjeta" href="mapa/"><h2>Mapa de resultados</h2><p>Explora los teoremas: pulsa uno para ver su enunciado, su demostración y de qué depende.</p></a>
+    <a class="tarjeta" href="https://github.com/jmnu4245/Topologia-Algebraica/releases/latest"><h2>PDF</h2><p>La última versión compilada de los apuntes completos.</p></a>
+  </div>
+  <h3>Temas</h3>
+  <ul class="temas">
+    <li><a style="--c:#2f7d6d" href="apuntes/tema1.html">1 · Resultados preliminares de topología general</a></li>
+    <li><a style="--c:#c0662c" href="apuntes/tema2.html">2 · Equivalencia homotópica</a></li>
+    <li><a style="--c:#4a5bc4" href="apuntes/tema3.html">3 · El grupo fundamental</a></li>
+    <li><a style="--c:#9c3f8c" href="apuntes/tema4.html">4 · Simplemente conexos, elevaciones y π₁(S¹)</a></li>
+    <li><a style="--c:#b3182b" href="apuntes/tema5.html">5 · Aplicaciones: Brouwer, TFA, Borsuk</a></li>
+    <li><a style="--c:#6b6b78" href="apuntes/resumen.html">Resumen: homotopías, lazos y grado</a></li>
+    <li><a style="--c:#1e6b66" href="apuntes/ejercicios.html">Ejercicios de los boletines</a></li>
+    <li><a style="--c:#2448a8" href="apuntes/examenes.html">Exámenes de 2025-26</a></li>
+  </ul>
+</main>
+<footer>Código fuente y erratas en <a href="https://github.com/jmnu4245/Topologia-Algebraica">GitHub</a>.</footer>
+</body>
+</html>

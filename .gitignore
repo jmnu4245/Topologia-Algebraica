@@ -12,3 +12,9 @@
 *.md
 Apuntes_papel_originales
 v*
+.exportar/
+exportados/
+*.sh
+!exportar.sh
+!web/construir.sh
+.web/

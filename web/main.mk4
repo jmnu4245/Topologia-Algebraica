@@ -1,0 +1,4 @@
+-- Fichero de make4ht: tres pasadas de LaTeX para resolver las referencias cruzadas y los índices.
+Make:htlatex {}
+Make:htlatex {}
+Make:htlatex {}
