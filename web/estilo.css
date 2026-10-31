@@ -10,15 +10,46 @@
   --observacion: #7a2e55;
   --nota: #8a2d7a;
   --ejercicio: #1e6b66;
+  --caja: #ffffff;           /* fondo de las cajas */
+  --titulo-sub: #2a2550;     /* títulos de subsección */
+  --linea: #d7d7e0;          /* bordes suaves: demostraciones, navegación, tablas */
+  --obs-fondo: #f6e9f0;      /* título de las observaciones */
+  --obs-texto: #4a1a33;
+  color-scheme: light;
 }
 
-html { background: var(--fondo); overflow-x: hidden; }
+/* Modo oscuro: make4ht pone el texto en CanvasText (blanco en modo oscuro), así que hay que oscurecer
+   también los fondos. Los colores de las cajas se aclaran para que se lean sobre fondo oscuro. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --texto: #e4e4ec;
+    --fondo: #15141b;
+    --suave: #a3a3b3;
+    --enlace: #9db7ff;
+    --teorema: #4d6fd6;
+    --definicion: #9a5cc4;
+    --proposicion: #6f70c9;
+    --observacion: #b5628c;
+    --nota: #b85ca8;
+    --ejercicio: #2f9a92;
+    --caja: #1f1e28;
+    --titulo-sub: #c9c3f0;
+    --linea: #3a3946;
+    --obs-fondo: #3a2532;
+    --obs-texto: #f2d7e4;
+    color-scheme: dark;
+  }
+}
+
+html, body { background: var(--fondo); }
+html { overflow-x: hidden; }
 mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
 body {
   max-width: 50rem;
   margin: 0 auto;
   padding: 0 1rem 4rem;
   color: var(--texto);
+  color-scheme: inherit;
   font: 17px/1.6 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
 }
 body * { font-family: inherit; }
@@ -42,7 +73,7 @@ nav.barra a:hover { text-decoration: underline; }
 
 /* Títulos */
 h2, .sectionHead { font-size: 1.7rem; margin: 2.2rem 0 1rem; padding-bottom: 0.3rem; border-bottom: 3px solid #6a2c91; }
-h3, .subsectionHead { font-size: 1.3rem; margin: 2rem 0 0.8rem; color: #2a2550; }
+h3, .subsectionHead { font-size: 1.3rem; margin: 2rem 0 0.8rem; color: var(--titulo-sub); }
 h4, .subsubsectionHead { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
 .titlemark { color: var(--suave); margin-right: 0.4rem; }
 
@@ -52,7 +83,8 @@ h4, .subsubsectionHead { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
   border: 1px solid var(--color, #888);
   border-left-width: 5px;
   border-radius: 6px;
-  background: #fff;
+  background: var(--caja);
+  color: var(--texto);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   overflow-x: auto;
 }
@@ -68,7 +100,7 @@ h4, .subsubsectionHead { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
 .tcolorbox.definicion { --color: var(--definicion); }
 .tcolorbox.proposicion { --color: var(--proposicion); }
 .tcolorbox.observacion { --color: var(--observacion); }
-.tcolorbox.observacion .tcolorbox-title { background: #f6e9f0; color: #4a1a33; }
+.tcolorbox.observacion .tcolorbox-title { background: var(--obs-fondo); color: var(--obs-texto); }
 .tcolorbox.nota { --color: var(--nota); }
 .tcolorbox.ejercicio { --color: var(--ejercicio); }
 
@@ -76,7 +108,7 @@ h4, .subsubsectionHead { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
 .proof {
   margin: 0.6rem 0 1.4rem;
   padding: 0.2rem 0 0.2rem 1rem;
-  border-left: 2px solid #d7d7e0;
+  border-left: 2px solid var(--linea);
 }
 .proof .head { font-style: italic; font-weight: 600; }
 
@@ -93,9 +125,9 @@ h4, .subsubsectionHead { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
   white-space: nowrap;
 }
 .marca-fuerte { background: #b3182b; color: #fff; }
-.marca-suave { background: #fff; color: #333; border: 1px solid #999; }
+.marca-suave { background: var(--caja); color: var(--texto); border: 1px solid #999; }
 .marca-ej { background: #c75b00; color: #fff; }
-.tcolorbox-title .marca-suave { background: rgba(255, 255, 255, 0.9); }
+.tcolorbox-title .marca-suave { background: rgba(255, 255, 255, 0.9); color: #333; }
 .etiqueta { margin-left: 0; background: #1e6b66; color: #fff; }
 .et-examen { background: #2448a8; }
 .et-propia { background: #666; }
@@ -104,7 +136,7 @@ h4, .subsubsectionHead { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
 /* Tablas */
 table { border-collapse: collapse; margin: 0.8rem auto; }
 td { padding: 0.2rem 0.5rem; vertical-align: top; }
-.hline td, td.hline { border-top: 1px solid #bbb; }
+.hline td, td.hline { border-top: 1px solid var(--linea); }
 div.tabular { overflow-x: auto; }
 
 /* Índices */
@@ -122,7 +154,7 @@ div.tabular { overflow-x: auto; }
 nav.paginas {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem;
   margin: 1rem 0; padding: 0.6rem 0; font-size: 0.92rem;
-  border-top: 1px solid #e2e2ea; border-bottom: 1px solid #e2e2ea;
+  border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea);
 }
 nav.paginas a { text-decoration: none; font-weight: 600; }
 nav.paginas a:hover { text-decoration: underline; }
