@@ -95,6 +95,7 @@ def main(carpeta):
     for i, ((nombre, titulo), trozo) in enumerate(zip(paginas, trozos)):
         nuevo = f"<title>{titulo} · Topología Algebraica</title>" if i else "<title>Apuntes de Topología Algebraica</title>"
         cab = re.sub(r"<title>.*?</title>", lambda _: nuevo, cabecera, count=1, flags=re.S)
+        cab = cab.replace("</head>", '<script src="vista_previa.js" defer></script>\n</head>', 1)
         enlaces = []
         if i > 0:
             enlaces.append(f'<a href="{paginas[i - 1][0]}">← {paginas[i - 1][1]}</a>')

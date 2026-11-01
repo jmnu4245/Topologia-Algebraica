@@ -19,7 +19,7 @@ echo "Convirtiendo los apuntes a HTML..."
 (cd "$SRC" && make4ht -c apuntes.cfg -d html main.tex > "$RAIZ/.web/make4ht.log" 2>&1) || {
   tail -30 "$RAIZ/.web/make4ht.log"; echo "Error en make4ht; log en .web/make4ht.log" >&2; exit 1; }
 cp -r "$SRC/html/." "$SALIDA/apuntes/"
-cp "$RAIZ/web/estilo.css" "$SALIDA/apuntes/"
+cp "$RAIZ/web/estilo.css" "$RAIZ/web/vista_previa.js" "$SALIDA/apuntes/"
 # make4ht fija colores por id para cada caja; se quitan para que mande estilo.css.
 sed -i '/^#tcolobox-[0-9]* /d' "$SALIDA/apuntes/main.css"
 python3 "$RAIZ/web/partir_html.py" "$SALIDA/apuntes"
