@@ -180,3 +180,7 @@ nav.paginas a:hover { text-decoration: underline; }
 @media (prefers-color-scheme: dark) {
   .vista-previa { box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04); }
 }
+
+/* Todo va en una página: al saltar a un apartado o a una caja, que no quede debajo de la barra fija. */
+.ancla-apartado { display: block; height: 0; }
+[id] { scroll-margin-top: 3.8rem; }

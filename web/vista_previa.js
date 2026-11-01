@@ -27,7 +27,8 @@
     try { url = new URL(enlace.getAttribute("href"), location.href); } catch (e) { return null; }
     var id = decodeURIComponent(url.hash.slice(1));
     if (!/^tcolobox-/.test(id)) return null;
-    var mismaPagina = url.origin === location.origin && url.pathname === location.pathname;
+    var ruta = function (p) { return p.replace(/index\.html$/, ""); };  // /apuntes/ = /apuntes/index.html
+    var mismaPagina = url.origin === location.origin && ruta(url.pathname) === ruta(location.pathname);
     url.hash = "";
     return { id: id, mismaPagina: mismaPagina, pagina: url.href };
   }
