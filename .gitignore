@@ -17,5 +17,6 @@ exportados/
 *.sh
 !exportar.sh
 !web/construir.sh
+!web/vista_previa.js
 .web/
 __pycache__/

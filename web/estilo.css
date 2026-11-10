@@ -158,3 +158,29 @@ nav.paginas {
 }
 nav.paginas a { text-decoration: none; font-weight: 600; }
 nav.paginas a:hover { text-decoration: underline; }
+
+/* Vista previa de referencias (la crea vista_previa.js): flotante junto al enlace o, en
+   pantallas anchas, nota al margen derecho. Solo muestra la caja (título y enunciado). */
+.vista-previa {
+  position: absolute; z-index: 50;
+  box-sizing: border-box;
+  overflow: auto; overscroll-behavior: contain;
+  padding: 0.5rem;
+  background: var(--fondo);
+  color: var(--texto);
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18), 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-size: 0.92rem; line-height: 1.5;
+}
+.vista-previa[hidden] { display: none; }
+.vista-previa .tcolorbox { margin: 0; box-shadow: none; }
+.vista-previa-aviso { margin: 0.2rem 0.4rem; color: var(--suave); font-style: italic; }
+.vista-previa--margen { box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12); font-size: 0.86rem; }
+@media (prefers-color-scheme: dark) {
+  .vista-previa { box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04); }
+}
+
+/* Todo va en una página: al saltar a un apartado o a una caja, que no quede debajo de la barra fija. */
+.ancla-apartado { display: block; height: 0; }
+[id] { scroll-margin-top: 3.8rem; }

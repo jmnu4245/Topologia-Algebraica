@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Parte el HTML único que genera make4ht (main.html) en una página por tema.
+"""Convierte el HTML único que genera make4ht (main.html) en la página de los apuntes. Antes se partía en una página por tema.
 
 make4ht puede partir por secciones él solo, pero con hyperref no lo hace en algunas versiones
 de TeX Live, así que se parte aquí: una página por \\section y, dentro de "Ejercicios de los
@@ -75,40 +75,27 @@ def main(carpeta):
         titulo = re.sub(r"\\\((.*?)\\\)", lambda m: m.group(1).replace("\\", ""), titulo)  # quita \( \) de MathJax
         titulo = titulo.replace("^n", "ⁿ").replace("^1", "¹")
         paginas.append((nombre, titulo))
+    # Una sola página continua: en cada punto donde antes se cortaba se pone un ancla (#tema3) y
+    # las páginas antiguas (tema3.html#...) quedan como redirecciones, para no romper enlaces.
+    anclas = [nombre[:-len(".html")] for nombre, _ in paginas[1:]]
     trozos = [contenido[posiciones[i]:posiciones[i + 1]] for i in range(len(paginas))]
-
-    # Qué ids hay en cada página, para reescribir los enlaces internos.
-    donde = {}
-    for (nombre, _), trozo in zip(paginas, trozos):
-        for ident in re.findall(r'id=["\']([^"\']+)["\']', trozo):
-            donde.setdefault(ident, nombre)
-
-    def reescribir(trozo, nombre):
-        def cambio(m):
-            ident = m.group(2)
-            destino = donde.get(ident)
-            if destino is None or destino == nombre:
-                return f'href="#{ident}"'
-            return f'href="{destino}#{ident}"'
-        return re.sub(r'href=["\'](main\.html)?#([^"\']+)["\']', cambio, trozo)
-
-    for i, ((nombre, titulo), trozo) in enumerate(zip(paginas, trozos)):
-        nuevo = f"<title>{titulo} · Topología Algebraica</title>" if i else "<title>Apuntes de Topología Algebraica</title>"
-        cab = re.sub(r"<title>.*?</title>", lambda _: nuevo, cabecera, count=1, flags=re.S)
-        enlaces = []
-        if i > 0:
-            enlaces.append(f'<a href="{paginas[i - 1][0]}">← {paginas[i - 1][1]}</a>')
-        enlaces.append('<a href="index.html">Índice</a>')
-        if i + 1 < len(paginas):
-            enlaces.append(f'<a href="{paginas[i + 1][0]}">{paginas[i + 1][1]} →</a>')
-        navegacion = f'<nav class="paginas">{" ".join(enlaces)}</nav>'
-        cuerpo = reescribir(trozo, nombre)
-        (carpeta / nombre).write_text(cab + navegacion + cuerpo + navegacion + pie, encoding="utf-8")
+    cuerpo = trozos[0] + "".join(f'<span class="ancla-apartado" id="{a}"></span>{t}' for a, t in zip(anclas, trozos[1:]))
+    cuerpo = re.sub(r'href=(["\'])(?:main\.html)?#', r'href=\1#', cuerpo)
+    cab = re.sub(r"<title>.*?</title>", lambda _: f"<title>{paginas[0][1]}</title>", cabecera, count=1, flags=re.S)
+    cab = cab.replace("</head>", '<script src="vista_previa.js" defer></script>\n</head>', 1)
+    (carpeta / "index.html").write_text(cab + cuerpo + pie, encoding="utf-8")
     (carpeta / "main.html").unlink()
+    for a in anclas:
+        (carpeta / f"{a}.html").write_text(
+            f'<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>{paginas[0][1]}</title>'
+            f'<meta http-equiv="refresh" content="0; url=index.html#{a}">'
+            f'<script>location.replace("index.html" + (location.hash || "#{a}"))</script></head>'
+            f'<body><a href="index.html#{a}">Ir a los apuntes</a></body></html>', encoding="utf-8")
 
-    # Para el mapa: en qué página está cada id.
-    (carpeta / "ids.tsv").write_text("".join(f"{k}\t{v}\n" for k, v in donde.items()), encoding="utf-8")
-    print(f"{len(paginas)} páginas:", ", ".join(p for p, _ in paginas))
+    # Para el mapa: todo está en index.html.
+    ids = re.findall(r'id=["\']([^"\']+)["\']', cuerpo)
+    (carpeta / "ids.tsv").write_text("".join(f"{k}\tindex.html\n" for k in dict.fromkeys(ids)), encoding="utf-8")
+    print("Una página continua con", len(anclas), "apartados:", ", ".join(anclas))
 
 
 if __name__ == "__main__":
