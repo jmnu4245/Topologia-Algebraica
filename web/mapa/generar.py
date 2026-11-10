@@ -21,6 +21,7 @@ ARCHIVOS = [
     ("AplicacionesTeoriaHomotopia", 5, "Aplicaciones"),
 ]
 # Archivos que no son nodos del mapa pero cuyas cajas se citan desde los apuntes (para resolver \\cref).
+COLORES = {1: "#2f7d6d", 2: "#c0662c", 3: "#4a5bc4", 4: "#9c3f8c", 5: "#b3182b", 6: "#6b6b78"}
 ARCHIVOS_SOLO_REFS = [("ResumenHomotopias", 6, "Resumen")]
 TIPOS = {  # entorno -> (nombre, prefijo de etiqueta)
     "teorema": ("Teorema", "thm"),
@@ -279,7 +280,7 @@ def urls(carpeta_html):
 def extraer(raiz, nums, destinos, archivos=ARCHIVOS):
     nodos, por_clase = {}, {}
     for archivo, tema, _ in archivos:
-        s = sin_comentarios((Path(raiz) / f"{archivo}.tex").read_text(encoding="utf-8"))
+        s = sin_comentarios((Path(raiz) / "teoria" / f"{archivo}.tex").read_text(encoding="utf-8"))
         contador = {}  # cada tipo de caja se numera aparte dentro de su sección (= tema)
         for m in INICIO.finditer(s):
             env = m.group(1)
@@ -380,7 +381,7 @@ def main(raiz, carpeta_aux, carpeta_html, salida):
                 print(f"aviso: arista desconocida {origen} -> {u}")
 
     datos = {
-        "temas": [{"n": t, "nombre": nombre} for _, t, nombre in ARCHIVOS],
+        "temas": [{"n": t, "nombre": nombre, "color": COLORES[t]} for _, t, nombre in ARCHIVOS],
         "nodos": [],
         "aristas": [{"de": a, "a": b} for a, b in sorted(aristas)],
     }

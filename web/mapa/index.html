@@ -9,7 +9,6 @@
   :root {
     --fondo: #f6f6fa; --panel: #ffffff; --texto: #1d1d24; --suave: #6b6b78; --borde: #e2e2ea;
     --barra: #24203a; --usa: #2b5bd7; --lleva: #d9730d;
-    --t1: #2f7d6d; --t2: #c0662c; --t3: #4a5bc4; --t4: #9c3f8c; --t5: #b3182b;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; }
@@ -109,14 +108,13 @@
 </div>
 
 <script>
-const COLOR_TEMA = { 1: "var(--t1)", 2: "var(--t2)", 3: "var(--t3)", 4: "var(--t4)", 5: "var(--t5)" };
-const HEX_TEMA = { 1: "#2f7d6d", 2: "#c0662c", 3: "#4a5bc4", 4: "#9c3f8c", 5: "#b3182b" };
+const HEX_TEMA = {};  // color de cada tema, viene en datos.json
 const ABREV = { teorema: "T", proposicion: "P", definicion: "D", observacion: "O", nota: "N" };
 const NOMBRES_TIPO = { teorema: "Teoremas", proposicion: "Proposiciones", definicion: "Definiciones", observacion: "Observaciones", nota: "Notas" };
 const TIPOS_INICIALES = new Set(["teorema", "proposicion", "definicion"]);
 
 let datos, cy, porId = {};
-const temasActivos = new Set([1, 2, 3, 4, 5]);
+const temasActivos = new Set();
 const tiposActivos = new Set(TIPOS_INICIALES);
 let soloClase = false;
 
@@ -133,6 +131,7 @@ function marcasHtml(n) {
 
 async function iniciar() {
   datos = await (await fetch("datos.json")).json();
+  datos.temas.forEach(t => { HEX_TEMA[t.n] = t.color; temasActivos.add(t.n); });
   datos.nodos.forEach(n => porId[n.id] = n);
   const elementos = [
     ...datos.nodos.map(n => {

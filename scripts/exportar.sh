@@ -2,9 +2,9 @@
 # Exporta cada tema (teoría y ejercicios) y los exámenes en PDF separados, con portadilla e índice.
 # Compila main.tex en modo exportación (\def\exportar{}) en .exportar/ y corta el PDF por las páginas
 # que anota \inicioparte en main.partes. La compilación normal de main.tex no cambia.
-#   ./exportar.sh      deja los PDF en exportados/
+#   scripts/exportar.sh      deja los PDF en exportados/
 set -euo pipefail
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 BUILD=.exportar
 SALIDA=exportados

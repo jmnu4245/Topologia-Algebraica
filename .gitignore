@@ -10,12 +10,15 @@
 *.gz
 .singularhistory
 *.md
+!AGENTS.md
+!readme.md
 Apuntes_papel_originales
+material/
 v*
 .exportar/
 exportados/
 *.sh
-!exportar.sh
+!scripts/exportar.sh
 !web/construir.sh
 !web/vista_previa.js
 .web/

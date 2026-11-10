@@ -27,11 +27,10 @@ Personas que han contribuido abriendo \emph{issues}:
 
 \subsection*{Contenido del repositorio}
 \begin{itemize}
-    \item \textbf{Raíz:} el código de este documento.
+    \item \textbf{Raíz:} \texttt{main.tex} es el archivo principal y \texttt{preambulo.tex} contiene los paquetes, los estilos de las cajas y las macros.
+    \item \textbf{\texttt{teoria/}}: el contenido de los apuntes.
     \begin{itemize}
-        \item \texttt{main.tex} es el archivo principal.
-        \item \texttt{preambulo.tex} contiene los paquetes, los estilos de las cajas y las macros.
-        \item \texttt{intro.tex} contiene la información de la asignatura.
+        \item \texttt{presentacion.tex} es esta página e \texttt{intro.tex} la información de la asignatura.
         \item Hay un archivo por tema:
         \begin{enumerate}
             \item \texttt{ResultadosPreliminares.tex}
@@ -42,24 +41,13 @@ Personas que han contribuido abriendo \emph{issues}:
         \end{enumerate}
         \item \texttt{ResumenHomotopias.tex} es la hoja resumen de homotopías, lazos y grado, después del último tema.
     \end{itemize}
-    \item \textbf{\texttt{ejercicios/}}: un archivo por boletín (\texttt{tema1.tex}, \dots, \texttt{tema5.tex}), \texttt{ejercicios.tex}, que los reúne, y \texttt{examenes.tex}. También están los PDF de los boletines.
-    \item \textbf{\texttt{examenes/}}: los exámenes de 2025-26 con sus soluciones.
-    \item \textbf{\texttt{Apuntes papel/}}: fotografías de los apuntes manuscritos de clase, a partir de los cuales se ha redactado este documento. Hay una carpeta por clase, con nombre \texttt{aaaa-mm-dd\_claseN}.
-    \item \textbf{\texttt{mapa\_teoremas/}}: mapa de dependencias entre los resultados, con una columna y un color por tema.
-    \begin{itemize}
-        \item \texttt{mapa.tex} es el diagrama; se compila por separado.
-        \item \texttt{generar.py} es el script que lo genera.
-    \end{itemize}
-    \item \textbf{\texttt{practicas/}}: apuntes de la parte de prácticas.
-    \begin{itemize}
-        \item \texttt{main.tex} es el documento de los apuntes.
-        \item \texttt{pract1.ipynb}, \texttt{pract2.ipynb} y \texttt{pract3.ipynb} son los cuadernos de cada práctica, con Singular.
-        \item \texttt{Apuntes papel/} contiene las fotografías de las prácticas.
-    \end{itemize}
+    \item \textbf{\texttt{ejercicios/}}: un archivo por boletín (\texttt{tema1.tex}, \dots, \texttt{tema5.tex}), \texttt{ejercicios.tex}, que los reúne, y \texttt{examenes.tex}.
+    \item \textbf{\texttt{papel/}}: fotografías de los apuntes manuscritos de clase, a partir de los cuales se ha redactado este documento. Hay una carpeta por clase, con nombre \texttt{aaaa-mm-dd\_claseN}.
+    \item \textbf{\texttt{practicas/}}: apuntes de la parte de prácticas (\texttt{main.tex}), los cuadernos de cada práctica con Singular (\texttt{practN.ipynb}) y las fotografías de las prácticas.
     \item \textbf{\texttt{web/}}: versión web, publicada en \href{https://jmnu4245.github.io/Topologia-Algebraica/}{\texttt{jmnu4245.github.io/Topologia-Algebraica}}: los apuntes en HTML y un mapa interactivo de resultados. \texttt{construir.sh} la genera; GitHub Actions la publica en cada cambio.
-    \item \textbf{\texttt{exportar.sh}}: genera en \texttt{exportados/} un PDF por tema (teoría y ejercicios por separado) y otro de los exámenes, cada uno con portadilla e índice. La compilación normal de \texttt{main.tex} no cambia.
-    \item \textbf{\texttt{installsingular.sh}}: script para instalar Singular, el programa usado en las prácticas.
-    \item \textbf{\texttt{.github/workflows/}}: compilación automática del PDF.
+    \item \textbf{\texttt{mapa\_teoremas/}}: versión antigua del mapa de dependencias, en PDF.
+    \item \textbf{\texttt{scripts/}}: \texttt{exportar.sh} genera en \texttt{exportados/} un PDF por tema (teoría y ejercicios por separado) y otro de los exámenes; \texttt{installsingular.sh} instala Singular, usado en las prácticas.
+    \item \textbf{\texttt{.github/workflows/}}: compilación automática del PDF y de la web.
 \end{itemize}
 
 \subsection*{Notación}
