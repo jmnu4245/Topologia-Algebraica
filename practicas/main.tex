@@ -557,4 +557,241 @@ reduce(I^4, std(J*I^3));    // 0: I^4 = J*I^3, numero de reduccion 3
 \end{tabular}
 \end{center}
 
+\section{Práctica TOPAL 4: Multiplicidad, vectores $\alpha$ y $\beta$ y determinación topológica}
+\label{sec:p4}
+
+\subsection*{Breve resumen: ideales de definición y gérmenes de conjuntos}
+
+Sea $I$ un ideal de $\mathcal{O}_n \cong \mathbb{C}\{x_1, \dots, x_n\}$ y sea $\mathfrak{m}_n = \langle x_1, \dots, x_n \rangle$ su ideal maximal (\cref{thm:thm_ideal_max}). Se dice que $I$ es un \textbf{ideal de definición} (o de codimensión finita, o $\mathfrak{m}_n$-primario) cuando existe $r \geq 1$ con $\mathfrak{m}_n^r \subseteq I$ (\cref{def:codim_finita_p3}). En tal caso su \textbf{exponente de Noether} es $\nu(I) = \min\{ r \geq 1 : \mathfrak{m}_n^r \subseteq I \}$ (\cref{def:noether}).
+
+\begin{definicion}{Germen de conjunto en $0$}{germen_conjunto_p4}
+Sean $X, Y \subseteq \mathbb{C}^n$. Diremos que $X \sim Y$ cuando existe un entorno abierto $U$ de $0 \in \mathbb{C}^n$ tal que $X \cap U = Y \cap U$ (\cref{def:germ_conj}). Es una relación binaria de equivalencia, así que podemos hablar del conjunto cociente; a cada clase de equivalencia la denominaremos \textbf{germen de conjunto en $0$}. Por ejemplo, una cruz de dos rectas por el origen y una figura ocho con el punto doble en el origen definen el mismo germen de conjunto en $0$.
+\end{definicion}
+
+\begin{definicion}{$V(I)$ e $\mathbb{I}(X)$ como gérmenes}{V_I_germenes_p4}
+\begin{itemize}
+    \item Si $I = \langle g_1, \dots, g_r \rangle$ es un ideal de $\mathcal{O}_n$, $V(I)$ (de \emph{vanishing}) es el germen de conjunto en $0$ definido por los ceros de $I$, $\{ z \in \mathbb{C}^n : g(z) = 0\ \forall g \in I \}$.
+    \item Si $X$ es un germen de conjunto en $0 \in \mathbb{C}^n$,
+    \[ \mathbb{I}(X) = \{ g \in \mathcal{O}_n : g(z) = 0 \ \forall z \in X \}, \]
+    donde $g(z) = 0$ para $z \in X$ suficientemente cerca de $0$, es decir, existe un entorno $U$ de $0$ con $g(z) = 0$ para todo $z \in X \cap U$.
+\end{itemize}
+La pregunta natural es si $V$ e $\mathbb{I}$ son inversas: se tiene $V(\mathbb{I}(X)) = X$, y el \textbf{teorema de los ceros de Hilbert} (\cref{thm:hilbert}) dice que $\mathbb{I}(V(I)) = \sqrt{I}$, donde $I \subseteq \sqrt{I} = \{ a \in \mathcal{O}_n : \exists r \geq 1,\ a^r \in I \}$.
+\end{definicion}
+
+\begin{teorema}{Caracterización de los ideales de definición}{caract_def_p4}
+Sea $I$ un ideal de $\mathcal{O}_n$. Son equivalentes:
+\begin{enumerate}
+    \item[1)] $I$ es de definición.
+    \item[2)] $\sqrt{I} = \mathfrak{m}_n$.
+    \item[3)] $\dim_{\mathbb{C}} \mathcal{O}_n / I < \infty$.
+    \item[4)] $V(I) = \{0\}$ como igualdad de gérmenes de conjunto, es decir, existe un entorno abierto $U$ de $0 \in \mathbb{C}^n$ con $\{\text{ceros de } I\} \cap U = \{0\} \cap U = \{0\}$. Equivalentemente, $0$ es un punto aislado del conjunto de ceros del sistema $g_1(z) = \dots = g_r(z) = 0$, donde $I = \langle g_1, \dots, g_r \rangle$.
+\end{enumerate}
+Es el \cref{thm:conseq_hilbert} de la práctica anterior.
+\end{teorema}
+
+\subsection*{Multiplicidad y número de generadores}
+
+Además del exponente de Noether $\nu(I)$ y de la codimensión $\dim_{\mathbb{C}} \mathcal{O}_n/I$, a un ideal de definición $I$ le hemos asociado otro número: la \textbf{multiplicidad de Hilbert--Samuel} $e(I)$, que se lee en el crecimiento de $r \mapsto \dim_{\mathbb{C}} \mathcal{O}_n/I^r$ (\cref{obs:ej_potencias}).
+
+\begin{definicion}{Número mínimo de generadores}{mu_I_p4}
+Sea $I$ un ideal de $\mathcal{O}_n$. Denotamos
+\[ \mu(I) = \min\{ \#S : S \text{ sistema generador de } I \}, \]
+el número mínimo de elementos necesarios para generar $I$. Se prueba que todos los sistemas generadores minimales de $I$ tienen el mismo cardinal. En general, si $I$ es un ideal de $\mathcal{O}_n$, entonces $I/\mathfrak{m}_n I$ es un $\mathbb{C}$-espacio vectorial de dimensión finita y
+\[ \dim_{\mathbb{C}} I/\mathfrak{m}_n I = \mu(I). \]
+\end{definicion}
+
+\begin{observacion}{Multiplicidad de $I = \langle x^5, y^6, z^7, xy^2z^3 \rangle$}{ej_mult_p4}
+Sea $I = \langle x^5, y^6, z^7, xy^2z^3 \rangle \subseteq \mathcal{O}_3$. Sus cuatro generadores forman un sistema generador minimal, así que $\mu(I) = 4$. Las dimensiones $\dim_{\mathbb{C}} \mathcal{O}_3/I^r$ y sus diferencias son:
+\begin{center}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{c|cccccccc}
+$r$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+$\dim \mathcal{O}_3/I^r$ & 146 & 616 & 1600 & 3292 & 5890 & 9594 & 14604 & 21120 \\
+1.ª diferencia & 470 & 984 & 1692 & 2598 & 3704 & 5010 & 6516 & \\
+2.ª diferencia & 514 & 708 & 906 & 1106 & 1306 & 1506 & & \\
+3.ª diferencia & 194 & 198 & 200 & 200 & 200 & & &
+\end{tabular}
+\end{center}
+Hasta $r = 10$ la tercera diferencia sigue con $202, 202$: aquí tarda más en estabilizarse que en la práctica anterior. Se tiene $e(I) = 202$, que se confirma con una reducción genérica: $J = \texttt{randomid(I,3)}$ son tres combinaciones lineales genéricas de los generadores, es de intersección completa y $\dim_{\mathbb{C}} \mathcal{O}_3/J = 202$, luego $e(I) = e(J) = 202$ por \cref{thm:rees} y \cref{thm:mult_samuel}.
+\end{observacion}
+% Las dimensiones de la tabla se han recalculado con Singular; el cuaderno solo guarda la tercera diferencia (194,198,200,200,200,202,202).
+
+\subsection*{Reducciones y teorema de Rees}
+
+\begin{teorema}{Teorema de la multiplicidad de Rees}{rees_p4}
+Sean $J \subseteq I$ ideales de $\mathcal{O}_n$ de codimensión finita. Entonces
+\[ e(I) = e(J) \iff \exists r \geq 0 \ \text{ tal que } \ I^{r+1} = J \cdot I^r. \]
+La inclusión $I^{r+1} \supseteq J I^r$ es obvia, porque $J \subseteq I$; lo que hay que comprobar es $I^{r+1} \subseteq J I^r$. Es el \cref{thm:rees}.
+\end{teorema}
+
+\begin{observacion}{Reducciones de $I = \langle x^5, y^6, z^7, xy^2z^3 \rangle$}{ej_reducciones_p4}
+Escribimos $I = \langle g_1, g_2, g_3, g_4 \rangle$ con $g_1 = x^5$, $g_2 = y^6$, $g_3 = z^7$, $g_4 = xy^2z^3$ (el orden en que se definen en Singular), y $e(I) = 202$ (\cref{obs:ej_mult_p4}).
+\begin{itemize}
+    \item $J = \langle g_1 + g_2,\ g_3,\ g_4 \rangle$ no tiene codimensión finita ($\dim_{\mathbb{C}} \mathcal{O}_3/J = \infty$), así que no es reducción de $I$.
+    \item $J = \langle g_1,\ g_2,\ g_3 + g_4 \rangle \subseteq I$ es de intersección completa con $\dim_{\mathbb{C}} \mathcal{O}_3/J = 210 \neq 202$, así que $e(J) = 210 \neq e(I)$ y $J$ no es reducción de $I$.
+    \item $J = \langle g_1 + 2g_2 + 3g_3 + 5g_4,\ g_1 - g_2 + 4g_4,\ 2g_2 + g_3 - g_4 \rangle$ cumple $\dim_{\mathbb{C}} \mathcal{O}_3/J = 202 = e(I)$, así que es reducción de $I$. El menor $r$ con $I^{r+1} = J I^r$ es $r = 8$.
+\end{itemize}
+\end{observacion}
+
+\subsection*{Los vectores $\alpha(I)$ y $\beta(I)$}
+
+\begin{definicion}{El vector $\alpha(I)$}{alpha_p4}
+Sea $I$ un ideal de $\mathcal{O}_n$. Definimos $\alpha(I) = (\alpha_1, \dots, \alpha_n)$, donde $\alpha_j$ es el menor exponente de los puntos de la forma $(0, \dots, 0, r_j, 0, \dots, 0)$ (sobre el eje $x_j$) en el soporte de un sistema generador cualquiera de $I$; es decir, el menor $r$ tal que $x_j^r$ aparece con coeficiente no nulo en algún generador.
+
+Es sencillo probar que $\alpha(I)$ no depende del sistema generador elegido y que, si $I$ tiene codimensión finita, el soporte de cualquier sistema generador de $I$ corta siempre a cada eje coordenado, así que $\alpha(I)$ está bien definido.
+\end{definicion}
+% REVISAR: en el manuscrito pone "alfa_j = número de las intersecciones con el eje x_j del soporte"; por el ejemplo, es el menor exponente sobre el eje.
+
+\begin{observacion}{Cálculo de $\alpha(I)$}{ej_alpha_p4}
+Sea $I = \langle x^5 + xyz,\ x^2z^3 - y^7 + z^5,\ x^2 + yz + z^2,\ x^2y^4z \rangle$. Los soportes de los generadores son
+\[ \{(5,0,0), (1,1,1)\}, \quad \{(2,0,3), (0,7,0), (0,0,5)\}, \]
+\[ \{(2,0,0), (0,1,1), (0,0,2)\}, \quad \{(2,4,1)\}. \]
+Sobre el eje $x$ están $(5,0,0)$ y $(2,0,0)$; sobre el eje $y$, $(0,7,0)$; sobre el eje $z$, $(0,0,5)$ y $(0,0,2)$. Luego $\alpha(I) = (2,7,2)$.
+\end{observacion}
+
+\begin{definicion}{El vector $\beta(I)$}{beta_p4}
+Sea $I \subseteq \mathcal{O}_n$ un ideal de codimensión finita. Definimos $\beta(I) = (\beta_1, \dots, \beta_n)$, donde
+\[ \beta_j := \min\{ r \geq 1 : e(I) = e(I + \langle x_j^r \rangle) \}, \qquad j = 1, \dots, n, \]
+y $\beta_0(I) := \max\{ \beta_1, \dots, \beta_n \}$. Ya vimos que si $J \subseteq I$, automáticamente $e(J) \geq e(I)$ (\cref{thm:rees}); en particular $e(I + \langle x_j^r \rangle) \leq e(I)$ para todo $r$.
+\end{definicion}
+
+\begin{teorema}{Relación entre $\alpha(I)$ y $\beta(I)$}{alpha_beta_p4}
+Sea $I$ un ideal de $\mathcal{O}_n$ de codimensión finita, con $\alpha(I) = (\alpha_1, \dots, \alpha_n)$ y $\beta(I) = (\beta_1, \dots, \beta_n)$. Entonces $\alpha_j \leq \beta_j$ para todo $j = 1, \dots, n$.
+
+Si $I$ es \textbf{monomial}, es decir, existe un sistema generador de $I$ formado por monomios, entonces $\alpha(I) = \beta(I)$.
+\end{teorema}
+
+\subsection*{Singularidades aisladas y determinación topológica}
+
+Sea $f \in \mathcal{O}_n$, $f \colon (\mathbb{C}^n, 0) \to \mathbb{C}$, una función holomorfa definida en algún entorno de $0 \in \mathbb{C}^n$. Recordemos que $f$ tiene una \textbf{singularidad aislada en $0$} cuando su ideal jacobiano
+\[ J(f) = \Big\langle \frac{\partial f}{\partial x_1}, \dots, \frac{\partial f}{\partial x_n} \Big\rangle \]
+tiene codimensión finita; equivalentemente, cuando $0$ es un punto aislado del conjunto de soluciones del sistema $\frac{\partial f}{\partial x_1} = \dots = \frac{\partial f}{\partial x_n} = 0$ (\cref{def:milnor_p3}). Para $r \geq 0$, $j^r f = \sum_{k_1 + \dots + k_n \leq r} a_k x^k$ es el $r$-jet de $f$, donde $\sum_k a_k x^k$, con $x^k = x_1^{k_1} \cdots x_n^{k_n}$, es la serie de Taylor de $f$ (\cref{def:jet}).
+
+\begin{definicion}{Grado de determinación topológica}{r0_p4}
+Sea $f \in \mathcal{O}_n$ con singularidad aislada en $0$. Definimos
+\[ r_0(f) = \min\{ r \geq 0 : f \text{ y } j^r f \text{ son topológicamente equivalentes} \}, \]
+donde ``topológicamente equivalentes'' (equivalentes por homeomorfismo en el dominio) significa que existen entornos abiertos $U$, $V$ de $0 \in \mathbb{C}^n$ y un homeomorfismo $\phi \colon V \to U$ tales que $f \circ \phi = j^r f$ en $V$.
+\end{definicion}
+
+\begin{teorema}{Bochnak--Kucharz, Chang--Lu}{r0_beta_p4}
+Sea $f \in \mathcal{O}_n$ con singularidad aislada en $0$. Entonces
+\[ r_0(f) \in \{ \beta_0(J(f)),\ \beta_0(J(f)) + 1 \}. \]
+\end{teorema}
+
+Como el número de Milnor $\mu(f) = \dim_{\mathbb{C}} \mathcal{O}_n / J(f)$ es un invariante topológico (\cref{thm:milnor_top}), si $\mu(j^r f) \neq \mu(f)$, o si $j^r f$ no tiene singularidad aislada, entonces $r_0(f) \neq r$. Esto permite decidir entre los dos valores del teorema.
+
+\begin{observacion}{Ejemplo 1: $r_0(f) = 5$}{ej_r0_1_p4}
+Sea $f \in \mathcal{O}_3$, $f(x,y,z) = x^2y + xz^3 + x^2y^2z + y^4z + y^3z^2 + x^6 - y^9$. Se obtiene $\mu(f) = 24$ y
+\[ \alpha(J(f)) = (2,4,3), \qquad \beta(J(f)) = (\beta_1, \beta_2, \beta_3) = (2,4,4), \]
+donde, por ejemplo, $\beta_1 = \min\{ r \geq 1 : e(J(f)) = e(J(f) + \langle x^r \rangle) \}$. Así $\beta_0(J(f)) = 4$ y, por el \cref{thm:r0_beta_p4}, $r_0(f) \in \{4, 5\}$.
+
+Como $j^4 f = x^2y + xz^3$ tiene $\mu(j^4 f) = \infty$ (Singular devuelve \texttt{milnor} $= -1$: $J(j^4 f)$ no tiene codimensión finita, no hay singularidad aislada en el origen), $j^4 f$ no es topológicamente equivalente a $f$, luego $r_0(f) = 5$. En efecto, $\mu(j^5 f) = 24 = \mu(f)$.
+\end{observacion}
+% REVISAR: en el manuscrito f termina en "- y^7"; en el cuaderno, "- y9". Se usa el cuaderno; con -y^7 los números (mu = 24, alfa, beta) son los mismos.
+% REVISAR: al lado de mu(j^5 f) = 24 = mu(f) pone "Podría ocurrir con milnor distinto (teoría singular de funciones holomorfas)"; no está claro qué se quiere decir.
+
+\begin{observacion}{Ejemplo 2: $r_0(f) = 7$}{ej_r0_2_p4}
+Sea $f(x,y,z) = xy^4 + x^4z + y^5z + xz^5 + z^7$. Entonces $\mu(f) = \dim_{\mathbb{C}} \mathcal{O}_3/J(f) = 84$,
+\[ \alpha(J(f)) = (4,4,5), \qquad \beta(J(f)) = (4,5,6), \]
+con $\alpha_j \leq \beta_j$ como dice el \cref{thm:alpha_beta_p4}. Así $\beta_0(J(f)) = \max\{4,5,6\} = 6$ y $r_0(f) \in \{6, 7\}$. Sea $g = j^6 f = xy^4 + x^4z + y^5z + xz^5$: $\mu(g) = 85 \neq 84 = \mu(f)$, luego $g$ no es topológicamente equivalente a $f$ y $r_0(f) = 7$.
+\end{observacion}
+% La conclusión r_0(f) = 7 está completada; en el papel termina en "milnor(g) = 85 != mu(f)". Los valores se han comprobado con Singular.
+
+\subsection*{Cálculo con Singular}
+
+\paragraph{Multiplicidad de Hilbert--Samuel.} Se calculan $\dim_{\mathbb{C}} \mathcal{O}_3/I^r$ y sus diferencias sucesivas; la tercera se estabiliza en $e(I)$. Con \texttt{randomid} se obtiene una reducción genérica, cuya codimensión es $e(I)$.
+
+\begin{singular}
+ring R = 0,(x,y,z),ds;
+ideal I = x5,y6,z7,xy2z3;
+minbase(I);                 // 4 generadores: mu(I) = 4
+int r;
+intvec H, D1, D2, D3;
+for (r = 1; r <= 10; r++) { H[r] = vdim(std(I^r)); }
+for (r = 1; r < size(H); r++)  { D1[r] = H[r+1]  - H[r]; }
+for (r = 1; r < size(D1); r++) { D2[r] = D1[r+1] - D1[r]; }
+for (r = 1; r < size(D2); r++) { D3[r] = D2[r+1] - D2[r]; }
+D3;                         // 194,198,200,200,200,202,202
+LIB"random.lib";
+ideal J = randomid(I,3);
+vdim(std(J));               // 202 = e(I)
+\end{singular}
+
+\paragraph{Reducciones.} \texttt{I[k]} es el $k$-ésimo generador tal como se definió. El bucle busca el menor $r$ con $I^{r+1} \subseteq J I^r$.
+
+\begin{singular}
+ideal J = I[1]+I[2], I[3], I[4];
+vdim(std(J));               // -1: codimension infinita
+ideal J = I[1], I[2], I[3]+I[4];
+vdim(std(J));               // 210 != 202: no es reduccion
+reduce(J,std(I));           // 0: J contenido en I
+ideal J = I[1]+2*I[2]+3*I[3]+5*I[4],
+          I[1]-I[2]+4*I[4],
+          2*I[2]+I[3]-I[4];
+vdim(std(J));               // 202: reduccion
+ideal K;
+int r = 0;
+int found = 0;
+while (r <= 10)
+{
+  K = minbase(reduce(I^(r+1), std(J*I^r)));
+  if (K[1] == 0) { found = 1; break; }
+  r++;
+}
+r;                          // 8: I^9 = J*I^8
+\end{singular}
+
+\paragraph{Vectores $\alpha$ y $\beta$ del ideal jacobiano.} Sustituyendo por cero las demás variables se ve qué potencias puras de cada variable hay en los generadores ($\alpha$). Para $\beta_j$ se busca el menor $r$ con $e(J(f) + \langle x_j^r \rangle) = e(J(f))$; la multiplicidad se calcula con una reducción genérica.
+
+\begin{singular}
+poly f = x2y+xz3+x2y2z+y4z+y3z2+x6-y9;
+ideal I = jacob(f);
+vdim(std(I));               // 24 = mu(f)
+subst(I,x,0,y,0);           // z3: alpha_3 = 3
+subst(I,z,0,y,0);           // 6x5, x2: alpha_1 = 2
+subst(I,z,0,x,0);           // -9y8, y4: alpha_2 = 4
+vdim(std(randomid(I+x,3)));   // 12
+vdim(std(randomid(I+x2,3)));  // 24: beta_1 = 2
+vdim(std(randomid(I+y3,3)));  // 18
+vdim(std(randomid(I+y4,3)));  // 24: beta_2 = 4
+vdim(std(randomid(I+z3,3)));  // 18
+vdim(std(randomid(I+z4,3)));  // 24: beta_3 = 4
+\end{singular}
+
+\paragraph{Determinación topológica.} \texttt{jet(f,r)} da el $r$-jet; comparando números de Milnor se descarta un valor de $r_0$.
+
+\begin{singular}
+LIB"sing.lib";
+poly g = jet(f,4);          // x2y+xz3
+milnor(g);                  // -1: sin singularidad aislada
+ideal Jg = jacob(g);
+dim(std(Jg));               // 1
+poly g = jet(f,5);
+milnor(g);                  // 24 = mu(f): r0(f) = 5
+poly f = xy4+x4z+y5z+xz5+z7;
+ideal I = jacob(f);
+vdim(std(I));               // 84 = mu(f)
+vdim(std(randomid(I+x4,3)));  // 84: beta_1 = 4
+vdim(std(randomid(I+y5,3)));  // 84: beta_2 = 5
+vdim(std(randomid(I+z6,3)));  // 84: beta_3 = 6
+poly g = jet(f,6);
+milnor(g);                  // 85 != 84: r0(f) = 7
+\end{singular}
+
+\subsection*{Resumen de comandos}
+
+Solo los comandos nuevos respecto de la \hyperref[sec:p3]{práctica 3}.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.43\textwidth}p{0.5\textwidth}@{}}
+\hline
+\texttt{subst(I,x,0,y,0)} & sustituye $x = y = 0$ en los generadores (restricción a un eje) \\
+\texttt{jet(f,r)} & $r$-jet $j^r f$ \\
+\texttt{intvec H;\ H[r] = \dots} & vector de enteros (tablas de dimensiones) \\
+\texttt{I[k]} & $k$-ésimo generador de $I$ \\
+\hline
+\end{tabular}
+\end{center}
+
 \end{document}
