@@ -27,8 +27,9 @@ Es el \cref{thm:cond_simp_conexo} con el recubrimiento $\{V_1, V_2\} = \{U, V\}$
 
 Este resultado forma parte de una pregunta fundamental: \emph{si lo sabemos todo de unas partes de $X$, ¿qué se puede saber de $X$?} El teorema de Seifert--van Kampen va en esta dirección: calcula $\pi_1(X)$ a partir de los grupos fundamentales de $U$, $V$ y $U \cap V$.
 
-% REVISAR: en el manuscrito pone "Recordemos (6a)"; no está claro a qué ejercicio se refiere.
+% En el manuscrito pone "Recordemos (6a)": se entiende el ejercicio 6a) del examen del primer parcial (clase 13).
 \begin{observacion}{Recordatorio: lazos homotópicos en $S^1$ [C14.2]}{svk_recordatorio_grado}
+(Ejercicio 6a) del examen del primer parcial.)
 Sean $\alpha_1, \alpha_2 \colon I \to S^1$,
 \[ \alpha_1(t) = e^{2\pi i (t^2 + t)}, \qquad \alpha_2(t) = e^{2\pi i (a t^2 + b t + c)}, \]
 con $a + b,\ c \in \mathbb{Z}$, para que $\alpha_2$ sea un lazo en $1$, como $\alpha_1$. Entonces
@@ -151,6 +152,20 @@ Sea $S \neq \emptyset$. $F(S)$ es el conjunto de las palabras reducidas formadas
     \item Si $S = \{a, b\}$, entonces $F(S) = \{1, a, a^2, a^{-1}, \dots, b, b^2, b^{-1}, \dots, ab, ab^2, a^2b, a^{-1}b, \dots\}$. Veremos que el grupo fundamental de la figura ocho $S^1 \vee S^1$ (\cref{def:def_wedge}), con un lazo $a$ y un lazo $b$ que recorren cada circunferencia, es $\pi_1(S^1 \vee S^1) = F(\{a,b\})$ (\cref{obs:svk_ej_ocho_toro}).
     \item $F_1 = F(\{a\}) = \{1, a, a^{-1}, a^{n_1} a^{n_2} \cdots a^{n_r} = a^{n_1 + \dots + n_r}\} = \{a^n : n \in \mathbb{Z}\} \cong \mathbb{Z}$, mediante el isomorfismo $\mathbb{Z} \to F(\{a\})$, $n \mapsto a^n$.
 \end{itemize}
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[thick, every node/.style={font=\small},
+  lazo/.style={blue!75!black, postaction={decorate}, decoration={markings, mark=at position 0.25 with {\arrow{Stealth[length=5pt]}}}}]
+  \draw[lazo] (-1,0) circle (1);
+  \draw[lazo, red!75!black] (1,0) circle (1);
+  \node[blue!75!black] at (-1,1.3) {$a$};
+  \node[red!75!black] at (1,1.3) {$b$};
+  \fill (0,0) circle (1.6pt) node[below=2pt] {$x_0$};
+\end{tikzpicture}
+\captionof{figure}{La figura ocho $S^1 \vee S^1$: $\pi_1(S^1 \vee S^1, x_0) = F(\{a,b\})$.}
+\end{minipage}
+\end{center}
 \end{observacion}
 
 \begin{definicion}{Grupo abeliano libre [C14.15]}{svk_abeliano_libre}
@@ -287,12 +302,75 @@ con $R_0 = \{ (i_1)_*(h)\,\big((i_2)_*(h)\big)^{-1} : h \in S \}$.
 Sea $X = S^1 \vee S^1$ la figura ocho y $x_0$ el punto de unión. Tomamos $U$ = $X$ menos un punto de la circunferencia de la derecha y $V$ = $X$ menos un punto de la de la izquierda. Entonces $U \simeq S^1$, $V \simeq S^1$ y $U \cap V$ es una cruz, contráctil, así que
 \[ \pi_1(U \cap V, x_0) = 1, \quad \pi_1(U, x_0) = \mathbb{Z} = \langle b ; \ \rangle, \quad \pi_1(V, x_0) = \mathbb{Z} = \langle a ; \ \rangle, \]
 y por el \cref{thm:svk_teorema}, $\pi_1(X, x_0) = \langle a, b ; \ \rangle \cong F_2$.
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[thick, scale=0.55, every node/.style={font=\small}]
+  % X
+  \draw (-1,0) circle (1); \draw (1,0) circle (1);
+  \fill (0,0) circle (2.5pt); \node[below=3pt] at (0,0) {$x_0$};
+  \node at (0,-1.9) {$X$};
+  % U: sin un punto de la circunferencia derecha
+  \begin{scope}[xshift=5.5cm]
+    \draw[blue!75!black] (-1,0) circle (1);
+    \draw ([shift={(1,0)}]8:1) arc (8:352:1);
+    \draw[fill=white] (2,0) circle (3pt);
+    \fill (0,0) circle (2.5pt);
+    \node at (0,-1.9) {$U \simeq S^1$};
+  \end{scope}
+  % V: sin un punto de la circunferencia izquierda
+  \begin{scope}[xshift=11cm]
+    \draw ([shift={(-1,0)}]-172:1) arc (-172:172:1);
+    \draw[fill=white] (-2,0) circle (3pt);
+    \draw[red!75!black] (1,0) circle (1);
+    \fill (0,0) circle (2.5pt);
+    \node at (0,-1.9) {$V \simeq S^1$};
+  \end{scope}
+  % U cap V: cruz contráctil
+  \begin{scope}[xshift=16.5cm]
+    \draw ([shift={(-1,0)}]-172:1) arc (-172:172:1);
+    \draw ([shift={(1,0)}]8:1) arc (8:352:1);
+    \draw[fill=white] (-2,0) circle (3pt);
+    \draw[fill=white] (2,0) circle (3pt);
+    \fill (0,0) circle (2.5pt);
+    \node at (0,-1.9) {$U \cap V$, contráctil};
+  \end{scope}
+\end{tikzpicture}
+\captionof{figure}{El recubrimiento $\{U, V\}$ de la figura ocho. $U \cap V$ se retrae por deformación sobre una cruz alrededor de $x_0$.}
+\end{minipage}
+\end{center}
 
 La \textbf{$n$-rosa} es el ramo de $n$ circunferencias $\bigvee_n S^1$ (\cref{def:def_wedge}), también llamado \emph{bouquet} de esferas. Aplicando inducción se llega a que $\pi_1\big(\bigvee_n S^1\big) \cong F_n$.
 \end{observacion}
 
 \begin{observacion}{La esfera con el polo norte y el polo sur unidos [C15.8]}{svk_ej_toro_cornudo}
-Sea $X$ la superficie de revolución que se obtiene al girar alrededor del eje $z$ la circunferencia del plano $yz$ de centro $(0,1,0)$ y radio $1$ (tangente al eje $z$ en el origen): es como una esfera con el polo norte y el polo sur unidos. Sea $p \in X$ un punto (distinto del punto del eje) y sea $x_0 \neq p$ con $x_0 \in U \setminus \{p\}$, de modo que $x_0 \in U \cap V$, donde
+Sea $X$ la superficie de revolución que se obtiene al girar alrededor del eje $z$ la circunferencia del plano $yz$ de centro $(0,1,0)$ y radio $1$ (tangente al eje $z$ en el origen): es como una esfera con el polo norte y el polo sur unidos.
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[thick, every node/.style={font=\small}]
+  % perfil en el plano yz
+  \draw[->, thin] (-2.4,0) -- (2.4,0) node[right] {$y$};
+  \draw[->, thin] (0,-1.4) -- (0,1.6) node[above] {$z$};
+  \draw[blue!75!black] (1,0) circle (1);
+  \draw[blue!75!black, dashed, thin] (-1,0) circle (1);
+  \draw[->, thin] (-0.35,1.3) arc (200:520:0.35 and 0.12);
+  % la superficie
+  \begin{scope}[xshift=6.2cm]
+    \draw[fill=orange!8] plot[smooth cycle, tension=0.7] coordinates
+      {(0,0.55) (1,1) (2,0.45) (2,-0.45) (1,-1) (0,-0.55) (-1,-1) (-2,-0.45) (-2,0.45) (-1,1)};
+    \draw (-0.45,0.52) .. controls (-0.1,0.35) and (-0.03,0.15) .. (0,0) .. controls (0.03,0.15) and (0.1,0.35) .. (0.45,0.52);
+    \draw (-0.45,-0.52) .. controls (-0.1,-0.35) and (-0.03,-0.15) .. (0,0) .. controls (0.03,-0.15) and (0.1,-0.35) .. (0.45,-0.52);
+    \fill (0,0) circle (1.6pt) node[right=2pt] {$x_0$};
+    \fill (-1.25,-0.2) circle (1.6pt) node[below=1pt] {$p$};
+    \draw[dashed] (-1.25,-0.2) circle (0.38);
+    \node at (-1.25,0.42) {$U$};
+  \end{scope}
+\end{tikzpicture}
+\captionof{figure}{A la izquierda, la circunferencia que se gira alrededor del eje $z$; a la derecha, la superficie $X$ con el punto $p$ y el abierto $U$.}
+\end{minipage}
+\end{center}
+Sea $p \in X$ un punto (distinto del punto del eje) y sea $x_0 \neq p$ con $x_0 \in U \setminus \{p\}$, de modo que $x_0 \in U \cap V$, donde
 \[ U = B(p, \varepsilon) \cap X \ \ (\varepsilon > 0 \text{ suficientemente pequeño}), \qquad V = X \setminus \{p\}. \]
 Entonces $U$ es un disco ($\pi_1(U,x_0) = 1$), $U \cap V$ es un disco sin un punto ($\pi_1(U \cap V, x_0) \cong \mathbb{Z} = \langle a ; \ \rangle$) y $\pi_1(V, x_0) = \langle b ; \ \rangle \cong \mathbb{Z}$. El lazo $a$ alrededor de $p$ es trivial en $V$: $(i_2)_{*}(a) = bb^{-1} = 1$. Por el \cref{thm:svk_teorema}, con $R_0 = \{ (i_1)_*(a)\,((i_2)_*(a))^{-1} \}$,
 \[ \pi_1(X, x_0) \cong \big\langle b ; \underbrace{(i_1)_*(a)}_{1} \underbrace{\big((i_2)_*(a)\big)^{-1}}_{(bb^{-1})^{-1} = 1} \big\rangle = \langle b ; \ \rangle \cong \mathbb{Z}. \]
@@ -300,6 +378,18 @@ Entonces $U$ es un disco ($\pi_1(U,x_0) = 1$), $U \cap V$ es un disco sin un pun
 
 \begin{observacion}{Un disco con un agujero [C15.9]}{svk_ej_disco_agujero}
 En clase se dibujó también una región plana con un agujero (la parte sombreada no pertenece al espacio), con grupo fundamental $\cong \mathbb{Z}$: se retrae sobre una circunferencia que rodea el agujero.
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[thick, every node/.style={font=\small}]
+  \draw[fill=orange!8] (0,0) ellipse (2 and 0.9);
+  \draw[fill=gray!45] (0,0) ellipse (0.9 and 0.3);
+  \draw[blue!75!black, postaction={decorate}, decoration={markings, mark=at position 0.25 with {\arrow{Stealth[length=5pt]}}}] (0,0) ellipse (1.4 and 0.6);
+  \node at (3.4,0) {$\pi_1 \cong \mathbb{Z}$};
+\end{tikzpicture}
+\captionof{figure}{Región con un agujero (en gris); el lazo azul genera su grupo fundamental.}
+\end{minipage}
+\end{center}
 \end{observacion}
 % Ejemplo 3) del manuscrito: solo hay el dibujo y "≅ Z"; se interpreta como una corona (disco menos un disco cerrado).
 
@@ -315,8 +405,85 @@ con $x_0 \in U \cap V$. Entonces:
 Como $(i_1)_*(a) = 1$, la única relación nueva es $\big((i_2)_*(a)\big)^{-1}$, y en clase se obtuvo
 \[ \pi_1(T^2, x_0) = \langle b, c ; cbc^{-1}b^{-1} \rangle \cong \mathbb{Z} \times \mathbb{Z}. \]
 (Completado: el lazo $a$, que rodea a $p$, recorre en $V$ el borde del cuadrado con el que se construye el toro, así que $(i_2)_*(a) = cbc^{-1}b^{-1}$; la relación $bcb^{-1}c^{-1}$, su inversa, da el mismo grupo.)
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[thick, every node/.style={font=\small},
+  flecha/.style={postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow{Stealth[length=5pt]}}}}]
+  % toro con p y U
+  \draw[fill=orange!8] (0,0) ellipse (2 and 1.1);
+  \draw (-0.9,0.1) .. controls (-0.4,-0.35) and (0.4,-0.35) .. (0.9,0.1);
+  \draw (-0.7,-0.05) .. controls (-0.3,0.25) and (0.3,0.25) .. (0.7,-0.05);
+  \fill (0.2,-0.72) circle (1.6pt) node[right=2pt] {$p$};
+  \draw[dashed] (0.2,-0.72) circle (0.3);
+  \node at (-0.4,-0.62) {$U$};
+  \node at (0,-1.45) {$T^2$};
+  % cuadrado
+  \begin{scope}[xshift=4.2cm, yshift=-1cm]
+    \fill[orange!8] (0,0) rectangle (2,2);
+    \draw[flecha, red!75!black] (0,0) -- (2,0); \draw[flecha, red!75!black] (0,2) -- (2,2);
+    \draw[flecha, blue!75!black] (0,0) -- (0,2); \draw[flecha, blue!75!black] (2,0) -- (2,2);
+    \node[red!75!black, below] at (1,0) {$b$}; \node[red!75!black, above] at (1,2) {$b$};
+    \node[blue!75!black, left] at (0,1) {$c$}; \node[blue!75!black, right] at (2,1) {$c$};
+    \fill (1,1) circle (1.6pt) node[below right=-1pt] {$p$};
+    \draw[violet, flecha] (1,1) circle (0.4);
+    \node[violet] at (1.55,1.45) {$a$};
+    \fill (0,0) circle (1.6pt) node[below left] {$x_0$};
+  \end{scope}
+  \node at (7.3,0) {$\leadsto$};
+  % V se retrae a la figura ocho
+  \begin{scope}[xshift=9.6cm]
+    \draw[red!75!black, flecha] (-0.75,0) circle (0.75);
+    \draw[blue!75!black, flecha] (0.75,0) circle (0.75);
+    \node[red!75!black] at (-0.75,1) {$b$}; \node[blue!75!black] at (0.75,1) {$c$};
+    \fill (0,0) circle (1.6pt) node[below=2pt] {$x_0$};
+    \node at (0,-1.45) {$V \simeq S^1 \vee S^1$};
+  \end{scope}
+\end{tikzpicture}
+\captionof{figure}{El toro como cuadrado con los lados identificados. Al quitar $p$, $V = T^2 \setminus \{p\}$ se retrae sobre el borde del cuadrado, que es una figura ocho con lazos $b$ y $c$; el lazo $a$ alrededor de $p$ se deforma en el borde.}
+\end{minipage}
+\end{center}
 \end{observacion}
 
 \begin{observacion}{Otras superficies [C15.11]}{svk_ej_superficies}
 En clase se dibujaron además, sin cálculos: una esfera con $7$ agujeros ($3$ arriba, $3$ abajo y uno en el extremo), que se retrae sobre una rosa de $6$ pétalos y tiene por tanto grupo fundamental $F_6$ (\cref{obs:svk_ej_ocho_toro}); y el bitoro y el tritoro (superficies de género $2$ y $3$).
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[thick, every node/.style={font=\small},
+  agujero/.pic={\draw (-0.35,0.05) .. controls (-0.15,-0.12) and (0.15,-0.12) .. (0.35,0.05);
+                \draw (-0.25,-0.02) .. controls (-0.1,0.08) and (0.1,0.08) .. (0.25,-0.02);}]
+  % esfera con 7 agujeros
+  \draw[fill=orange!8] (0,0) ellipse (2.1 and 1);
+  \foreach \x in {-1,0,1} {
+    \draw[fill=white] (\x,0.45) ellipse (0.22 and 0.13);
+    \draw[fill=white] (\x,-0.45) ellipse (0.22 and 0.13);
+  }
+  \draw[fill=white] (-1.75,0) ellipse (0.12 and 0.3);
+  \node at (2.45,0) {$\simeq$};
+  % rosa de 6 pétalos
+  \begin{scope}[xshift=3.95cm]
+    \foreach \k in {0,...,5} \draw[rotate=\k*60] (0.45,0) ellipse (0.45 and 0.16);
+    \fill (0,0) circle (1.4pt);
+    \node at (0,-1.25) {$\pi_1 \cong F_6$};
+  \end{scope}
+  % bitoro
+  \begin{scope}[xshift=7.6cm]
+    \draw[fill=orange!8] plot[smooth cycle, tension=0.7] coordinates
+      {(-2,0) (-1.5,0.8) (-0.6,0.75) (0,0.4) (0.6,0.75) (1.5,0.8) (2,0) (1.5,-0.8) (0.6,-0.75) (0,-0.4) (-0.6,-0.75) (-1.5,-0.8)};
+    \pic at (-1,0) {agujero}; \pic at (1,0) {agujero};
+    \node at (0,-1.25) {bitoro};
+  \end{scope}
+  % tritoro
+  \begin{scope}[xshift=4cm, yshift=-2.9cm]
+    \draw[fill=orange!8] plot[smooth cycle, tension=0.7] coordinates
+      {(-3,0) (-2.5,0.8) (-1.6,0.75) (-1.05,0.4) (-0.5,0.75) (0.5,0.75) (1.05,0.4) (1.6,0.75) (2.5,0.8) (3,0)
+       (2.5,-0.8) (1.6,-0.75) (1.05,-0.4) (0.5,-0.75) (-0.5,-0.75) (-1.05,-0.4) (-1.6,-0.75) (-2.5,-0.8)};
+    \pic at (-2,0) {agujero}; \pic at (0,0) {agujero}; \pic at (2,0) {agujero};
+    \node at (0,-1.25) {tritoro};
+  \end{scope}
+\end{tikzpicture}
+\captionof{figure}{Una esfera con $7$ agujeros se retrae sobre una rosa de $6$ pétalos; debajo, el bitoro y el tritoro.}
+\end{minipage}
+\end{center}
 \end{observacion}
