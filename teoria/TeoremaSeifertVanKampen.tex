@@ -37,9 +37,8 @@ En efecto, $\tilde\alpha_1(t) = t^2 + t$ es una elevación de $\alpha_1$, luego 
 
 Si $a + b = 2$, como $c \in \mathbb{Z}$, también $t \mapsto at^2 + bt$ es una elevación de $\alpha_2$, con los mismos extremos ($0$ y $2$) que $\tilde\alpha_1$. Entonces
 \[ F \colon I \times I \to S^1, \qquad F(t,\theta) = p\big((1-\theta)(t^2+t) + \theta(at^2+bt)\big), \]
-con $p(s) = e^{2\pi i s}$, es una homotopía relativa a $\{0,1\}$ entre $\alpha_1$ y $\alpha_2$. La combinación lineal se hace en $\mathbb{R}$, entre las elevaciones: $(1-\theta)\alpha_1(t) + \theta\alpha_2(t)$ no toma valores en $S^1$ en general.
+con $p(s) = e^{2\pi i s}$, es una homotopía relativa a $\{0,1\}$ entre $\alpha_1$ y $\alpha_2$. La combinación lineal se hace en $\mathbb{R}$, entre las elevaciones: $(1-\theta)\alpha_1(t) + \theta\alpha_2(t)$ no toma valores en $S^1$ en general. (En el manuscrito aparece esta última expresión; la homotopía mediante las elevaciones está corregida.)
 \end{observacion}
-% REVISAR: en el manuscrito aparece F(t,θ) = (1-θ)α_1(t) + θα_2(t), que no cae en S^1; la homotopía con las elevaciones está completada.
 
 \subsection{Preliminares de teoría de grupos}
 
@@ -132,13 +131,16 @@ Sea $S$ un conjunto cualquiera.
 \begin{enumerate}
     \item[a)] Una \textbf{palabra} en $S$ es una yuxtaposición $g_1^{\varepsilon_1} g_2^{\varepsilon_2} \cdots g_r^{\varepsilon_r}$ con $g_1, \dots, g_r \in S$ y $\varepsilon_1, \dots, \varepsilon_r \in \{-1, 1\}$.
     \item[b)] La \textbf{palabra vacía} es aquella en la que no aparece ningún elemento de $S$. La denotaremos por $1$.
-    \item[c)] Una palabra es \textbf{reducida} cuando no tiene dos símbolos consecutivos de la forma $a a^{-1}$ ni $a^{-1} a$, con $a \in S$.
-    \item[d)] Una \textbf{palabra generalizada} es $g_1^{n_1} g_2^{n_2} \cdots g_r^{n_r}$ con $n_1, \dots, n_r \in \mathbb{Z} \setminus \{0\}$. En la forma reducida de las palabras generalizadas no hay términos consecutivos de la forma $a^{\varepsilon_1} a^{\varepsilon_2}$: se agrupan en una potencia.
+    \item[c)] Una palabra es \textbf{reducida} cuando se cumple:
+    \begin{enumerate}
+        \item[1)] no hay dos símbolos consecutivos de la forma $a a^{-1}$ ni $a^{-1} a$, con $a \in S$;
+        \item[2)] no hay términos consecutivos de la forma $a^{\varepsilon_1} a^{\varepsilon_2}$: en la forma reducida de las palabras de $S$ permitimos la exponenciación.
+    \end{enumerate}
+    Por ejemplo,
+    \[ abcbbc^{-1}ba^{-1}abbc = abcb^2c^{-1}bb^2c = \underbrace{abcb^2c^{-1}b^3c}_{\text{reducida}}. \]
+    \item[d)] Una \textbf{palabra generalizada} es $g_1^{n_1} g_2^{n_2} \cdots g_r^{n_r}$ con $g_1, \dots, g_r \in S$ y $n_1, \dots, n_r \in \mathbb{Z} \setminus \{0\}$.
 \end{enumerate}
-Por ejemplo,
-\[ abcbbc^{-1}ba^{-1}abbc = abcb^2c^{-1}bbb\,c = \underbrace{abcb^2c^{-1}b^3c}_{\text{reducida}}. \]
 \end{definicion}
-% REVISAR: en el manuscrito c) tiene dos condiciones numeradas 1) y 2); la segunda (agrupar a^e1 a^e2) se ha pasado a d), que es donde se usan los exponentes.
 
 \begin{definicion}{Grupo libre [C14.13]}{svk_grupo_libre}
 Sea $S \neq \emptyset$. $F(S)$ es el conjunto de las palabras reducidas formadas con los elementos de $S$, con la operación de yuxtaponer y reducir. Es el \textbf{grupo libre generado por $S$}. Si $S$ es finito, se dice que $F(S)$ tiene \textbf{rango} $|S| = \#S$; escribimos $F_n$ para el grupo libre de rango $n$. A los grupos $F(S)$ se les llama \textbf{grupos libres}.
@@ -221,10 +223,9 @@ Con la notación anterior se escribe $G = \langle S ; R \rangle$, y se dice que 
 
 \begin{definicion}{Producto libre de grupos [C15.3]}{svk_producto_libre}
 Sean $G_1 = \langle S_1 ; R_1 \rangle$ y $G_2 = \langle S_2 ; R_2 \rangle$. Su \textbf{producto libre} es
-\[ G_1 * G_2 := \langle S_1 \cup S_2 ; R_1 \cup R_2 \rangle. \]
-Si $S_1 = \{g_1, g_2, \dots\}$ y $S_2 = \{h_1, h_2, \dots\}$, los elementos de $G_1 * G_2$ son palabras como $g_1^5 g_4^{-1} h_1 g_2 h_2 h_3^7 g_5 h_7$: los símbolos consecutivos de $G_1$ se operan en $G_1$, los de $G_2$ en $G_2$, y entre unos y otros se concatena.
+\[ G_1 * G_2 := \langle S_1 \cup S_2 ; R_1 \cup R_2 \rangle, \]
+donde los generadores de $G_1$ y los de $G_2$ se consideran símbolos distintos aunque coincida su nombre. Si $S_1 = \{g_1, g_2, \dots\}$ y $S_2 = \{h_1, h_2, \dots\}$, los elementos de $G_1 * G_2$ son palabras como $g_1^5 g_4^{-1} h_1 g_2 h_2 h_3^7 g_5 h_7$: los símbolos consecutivos de $G_1$ se operan en $G_1$, los de $G_2$ en $G_2$, y entre unos y otros se concatena.
 \end{definicion}
-% REVISAR: se entiende S_1 y S_2 disjuntos (unión disjunta) aunque en el papel pone S_1 ∪ S_2.
 
 \begin{observacion}{Ejemplos de productos libres [C15.4]}{svk_ej_producto_libre}
 \begin{itemize}
@@ -259,10 +260,10 @@ En la prueba de este resultado se ve que $\mathcal{G}$ es único salvo isomorfis
 \[ \mathcal{G} \cong \frac{G_1 * G_2}{N} \cong \langle S_1 \cup S_2 ; R_1 \cup R_2 \cup R_0 \rangle, \]
 con $R_0 = \{ \varphi_1(h)\varphi_2(h)^{-1} : h \in S \}$, donde $N$ es el subgrupo normal de $G_1 * G_2$ generado por $R_0$.
 \end{teorema}
-% REVISAR: en el manuscrito los nombres psi_1 y psi_2 están cruzados (psi_2: G_1 -> G, psi_1: G_2 -> G); aquí psi_k sale de G_k.
+% En el manuscrito psi_1 y psi_2 aparecen cruzados; se sigue el PDF de contenidos (15.1.s): psi_1: G_1 -> G, psi_2: G_2 -> G.
 
 \begin{teorema}{de Seifert--van Kampen [C15.6]}{svk_teorema}
-Sea $X$ un espacio topológico, sea $x_0 \in X$ y sea $\{U, V\}$ un recubrimiento abierto de $X$. Supongamos que $X$, $U$, $V$ y $U \cap V$ son arco-conexos y que $x_0 \in U \cap V$. Sean $i_1 \colon U \cap V \to U$, $i_2 \colon U \cap V \to V$, $j_1 \colon U \to X$ y $j_2 \colon V \to X$ las inclusiones, que forman un diagrama conmutativo ($j_1 \circ i_1 = j_2 \circ i_2$). Entonces el diagrama inducido
+Sea $X$ un espacio topológico y sea $\{U, V\}$ un recubrimiento abierto de $X$ con $U \cap V \neq \emptyset$. Supongamos que $U$, $V$ y $U \cap V$ son arco-conexos (en particular, $X$ también es arco-conexo) y sea $x_0 \in U \cap V$. Sean $i_1 \colon U \cap V \to U$, $i_2 \colon U \cap V \to V$, $j_1 \colon U \to X$ y $j_2 \colon V \to X$ las inclusiones, que forman un diagrama conmutativo ($j_1 \circ i_1 = j_2 \circ i_2$). Entonces el diagrama inducido
 \begin{center}
 \begin{tikzpicture}
 \node (A) at (0,2) {$\pi_1(U \cap V, x_0)$};
@@ -279,7 +280,7 @@ también conmuta y es un diagrama push-out. Por el \cref{thm:svk_pushout}, si $\
 \[ \pi_1(X, x_0) \cong \langle S_1 \cup S_2 ; R_1 \cup R_2 \cup R_0 \rangle, \]
 con $R_0 = \{ (i_1)_*(h)\,\big((i_2)_*(h)\big)^{-1} : h \in S \}$.
 \end{teorema}
-% REVISAR: en el manuscrito pone "U ∩ X arcoconexos" (se entiende U ∩ V) y "x_0 ∈ U ∪ V" (se entiende U ∩ V, que es donde está el punto base de pi_1(U ∩ V, x_0)).
+% Hipótesis según el PDF de contenidos (15.2); en el manuscrito pone "U ∩ X" y "x_0 ∈ U ∪ V" por U ∩ V.
 % La conmutatividad del diagrama inducido sale de la funtorialidad de los homomorfismos inducidos (\cref{thm:teo_hom_ind}).
 
 \begin{observacion}{La figura ocho y la rosa de $n$ pétalos [C15.7]}{svk_ej_ocho_toro}
@@ -290,16 +291,19 @@ y por el \cref{thm:svk_teorema}, $\pi_1(X, x_0) = \langle a, b ; \ \rangle \cong
 La \textbf{$n$-rosa} es el ramo de $n$ circunferencias $\bigvee_n S^1$ (\cref{def:def_wedge}), también llamado \emph{bouquet} de esferas. Aplicando inducción se llega a que $\pi_1\big(\bigvee_n S^1\big) \cong F_n$.
 \end{observacion}
 
-\begin{observacion}{Un toro con el agujero central reducido a un punto [C15.8]}{svk_ej_toro_cornudo}
-% REVISAR: el espacio X solo está dibujado. Parece el toro que se obtiene girando alrededor del eje z una circunferencia tangente al eje (el agujero central se reduce a un punto, donde está dibujado x_0 en el primer dibujo).
-Sea $X$ el toro que se obtiene al girar alrededor del eje $z$ una circunferencia tangente a dicho eje, sea $p \in X$ un punto (distinto del punto del eje) y sea $x_0 \neq p$ con $x_0 \in U \setminus \{p\}$, de modo que $x_0 \in U \cap V$, donde
+\begin{observacion}{La esfera con el polo norte y el polo sur unidos [C15.8]}{svk_ej_toro_cornudo}
+Sea $X$ la superficie de revolución que se obtiene al girar alrededor del eje $z$ la circunferencia del plano $yz$ de centro $(0,1,0)$ y radio $1$ (tangente al eje $z$ en el origen): es como una esfera con el polo norte y el polo sur unidos. Sea $p \in X$ un punto (distinto del punto del eje) y sea $x_0 \neq p$ con $x_0 \in U \setminus \{p\}$, de modo que $x_0 \in U \cap V$, donde
 \[ U = B(p, \varepsilon) \cap X \ \ (\varepsilon > 0 \text{ suficientemente pequeño}), \qquad V = X \setminus \{p\}. \]
 Entonces $U$ es un disco ($\pi_1(U,x_0) = 1$), $U \cap V$ es un disco sin un punto ($\pi_1(U \cap V, x_0) \cong \mathbb{Z} = \langle a ; \ \rangle$) y $\pi_1(V, x_0) = \langle b ; \ \rangle \cong \mathbb{Z}$. El lazo $a$ alrededor de $p$ es trivial en $V$: $(i_2)_{*}(a) = bb^{-1} = 1$. Por el \cref{thm:svk_teorema}, con $R_0 = \{ (i_1)_*(a)\,((i_2)_*(a))^{-1} \}$,
 \[ \pi_1(X, x_0) \cong \big\langle b ; \underbrace{(i_1)_*(a)}_{1} \underbrace{\big((i_2)_*(a)\big)^{-1}}_{(bb^{-1})^{-1} = 1} \big\rangle = \langle b ; \ \rangle \cong \mathbb{Z}. \]
 \end{observacion}
-% REVISAR: a continuación hay un ejemplo 3) con un dibujo de una región con un agujero sombreado y "≅ Z"; no se ha podido identificar el espacio.
 
-\begin{observacion}{El grupo fundamental del toro por Seifert--van Kampen [C15.9]}{svk_ej_toro}
+\begin{observacion}{Un disco con un agujero [C15.9]}{svk_ej_disco_agujero}
+En clase se dibujó también una región plana con un agujero (la parte sombreada no pertenece al espacio), con grupo fundamental $\cong \mathbb{Z}$: se retrae sobre una circunferencia que rodea el agujero.
+\end{observacion}
+% Ejemplo 3) del manuscrito: solo hay el dibujo y "≅ Z"; se interpreta como una corona (disco menos un disco cerrado).
+
+\begin{observacion}{El grupo fundamental del toro por Seifert--van Kampen [C15.10]}{svk_ej_toro}
 Ya sabemos que $\pi_1(T^2) = \mathbb{Z} \times \mathbb{Z}$ (\cref{prop:ej_pi1_producto}). Veamos que también se puede deducir del \cref{thm:svk_teorema}. Sean $X = T^2$, $p \in X$ y
 \[ U = B(p, \varepsilon) \cap X \ \ (\varepsilon > 0 \text{ suficientemente pequeño}), \qquad V = X \setminus \{p\}, \]
 con $x_0 \in U \cap V$. Entonces:
@@ -308,12 +312,11 @@ con $x_0 \in U \cap V$. Entonces:
     \item $U$ es un disco, así que $\pi_1(U, x_0) = 1$.
     \item $V = T^2 \setminus \{p\}$ se retrae sobre dos circunferencias $b$ y $c$ unidas por un punto, una figura ocho, así que $\pi_1(V, x_0) \cong F_2 = \langle b, c ; \ \rangle$.
 \end{itemize}
-El lazo $a$, que rodea a $p$, recorre en $V$ el borde del cuadrado con el que se construye el toro, así que $(i_2)_*(a) = cbc^{-1}b^{-1}$, y $(i_1)_*(a) = 1$. Por tanto
+Como $(i_1)_*(a) = 1$, la única relación nueva es $\big((i_2)_*(a)\big)^{-1}$, y en clase se obtuvo
 \[ \pi_1(T^2, x_0) = \langle b, c ; cbc^{-1}b^{-1} \rangle \cong \mathbb{Z} \times \mathbb{Z}. \]
+(Completado: el lazo $a$, que rodea a $p$, recorre en $V$ el borde del cuadrado con el que se construye el toro, así que $(i_2)_*(a) = cbc^{-1}b^{-1}$; la relación $bcb^{-1}c^{-1}$, su inversa, da el mismo grupo.)
 \end{observacion}
-% REVISAR: el valor (i_2)_*(a) = cbc^{-1}b^{-1} (y la explicación del borde del cuadrado) está completado; en el papel solo aparece el resultado <b, c; cbc^{-1}b^{-1}>.
 
-\begin{observacion}{Otras superficies [C15.10]}{svk_ej_superficies}
-En clase se dibujaron además: una superficie (esfera con varios agujeros) que se retrae sobre una rosa de $6$ pétalos, cuyo grupo fundamental es por tanto $F_6$, y el bitoro y el tritoro (superficies de género $2$ y $3$).
+\begin{observacion}{Otras superficies [C15.11]}{svk_ej_superficies}
+En clase se dibujaron además, sin cálculos: una esfera con $7$ agujeros ($3$ arriba, $3$ abajo y uno en el extremo), que se retrae sobre una rosa de $6$ pétalos y tiene por tanto grupo fundamental $F_6$ (\cref{obs:svk_ej_ocho_toro}); y el bitoro y el tritoro (superficies de género $2$ y $3$).
 \end{observacion}
-% REVISAR: los dibujos de la última página no llevan cálculos; el número de agujeros de la primera superficie no se distingue bien (el resultado anotado es F_6).
