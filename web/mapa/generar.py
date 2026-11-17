@@ -19,10 +19,11 @@ ARCHIVOS = [
     ("ElGrupoFundamental", 3, "El grupo fundamental"),
     ("EspaciosSimplementeConexosyGrupoFundamental", 4, "Simplemente conexos y π₁(S¹)"),
     ("AplicacionesTeoriaHomotopia", 5, "Aplicaciones"),
+    ("TeoremaSeifertVanKampen", 6, "Seifert–van Kampen"),
 ]
 # Archivos que no son nodos del mapa pero cuyas cajas se citan desde los apuntes (para resolver \\cref).
-COLORES = {1: "#2f7d6d", 2: "#c0662c", 3: "#4a5bc4", 4: "#9c3f8c", 5: "#b3182b", 6: "#6b6b78"}
-ARCHIVOS_SOLO_REFS = [("ResumenHomotopias", 6, "Resumen")]
+COLORES = {1: "#2f7d6d", 2: "#c0662c", 3: "#4a5bc4", 4: "#9c3f8c", 5: "#b3182b", 6: "#2a7fb8", 7: "#6b6b78"}
+ARCHIVOS_SOLO_REFS = [("ResumenHomotopias", 7, "Resumen")]
 TIPOS = {  # entorno -> (nombre, prefijo de etiqueta)
     "teorema": ("Teorema", "thm"),
     "proposicion": ("Proposición", "prop"),

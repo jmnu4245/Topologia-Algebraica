@@ -16,6 +16,7 @@ declare -A NOMBRE=(
   [t3]=Tema3_Teoria      [e3]=Tema3_Ejercicios
   [t4]=Tema4_Teoria      [e4]=Tema4_Ejercicios
   [t5]=Tema5_Teoria      [e5]=Tema5_Ejercicios
+  [t6]=Tema6_Teoria
   [ex]=Examenes_2025-26
 )
 
